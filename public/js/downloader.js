@@ -2,16 +2,18 @@
   const urlInput = document.getElementById('url');
   const infoBtn = document.getElementById('infoBtn');
   const infoBtnText = document.getElementById('infoBtnText');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const downloadBtnText = document.getElementById('downloadBtnText');
-  const downloadLink = document.getElementById('downloadLink');
   const messageEl = document.getElementById('message');
   const infoCard = document.getElementById('infoCard');
   const titleEl = document.getElementById('title');
   const thumbEl = document.getElementById('thumb');
   const metaEl = document.getElementById('meta');
-  const formatSelect = document.getElementById('formatSelect');
+  const formatList = document.getElementById('formatList');
+  const downloadResult = document.getElementById('downloadResult');
+  const downloadLink = document.getElementById('downloadLink');
+  const downloadFilename = document.getElementById('downloadFilename');
   const cookiesInput = document.getElementById('cookies');
+  const poTokenInput = document.getElementById('poToken');
+  const visitorDataInput = document.getElementById('visitorData');
   const advancedToggle = document.getElementById('advancedToggle');
   const advancedOptions = document.getElementById('advancedOptions');
 
@@ -53,22 +55,76 @@
     return `${(b / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
   }
 
+  function getAdvancedOptions() {
+    return {
+      cookies: cookiesInput ? cookiesInput.value.trim() : '',
+      poToken: poTokenInput ? poTokenInput.value.trim() : '',
+      visitorData: visitorDataInput ? visitorDataInput.value.trim() : '',
+    };
+  }
+
+  function renderFormats(formats) {
+    formatList.innerHTML = '';
+    const usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb'));
+    if (!usable.length) {
+      formatList.innerHTML = '<p class="text-sm text-slate-500">No individual formats found. Use the “Best available” option.</p>';
+      return;
+    }
+
+    const best = document.createElement('button');
+    best.className = 'card text-left hover:border-sky-500 dark:hover:border-sky-400 transition p-4 flex flex-col gap-1';
+    best.innerHTML = `<span class="font-bold text-sky-600 dark:text-sky-400">Best available</span><span class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</span>`;
+    best.addEventListener('click', (e) => downloadVideo('best', e.currentTarget));
+    formatList.appendChild(best);
+
+    usable.forEach((f) => {
+      const size = f.filesize
+        ? formatBytes(f.filesize)
+        : f.filesize_approx
+        ? `~${formatBytes(f.filesize_approx)}`
+        : 'Unknown size';
+      const hasVideo = f.vcodec && f.vcodec !== 'none';
+      const hasAudio = f.acodec && f.acodec !== 'none';
+      const parts = [];
+
+      if (hasVideo) {
+        parts.push(f.resolution && f.resolution !== 'audio only' ? f.resolution : 'video only');
+      } else if (hasAudio) {
+        parts.push('audio only');
+      }
+
+      if (f.ext) parts.push(f.ext);
+      if (hasVideo && f.vcodec) parts.push(f.vcodec);
+      if (hasAudio && !hasVideo && f.abr) parts.push(`${Math.round(f.abr)}k`);
+
+      const label = parts.join(' · ');
+      const badge = hasVideo && hasAudio ? 'Video + Audio' : hasVideo ? 'Video' : 'Audio';
+
+      const btn = document.createElement('button');
+      btn.className = 'card text-left hover:border-sky-500 dark:hover:border-sky-400 transition p-4 flex flex-col gap-1';
+      btn.innerHTML = `
+        <span class="font-bold text-slate-800 dark:text-slate-200 truncate">${label || f.format_id}</span>
+        <span class="text-xs text-slate-500 dark:text-slate-400">${size} · ${badge}</span>
+      `;
+      btn.addEventListener('click', (e) => downloadVideo(f.format_id, e.currentTarget));
+      formatList.appendChild(btn);
+    });
+  }
+
   async function fetchInfo() {
     const url = urlInput.value.trim();
     if (!url) return showMessage('Please enter a video URL', 'error');
 
     setLoading(infoBtn, infoBtnText, 'Fetching...');
     infoCard.classList.add('hidden');
-    downloadLink.classList.add('hidden');
+    downloadResult.classList.add('hidden');
     showMessage('');
-
-    const cookies = cookiesInput ? cookiesInput.value.trim() : '';
 
     try {
       const res = await fetch('/api/info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url, cookies }),
+        body: JSON.stringify({ url, ...getAdvancedOptions() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
@@ -81,27 +137,7 @@
         `${data.formats?.length || 0} format(s) available`,
       ].filter(Boolean).join(' · ');
 
-      formatSelect.innerHTML = '';
-      const best = document.createElement('option');
-      best.value = 'best';
-      best.textContent = 'Best available';
-      formatSelect.appendChild(best);
-
-      (data.formats || []).forEach((f) => {
-        const opt = document.createElement('option');
-        opt.value = f.format_id;
-        const size = f.filesize
-          ? ` (${formatBytes(f.filesize)})`
-          : f.filesize_approx
-          ? ` (~${formatBytes(f.filesize_approx)})`
-          : '';
-        const label = [f.resolution, f.ext, f.vcodec, f.acodec ? `audio:${f.acodec}` : '']
-          .filter(Boolean)
-          .join(' | ');
-        opt.textContent = `${label}${size}`;
-        formatSelect.appendChild(opt);
-      });
-
+      renderFormats(data.formats || []);
       infoCard.classList.remove('hidden');
       showMessage('');
     } catch (err) {
@@ -111,30 +147,35 @@
     }
   }
 
-  async function downloadVideo() {
-    const formatId = formatSelect.value;
-    setLoading(downloadBtn, downloadBtnText, 'Downloading...');
-    downloadLink.classList.add('hidden');
-    const cookies = cookiesInput ? cookiesInput.value.trim() : '';
+  async function downloadVideo(formatId, btn) {
+    if (!formatId) return showMessage('Please select a format', 'error');
+    if (!btn) return;
+
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<span class="font-bold">Downloading...</span>`;
+    downloadResult.classList.add('hidden');
 
     try {
       const res = await fetch('/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: urlInput.value.trim(), formatId, cookies }),
+        body: JSON.stringify({ url: urlInput.value.trim(), formatId, ...getAdvancedOptions() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Download failed');
 
       downloadLink.href = data.downloadUrl;
       downloadLink.download = data.filename;
-      downloadLink.textContent = `Open ${data.filename}`;
-      downloadLink.classList.remove('hidden');
+      downloadFilename.textContent = data.filename;
+      downloadResult.classList.remove('hidden');
       showMessage('Download ready', 'success');
+      window.open(data.downloadUrl, '_blank');
     } catch (err) {
       showMessage(err.message, 'error');
     } finally {
-      clearLoading(downloadBtn, downloadBtnText, 'Download Now');
+      btn.disabled = false;
+      btn.innerHTML = originalText;
     }
   }
 
@@ -142,5 +183,4 @@
   urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') fetchInfo();
   });
-  downloadBtn.addEventListener('click', downloadVideo);
 })();

@@ -47,6 +47,16 @@ function getReferer(url) {
   }
 }
 
+function isYouTube(url) {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.toLowerCase();
+    return host === 'youtube.com' || host === 'www.youtube.com' || host === 'youtu.be' || host === 'm.youtube.com' || host.includes('youtube-nocookie.com');
+  } catch {
+    return false;
+  }
+}
+
 function cleanError(err) {
   const raw = err.stderr || err.message || 'Something went wrong';
   const lines = raw.split('\n')
@@ -55,7 +65,7 @@ function cleanError(err) {
   const message = lines.join(' ') || 'Something went wrong';
 
   if (message.includes('Sign in to confirm')) {
-    return 'This site is blocking automated requests. Try a different URL, or add cookies if you own the content.';
+    return 'YouTube is blocking this server. Try the mweb client, or add PO token + visitor data (or cookies) in Advanced options.';
   }
   if (message.includes('Unsupported URL')) {
     return 'This URL is not supported or the video is unavailable. Check our Supported Sites list.';
@@ -82,6 +92,58 @@ function cleanupCookiePath(cookiePath) {
   if (cookiePath && cookiePath !== YOUTUBE_COOKIES_PATH && fs.existsSync(cookiePath)) {
     fs.unlinkSync(cookiePath);
   }
+}
+
+function getBaseOptions(url, cookiePath) {
+  const options = {
+    noCheckCertificates: true,
+    noWarnings: true,
+    preferFreeFormats: true,
+    addHeader: [
+      `referer:${getReferer(url)}`,
+      'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+    ],
+  };
+  if (cookiePath) options.cookies = cookiePath;
+  return options;
+}
+
+function getYouTubeExtractorArgs(poToken, visitorData) {
+  const args = [];
+  if (poToken && visitorData) {
+    args.push(`youtube:player_client=web;player_skip=webpage,configs;po_token=${poToken};visitor_data=${visitorData}`);
+    args.push(`youtube:player_client=mweb;po_token=${poToken};visitor_data=${visitorData}`);
+  }
+  args.push('youtube:player_client=mweb');
+  args.push('youtube:player_client=ios;player_skip=webpage,configs');
+  args.push('youtube:player_client=android;player_skip=webpage,configs');
+  args.push('youtube:player_client=tv');
+  args.push('youtube:player_client=web_embedded;player_skip=webpage,configs');
+  return [...new Set(args)];
+}
+
+function buildOptionSets(base, url, poToken, visitorData) {
+  const sets = [base];
+  if (!isYouTube(url)) return sets;
+
+  getYouTubeExtractorArgs(poToken, visitorData).forEach((arg) => {
+    sets.push({ ...base, extractorArgs: arg });
+  });
+
+  return sets;
+}
+
+async function callWithFallbacks(url, baseOptions) {
+  let lastError;
+  for (const opts of baseOptions) {
+    try {
+      return await youtubedl(url, opts);
+    } catch (err) {
+      lastError = err;
+      console.error('yt-dlp attempt failed:', cleanError(err));
+    }
+  }
+  throw lastError || new Error('All download attempts failed');
 }
 
 function renderPage(req, res, view, options = {}) {
@@ -204,25 +266,18 @@ app.get('/sitemap.xml', (req, res) => {
 });
 
 app.post('/api/info', async (req, res) => {
-  const { url, cookies } = req.body;
+  const { url, cookies, poToken, visitorData } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
 
   const cookiePath = getCookiePath(cookies);
 
   try {
-    const options = {
+    const base = {
+      ...getBaseOptions(url, cookiePath),
       dumpJson: true,
-      noCheckCertificates: true,
-      noWarnings: true,
-      preferFreeFormats: true,
-      addHeader: [
-        `referer:${getReferer(url)}`,
-        'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      ],
     };
-    if (cookiePath) options.cookies = cookiePath;
 
-    const info = await youtubedl(url, options);
+    const info = await callWithFallbacks(url, buildOptionSets(base, url, poToken, visitorData));
 
     const formats = (info.formats || []).map((f) => ({
       format_id: f.format_id,
@@ -257,7 +312,7 @@ app.post('/api/info', async (req, res) => {
 });
 
 app.post('/api/download', async (req, res) => {
-  const { url, formatId, cookies } = req.body;
+  const { url, formatId, cookies, poToken, visitorData } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
 
   const id = randomUUID();
@@ -265,19 +320,13 @@ app.post('/api/download', async (req, res) => {
   const cookiePath = getCookiePath(cookies);
 
   try {
-    const options = {
+    const base = {
+      ...getBaseOptions(url, cookiePath),
       output,
       format: formatId || 'best',
-      noCheckCertificates: true,
-      noWarnings: true,
-      addHeader: [
-        `referer:${getReferer(url)}`,
-        'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-      ],
     };
-    if (cookiePath) options.cookies = cookiePath;
 
-    await youtubedl(url, options);
+    await callWithFallbacks(url, buildOptionSets(base, url, poToken, visitorData));
 
     const files = fs.readdirSync(DOWNLOADS_DIR).filter((f) => f.startsWith(`${id}_`));
     if (!files.length) throw new Error('Download completed but file not found');

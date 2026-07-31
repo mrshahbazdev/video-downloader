@@ -17,12 +17,24 @@
           </button>
         </div>
         <button type="button" id="advancedToggle" class="text-xs text-sky-300 hover:text-white mt-3 text-left underline">
-          Advanced options (cookies)
+          Advanced options
         </button>
-        <div id="advancedOptions" class="hidden mt-3 text-left">
-          <label for="cookies" class="block text-xs text-slate-300 mb-1">YouTube / site cookies (Netscape format). Used only for this request.</label>
-          <textarea id="cookies" rows="4" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File\nyoutube.com\tTRUE\t/\tFALSE\t...\n..."></textarea>
-          <p class="text-xs text-slate-400 mt-1">Paste a cookies.txt file exported from your browser to bypass bot checks for your own videos.</p>
+        <div id="advancedOptions" class="hidden mt-3 text-left space-y-3">
+          <div>
+            <label for="cookies" class="block text-xs text-slate-300 mb-1">Site cookies (Netscape format)</label>
+          <textarea id="cookies" rows="3" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File\nyoutube.com\tTRUE\t/\tFALSE\t...\n..."></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="poToken" class="block text-xs text-slate-300 mb-1">YouTube PO token</label>
+              <input type="text" id="poToken" class="input-url text-xs font-mono" placeholder="web+M..." />
+            </div>
+            <div>
+              <label for="visitorData" class="block text-xs text-slate-300 mb-1">YouTube visitor data</label>
+              <input type="text" id="visitorData" class="input-url text-xs font-mono" placeholder="Cgt..." />
+            </div>
+          </div>
+          <p class="text-xs text-slate-400">Cookies or PO token are optional, but YouTube may require them on some server IPs.</p>
         </div>
         <p class="text-xs text-slate-300 mt-3 text-left">
           By using this service you agree to our <a href="/terms" class="underline hover:text-sky-300">Terms</a> and <a href="/disclaimer" class="underline hover:text-sky-300">Disclaimer</a>.
@@ -38,12 +50,12 @@
             <div class="flex-1">
               <h2 id="title" class="text-2xl font-bold text-slate-900 dark:text-white mb-2"></h2>
               <p id="meta" class="text-slate-600 dark:text-slate-400 mb-4"></p>
-              <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Choose format / quality</label>
-              <select id="formatSelect" class="input-url mb-4"></select>
-              <button id="downloadBtn" class="btn-primary w-full sm:w-auto">
-                <span id="downloadBtnText">Download Now</span>
-              </button>
-              <a id="downloadLink" class="hidden ml-4 btn-primary bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30" href="#" target="_blank">Open File</a>
+              <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-3">All available formats</h3>
+              <div id="formatList" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-1"></div>
+              <div id="downloadResult" class="hidden mt-4 flex items-center gap-3 flex-wrap">
+                <a id="downloadLink" class="btn-primary bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30" href="#" target="_blank">Open file</a>
+                <span id="downloadFilename" class="text-sm text-slate-600 dark:text-slate-400"></span>
+              </div>
             </div>
           </div>
         </div>
