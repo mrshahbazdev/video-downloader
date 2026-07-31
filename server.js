@@ -261,12 +261,12 @@ function getBaseOptions(url, cookiePath) {
     noCheckCertificates: true,
     noWarnings: true,
     preferFreeFormats: true,
-    impersonate: 'chrome',
     addHeader: [
       `referer:${getReferer(url)}`,
       'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
     ],
   };
+  if (process.env.YTDLP_IMPERSONATE === '1') options.impersonate = 'chrome';
   if (process.env.PROXY_URL) options.proxy = process.env.PROXY_URL;
   if (cookiePath) options.cookies = cookiePath;
   return options;
