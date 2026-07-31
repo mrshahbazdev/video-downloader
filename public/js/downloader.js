@@ -20,6 +20,7 @@
   const captchaAnswerEl = document.getElementById('captchaAnswer');
   const captchaTokenEl = document.getElementById('captchaToken');
   const captchaRefreshBtn = document.getElementById('captchaRefresh');
+  let videoData = null;
 
   if (advancedToggle && advancedOptions) {
     advancedToggle.addEventListener('click', () => {
@@ -195,6 +196,7 @@
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
+      videoData = data;
 
       titleEl.textContent = data.title || 'Untitled';
       thumbEl.src = data.thumbnail || '';
@@ -231,7 +233,7 @@
       const res = await fetch('/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: urlInput.value.trim(), formatId, captchaToken, captchaAnswer, ...getAdvancedOptions() }),
+        body: JSON.stringify({ url: urlInput.value.trim(), formatId, title: videoData?.title, captchaToken, captchaAnswer, ...getAdvancedOptions() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Download failed');

@@ -239,6 +239,15 @@ function cleanError(err) {
   return message;
 }
 
+function sanitizeFilename(title) {
+  return String(title || 'video')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_+|_+$/g, '')
+    .substring(0, 50) || 'video';
+}
+
 function getCookiePath(providedCookies) {
   if (YOUTUBE_COOKIES_PATH && fs.existsSync(YOUTUBE_COOKIES_PATH)) {
     return YOUTUBE_COOKIES_PATH;
@@ -531,7 +540,7 @@ app.post('/api/info', async (req, res) => {
 });
 
 app.post('/api/download', async (req, res) => {
-  const { url, formatId, cookies, poToken, visitorData, captchaToken, captchaAnswer } = req.body;
+  const { url, formatId, cookies, poToken, visitorData, captchaToken, captchaAnswer, title } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
 
   const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
@@ -540,7 +549,8 @@ app.post('/api/download', async (req, res) => {
   }
 
   const id = randomUUID();
-  const output = path.join(DOWNLOADS_DIR, `${id}_%(title)s.%(ext)s`);
+  const safeTitle = sanitizeFilename(title);
+  const output = path.join(DOWNLOADS_DIR, `${id}.%(ext)s`);
   const cookiePath = getCookiePath(cookies);
 
   try {
@@ -553,11 +563,12 @@ app.post('/api/download', async (req, res) => {
 
     await callWithFallbacks(url, buildOptionSets(base, url, poToken, visitorData));
 
-    const files = fs.readdirSync(DOWNLOADS_DIR).filter((f) => f.startsWith(`${id}_`));
+    const files = fs.readdirSync(DOWNLOADS_DIR).filter((f) => f.startsWith(`${id}.`) && !f.endsWith('.part'));
     if (!files.length) throw new Error('Download completed but file not found');
 
     const file = files[0];
-    const sanitized = file.replace(/^[^_]+_/, '');
+    const ext = path.extname(file);
+    const sanitized = `${safeTitle}_${id}${ext}`;
     fs.renameSync(path.join(DOWNLOADS_DIR, file), path.join(DOWNLOADS_DIR, sanitized));
 
     res.json({
