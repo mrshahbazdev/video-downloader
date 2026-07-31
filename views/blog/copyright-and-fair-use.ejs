@@ -42,3 +42,17 @@
     </div>
   </div>
 </article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Copyright, Fair Use, and Online Video Downloaders",
+  "description": "<%= meta.description.replace(/"/g, '\\"') %>",
+  "url": "<%= meta.url %>",
+  "image": "<%= meta.image %>",
+  "author": { "@type": "Organization", "name": "<%= siteTitle %>" },
+  "publisher": { "@type": "Organization", "name": "<%= siteTitle %>" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "<%= meta.url %>" }
+}
+</script>

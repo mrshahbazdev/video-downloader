@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "youtube-video-downloader",
+    "title": "YouTube Video Downloader — Save Videos in HD",
+    "site": "YouTube",
+    "formats": "MP4 video and MP3 audio",
+    "summary": "How to download YouTube videos in MP4, choose the best quality, and stay within copyright rules.",
+    "description": "Free YouTube video downloader guide. Learn how to save YouTube videos in MP4/MP3, pick the right format, and use ClipVault safely."
+  },
+  {
+    "slug": "tiktok-video-downloader",
+    "title": "TikTok Video Downloader — No Watermark",
+    "site": "TikTok",
+    "formats": "MP4 without watermark",
+    "summary": "Download TikTok videos without watermark quickly. Works for TikTok app and web links.",
+    "description": "TikTok video downloader with no watermark. Paste any TikTok link, pick HD quality, and download MP4 fast with ClipVault."
+  },
+  {
+    "slug": "instagram-video-downloader",
+    "title": "Instagram Video Downloader — Reels, Posts, Stories",
+    "site": "Instagram",
+    "formats": "MP4",
+    "summary": "Save Instagram reels, posts, and stories as MP4 files on any device without installing apps.",
+    "description": "Free Instagram video downloader for reels, posts, and stories. Convert Instagram videos to MP4 with ClipVault."
+  },
+  {
+    "slug": "facebook-video-downloader",
+    "title": "Facebook Video Downloader — Public & Private",
+    "site": "Facebook",
+    "formats": "MP4",
+    "summary": "How to download Facebook videos, reels, and live streams in MP4 format.",
+    "description": "Download Facebook videos and reels in MP4. ClipVault supports public Facebook video links and shows the best available formats."
+  },
+  {
+    "slug": "twitter-video-downloader",
+    "title": "Twitter / X Video Downloader",
+    "site": "Twitter / X",
+    "formats": "MP4 or GIF",
+    "summary": "Save Twitter and X videos in MP4 or GIF format quickly from any tweet link.",
+    "description": "Free Twitter/X video downloader. Paste a tweet link and download Twitter videos as MP4 with ClipVault."
+  },
+  {
+    "slug": "vimeo-video-downloader",
+    "title": "Vimeo Video Downloader — HD & 4K",
+    "site": "Vimeo",
+    "formats": "MP4 in HD or 4K when available",
+    "summary": "Download Vimeo videos in HD and 4K quality when permitted by the uploader.",
+    "description": "Vimeo video downloader for HD and 4K MP4. Save Vimeo videos legally with ClipVault format selection."
+  },
+  {
+    "slug": "dailymotion-video-downloader",
+    "title": "Dailymotion Video Downloader",
+    "site": "Dailymotion",
+    "formats": "MP4",
+    "summary": "Download Dailymotion videos as MP4 in the quality you choose.",
+    "description": "Free Dailymotion video downloader. Convert Dailymotion clips to MP4 and pick the resolution with ClipVault."
+  },
+  {
+    "slug": "reddit-video-downloader",
+    "title": "Reddit Video Downloader — With Audio",
+    "site": "Reddit",
+    "formats": "MP4 with audio",
+    "summary": "Save Reddit videos and posts with audio as MP4 from public subreddit links.",
+    "description": "Reddit video downloader with audio. Download Reddit posts and videos as MP4 using ClipVault."
+  },
+  {
+    "slug": "soundcloud-to-mp3",
+    "title": "SoundCloud to MP3 Downloader",
+    "site": "SoundCloud",
+    "formats": "MP3, WAV, or OGG",
+    "summary": "Convert SoundCloud tracks and playlists to MP3 or WAV quickly.",
+    "description": "SoundCloud to MP3 converter. Download SoundCloud music as MP3, WAV, or OGG with ClipVault."
+  },
+  {
+    "slug": "bandcamp-to-mp3",
+    "title": "Bandcamp to MP3 — Download Music Free",
+    "site": "Bandcamp",
+    "formats": "MP3 or FLAC",
+    "summary": "Download Bandcamp tracks and albums as MP3 or FLAC when available.",
+    "description": "Bandcamp to MP3 downloader. Save Bandcamp music in MP3 or FLAC with ClipVault format options."
+  },
+  {
+    "slug": "bilibili-video-downloader",
+    "title": "Bilibili Video Downloader — HD Anime & Clips",
+    "site": "Bilibili",
+    "formats": "MP4",
+    "summary": "Download Bilibili videos, anime clips, and shows in HD MP4.",
+    "description": "Bilibili video downloader for anime, clips, and shows. Save Bilibili videos as HD MP4 with ClipVault."
+  },
+  {
+    "slug": "twitch-clip-downloader",
+    "title": "Twitch Clip Downloader — Save Moments",
+    "site": "Twitch",
+    "formats": "MP4",
+    "summary": "Download Twitch clips and highlights as MP4 for offline viewing.",
+    "description": "Twitch clip downloader. Save Twitch clips and highlights as MP4 using ClipVault."
+  },
+  {
+    "slug": "ted-talk-downloader",
+    "title": "TED Talk Downloader — Save Talks Offline",
+    "site": "TED",
+    "formats": "MP4",
+    "summary": "Download TED Talks and presentations as MP4 to watch offline.",
+    "description": "TED talk downloader. Save TED Talks and presentations as MP4 with ClipVault."
+  },
+  {
+    "slug": "9gag-video-downloader",
+    "title": "9GAG Video Downloader — Funny Videos",
+    "site": "9GAG",
+    "formats": "MP4 or WEBM",
+    "summary": "Download 9GAG videos, memes, and GIFs as MP4 or WEBM.",
+    "description": "9GAG video downloader. Save 9GAG memes and funny videos as MP4 or WEBM with ClipVault."
+  },
+  {
+    "slug": "rumble-video-downloader",
+    "title": "Rumble Video Downloader",
+    "site": "Rumble",
+    "formats": "MP4",
+    "summary": "Download Rumble videos in MP4 when access is allowed.",
+    "description": "Rumble video downloader. Save Rumble videos and live streams as MP4 with ClipVault."
+  },
+  {
+    "slug": "niconico-video-downloader",
+    "title": "Niconico Video Downloader",
+    "site": "Niconico",
+    "formats": "MP4 with merged audio and video",
+    "summary": "Download Niconico videos with merged audio and video streams.",
+    "description": "Niconico video downloader. Convert Niconico videos to MP4 with merged audio and video using ClipVault."
+  },
+  {
+    "slug": "mixcloud-to-mp3",
+    "title": "Mixcloud to MP3 — DJ Mixes & Podcasts",
+    "site": "Mixcloud",
+    "formats": "MP3",
+    "summary": "Download Mixcloud DJ mixes, radio shows, and podcasts as MP3.",
+    "description": "Mixcloud to MP3 downloader. Save Mixcloud DJ mixes and podcasts as MP3 with ClipVault."
+  },
+  {
+    "slug": "internet-archive-downloader",
+    "title": "Internet Archive Video Downloader",
+    "site": "Internet Archive",
+    "formats": "MP4 or AVI",
+    "summary": "Download public domain and archived videos from Internet Archive.",
+    "description": "Internet Archive video downloader. Save public domain videos from archive.org with ClipVault."
+  },
+  {
+    "slug": "peertube-video-downloader",
+    "title": "PeerTube Video Downloader — Decentralized Video",
+    "site": "PeerTube",
+    "formats": "MP4",
+    "summary": "Download PeerTube videos from any instance as MP4.",
+    "description": "PeerTube video downloader. Save videos from decentralized PeerTube instances as MP4 with ClipVault."
+  },
+  {
+    "slug": "veoh-video-downloader",
+    "title": "Veoh Video Downloader",
+    "site": "Veoh",
+    "formats": "MP4",
+    "summary": "Download Veoh videos and shows as MP4.",
+    "description": "Veoh video downloader. Save Veoh videos and shows as MP4 with ClipVault."
+  },
+  {
+    "slug": "lbry-video-downloader",
+    "title": "LBRY / Odysee Video Downloader",
+    "site": "LBRY / Odysee",
+    "formats": "MP4",
+    "summary": "Download LBRY and Odysee videos as MP4.",
+    "description": "LBRY and Odysee video downloader. Save decentralized videos as MP4 with ClipVault."
+  },
+  {
+    "slug": "spotify-podcast-downloader",
+    "title": "Spotify Podcast Downloader — Save Episodes",
+    "site": "Spotify Podcasts",
+    "formats": "MP3 audio",
+    "summary": "Download Spotify podcast episodes and shows as MP3.",
+    "description": "Spotify podcast downloader. Save Spotify podcast episodes as MP3 audio with ClipVault."
+  },
+  {
+    "slug": "video-formats-explained",
+    "title": "Video Formats Explained: MP4, WEBM, and More",
+    "site": "online video",
+    "formats": "MP4, WEBM, MKV, MP3, AAC, and more",
+    "summary": "Not sure which format to choose? We break down the most common video and audio formats and when to use them.",
+    "description": "Video formats explained. Compare MP4, WEBM, MKV, MP3, AAC, and choose the best format for your download."
+  },
+  {
+    "slug": "safe-downloading",
+    "title": "Safe Video Downloading Practices",
+    "site": "any supported site",
+    "formats": "MP4 or MP3",
+    "summary": "Learn how to protect your device, respect creators, and stay within the law when downloading online videos.",
+    "description": "Safe video downloading guide. Avoid malware, respect copyright, and use online video downloaders responsibly."
+  },
+  {
+    "slug": "copyright-and-fair-use",
+    "title": "Copyright, Fair Use, and Online Video Downloaders",
+    "site": "online video",
+    "formats": "MP4 or MP3",
+    "summary": "What you can and cannot download, plus how to handle copyright and DMCA notices responsibly.",
+    "description": "Copyright and fair use for video downloaders. Learn what you can legally download and how to handle DMCA notices."
+  }
+]

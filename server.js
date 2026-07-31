@@ -247,6 +247,7 @@ function getMeta(req, options = {}) {
   return {
     title: options.meta?.title || SITE_TITLE,
     description: options.meta?.description || 'Download videos from YouTube, TikTok, Instagram, Twitter, Facebook, and 1000+ sites quickly and securely.',
+    keywords: options.meta?.keywords || '',
     image: `${host}/images/og-default.png`,
     url: `${host}${req.originalUrl}`,
   };
@@ -259,8 +260,9 @@ function renderPage(req, res, view, options = {}) {
 app.get('/', (req, res) => {
   renderPage(req, res, 'index', {
     meta: {
-      title: `${SITE_TITLE} — Free Online Video Downloader`,
-      description: 'Download videos from 1000+ platforms including YouTube, TikTok, Instagram, Facebook, Twitter, Vimeo, and Dailymotion.',
+      title: `${SITE_TITLE} — Free All-in-One Video Downloader for 1000+ Sites`,
+      description: 'Download videos and audio from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, and 1000+ sites for free.',
+      keywords: 'free video downloader, online video downloader, YouTube downloader, TikTok downloader, Instagram downloader, download videos online, MP4 downloader',
     },
   });
 });
@@ -268,8 +270,9 @@ app.get('/', (req, res) => {
 app.get('/supported-sites', (req, res) => {
   renderPage(req, res, 'supported-sites', {
     meta: {
-      title: `Supported Sites — ${SITE_TITLE}`,
-      description: 'Browse the 1000+ video platforms supported by our downloader.',
+      title: `1000+ Supported Video Sites — Free All-in-One Downloader`,
+      description: 'Download videos from 1000+ sites including YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, Bilibili, TED, and more.',
+      keywords: 'video downloader, download videos online, YouTube downloader, TikTok downloader, Instagram downloader, Facebook downloader, Twitter video downloader, Vimeo downloader, Dailymotion downloader, free video downloader',
     },
   });
 });
@@ -346,18 +349,15 @@ app.get('/cookie-policy', (req, res) => {
   });
 });
 
-const blogPosts = [
-  { slug: 'youtube-download-guide', title: 'How to Download YouTube Videos Safely' },
-  { slug: 'safe-downloading', title: 'Safe Video Downloading Practices' },
-  { slug: 'video-formats-explained', title: 'Video Formats Explained: MP4, WEBM, and More' },
-  { slug: 'copyright-and-fair-use', title: 'Copyright, Fair Use, and Online Video Downloaders' },
-];
+const blogPosts = require('./data/blogPosts.json');
+app.locals.blogPosts = blogPosts;
 
 app.get('/blog', (req, res) => {
   renderPage(req, res, 'blog/index', {
     meta: {
-      title: `Guides & Tutorials — ${SITE_TITLE}`,
-      description: 'Original guides and tutorials on safe, legal video downloading.',
+      title: `Video Downloading Guides — ${SITE_TITLE}`,
+      description: 'Step-by-step guides for downloading YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, and 1000+ supported sites.',
+      keywords: 'video downloader guides, how to download YouTube videos, TikTok downloader guide, Instagram downloader tutorial, free video downloader tutorials',
     },
   });
 });
@@ -366,13 +366,15 @@ app.get('/blog/:slug', (req, res, next) => {
   const post = blogPosts.find((p) => p.slug === req.params.slug);
   if (!post) return next();
   const viewPath = path.join(__dirname, 'views', 'blog', `${post.slug}.ejs`);
-  if (!fs.existsSync(viewPath)) return next();
-  renderPage(req, res, `blog/${post.slug}`, {
-    meta: {
-      title: `${post.title} — ${SITE_TITLE}`,
-      description: `Read our guide on ${post.title.toLowerCase()} at ${SITE_TITLE}.`,
-    },
-  });
+  const meta = {
+    title: `${post.title}`,
+    description: post.description || `Read our guide on ${post.title.toLowerCase()} at ${SITE_TITLE}.`,
+    keywords: `${post.site} downloader, download ${post.site} videos, ${post.site} to mp4, ${post.site} to mp3, free ${post.site} downloader`,
+  };
+  if (fs.existsSync(viewPath)) {
+    return renderPage(req, res, `blog/${post.slug}`, { meta, post });
+  }
+  renderPage(req, res, 'blog/post', { meta, post });
 });
 
 app.get('/ads.txt', (req, res) => {

@@ -33,3 +33,17 @@
     </div>
   </div>
 </article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Safe Video Downloading Practices",
+  "description": "<%= meta.description.replace(/"/g, '\\"') %>",
+  "url": "<%= meta.url %>",
+  "image": "<%= meta.image %>",
+  "author": { "@type": "Organization", "name": "<%= siteTitle %>" },
+  "publisher": { "@type": "Organization", "name": "<%= siteTitle %>" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "<%= meta.url %>" }
+}
+</script>

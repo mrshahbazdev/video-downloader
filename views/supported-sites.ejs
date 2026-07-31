@@ -1,25 +1,36 @@
 <section class="bg-slate-50 dark:bg-slate-950 py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
-      <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">Supported Sites</h1>
-      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-        Our downloader is powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, which supports 1000+ video platforms. Below are popular categories and a sample of sites we have tested from this server.
+      <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">1000+ Supported Video Sites</h1>
+      <p class="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+        ClipVault is a free all-in-one video downloader powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>. Download videos, reels, clips, and music from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, Bilibili, TED, and more than 1000 other platforms.
       </p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'supported-top' }) %>
 
+    <div class="prose dark:prose-invert max-w-none mb-14">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">What makes ClipVault the best free video downloader?</h2>
+      <p class="text-slate-600 dark:text-slate-300">
+        Our online video downloader works directly in your browser. You do not need to install apps, extensions, or software. Paste a URL, choose a format, and download your favorite video or audio in seconds. We support MP4, WEBM, MP3, AAC, WAV, OGG, and many other formats. The tool uses yt-dlp in the background, which means it can extract media from almost any public website.
+      </p>
+      <p class="text-slate-600 dark:text-slate-300">
+        Whether you need a YouTube video downloader, a TikTok downloader without watermark, an Instagram reel downloader, a Twitter/X video saver, a SoundCloud to MP3 converter, or a TED Talk downloader, ClipVault handles them all in one place.
+      </p>
+    </div>
+
     <% const categories = [
-      { name: 'Social & Short Video', sites: ['TikTok','Instagram','Twitter / X','Facebook','Reddit','9GAG','Snapchat','Threads'] },
+      { name: 'Social & Short Video', sites: ['TikTok','Instagram','Twitter / X','Facebook','Reddit','9GAG','Snapchat','Threads','Kwai'] },
       { name: 'Video Platforms', sites: ['YouTube','Vimeo','Dailymotion','Twitch','Rumble','Odysee','PeerTube','Veoh','Bilibili','Niconico'] },
-      { name: 'Music & Audio', sites: ['SoundCloud','Bandcamp','Mixcloud','Audiomack','Spotify Podcasts','Apple Podcasts'] },
+      { name: 'Music & Audio', sites: ['SoundCloud','Bandcamp','Mixcloud','Audiomack','Spotify Podcasts','Apple Podcasts','Boomplay'] },
       { name: 'News, TV & Education', sites: ['TED','BBC iPlayer','CNN','PBS','NBC','CBS','ABC','France.tv','ARD','ZDF','NHK World','Internet Archive'] }
     ]; %>
 
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 text-center">Popular Supported Categories</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
       <% categories.forEach(function(cat) { %>
         <div class="card card-hover">
-          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4"><%= cat.name %></h2>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-4"><%= cat.name %></h3>
           <div class="flex flex-wrap gap-2">
             <% cat.sites.forEach(function(site) { %>
               <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium"><%= site %></span>
@@ -34,7 +45,7 @@
       These are real tests run from this cloud server. Some sites may be blocked by server IP or require cookies on your network — that does not mean the site is unsupported. yt-dlp's extractor still supports them.
     </p>
 
-    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 mb-14">
       <table class="w-full text-left text-sm">
         <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase text-xs tracking-wide">
           <tr>
@@ -57,8 +68,8 @@
             { site: 'LBRY / Odysee', status: 'Working', note: 'Info and MP4 download confirmed' },
             { site: 'Niconico', status: 'Working', note: 'Info and merged video+audio download confirmed' },
             { site: 'Dailymotion', status: 'Working', note: 'Info and MP4 download confirmed' },
-            { site: 'Vimeo', status: 'Blocked / IP', note: 'OAuth/403 from server IP; try cookies or a proxy' },
             { site: 'TikTok', status: 'Working', note: 'Info and MP4 download confirmed via yt-dlp; TikWM fallback also ready' },
+            { site: 'Vimeo', status: 'Blocked / IP', note: 'OAuth/403 from server IP; try cookies or a proxy' },
             { site: 'Reddit', status: 'Login required', note: 'Public posts may work; login cookies often required' },
             { site: 'Bilibili', status: 'Blocked / 412', note: 'Anti-bot challenge; cookies + Chinese/residential proxy may work' },
             { site: 'Rumble', status: 'Blocked / 403', note: 'Cloud server IP blocked; set PROXY_URL in .env' },
@@ -85,6 +96,44 @@
 
     <%- include('partials/ad-unit', { adSlot: 'supported-bottom' }) %>
 
+    <div class="prose dark:prose-invert max-w-none mb-14">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">How to download from any supported site</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+        <li>Copy the video or audio URL from the site you want to download.</li>
+        <li>Visit the <a href="/" class="text-sky-600 dark:text-sky-400 hover:underline">ClipVault home page</a>.</li>
+        <li>Paste the link into the input box and click <strong>Get Video</strong>.</li>
+        <li>Choose your preferred format and quality from the list.</li>
+        <li>Click the format card and the file downloads on the same page.</li>
+      </ol>
+      <p class="text-slate-600 dark:text-slate-300">
+        If a site blocks the server IP, you can set a <code class="bg-slate-100 dark:bg-slate-800 px-1 rounded">PROXY_URL</code> in your <code class="bg-slate-100 dark:bg-slate-800 px-1 rounded">.env</code> file or paste cookies in the Advanced options for login-protected content.
+      </p>
+    </div>
+
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto space-y-4 mb-14" id="faq">
+      <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">How many sites does ClipVault support?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">ClipVault supports 1000+ video and audio sites through yt-dlp. Popular examples include YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, Bandcamp, Mixcloud, Bilibili, TED, and many more.</p>
+      </details>
+      <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is ClipVault free to use?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes, ClipVault is free. You can paste a URL, view available formats, and download without registration.</p>
+      </details>
+      <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I download videos on my phone?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes, the site is mobile-friendly and works on iOS and Android browsers without installing an app.</p>
+      </details>
+      <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is it legal to download videos?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Only download content you own or have permission to use. Respect copyright, fair use laws, and each platform's Terms of Service.</p>
+      </details>
+      <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">A site says it is blocked. What should I do?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Some platforms block cloud server IPs. You can set a <code>PROXY_URL</code> in your environment file or provide site cookies in the Advanced options to access restricted content.</p>
+      </details>
+    </div>
+
     <div class="mt-12 p-6 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-xl">
       <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Need a site that is not listed?</h3>
       <p class="text-amber-700 dark:text-amber-200 text-sm">
@@ -97,3 +146,28 @@
     </div>
   </div>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How many sites does ClipVault support?", "acceptedAnswer": { "@type": "Answer", "text": "ClipVault supports 1000+ video and audio sites through yt-dlp. Popular examples include YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, Bandcamp, Mixcloud, Bilibili, TED, and many more." } },
+    { "@type": "Question", "name": "Is ClipVault free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, ClipVault is free. You can paste a URL, view available formats, and download without registration." } },
+    { "@type": "Question", "name": "Can I download videos on my phone?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the site is mobile-friendly and works on iOS and Android browsers without installing an app." } },
+    { "@type": "Question", "name": "Is it legal to download videos?", "acceptedAnswer": { "@type": "Answer", "text": "Only download content you own or have permission to use. Respect copyright, fair use laws, and each platform's Terms of Service." } },
+    { "@type": "Question", "name": "A site says it is blocked. What should I do?", "acceptedAnswer": { "@type": "Answer", "text": "Some platforms block cloud server IPs. You can set a PROXY_URL in your environment file or provide site cookies in the Advanced options to access restricted content." } }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>" },
+    { "@type": "ListItem", "position": 2, "name": "Supported Sites", "item": "<%= meta.url %>" }
+  ]
+}
+</script>
