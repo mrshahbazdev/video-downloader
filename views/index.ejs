@@ -16,6 +16,14 @@
             <span id="infoBtnText">Get Video</span>
           </button>
         </div>
+        <button type="button" id="advancedToggle" class="text-xs text-sky-300 hover:text-white mt-3 text-left underline">
+          Advanced options (cookies)
+        </button>
+        <div id="advancedOptions" class="hidden mt-3 text-left">
+          <label for="cookies" class="block text-xs text-slate-300 mb-1">YouTube / site cookies (Netscape format). Used only for this request.</label>
+          <textarea id="cookies" rows="4" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File\nyoutube.com\tTRUE\t/\tFALSE\t...\n..."></textarea>
+          <p class="text-xs text-slate-400 mt-1">Paste a cookies.txt file exported from your browser to bypass bot checks for your own videos.</p>
+        </div>
         <p class="text-xs text-slate-300 mt-3 text-left">
           By using this service you agree to our <a href="/terms" class="underline hover:text-sky-300">Terms</a> and <a href="/disclaimer" class="underline hover:text-sky-300">Disclaimer</a>.
         </p>

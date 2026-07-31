@@ -11,6 +11,15 @@
   const thumbEl = document.getElementById('thumb');
   const metaEl = document.getElementById('meta');
   const formatSelect = document.getElementById('formatSelect');
+  const cookiesInput = document.getElementById('cookies');
+  const advancedToggle = document.getElementById('advancedToggle');
+  const advancedOptions = document.getElementById('advancedOptions');
+
+  if (advancedToggle && advancedOptions) {
+    advancedToggle.addEventListener('click', () => {
+      advancedOptions.classList.toggle('hidden');
+    });
+  }
 
   function setLoading(btn, textEl, text) {
     textEl.textContent = text;
@@ -53,11 +62,13 @@
     downloadLink.classList.add('hidden');
     showMessage('');
 
+    const cookies = cookiesInput ? cookiesInput.value.trim() : '';
+
     try {
       const res = await fetch('/api/info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url, cookies }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
@@ -104,12 +115,13 @@
     const formatId = formatSelect.value;
     setLoading(downloadBtn, downloadBtnText, 'Downloading...');
     downloadLink.classList.add('hidden');
+    const cookies = cookiesInput ? cookiesInput.value.trim() : '';
 
     try {
       const res = await fetch('/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: urlInput.value.trim(), formatId }),
+        body: JSON.stringify({ url: urlInput.value.trim(), formatId, cookies }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Download failed');
