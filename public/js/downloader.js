@@ -89,7 +89,7 @@
 
   function renderFormats(formats) {
     formatList.innerHTML = '';
-    const usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb'));
+    const usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb') && f.format_id !== 'download');
     if (!usable.length) {
       formatList.innerHTML = '<p class="text-sm text-slate-500">No individual formats found. Use the “Best available” option.</p>';
       return;

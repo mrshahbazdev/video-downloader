@@ -5,6 +5,8 @@ const layouts = require('express-ejs-layouts');
 const fs = require('fs');
 const path = require('path');
 const { create: createYtdl } = require('youtube-dl-exec');
+const { pipeline } = require('node:stream/promises');
+const { Readable } = require('node:stream');
 const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
 const DEFAULT_YTDLP = path.join(__dirname, 'node_modules', 'youtube-dl-exec', 'bin', 'yt-dlp');
 const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : DEFAULT_YTDLP);
@@ -63,6 +65,84 @@ function isYouTube(url) {
   } catch {
     return false;
   }
+}
+
+function isTikTok(url) {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === 'tiktok.com' || host.endsWith('.tiktok.com');
+  } catch {
+    return false;
+  }
+}
+
+async function fetchTikWM(url) {
+  const apiUrl = `https://www.tikwm.com/api/?url=${encodeURIComponent(url)}&hd=1`;
+  const response = await fetch(apiUrl, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      Accept: 'application/json',
+    },
+  });
+  if (!response.ok) throw new Error(`TikWM API returned ${response.status}`);
+  const json = await response.json();
+  if (json.code !== 0 || !json.data) throw new Error(json.msg || 'TikWM returned no data');
+  return json.data;
+}
+
+function mapTikTokInfo(data) {
+  return {
+    id: data.id,
+    title: data.title || `TikTok video ${data.id}`,
+    description: data.title || '',
+    duration: data.duration || 0,
+    thumbnail: data.cover,
+    webpage_url: `https://www.tiktok.com/@${data.author?.unique_id || 'user'}/video/${data.id}`,
+    uploader: data.author?.unique_id || '',
+    formats: [
+      {
+        format_id: 'tiktok-video',
+        ext: 'mp4',
+        resolution: 'HD',
+        quality: 'HD',
+        filesize: data.size || null,
+        filesize_approx: data.size || null,
+        vcodec: 'h264',
+        acodec: 'aac',
+        abr: null,
+        vbr: null,
+        fps: null,
+      },
+      {
+        format_id: 'tiktok-audio',
+        ext: 'mp3',
+        resolution: 'audio only',
+        quality: 'audio only',
+        filesize: null,
+        filesize_approx: null,
+        vcodec: 'none',
+        acodec: 'mp3',
+        abr: null,
+        vbr: null,
+        fps: null,
+      },
+    ],
+  };
+}
+
+async function downloadTikTokMedia(url, formatId, outputPath, data = null) {
+  if (!data) data = await fetchTikWM(url);
+  const mediaUrl = formatId === 'tiktok-audio' || formatId === 'audio' ? data.music : (data.hdplay || data.play);
+  if (!mediaUrl) throw new Error('TikWM did not return a media URL');
+  const response = await fetch(mediaUrl, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+      Referer: 'https://www.tiktok.com/',
+    },
+  });
+  if (!response.ok) throw new Error(`Failed to download TikTok media: ${response.status}`);
+  await pipeline(Readable.fromWeb(response.body), fs.createWriteStream(outputPath));
+  return { title: data.title, thumbnail: data.cover };
 }
 
 function cleanError(err) {
@@ -355,6 +435,14 @@ app.post('/api/info', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    if (isTikTok(url)) {
+      try {
+        const tw = await fetchTikWM(url);
+        return res.json(mapTikTokInfo(tw));
+      } catch (twErr) {
+        console.error('TikWM fallback failed:', twErr);
+      }
+    }
     res.status(500).json({ error: cleanError(err) || 'Failed to fetch video info' });
   } finally {
     cleanupCookiePath(cookiePath);
@@ -393,6 +481,25 @@ app.post('/api/download', async (req, res) => {
     });
   } catch (err) {
     console.error(err);
+    if (isTikTok(url)) {
+      try {
+        const tw = await fetchTikWM(url);
+        const safeTitle = String(tw.title || `tiktok-${tw.id}`).replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').substring(0, 60) || 'tiktok';
+        const ext = formatId === 'tiktok-audio' || formatId === 'audio' ? 'mp3' : 'mp4';
+        const file = `${id}_${safeTitle}.${ext}`;
+        const outputPath = path.join(DOWNLOADS_DIR, file);
+        await downloadTikTokMedia(url, formatId, outputPath, tw);
+        const sanitized = file.replace(/^[^_]+_/, '');
+        fs.renameSync(outputPath, path.join(DOWNLOADS_DIR, sanitized));
+        return res.json({
+          success: true,
+          filename: sanitized,
+          downloadUrl: `/downloads/${encodeURIComponent(sanitized)}`,
+        });
+      } catch (twErr) {
+        console.error('TikWM download fallback failed:', twErr);
+      }
+    }
     res.status(500).json({ error: cleanError(err) || 'Download failed' });
   } finally {
     cleanupCookiePath(cookiePath);
