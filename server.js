@@ -11,7 +11,8 @@ const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
 const DEFAULT_YTDLP = path.join(__dirname, 'node_modules', 'youtube-dl-exec', 'bin', 'yt-dlp');
 const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : DEFAULT_YTDLP);
 const youtubedl = createYtdl(YTDLP_BINARY);
-const { randomUUID } = require('crypto');
+const crypto = require('crypto');
+const { randomUUID } = crypto;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,10 @@ const ADSENSE_CLIENT_ID = process.env.ADSENSE_CLIENT_ID || 'ca-pub-0000000000000
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@example.com';
 const CONTACT_ADDRESS = process.env.CONTACT_ADDRESS || '';
 const YOUTUBE_COOKIES_PATH = process.env.YOUTUBE_COOKIES_PATH || '';
+const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY || '';
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
+const CAPTCHA_MODE = process.env.CAPTCHA_MODE || (RECAPTCHA_SITE_KEY ? 'recaptcha' : 'math');
+const CAPTCHA_SECRET = process.env.CAPTCHA_SECRET || require('crypto').randomBytes(32).toString('hex');
 
 if (!fs.existsSync(DOWNLOADS_DIR)) {
   fs.mkdirSync(DOWNLOADS_DIR, { recursive: true });
@@ -47,6 +52,8 @@ app.locals = {
   contactEmail: CONTACT_EMAIL,
   contactAddress: CONTACT_ADDRESS,
   currentYear: new Date().getFullYear(),
+  recaptchaSiteKey: RECAPTCHA_SITE_KEY,
+  captchaMode: CAPTCHA_MODE,
 };
 
 function getReferer(url) {
@@ -55,6 +62,66 @@ function getReferer(url) {
   } catch {
     return url;
   }
+}
+
+async function verifyRecaptcha(token) {
+  if (!RECAPTCHA_SECRET_KEY) return { success: true, skipped: true };
+  if (!token) return { success: false, error: 'Captcha token missing' };
+
+  try {
+    const params = new URLSearchParams();
+    params.append('secret', RECAPTCHA_SECRET_KEY);
+    params.append('response', token);
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      body: params,
+    });
+    const data = await response.json();
+    if (!data.success) {
+      return { success: false, error: data['error-codes']?.join(', ') || 'Captcha verification failed' };
+    }
+    const score = typeof data.score === 'number' ? data.score : 1;
+    if (score < 0.3) {
+      return { success: false, error: 'Suspicious activity detected. Please try again.' };
+    }
+    return { success: true, score };
+  } catch (err) {
+    return { success: false, error: 'Could not verify captcha' };
+  }
+}
+
+function createMathCaptcha() {
+  const a = Math.floor(Math.random() * 9) + 1;
+  const b = Math.floor(Math.random() * 9) + 1;
+  const expires = Date.now() + 5 * 60 * 1000;
+  const payload = `${a}:${b}:${expires}`;
+  const sig = crypto.createHmac('sha256', CAPTCHA_SECRET).update(payload).digest('hex');
+  return { token: `${payload}:${sig}`, a, b, answer: a + b };
+}
+
+function verifyMathCaptcha(token, answer) {
+  if (!token || answer === undefined || answer === '') return { success: false, error: 'Please solve the math challenge' };
+  try {
+    const [a, b, expires, sig] = token.split(':');
+    const payload = `${a}:${b}:${expires}`;
+    const expectedSig = crypto.createHmac('sha256', CAPTCHA_SECRET).update(payload).digest('hex');
+    if (sig !== expectedSig || Date.now() > parseInt(expires, 10)) {
+      return { success: false, error: 'Captcha expired or invalid. Please refresh.' };
+    }
+    const expected = String(parseInt(a, 10) + parseInt(b, 10));
+    if (String(answer).trim() !== expected) {
+      return { success: false, error: 'Incorrect answer. Please try again.' };
+    }
+    return { success: true };
+  } catch (err) {
+    return { success: false, error: 'Invalid captcha' };
+  }
+}
+
+async function verifyCaptcha(token, answer) {
+  if (CAPTCHA_MODE === 'none') return { success: true, skipped: true };
+  if (CAPTCHA_MODE === 'math') return verifyMathCaptcha(token, answer);
+  return verifyRecaptcha(token);
 }
 
 function isYouTube(url) {
@@ -397,9 +464,20 @@ app.get('/sitemap.xml', (req, res) => {
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
 });
 
+app.get('/api/captcha', (req, res) => {
+  if (CAPTCHA_MODE !== 'math') return res.json({ mode: CAPTCHA_MODE });
+  const { token, a, b } = createMathCaptcha();
+  res.json({ token, question: `What is ${a} + ${b}?` });
+});
+
 app.post('/api/info', async (req, res) => {
-  const { url, cookies, poToken, visitorData } = req.body;
+  const { url, cookies, poToken, visitorData, captchaToken, captchaAnswer } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
+
+  const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
+  if (!captcha.success) {
+    return res.status(403).json({ error: `Captcha verification failed: ${captcha.error}` });
+  }
 
   const cookiePath = getCookiePath(cookies);
 
@@ -452,8 +530,13 @@ app.post('/api/info', async (req, res) => {
 });
 
 app.post('/api/download', async (req, res) => {
-  const { url, formatId, cookies, poToken, visitorData } = req.body;
+  const { url, formatId, cookies, poToken, visitorData, captchaToken, captchaAnswer } = req.body;
   if (!url) return res.status(400).json({ error: 'URL is required' });
+
+  const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
+  if (!captcha.success) {
+    return res.status(403).json({ error: `Captcha verification failed: ${captcha.error}` });
+  }
 
   const id = randomUUID();
   const output = path.join(DOWNLOADS_DIR, `${id}_%(title)s.%(ext)s`);

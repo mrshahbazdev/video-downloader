@@ -16,6 +16,10 @@
   const visitorDataInput = document.getElementById('visitorData');
   const advancedToggle = document.getElementById('advancedToggle');
   const advancedOptions = document.getElementById('advancedOptions');
+  const captchaQuestionEl = document.getElementById('captchaQuestion');
+  const captchaAnswerEl = document.getElementById('captchaAnswer');
+  const captchaTokenEl = document.getElementById('captchaToken');
+  const captchaRefreshBtn = document.getElementById('captchaRefresh');
 
   if (advancedToggle && advancedOptions) {
     advancedToggle.addEventListener('click', () => {
@@ -61,6 +65,47 @@
       poToken: poTokenInput ? poTokenInput.value.trim() : '',
       visitorData: visitorDataInput ? visitorDataInput.value.trim() : '',
     };
+  }
+
+  async function getRecaptchaToken(action) {
+    if (!window.RECAPTCHA_SITE_KEY || typeof grecaptcha === 'undefined') return '';
+    return new Promise((resolve) => {
+      grecaptcha.ready(() => {
+        grecaptcha.execute(window.RECAPTCHA_SITE_KEY, { action })
+          .then((token) => resolve(token))
+          .catch(() => resolve(''));
+      });
+    });
+  }
+
+  async function loadMathCaptcha() {
+    if (window.CAPTCHA_MODE !== 'math' || !captchaQuestionEl) return;
+    try {
+      const res = await fetch('/api/captcha');
+      const data = await res.json();
+      if (data.question && data.token) {
+        captchaQuestionEl.textContent = data.question;
+        captchaTokenEl.value = data.token;
+        if (captchaAnswerEl) captchaAnswerEl.value = '';
+      } else {
+        captchaQuestionEl.textContent = 'Not available';
+      }
+    } catch (err) {
+      captchaQuestionEl.textContent = 'Error loading captcha';
+    }
+  }
+
+  async function getCaptchaData(action) {
+    if (window.CAPTCHA_MODE === 'recaptcha') {
+      return { captchaToken: await getRecaptchaToken(action), captchaAnswer: '' };
+    }
+    if (window.CAPTCHA_MODE === 'math') {
+      return {
+        captchaToken: captchaTokenEl ? captchaTokenEl.value : '',
+        captchaAnswer: captchaAnswerEl ? captchaAnswerEl.value.trim() : '',
+      };
+    }
+    return { captchaToken: '', captchaAnswer: '' };
   }
 
   function formatBadge(hasVideo, hasAudio) {
@@ -132,6 +177,11 @@
     const url = urlInput.value.trim();
     if (!url) return showMessage('Please enter a video URL', 'error');
 
+    const { captchaToken, captchaAnswer } = await getCaptchaData('info');
+    if (window.CAPTCHA_MODE === 'math' && !captchaAnswer) {
+      return showMessage('Please solve the math captcha', 'error');
+    }
+
     setLoading(infoBtn, infoBtnText, 'Fetching...');
     infoCard.classList.add('hidden');
     downloadResult.classList.add('hidden');
@@ -141,7 +191,7 @@
       const res = await fetch('/api/info', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url, ...getAdvancedOptions() }),
+        body: JSON.stringify({ url, captchaToken, captchaAnswer, ...getAdvancedOptions() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to fetch info');
@@ -167,6 +217,11 @@
   async function downloadVideo(formatId, btn) {
     if (!formatId || !btn) return;
 
+    const { captchaToken, captchaAnswer } = await getCaptchaData('download');
+    if (window.CAPTCHA_MODE === 'math' && !captchaAnswer) {
+      return showMessage('Please solve the math captcha', 'error');
+    }
+
     const originalHTML = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = `<span class="font-bold text-sm">Downloading...</span>`;
@@ -176,7 +231,7 @@
       const res = await fetch('/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: urlInput.value.trim(), formatId, ...getAdvancedOptions() }),
+        body: JSON.stringify({ url: urlInput.value.trim(), formatId, captchaToken, captchaAnswer, ...getAdvancedOptions() }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Download failed');
@@ -199,4 +254,10 @@
   urlInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') fetchInfo();
   });
+
+  if (captchaRefreshBtn) {
+    captchaRefreshBtn.addEventListener('click', loadMathCaptcha);
+  }
+
+  loadMathCaptcha();
 })();
