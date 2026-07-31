@@ -186,7 +186,7 @@
       downloadFilename.textContent = data.filename;
       downloadResult.classList.remove('hidden');
       showMessage('Download ready', 'success');
-      window.open(data.downloadUrl, '_blank');
+      downloadLink.click();
     } catch (err) {
       showMessage(err.message, 'error');
     } finally {
