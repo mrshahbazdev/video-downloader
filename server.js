@@ -619,11 +619,14 @@ async function startApp() {
   }
 
   if (!fs.existsSync(YTDLP_BINARY)) {
-    throw new Error(`yt-dlp binary not found at ${YTDLP_BINARY}. Set YOUTUBE_DL_BINARY or install Python + yt-dlp.`);
+    console.error(`yt-dlp binary not found at ${YTDLP_BINARY}. Set YOUTUBE_DL_BINARY or install Python + yt-dlp.`);
+    youtubedl = async () => {
+      throw new Error('yt-dlp is not configured. Set YOUTUBE_DL_BINARY or install Python so the app can download yt-dlp on startup.');
+    };
+  } else {
+    youtubedl = createYtdl(YTDLP_BINARY);
+    console.log('Using yt-dlp binary:', YTDLP_BINARY);
   }
-
-  youtubedl = createYtdl(YTDLP_BINARY);
-  console.log('Using yt-dlp binary:', YTDLP_BINARY);
 
   app.listen(PORT, () => {
     console.log(`${SITE_TITLE} server running at http://localhost:${PORT}`);
