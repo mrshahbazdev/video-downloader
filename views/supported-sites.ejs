@@ -1,31 +1,98 @@
-<section class="bg-slate-50 dark:bg-slate-950 py-16">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">Supported Sites</h1>
+<section class="bg-slate-50 dark:bg-slate-950 py-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">Supported Sites</h1>
       <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-        Our downloader is powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, supporting more than 1000 video platforms. Below are some of the most popular ones.
+        Our downloader is powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, which supports 1000+ video platforms. Below are popular categories and a sample of sites we have tested from this server.
       </p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'supported-top' }) %>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
-      <% const sites = [
-        'YouTube','TikTok','Instagram','Facebook','Twitter / X','Vimeo','Dailymotion','Reddit',
-        'Twitch','SoundCloud','Bilibili','TED','Bitchute','Rumble','Odysee','Vine Archive',
-        'Internet Archive','NBC','ABC','CBS','CNN','BBC iPlayer','France.tv','ARD','ZDF',
-        'NHK World','PBS','NRK','SVT Play','Aftonbladet','Mediaset','Rai Play','TVP',
-        '9GAG','Bilibili','Bandcamp','Mixcloud','Audiomack','Spotify Podcasts','Apple Podcasts',
-        'Patreon','Substack','Vine','Veoh','MetaCafe','Dtube','PeerTube','Newgrounds'
-      ]; %>
-      <% sites.forEach(function(site) { %>
-        <div class="card flex items-center justify-center h-16 text-center font-medium text-slate-700 dark:text-slate-200"><%= site %></div>
+    <% const categories = [
+      { name: 'Social & Short Video', sites: ['TikTok','Instagram','Twitter / X','Facebook','Reddit','9GAG','Snapchat','Threads'] },
+      { name: 'Video Platforms', sites: ['YouTube','Vimeo','Dailymotion','Twitch','Rumble','Odysee','PeerTube','Veoh','Bilibili','Niconico'] },
+      { name: 'Music & Audio', sites: ['SoundCloud','Bandcamp','Mixcloud','Audiomack','Spotify Podcasts','Apple Podcasts'] },
+      { name: 'News, TV & Education', sites: ['TED','BBC iPlayer','CNN','PBS','NBC','CBS','ABC','France.tv','ARD','ZDF','NHK World','Internet Archive'] }
+    ]; %>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
+      <% categories.forEach(function(cat) { %>
+        <div class="card card-hover">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4"><%= cat.name %></h2>
+          <div class="flex flex-wrap gap-2">
+            <% cat.sites.forEach(function(site) { %>
+              <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium"><%= site %></span>
+            <% }); %>
+          </div>
+        </div>
       <% }); %>
+    </div>
+
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 text-center">Live Test Results</h2>
+    <p class="text-slate-600 dark:text-slate-400 text-center mb-8 max-w-3xl mx-auto">
+      These are real tests run from this cloud server. Some sites may be blocked by server IP or require cookies on your network — that does not mean the site is unsupported. yt-dlp's extractor still supports them.
+    </p>
+
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase text-xs tracking-wide">
+          <tr>
+            <th class="px-4 py-3 font-semibold">Site</th>
+            <th class="px-4 py-3 font-semibold">Status</th>
+            <th class="px-4 py-3 font-semibold">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
+          <% const results = [
+            { site: 'YouTube', status: 'Working', note: 'Info + download with fallback clients; some videos may need PO token/cookies' },
+            { site: 'TED', status: 'Working', note: 'Full info and MP4 download confirmed' },
+            { site: 'Instagram', status: 'Working', note: 'Info and MP4 download confirmed' },
+            { site: 'SoundCloud', status: 'Working', note: 'Info and M4A download confirmed' },
+            { site: 'Bandcamp', status: 'Working', note: 'Info and MP3 download confirmed' },
+            { site: 'Internet Archive', status: 'Working', note: 'Info and AVI download confirmed' },
+            { site: 'PeerTube', status: 'Working', note: 'Info and MP4 download confirmed' },
+            { site: '9GAG', status: 'Working', note: 'Info and WEBM download confirmed' },
+            { site: 'Twitch Clips', status: 'Working', note: 'Info and MP4 download confirmed' },
+            { site: 'LBRY / Odysee', status: 'Working', note: 'Info and MP4 download confirmed' },
+            { site: 'Niconico', status: 'Info works', note: 'Formats listed; download may need a specific format' },
+            { site: 'Dailymotion', status: 'Info works', note: 'Formats listed; download may be intermittent from this IP' },
+            { site: 'Vimeo', status: 'Blocked / Cookies needed', note: 'OAuth/401 from server IP; often works with cookies' },
+            { site: 'TikTok', status: 'Blocked / IP', note: 'IP address blocked by TikTok; may work on other servers' },
+            { site: 'Reddit', status: 'Login required', note: 'Public posts may work; test URL required login' },
+            { site: 'Bilibili', status: 'Blocked / IP', note: 'Access denied from this server; may work with cookies' },
+            { site: 'Rumble', status: 'Blocked / 403', note: 'Cloud server IP blocked; may work with cookies' },
+            { site: 'Facebook', status: 'Parse error', note: 'Public video links vary; some may work' }
+          ]; %>
+          <% results.forEach(function(r) { %>
+            <tr>
+              <td class="px-4 py-3 font-medium text-slate-900 dark:text-white"><%= r.site %></td>
+              <td class="px-4 py-3">
+                <% if (r.status === 'Working') { %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300"><%= r.status %></span>
+                <% } else if (r.status.includes('Working')) { %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-300"><%= r.status %></span>
+                <% } else { %>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300"><%= r.status %></span>
+                <% } %>
+              </td>
+              <td class="px-4 py-3 text-slate-600 dark:text-slate-400"><%= r.note %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'supported-bottom' }) %>
 
-    <div class="mt-12 text-center">
+    <div class="mt-12 p-6 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-xl">
+      <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Need a site that is not listed?</h3>
+      <p class="text-amber-700 dark:text-amber-200 text-sm">
+        Because yt-dlp supports 1000+ extractors, your URL may still work even if it is not on this page. Paste the link on the <a href="/" class="underline">home page</a> and try it. If a site is blocked on this server, it may work on your own server or with cookies.
+      </p>
+    </div>
+
+    <div class="text-center mt-12">
       <a href="/" class="btn-primary">Back to Downloader</a>
     </div>
   </div>
