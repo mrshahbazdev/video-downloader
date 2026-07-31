@@ -17,11 +17,13 @@
   <link rel="canonical" href="<%= meta.url %>" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="/css/style.css" />
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
+  <%- include('partials/styles') %>
+  <link rel="stylesheet" href="/css/style.css" />
   <%- include('partials/ads') %>
+  <%- include('partials/structured-data') %>
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased flex flex-col min-h-screen">
   <%- include('partials/nav') %>

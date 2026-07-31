@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "<%= siteTitle %>",
+  "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>",
+  "description": "<%= meta.description.replace(/"/g, '\\"') %>",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/supported-sites?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "<%= siteTitle %>",
+  "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>",
+  "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "<%= contactEmail %>"
+  }
+}
+</script>

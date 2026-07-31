@@ -26,18 +26,18 @@
   function setLoading(btn, textEl, text) {
     textEl.textContent = text;
     btn.disabled = true;
-    btn.classList.add('opacity-75', 'cursor-wait');
+    btn.classList.add('opacity-80', 'cursor-wait');
   }
 
   function clearLoading(btn, textEl, text) {
     textEl.textContent = text;
     btn.disabled = false;
-    btn.classList.remove('opacity-75', 'cursor-wait');
+    btn.classList.remove('opacity-80', 'cursor-wait');
   }
 
   function showMessage(text, type = '') {
     messageEl.textContent = text;
-    messageEl.className = `mt-4 text-left px-4 py-3 rounded-xl text-sm ${type === 'error' ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300' : type === 'success' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`;
+    messageEl.className = `mt-4 text-left px-4 py-3 rounded-xl text-sm font-medium ${type === 'error' ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800' : type === 'success' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'}`;
     messageEl.classList.remove('hidden');
   }
 
@@ -51,7 +51,7 @@
   function formatBytes(b) {
     if (!b) return '';
     const sizes = ['B', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(b) / Math.log(1024));
+    const i = Math.min(Math.floor(Math.log(b) / Math.log(1024)), sizes.length - 1);
     return `${(b / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
   }
 
@@ -63,6 +63,30 @@
     };
   }
 
+  function formatBadge(hasVideo, hasAudio) {
+    if (hasVideo && hasAudio) return `<span class="badge badge-muxed">Video + Audio</span>`;
+    if (hasVideo) return `<span class="badge badge-video">Video</span>`;
+    return `<span class="badge badge-audio">Audio</span>`;
+  }
+
+  function formatLabel(f) {
+    const hasVideo = f.vcodec && f.vcodec !== 'none';
+    const hasAudio = f.acodec && f.acodec !== 'none';
+    const parts = [];
+
+    if (hasVideo) {
+      parts.push(f.resolution && f.resolution !== 'audio only' ? f.resolution : 'video only');
+    } else if (hasAudio) {
+      parts.push('Audio');
+    }
+
+    if (f.ext) parts.push(f.ext.toUpperCase());
+    if (hasVideo && f.vcodec) parts.push(f.vcodec);
+    if (hasAudio && !hasVideo && f.abr) parts.push(`${Math.round(f.abr)} kbps`);
+
+    return parts.join(' · ') || f.format_id;
+  }
+
   function renderFormats(formats) {
     formatList.innerHTML = '';
     const usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb'));
@@ -72,39 +96,32 @@
     }
 
     const best = document.createElement('button');
-    best.className = 'card text-left hover:border-sky-500 dark:hover:border-sky-400 transition p-4 flex flex-col gap-1';
-    best.innerHTML = `<span class="font-bold text-sky-600 dark:text-sky-400">Best available</span><span class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</span>`;
+    best.className = 'format-card border-sky-500/50 dark:border-sky-400/50 ring-1 ring-sky-500/20';
+    best.innerHTML = `
+      <span class="font-bold text-sky-600 dark:text-sky-400">Best available</span>
+      <span class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</span>
+      <span class="badge badge-muxed mt-1">Recommended</span>
+    `;
     best.addEventListener('click', (e) => downloadVideo('best', e.currentTarget));
     formatList.appendChild(best);
 
     usable.forEach((f) => {
+      const hasVideo = f.vcodec && f.vcodec !== 'none';
+      const hasAudio = f.acodec && f.acodec !== 'none';
       const size = f.filesize
         ? formatBytes(f.filesize)
         : f.filesize_approx
         ? `~${formatBytes(f.filesize_approx)}`
         : 'Unknown size';
-      const hasVideo = f.vcodec && f.vcodec !== 'none';
-      const hasAudio = f.acodec && f.acodec !== 'none';
-      const parts = [];
-
-      if (hasVideo) {
-        parts.push(f.resolution && f.resolution !== 'audio only' ? f.resolution : 'video only');
-      } else if (hasAudio) {
-        parts.push('audio only');
-      }
-
-      if (f.ext) parts.push(f.ext);
-      if (hasVideo && f.vcodec) parts.push(f.vcodec);
-      if (hasAudio && !hasVideo && f.abr) parts.push(`${Math.round(f.abr)}k`);
-
-      const label = parts.join(' · ');
-      const badge = hasVideo && hasAudio ? 'Video + Audio' : hasVideo ? 'Video' : 'Audio';
 
       const btn = document.createElement('button');
-      btn.className = 'card text-left hover:border-sky-500 dark:hover:border-sky-400 transition p-4 flex flex-col gap-1';
+      btn.className = 'format-card';
       btn.innerHTML = `
-        <span class="font-bold text-slate-800 dark:text-slate-200 truncate">${label || f.format_id}</span>
-        <span class="text-xs text-slate-500 dark:text-slate-400">${size} · ${badge}</span>
+        <div class="flex items-start justify-between gap-2">
+          <span class="font-bold text-slate-800 dark:text-slate-200 text-sm leading-tight">${formatLabel(f)}</span>
+          ${formatBadge(hasVideo, hasAudio)}
+        </div>
+        <span class="text-xs text-slate-500 dark:text-slate-400">${size}</span>
       `;
       btn.addEventListener('click', (e) => downloadVideo(f.format_id, e.currentTarget));
       formatList.appendChild(btn);
@@ -148,12 +165,11 @@
   }
 
   async function downloadVideo(formatId, btn) {
-    if (!formatId) return showMessage('Please select a format', 'error');
-    if (!btn) return;
+    if (!formatId || !btn) return;
 
-    const originalText = btn.innerHTML;
+    const originalHTML = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = `<span class="font-bold">Downloading...</span>`;
+    btn.innerHTML = `<span class="font-bold text-sm">Downloading...</span>`;
     downloadResult.classList.add('hidden');
 
     try {
@@ -175,7 +191,7 @@
       showMessage(err.message, 'error');
     } finally {
       btn.disabled = false;
-      btn.innerHTML = originalText;
+      btn.innerHTML = originalHTML;
     }
   }
 

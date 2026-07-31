@@ -1,0 +1,30 @@
+<section class="bg-slate-50 dark:bg-slate-950 py-20">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">Video Downloading Guides</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Original articles, tutorials, and tips to help you use <%= siteTitle %> safely and legally.
+      </p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-top' }) %>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+      <% const posts = [
+        { slug: 'youtube-download-guide', title: 'How to Download YouTube Videos Safely', summary: 'A step-by-step guide on saving your own YouTube videos, understanding formats, and avoiding copyright issues.' },
+        { slug: 'safe-downloading', title: 'Safe Video Downloading Practices', summary: 'Learn how to protect your device, respect creators, and stay within the law when downloading online videos.' },
+        { slug: 'video-formats-explained', title: 'Video Formats Explained: MP4, WEBM, and More', summary: 'Not sure which format to choose? We break down the most common video and audio formats and when to use them.' },
+        { slug: 'copyright-and-fair-use', title: 'Copyright, Fair Use, and Online Video Downloaders', summary: 'What you can and cannot download, plus how to handle copyright and DMCA notices responsibly.' }
+      ]; %>
+      <% posts.forEach(function(post) { %>
+        <a href="/blog/<%= post.slug %>" class="card card-hover group">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition"><%= post.title %></h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm"><%= post.summary %></p>
+          <span class="inline-flex mt-4 text-sm font-semibold text-sky-600 dark:text-sky-400">Read guide &rarr;</span>
+        </a>
+      <% }); %>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-bottom' }) %>
+  </div>
+</section>

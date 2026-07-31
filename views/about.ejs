@@ -1,6 +1,6 @@
-<section class="bg-white dark:bg-slate-900 py-16">
+<section class="bg-white dark:bg-slate-900 py-20">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-6 text-center">About <%= siteTitle %></h1>
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">About <%= siteTitle %></h1>
 
     <%- include('partials/ad-unit', { adSlot: 'about-top' }) %>
 
@@ -8,16 +8,27 @@
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
         <%= siteTitle %> is a free, privacy-focused online video downloader designed to help users save publicly accessible videos from thousands of supported websites. We believe downloading your own content, public domain media, or creator-approved videos should be simple, fast, and transparent.
       </p>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">
-        The service is built on open-source technologies, including Node.js, Express, and <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, which powers the extraction layer for 1000+ platforms.
-      </p>
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Our Values</h2>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Mission</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We built <%= siteTitle %> to give users a clean, ad-supported alternative to bloated downloader apps. Our goal is to put privacy and speed first while respecting content creators and copyright law.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How It Works</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The service is built on open-source technologies, including Node.js, Express, and <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, which powers the extraction layer for 1000+ platforms. When you paste a URL, our server fetches the video metadata, lists every available format, and lets you choose the one you want.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Values</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
         <li><strong>Privacy:</strong> No user accounts, no tracking pixels, and no long-term storage of downloaded files.</li>
         <li><strong>Transparency:</strong> Clear legal pages, disclaimers, and open-source tooling.</li>
         <li><strong>Speed:</strong> Lightweight server-side processing that returns results quickly.</li>
         <li><strong>Responsibility:</strong> We actively discourage piracy and require users to follow local copyright laws.</li>
       </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Contact Information</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Email: <a href="mailto:<%= contactEmail %>" class="text-sky-600 dark:text-sky-400 hover:underline"><%= contactEmail %></a></p>
+      <% if (contactAddress) { %>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">Address: <%= contactAddress %></p>
+      <% } %>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">For questions or copyright concerns, visit our <a href="/contact" class="text-sky-600 dark:text-sky-400 hover:underline">Contact</a> page.</p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'about-bottom' }) %>

@@ -1,0 +1,44 @@
+<article class="bg-white dark:bg-slate-900 py-20">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">Copyright, Fair Use, and Online Video Downloaders</h1>
+    <p class="text-slate-500 dark:text-slate-400 text-center mb-10">Published on <%= currentYear %>-07-31 · <%= siteTitle %> Guides</p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-copyright-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        <%= siteTitle %> is a neutral tool. Like a web browser or a screen recorder, it can be used for legal and illegal purposes. This article explains the difference and how to stay on the right side of copyright law.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Is Copyright?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Copyright gives creators exclusive rights to reproduce, distribute, and display their work. Most videos on the internet are copyrighted, even if they do not have a copyright notice. Downloading, copying, or sharing those videos without permission may infringe those rights.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Fair Use and Exceptions</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">In some jurisdictions, limited use of copyrighted material is allowed for purposes like commentary, criticism, education, news reporting, or research. Fair use is fact-specific and not a blanket permission. If you are unsure, consult a legal professional.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What You Can Download</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Videos you created yourself.</li>
+        <li>Public domain or Creative Commons-licensed content where downloads are permitted.</li>
+        <li>Content where the creator or platform explicitly allows downloads.</li>
+        <li>Material you are authorized to use under a license or written permission.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What You Should Not Download</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Movies, TV shows, music videos, or paid content without permission.</li>
+        <li>Private or unlisted videos shared without the owner’s consent.</li>
+        <li>Content that circumvents DRM, region locks, or other access controls.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Stance</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We do not host, index, or promote copyrighted material. We process user-submitted URLs and return the formats available. Users are responsible for following local laws and each platform’s Terms of Service. If you need content removed or blocked, please see our <a href="/dmca" class="text-sky-600 dark:text-sky-400 hover:underline">DMCA / Copyright Takedown</a> page.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-copyright-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</article>

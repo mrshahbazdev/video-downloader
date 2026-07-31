@@ -13,6 +13,8 @@ const DOWNLOADS_DIR = path.join(__dirname, 'downloads');
 const COOKIES_DIR = path.join(__dirname, 'cookies');
 const SITE_TITLE = process.env.SITE_TITLE || 'ClipVault';
 const ADSENSE_CLIENT_ID = process.env.ADSENSE_CLIENT_ID || 'ca-pub-0000000000000000';
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@example.com';
+const CONTACT_ADDRESS = process.env.CONTACT_ADDRESS || '';
 const YOUTUBE_COOKIES_PATH = process.env.YOUTUBE_COOKIES_PATH || '';
 
 if (!fs.existsSync(DOWNLOADS_DIR)) {
@@ -36,6 +38,8 @@ app.use('/downloads', express.static(DOWNLOADS_DIR));
 app.locals = {
   siteTitle: SITE_TITLE,
   adsenseClientId: ADSENSE_CLIENT_ID,
+  contactEmail: CONTACT_EMAIL,
+  contactAddress: CONTACT_ADDRESS,
   currentYear: new Date().getFullYear(),
 };
 
@@ -66,6 +70,9 @@ function cleanError(err) {
 
   if (message.includes('Sign in to confirm')) {
     return 'YouTube is blocking this server. Try the mweb client, or add PO token + visitor data (or cookies) in Advanced options.';
+  }
+  if (message.includes('Watch video on YouTube') || message.includes('Error code: 152')) {
+    return 'This format is not directly downloadable. Try “Best available” or a different format.';
   }
   if (message.includes('Unsupported URL')) {
     return 'This URL is not supported or the video is unavailable. Check our Supported Sites list.';
@@ -146,14 +153,18 @@ async function callWithFallbacks(url, baseOptions) {
   throw lastError || new Error('All download attempts failed');
 }
 
-function renderPage(req, res, view, options = {}) {
-  const defaultMeta = {
+function getMeta(req, options = {}) {
+  const host = `${req.protocol}://${req.get('host')}`;
+  return {
     title: options.meta?.title || SITE_TITLE,
     description: options.meta?.description || 'Download videos from YouTube, TikTok, Instagram, Twitter, Facebook, and 1000+ sites quickly and securely.',
-    image: '/images/og-default.png',
-    url: `${req.protocol}://${req.get('host')}${req.originalUrl}`,
+    image: `${host}/images/og-default.png`,
+    url: `${host}${req.originalUrl}`,
   };
-  res.render(view, { ...options, meta: defaultMeta, path: req.path });
+}
+
+function renderPage(req, res, view, options = {}) {
+  res.render(view, { ...options, meta: getMeta(req, options), path: req.path });
 }
 
 app.get('/', (req, res) => {
@@ -246,6 +257,35 @@ app.get('/cookie-policy', (req, res) => {
   });
 });
 
+const blogPosts = [
+  { slug: 'youtube-download-guide', title: 'How to Download YouTube Videos Safely' },
+  { slug: 'safe-downloading', title: 'Safe Video Downloading Practices' },
+  { slug: 'video-formats-explained', title: 'Video Formats Explained: MP4, WEBM, and More' },
+  { slug: 'copyright-and-fair-use', title: 'Copyright, Fair Use, and Online Video Downloaders' },
+];
+
+app.get('/blog', (req, res) => {
+  renderPage(req, res, 'blog/index', {
+    meta: {
+      title: `Guides & Tutorials — ${SITE_TITLE}`,
+      description: 'Original guides and tutorials on safe, legal video downloading.',
+    },
+  });
+});
+
+app.get('/blog/:slug', (req, res, next) => {
+  const post = blogPosts.find((p) => p.slug === req.params.slug);
+  if (!post) return next();
+  const viewPath = path.join(__dirname, 'views', 'blog', `${post.slug}.ejs`);
+  if (!fs.existsSync(viewPath)) return next();
+  renderPage(req, res, `blog/${post.slug}`, {
+    meta: {
+      title: `${post.title} — ${SITE_TITLE}`,
+      description: `Read our guide on ${post.title.toLowerCase()} at ${SITE_TITLE}.`,
+    },
+  });
+});
+
 app.get('/ads.txt', (req, res) => {
   if (!ADSENSE_CLIENT_ID || ADSENSE_CLIENT_ID === 'ca-pub-0000000000000000') {
     return res.type('text/plain').send('# Add ADSENSE_CLIENT_ID to your .env file to enable ads.txt');
@@ -260,9 +300,10 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy'];
+  const pages = ['', 'supported-sites', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
-  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`);
+  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
 });
 
 app.post('/api/info', async (req, res) => {

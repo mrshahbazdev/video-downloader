@@ -1,0 +1,40 @@
+<article class="bg-white dark:bg-slate-900 py-20">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">Video Formats Explained: MP4, WEBM, and More</h1>
+    <p class="text-slate-500 dark:text-slate-400 text-center mb-10">Published on <%= currentYear %>-07-31 · <%= siteTitle %> Guides</p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-formats-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        When you download a video, you may see formats like MP4, WEBM, M4A, and MKV. Each format has strengths and ideal use cases. Here is a quick guide to help you pick the right one.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">MP4 (H.264 / AVC)</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">MP4 is the most widely supported video format. It works on nearly every device, operating system, and video editor. If you want maximum compatibility, choose an MP4 option.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">WEBM (VP9 / AV1)</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">WEBM is popular on the web because it offers excellent quality at smaller file sizes. VP9 and AV1 are modern codecs used by YouTube. WEBM works in most browsers but may need a converter for older TVs or editors.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">M4A and WEBM Audio</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">If you only need sound, look for audio-only formats. M4A uses AAC and is widely supported. WEBM audio uses Opus, which offers great quality at low bitrates. Choose M4A for compatibility, WEBM audio for efficiency.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Resolution and Bitrate</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Resolution (such as 720p, 1080p, or 4K) describes the number of pixels. Higher resolutions look sharper but create larger files. Bitrate affects quality too; a higher bitrate usually means better detail. Choose the resolution that balances quality and storage for your needs.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Format Should I Choose?</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Editing:</strong> MP4 H.264 for broad software support.</li>
+        <li><strong>Archiving:</strong> Highest resolution MP4 or WEBM available.</li>
+        <li><strong>Streaming offline on phone:</strong> 720p MP4 or lower.</li>
+        <li><strong>Audio only:</strong> M4A or WEBM audio.</li>
+      </ul>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-formats-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</article>
