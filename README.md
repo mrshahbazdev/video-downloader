@@ -1,14 +1,19 @@
-# All-in-One Video Downloader
+# All-in-One Video Downloader (AdSense-Ready)
 
-A Node.js video downloader built on top of [yt-dlp](https://github.com/yt-dlp/yt-dlp), supporting 1000+ sites (YouTube, TikTok, Instagram, Twitter/X, Facebook, Vimeo, Dailymotion, Reddit, and many more).
+A polished, AdSense-ready Node.js video downloader built on top of [yt-dlp](https://github.com/yt-dlp/yt-dlp). It supports 1000+ sites (YouTube, TikTok, Instagram, Twitter/X, Facebook, Vimeo, Dailymotion, Reddit, and many more) through a clean web UI and REST API.
 
 ## Features
 
+- Modern, responsive UI with dark/light mode.
 - Web UI to paste a URL, preview video info, and download.
 - REST API (`/api/info`, `/api/download`, `/health`).
 - Format selection (best, bestvideo, bestaudio, or specific format id).
-- CORS enabled for local development.
+- Cookie-consent banner for GDPR/Cookie Law compliance.
+- Legal pages: Privacy Policy, Terms of Service, DMCA, Disclaimer, Cookie Policy.
+- SEO meta tags, Open Graph, Twitter Cards, robots.txt, and sitemap.xml.
+- AdSense placeholders and dynamic `ads.txt` generation.
 - Downloads saved in the `downloads/` folder.
+- CLI for command-line use.
 
 ## Requirements
 
@@ -28,7 +33,15 @@ Copy environment file:
 cp .env.example .env
 ```
 
-Edit `.env` if you want to change `PORT` (default 3000).
+Edit `.env` to set:
+
+```env
+PORT=3000
+SITE_TITLE=ClipVault
+ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
+```
+
+Replace `ADSENSE_CLIENT_ID` with your real Google AdSense publisher ID to enable ads and `ads.txt`.
 
 ## Usage
 
@@ -69,6 +82,24 @@ Example:
 ```bash
 node cli.js "https://www.youtube.com/watch?v=..." best
 ```
+
+## AdSense / Monetization
+
+1. Update `ADSENSE_CLIENT_ID` in `.env`.
+2. Add your ad units to the `ad-unit` partial or replace the placeholders on the pages.
+3. Verify `/ads.txt` returns the correct AdSense line.
+4. Submit the site to Google AdSense once it is live on a real domain.
+
+## Important Pages for AdSense / SEO
+
+- `/privacy` — Privacy Policy
+- `/terms` — Terms of Service
+- `/disclaimer` — Usage Disclaimer
+- `/dmca` — Copyright Takedown
+- `/cookie-policy` — Cookie Policy
+- `/ads.txt` — AdSense authorization file
+- `/robots.txt` — Search engine instructions
+- `/sitemap.xml` — Sitemap for search engines
 
 ## Supported Sites
 
