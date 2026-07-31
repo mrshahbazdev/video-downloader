@@ -5,21 +5,6 @@ const https = require('https');
 const binDir = path.join(__dirname, '..', 'bin');
 const binPath = path.join(binDir, 'yt-dlp');
 
-if (process.env.YOUTUBE_DL_SKIP_DOWNLOAD === '1' || process.env.YOUTUBE_DL_SKIP_DOWNLOAD === 'true') {
-  console.log('Skipping yt-dlp download (YOUTUBE_DL_SKIP_DOWNLOAD set)');
-  process.exit(0);
-}
-
-if (process.env.YOUTUBE_DL_BINARY && fs.existsSync(process.env.YOUTUBE_DL_BINARY)) {
-  console.log(`Using existing yt-dlp: ${process.env.YOUTUBE_DL_BINARY}`);
-  process.exit(0);
-}
-
-if (fs.existsSync(binPath)) {
-  console.log('yt-dlp already exists at', binPath);
-  process.exit(0);
-}
-
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { headers: { 'User-Agent': 'Node.js' }, timeout: 30000 }, (res) => {
@@ -69,7 +54,20 @@ function downloadFile(url, dest) {
   });
 }
 
-(async () => {
+async function downloadYtdlp(force = false) {
+  if (process.env.YOUTUBE_DL_SKIP_DOWNLOAD === '1' || process.env.YOUTUBE_DL_SKIP_DOWNLOAD === 'true') {
+    console.log('Skipping yt-dlp download (YOUTUBE_DL_SKIP_DOWNLOAD set)');
+    return binPath;
+  }
+
+  if (process.env.YOUTUBE_DL_BINARY && fs.existsSync(process.env.YOUTUBE_DL_BINARY)) {
+    return process.env.YOUTUBE_DL_BINARY;
+  }
+
+  if (fs.existsSync(binPath) && !force) {
+    return binPath;
+  }
+
   try {
     fs.mkdirSync(binDir, { recursive: true });
     const release = await fetchJson('https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest');
@@ -83,6 +81,18 @@ function downloadFile(url, dest) {
   } catch (err) {
     console.error('Warning: could not download yt-dlp:', err.message);
     console.error('If you have a system yt-dlp, set YOUTUBE_DL_BINARY. Otherwise manually place yt-dlp at', binPath);
-    process.exitCode = 0;
   }
-})();
+
+  return binPath;
+}
+
+async function main() {
+  const result = await downloadYtdlp(true);
+  console.log(result);
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = { downloadYtdlp, binPath };

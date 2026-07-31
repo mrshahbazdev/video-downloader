@@ -5,12 +5,13 @@ const layouts = require('express-ejs-layouts');
 const fs = require('fs');
 const path = require('path');
 const { createYtdl, findPython } = require('./lib/ytdlp');
+const { downloadYtdlp } = require('./scripts/install-ytdlp');
 const { pipeline } = require('node:stream/promises');
 const { Readable } = require('node:stream');
 const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
 const DEFAULT_YTDLP = path.join(__dirname, 'bin', 'yt-dlp');
-const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : (fs.existsSync(DEFAULT_YTDLP) ? DEFAULT_YTDLP : '/usr/local/bin/yt-dlp'));
-const youtubedl = createYtdl(YTDLP_BINARY);
+let YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : (fs.existsSync(DEFAULT_YTDLP) ? DEFAULT_YTDLP : DEFAULT_YTDLP));
+let youtubedl;
 const crypto = require('crypto');
 const { randomUUID } = crypto;
 
@@ -34,14 +35,6 @@ if (!fs.existsSync(DOWNLOADS_DIR)) {
 if (!fs.existsSync(COOKIES_DIR)) {
   fs.mkdirSync(COOKIES_DIR, { recursive: true });
 }
-
-const pythonPath = findPython();
-if (!pythonPath) {
-  console.warn('Warning: Python not found in PATH. yt-dlp requires Python 3.9+ to run. Set YOUTUBE_DL_PYTHON to the full path if needed.');
-} else {
-  console.log('Using Python for yt-dlp:', pythonPath);
-}
-console.log('Using yt-dlp binary:', YTDLP_BINARY);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -613,6 +606,31 @@ app.use((req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`${SITE_TITLE} server running at http://localhost:${PORT}`);
+async function startApp() {
+  const pythonPath = findPython();
+  if (!pythonPath) {
+    console.warn('Warning: Python not found in PATH. yt-dlp requires Python 3.9+ to run. Set YOUTUBE_DL_PYTHON to the full path if needed.');
+  } else {
+    console.log('Using Python for yt-dlp:', pythonPath);
+  }
+
+  if (!process.env.YOUTUBE_DL_BINARY && !fs.existsSync(SYSTEM_YTDLP) && !fs.existsSync(YTDLP_BINARY)) {
+    YTDLP_BINARY = await downloadYtdlp();
+  }
+
+  if (!fs.existsSync(YTDLP_BINARY)) {
+    throw new Error(`yt-dlp binary not found at ${YTDLP_BINARY}. Set YOUTUBE_DL_BINARY or install Python + yt-dlp.`);
+  }
+
+  youtubedl = createYtdl(YTDLP_BINARY);
+  console.log('Using yt-dlp binary:', YTDLP_BINARY);
+
+  app.listen(PORT, () => {
+    console.log(`${SITE_TITLE} server running at http://localhost:${PORT}`);
+  });
+}
+
+startApp().catch((err) => {
+  console.error('Failed to start server:', err.message);
+  process.exit(1);
 });
