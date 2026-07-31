@@ -159,6 +159,8 @@ async function fetchTikWM(url) {
 }
 
 function mapTikTokInfo(data) {
+  const videoUrl = data.hdplay || data.play || null;
+  const audioUrl = data.music || null;
   return {
     id: data.id,
     title: data.title || `TikTok video ${data.id}`,
@@ -180,6 +182,8 @@ function mapTikTokInfo(data) {
         abr: null,
         vbr: null,
         fps: null,
+        url: videoUrl,
+        direct: !!videoUrl,
       },
       {
         format_id: 'tiktok-audio',
@@ -193,6 +197,8 @@ function mapTikTokInfo(data) {
         abr: null,
         vbr: null,
         fps: null,
+        url: audioUrl,
+        direct: !!audioUrl,
       },
     ],
   };
@@ -246,6 +252,45 @@ function sanitizeFilename(title) {
     .replace(/_+/g, '_')
     .replace(/^_+|_+$/g, '')
     .substring(0, 50) || 'video';
+}
+
+function isMuxedFormat(f) {
+  const videoOk = f.vcodec && f.vcodec !== 'none';
+  const audioOk = f.acodec && f.acodec !== 'none';
+  const audioOnly = f.vcodec === 'none' && audioOk;
+  const unknownMuxed = f.vcodec == null && f.acodec == null && f.url;
+  return (videoOk && audioOk) || audioOnly || unknownMuxed;
+}
+
+function isHttpFormat(f) {
+  if (!f.url) return false;
+  if (f.url.startsWith('https://')) return true;
+  if (f.url.startsWith('http://')) return true;
+  const protocol = String(f.protocol || '').toLowerCase();
+  return protocol === 'https' || protocol === 'http';
+}
+
+function getDirectDownloadInfo(url, formatId, cookiePath, poToken, visitorData) {
+  const formatSelector = formatId && formatId !== 'best' ? formatId : 'bestvideo*+bestaudio/best';
+  const base = {
+    ...getBaseOptions(url, cookiePath),
+    dumpJson: true,
+    format: formatSelector,
+  };
+
+  return callWithFallbacks(url, buildOptionSets(base, url, poToken, visitorData))
+    .then((info) => {
+      const format = info.formats?.find((f) => f.format_id === info.format_id) || info;
+      if (!format || !format.url) return null;
+      if (isMuxedFormat(format) && isHttpFormat(format)) {
+        return { url: format.url, ext: format.ext || info.ext || 'mp4', formatId: format.format_id || info.format_id, title: info.title };
+      }
+      return null;
+    })
+    .catch((err) => {
+      console.error('Direct download info check failed:', cleanError(err));
+      return null;
+    });
 }
 
 function getCookiePath(providedCookies) {
@@ -511,6 +556,8 @@ app.post('/api/info', async (req, res) => {
       abr: f.abr,
       vbr: f.vbr,
       fps: f.fps,
+      url: f.url || null,
+      direct: isMuxedFormat(f) && isHttpFormat(f),
     }));
 
     res.json({
@@ -554,6 +601,31 @@ app.post('/api/download', async (req, res) => {
   const cookiePath = getCookiePath(cookies);
 
   try {
+    if (isTikTok(url)) {
+      const tw = await fetchTikWM(url);
+      const isAudio = formatId === 'tiktok-audio' || formatId === 'audio' || formatId === 'best-audio';
+      const directUrl = isAudio ? tw.music : (tw.hdplay || tw.play);
+      if (directUrl) {
+        const ext = isAudio ? 'mp3' : 'mp4';
+        cleanupCookiePath(cookiePath);
+        return res.json({
+          success: true,
+          filename: `${safeTitle}_${id}.${ext}`,
+          directUrl,
+        });
+      }
+    }
+
+    const directInfo = await getDirectDownloadInfo(url, formatId, cookiePath, poToken, visitorData);
+    if (directInfo) {
+      cleanupCookiePath(cookiePath);
+      return res.json({
+        success: true,
+        filename: `${safeTitle}_${id}.${directInfo.ext}`,
+        directUrl: directInfo.url,
+      });
+    }
+
     const selectedFormat = formatId && formatId !== 'best' ? formatId : 'bestvideo*+bestaudio/best';
     const base = {
       ...getBaseOptions(url, cookiePath),
@@ -581,9 +653,10 @@ app.post('/api/download', async (req, res) => {
     if (isTikTok(url)) {
       try {
         const tw = await fetchTikWM(url);
-        const safeTitle = String(tw.title || `tiktok-${tw.id}`).replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').substring(0, 60) || 'tiktok';
-        const ext = formatId === 'tiktok-audio' || formatId === 'audio' ? 'mp3' : 'mp4';
-        const file = `${id}_${safeTitle}.${ext}`;
+        const isAudio = formatId === 'tiktok-audio' || formatId === 'audio' || formatId === 'best-audio';
+        const ext = isAudio ? 'mp3' : 'mp4';
+        const safeTikTitle = String(tw.title || `tiktok-${tw.id}`).replace(/[^\w\s-]/g, '').replace(/\s+/g, '_').substring(0, 60) || 'tiktok';
+        const file = `${id}_${safeTikTitle}.${ext}`;
         const outputPath = path.join(DOWNLOADS_DIR, file);
         await downloadTikTokMedia(url, formatId, outputPath, tw);
         const sanitized = file.replace(/^[^_]+_/, '');

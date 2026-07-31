@@ -216,6 +216,36 @@
     }
   }
 
+  async function triggerDirectDownload(url, filename) {
+    try {
+      const headRes = await fetch(url, { method: 'HEAD', mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' });
+      const length = headRes.ok ? parseInt(headRes.headers.get('content-length') || '0', 10) : 0;
+      if (headRes.ok && length && length < 50 * 1024 * 1024) {
+        const res = await fetch(url, { mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' });
+        if (!res.ok) throw new Error('Direct fetch failed');
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+        return;
+      }
+    } catch (err) {
+      // Non-CORS or too large; fall through to link-based fallback.
+    }
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
   async function downloadVideo(formatId, btn) {
     if (!formatId || !btn) return;
 
@@ -238,12 +268,18 @@
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Download failed');
 
-      downloadLink.href = data.downloadUrl;
-      downloadLink.download = data.filename;
       downloadFilename.textContent = data.filename;
       downloadResult.classList.remove('hidden');
-      showMessage('Download ready', 'success');
-      downloadLink.click();
+
+      if (data.directUrl) {
+        showMessage('Opening direct download', 'success');
+        await triggerDirectDownload(data.directUrl, data.filename);
+      } else {
+        downloadLink.href = data.downloadUrl;
+        downloadLink.download = data.filename;
+        showMessage('Download ready', 'success');
+        downloadLink.click();
+      }
     } catch (err) {
       showMessage(err.message, 'error');
     } finally {
