@@ -1,0 +1,39 @@
+<script>
+  (function() {
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  })();
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+    localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    updateThemeIcon();
+  });
+
+  function updateThemeIcon() {
+    const icon = document.getElementById('themeIcon');
+    icon.textContent = document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+  }
+  updateThemeIcon();
+
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+
+  function pushAd(slot) {
+    if (window.ADSENSE_CLIENT_ID && window.ADSENSE_CLIENT_ID !== 'ca-pub-0000000000000000' && window.adsbygoogle) {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    }
+  }
+  window.pushAd = pushAd;
+</script>

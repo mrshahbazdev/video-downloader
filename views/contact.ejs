@@ -1,0 +1,47 @@
+<section class="bg-slate-50 dark:bg-slate-950 py-16">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-4 text-center">Contact Us</h1>
+    <p class="text-slate-600 dark:text-slate-400 text-center mb-10">Have questions, feedback, or a copyright concern? Reach out below.</p>
+
+    <%- include('partials/ad-unit', { adSlot: 'contact-top' }) %>
+
+    <div class="card">
+      <form id="contactForm" class="space-y-5">
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Name</label>
+          <input type="text" id="name" name="name" required class="input-url" />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="input-url" />
+        </div>
+        <div>
+          <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Subject</label>
+          <select id="subject" name="subject" class="input-url">
+            <option>General question</option>
+            <option>Bug report</option>
+            <option>Feature request</option>
+            <option>Copyright / DMCA</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Message</label>
+          <textarea id="message" name="message" rows="5" required class="input-url"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Send Message</button>
+      </form>
+      <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 text-center">This is a demo form. Connect it to your email service or backend to receive messages.</p>
+    </div>
+
+    <%- include('partials/ad-unit', { adSlot: 'contact-bottom' }) %>
+  </div>
+</section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thanks for your message! This is a demo form and does not send emails yet.');
+    e.target.reset();
+  });
+</script>

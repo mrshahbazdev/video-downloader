@@ -1,0 +1,38 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-6 text-center">How to Use</h1>
+    <p class="text-slate-600 dark:text-slate-400 text-center mb-12">
+      Follow the simple steps below to download videos from your favorite sites.
+    </p>
+
+    <%- include('partials/ad-unit', { adSlot: 'howto-top' }) %>
+
+    <div class="space-y-8">
+      <div class="card">
+        <h2 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">1. Copy the Video URL</h2>
+        <p class="text-slate-600 dark:text-slate-400">Open the video on your browser or app and copy the link from the address bar or share menu.</p>
+      </div>
+      <div class="card">
+        <h2 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">2. Paste It on the Home Page</h2>
+        <p class="text-slate-600 dark:text-slate-400">Go to the <a href="/" class="text-sky-600 dark:text-sky-400 hover:underline">home page</a>, paste the URL into the input box, and click “Get Video.”</p>
+      </div>
+      <div class="card">
+        <h2 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">3. Choose a Format</h2>
+        <p class="text-slate-600 dark:text-slate-400">Once we fetch the video info, select the quality and file format from the dropdown. “Best available” is usually the safest choice.</p>
+      </div>
+      <div class="card">
+        <h2 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">4. Download</h2>
+        <p class="text-slate-600 dark:text-slate-400">Click “Download Now.” When the server finishes processing, an “Open File” button will appear so you can save the video.</p>
+      </div>
+    </div>
+
+    <%- include('partials/ad-unit', { adSlot: 'howto-bottom' }) %>
+
+    <div class="mt-12 p-6 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 rounded-xl">
+      <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Important Reminder</h3>
+      <p class="text-amber-700 dark:text-amber-200 text-sm">
+        Only download videos you own or have permission to use. Respect copyright laws and each platform’s Terms of Service.
+      </p>
+    </div>
+  </div>
+</section>

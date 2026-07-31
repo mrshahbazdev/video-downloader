@@ -1,0 +1,32 @@
+<section class="bg-slate-50 dark:bg-slate-950 py-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-4">Supported Sites</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Our downloader is powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, supporting more than 1000 video platforms. Below are some of the most popular ones.
+      </p>
+    </div>
+
+    <%- include('partials/ad-unit', { adSlot: 'supported-top' }) %>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+      <% const sites = [
+        'YouTube','TikTok','Instagram','Facebook','Twitter / X','Vimeo','Dailymotion','Reddit',
+        'Twitch','SoundCloud','Bilibili','TED','Bitchute','Rumble','Odysee','Vine Archive',
+        'Internet Archive','NBC','ABC','CBS','CNN','BBC iPlayer','France.tv','ARD','ZDF',
+        'NHK World','PBS','NRK','SVT Play','Aftonbladet','Mediaset','Rai Play','TVP',
+        '9GAG','Bilibili','Bandcamp','Mixcloud','Audiomack','Spotify Podcasts','Apple Podcasts',
+        'Patreon','Substack','Vine','Veoh','MetaCafe','Dtube','PeerTube','Newgrounds'
+      ]; %>
+      <% sites.forEach(function(site) { %>
+        <div class="card flex items-center justify-center h-16 text-center font-medium text-slate-700 dark:text-slate-200"><%= site %></div>
+      <% }); %>
+    </div>
+
+    <%- include('partials/ad-unit', { adSlot: 'supported-bottom' }) %>
+
+    <div class="mt-12 text-center">
+      <a href="/" class="btn-primary">Back to Downloader</a>
+    </div>
+  </div>
+</section>
