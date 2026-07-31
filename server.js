@@ -2,9 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const layouts = require('express-ejs-layouts');
-const youtubedl = require('youtube-dl-exec');
 const fs = require('fs');
 const path = require('path');
+const { create: createYtdl } = require('youtube-dl-exec');
+const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
+const DEFAULT_YTDLP = path.join(__dirname, 'node_modules', 'youtube-dl-exec', 'bin', 'yt-dlp');
+const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : DEFAULT_YTDLP);
+const youtubedl = createYtdl(YTDLP_BINARY);
 const { randomUUID } = require('crypto');
 
 const app = express();
@@ -77,6 +81,9 @@ function cleanError(err) {
   if (message.includes('Unsupported URL')) {
     return 'This URL is not supported or the video is unavailable. Check our Supported Sites list.';
   }
+  if (message.includes('Your IP address is blocked') || message.includes('HTTP Error 403') || message.includes('HTTP Error 412')) {
+    return 'This site is blocking the server IP. Try a proxy (set PROXY_URL in .env) or use cookies if the video is yours.';
+  }
   if (message.includes('Unable to download') || message.includes('HTTP Error')) {
     return 'Could not access the video. It may be private, region-blocked, or removed.';
   }
@@ -106,11 +113,13 @@ function getBaseOptions(url, cookiePath) {
     noCheckCertificates: true,
     noWarnings: true,
     preferFreeFormats: true,
+    impersonate: 'chrome',
     addHeader: [
       `referer:${getReferer(url)}`,
       'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
     ],
   };
+  if (process.env.PROXY_URL) options.proxy = process.env.PROXY_URL;
   if (cookiePath) options.cookies = cookiePath;
   return options;
 }
@@ -361,10 +370,11 @@ app.post('/api/download', async (req, res) => {
   const cookiePath = getCookiePath(cookies);
 
   try {
+    const selectedFormat = formatId && formatId !== 'best' ? formatId : 'bestvideo*+bestaudio/best';
     const base = {
       ...getBaseOptions(url, cookiePath),
       output,
-      format: formatId || 'best',
+      format: selectedFormat,
     };
 
     await callWithFallbacks(url, buildOptionSets(base, url, poToken, visitorData));
