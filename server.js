@@ -4,12 +4,12 @@ const cors = require('cors');
 const layouts = require('express-ejs-layouts');
 const fs = require('fs');
 const path = require('path');
-const { create: createYtdl } = require('youtube-dl-exec');
+const { createYtdl, findPython } = require('./lib/ytdlp');
 const { pipeline } = require('node:stream/promises');
 const { Readable } = require('node:stream');
 const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
-const DEFAULT_YTDLP = path.join(__dirname, 'node_modules', 'youtube-dl-exec', 'bin', 'yt-dlp');
-const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : DEFAULT_YTDLP);
+const DEFAULT_YTDLP = path.join(__dirname, 'bin', 'yt-dlp');
+const YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : (fs.existsSync(DEFAULT_YTDLP) ? DEFAULT_YTDLP : '/usr/local/bin/yt-dlp'));
 const youtubedl = createYtdl(YTDLP_BINARY);
 const crypto = require('crypto');
 const { randomUUID } = crypto;
@@ -34,6 +34,14 @@ if (!fs.existsSync(DOWNLOADS_DIR)) {
 if (!fs.existsSync(COOKIES_DIR)) {
   fs.mkdirSync(COOKIES_DIR, { recursive: true });
 }
+
+const pythonPath = findPython();
+if (!pythonPath) {
+  console.warn('Warning: Python not found in PATH. yt-dlp requires Python 3.9+ to run. Set YOUTUBE_DL_PYTHON to the full path if needed.');
+} else {
+  console.log('Using Python for yt-dlp:', pythonPath);
+}
+console.log('Using yt-dlp binary:', YTDLP_BINARY);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

@@ -1,6 +1,7 @@
 node_modules/
 downloads/
 cookies/
+bin/yt-dlp
 .env
 *.log
 .DS_Store
