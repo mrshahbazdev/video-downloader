@@ -445,6 +445,40 @@ app.get('/thumbnail', (req, res) => {
   });
 });
 
+app.get('/mp3', (req, res) => {
+  renderPage(req, res, 'mp3', {
+    meta: {
+      title: `Video to MP3 Converter — ${SITE_TITLE}`,
+      description: 'Convert videos from YouTube, TikTok, Instagram, and 1000+ sites to MP3 audio. Free online video to MP3 converter.',
+      keywords: 'video to mp3, youtube to mp3, convert video to mp3, audio downloader, mp3 converter online',
+    },
+  });
+});
+
+const platformPages = [
+  { slug: 'youtube', name: 'YouTube', title: 'YouTube Video Downloader', desc: 'Download YouTube videos in MP4 and MP3 for free. Paste any YouTube link and save your favorite videos.', placeholder: 'Paste YouTube URL here...', keywords: 'youtube downloader, download youtube videos, youtube to mp4, youtube to mp3' },
+  { slug: 'tiktok', name: 'TikTok', title: 'TikTok Video Downloader', desc: 'Download TikTok videos without watermark in HD. Paste a TikTok link and save instantly.', placeholder: 'Paste TikTok URL here...', keywords: 'tiktok downloader, download tiktok videos, tiktok no watermark, tiktok video saver' },
+  { slug: 'instagram', name: 'Instagram', title: 'Instagram Reels Downloader', desc: 'Download Instagram Reels, videos, and IGTV posts. Paste the Instagram link and pick your format.', placeholder: 'Paste Instagram URL here...', keywords: 'instagram downloader, instagram reels downloader, download instagram video, igtv downloader' },
+  { slug: 'facebook', name: 'Facebook', title: 'Facebook Video Downloader', desc: 'Download Facebook videos and Reels. Paste a public Facebook video link and save it.', placeholder: 'Paste Facebook URL here...', keywords: 'facebook video downloader, download facebook videos, facebook reels downloader' },
+  { slug: 'twitter', name: 'Twitter / X', title: 'Twitter / X Video Downloader', desc: 'Download Twitter / X videos and GIFs. Paste the tweet link and save the media.', placeholder: 'Paste Twitter / X URL here...', keywords: 'twitter video downloader, x video downloader, download twitter videos' },
+];
+
+platformPages.forEach((p) => {
+  app.get(`/${p.slug}`, (req, res) => {
+    renderPage(req, res, 'platform', {
+      platformName: p.name,
+      platformTitle: p.title,
+      platformDesc: p.desc,
+      platformPlaceholder: p.placeholder,
+      meta: {
+        title: `${p.title} — Free ${p.name} Video Downloader — ${SITE_TITLE}`,
+        description: p.desc,
+        keywords: p.keywords,
+      },
+    });
+  });
+});
+
 app.get('/supported-sites', (req, res) => {
   renderPage(req, res, 'supported-sites', {
     meta: {
@@ -569,7 +603,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'mp3', 'youtube', 'tiktok', 'instagram', 'facebook', 'twitter', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);

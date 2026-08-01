@@ -1,0 +1,68 @@
+      <div class="glass rounded-2xl p-4 sm:p-6 max-w-2xl mx-auto shadow-2xl">
+        <div class="relative flex flex-col sm:flex-row gap-3">
+          <input type="text" id="url" class="input-url flex-1 pl-12" placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : 'Paste video URL here...' %>" />
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+          <button id="infoBtn" class="btn-primary whitespace-nowrap">
+            <span id="infoBtnText"><%= typeof buttonText !== 'undefined' ? buttonText : 'Get Video' %></span>
+          </button>
+        </div>
+
+        <% if (captchaMode === 'math') { %>
+          <div class="mt-3 text-left">
+            <label class="block text-xs font-medium text-slate-200 mb-1">Captcha: <span id="captchaQuestion">Loading...</span></label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="captchaAnswer" class="input-url flex-1 text-sm" placeholder="Type the answer" inputmode="numeric" />
+              <button type="button" id="captchaRefresh" class="btn-primary px-3 py-2" title="New question">↻</button>
+            </div>
+            <input type="hidden" id="captchaToken" />
+          </div>
+        <% } else if (captchaMode === 'recaptcha') { %>
+          <p class="text-xs text-slate-300 mt-3 text-left">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-sky-300">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="underline hover:text-sky-300">Terms of Service</a> apply.</p>
+        <% } %>
+
+        <button type="button" id="advancedToggle" class="mt-4 text-xs text-sky-200 hover:text-white underline underline-offset-2">
+          Advanced options
+        </button>
+        <div id="advancedOptions" class="hidden mt-4 text-left space-y-3 bg-slate-950/20 rounded-xl p-4 border border-white/10">
+          <div>
+            <label for="cookies" class="block text-xs font-medium text-slate-200 mb-1">Site cookies (Netscape format)</label>
+            <textarea id="cookies" rows="3" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File
+example.com	TRUE	/	FALSE	...	..."></textarea>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="poToken" class="block text-xs font-medium text-slate-200 mb-1">YouTube PO token</label>
+              <input type="text" id="poToken" class="input-url text-xs font-mono" placeholder="web+M..." />
+            </div>
+            <div>
+              <label for="visitorData" class="block text-xs font-medium text-slate-200 mb-1">YouTube visitor data</label>
+              <input type="text" id="visitorData" class="input-url text-xs font-mono" placeholder="Cgt..." />
+            </div>
+          </div>
+          <p class="text-xs text-slate-300">Cookies or PO token are optional, but YouTube may require them on some server IPs.</p>
+        </div>
+
+        <p class="text-xs text-slate-300 mt-3 text-left">
+          By using this service you agree to our <a href="/terms" class="underline hover:text-sky-300">Terms</a> and <a href="/disclaimer" class="underline hover:text-sky-300">Disclaimer</a>.
+        </p>
+      </div>
+
+      <div id="message" class="mt-4 text-left hidden max-w-2xl mx-auto"></div>
+
+      <div id="infoCard" class="hidden mt-8 text-left max-w-3xl mx-auto">
+        <div class="card bg-white/95 dark:bg-slate-900/95 backdrop-blur p-6">
+          <div class="flex flex-col md:flex-row gap-6">
+            <img id="thumb" src="" alt="thumbnail" class="w-full md:w-56 rounded-2xl object-cover aspect-video bg-slate-200 dark:bg-slate-800 shadow-sm" />
+            <div class="flex-1 min-w-0">
+              <h2 id="title" class="text-2xl font-bold text-slate-900 dark:text-white mb-2 leading-tight"></h2>
+              <p id="meta" class="text-slate-600 dark:text-slate-400 mb-5 text-sm"></p>
+              <h3 class="text-sm uppercase tracking-wide font-semibold text-slate-500 dark:text-slate-400 mb-3">All available formats — click any to download</h3>
+              <div id="formatList" class="flex flex-col gap-2 max-h-[420px] overflow-y-auto pr-1"></div>
+              <div id="downloadResult" class="hidden mt-5 flex items-center gap-3 flex-wrap p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800">
+                <a id="downloadLink" class="btn-primary bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30" href="#" download>Download file</a>
+                <span id="downloadFilename" class="text-sm text-slate-700 dark:text-slate-300 font-medium break-all"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

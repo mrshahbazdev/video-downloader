@@ -21,6 +21,7 @@
   const captchaTokenEl = document.getElementById('captchaToken');
   const captchaRefreshBtn = document.getElementById('captchaRefresh');
   let videoData = null;
+  const toolMode = window.TOOL_MODE || 'video';
 
   if (advancedToggle && advancedOptions) {
     advancedToggle.addEventListener('click', () => {
@@ -165,24 +166,30 @@
     formatList.innerHTML = '';
     let usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb') && f.format_id !== 'download');
     usable = deduplicateFormats(usable);
+    if (toolMode === 'mp3') {
+      usable = usable.filter((f) => f.acodec && f.acodec !== 'none' && (!f.vcodec || f.vcodec === 'none'));
+    }
     if (!usable.length) {
-      formatList.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400">No individual formats found. Use the “Best available” option.</p>';
+      formatList.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400">No individual formats found. Use the “' + (toolMode === 'mp3' ? 'Best audio' : 'Best available') + '” option.</p>';
       return;
     }
 
+    const bestFormatId = toolMode === 'mp3' ? 'bestaudio' : 'best';
+    const bestTitle = toolMode === 'mp3' ? 'Best audio' : 'Best available';
+    const bestSub = toolMode === 'mp3' ? 'Auto-pick best audio / MP3' : 'Auto-pick highest quality';
     const best = document.createElement('button');
     best.className = 'format-card format-row format-best';
     best.innerHTML = `
       <div class="flex items-center gap-3 min-w-0">
         <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md">★</span>
         <div class="min-w-0">
-          <div class="font-bold text-slate-900 dark:text-white text-base leading-tight">Best available</div>
-          <div class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</div>
+          <div class="font-bold text-slate-900 dark:text-white text-base leading-tight">${bestTitle}</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">${bestSub}</div>
         </div>
       </div>
       <span class="badge badge-muxed shrink-0">Recommended</span>
     `;
-    best.addEventListener('click', (e) => downloadVideo('best', e.currentTarget));
+    best.addEventListener('click', (e) => downloadVideo(bestFormatId, e.currentTarget));
     formatList.appendChild(best);
 
     usable.forEach((f) => {
@@ -248,7 +255,7 @@
     } catch (err) {
       showMessage(err.message, 'error');
     } finally {
-      clearLoading(infoBtn, infoBtnText, 'Get Video');
+      clearLoading(infoBtn, infoBtnText, toolMode === 'mp3' ? 'Get Audio' : 'Get Video');
       loadMathCaptcha();
     }
   }

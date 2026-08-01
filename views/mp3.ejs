@@ -1,0 +1,55 @@
+<section class="gradient-hero relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 25%);"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sky-100 text-xs font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        MP3 & audio from 1000+ sites
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+        Video to <span class="text-sky-300">MP3 Converter</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-200 mb-10">
+        Paste a video link and download high-quality audio / MP3. Fast, free, and privacy-friendly.
+      </p>
+
+      <%- include('partials/downloader-form', { placeholder: 'Paste video URL here...', buttonText: 'Get Audio' }) %>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">How to convert to MP3</h2>
+      <p class="text-slate-600 dark:text-slate-400">Three simple steps to extract audio from any video.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <div class="card card-hover text-center">
+        <span class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold mx-auto mb-4 shadow-lg">1</span>
+        <h3 class="font-bold text-lg mb-2">Paste URL</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Copy the video link and paste it above.</p>
+      </div>
+      <div class="card card-hover text-center">
+        <span class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold mx-auto mb-4 shadow-lg">2</span>
+        <h3 class="font-bold text-lg mb-2">Pick Audio</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Choose an audio format or use “Best audio”.</p>
+      </div>
+      <div class="card card-hover text-center">
+        <span class="w-12 h-12 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold mx-auto mb-4 shadow-lg">3</span>
+        <h3 class="font-bold text-lg mb-2">Download MP3</h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Save the audio file to your device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% if (captchaMode === 'recaptcha') { %>
+  <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>" async defer></script>
+<% } %>
+<script>
+  window.CAPTCHA_MODE = '<%= captchaMode %>';
+  window.RECAPTCHA_SITE_KEY = '<%= recaptchaSiteKey %>';
+  window.TOOL_MODE = 'mp3';
+</script>
+<script src="/js/downloader.js?v=<%= Date.now() %>"></script>
