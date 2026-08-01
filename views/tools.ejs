@@ -16,7 +16,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <% (tools || []).forEach(function(tool) { %>
-        <a href="<%= tool.link || (tool.slug ? '/' + tool.slug : '/') %>" class="card card-hover group">
+        <a href="<%= tool.link || (tool.slug ? '/' + tool.slug : '/') %>" class="card card-hover group" rel="nofollow">
           <div class="flex items-start gap-4">
             <span class="text-3xl"><%= tool.icon %></span>
             <div>

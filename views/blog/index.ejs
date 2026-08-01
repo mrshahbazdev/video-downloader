@@ -19,21 +19,10 @@
       <% }); %>
     </div>
 
-    <div class="mt-16">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Tool Guides (<%= toolGuides.length %>+)</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <% toolGuides.forEach(function(tool) { %>
-          <a href="/blog/<%= tool.slug %>" class="card card-hover group" title="<%= tool.title %> guide">
-            <div class="flex items-start gap-4">
-              <span class="text-2xl"><%= tool.icon %></span>
-              <div>
-                <h3 class="font-bold text-base mb-1 text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition"><%= tool.title %> Guide</h3>
-                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2"><%= tool.desc %></p>
-              </div>
-            </div>
-          </a>
-        <% }); %>
-      </div>
+    <div class="mt-16 text-center">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Looking for a specific downloader?</h2>
+      <p class="text-slate-600 dark:text-slate-400 mb-6 max-w-xl mx-auto">Browse our full directory of 1000+ downloader tools and guides. Each tool page is available for personal, non-commercial use.</p>
+      <a href="/tools" class="btn-primary inline-flex">Browse All Tools</a>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-bottom' }) %>
