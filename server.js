@@ -584,6 +584,15 @@ app.get('/cookie-policy', (req, res) => {
   });
 });
 
+app.get('/content-policy', (req, res) => {
+  renderPage(req, res, 'content-policy', {
+    meta: {
+      title: `Content Policy — ${SITE_TITLE}`,
+      description: 'Our acceptable use, copyright, and content removal policy.',
+    },
+  });
+});
+
 const blogPosts = require('./data/blogPosts.json');
 app.locals.blogPosts = blogPosts;
 
@@ -641,7 +650,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'content-policy', 'blog'];
   const toolSlugs = toolsData.map((t) => t.slug || (t.link && t.link.startsWith('/') ? t.link.slice(1) : '')).filter((s) => s && !RESERVED_TOOL_SLUGS.has(s));
   const allPages = [...new Set([...pages, ...toolSlugs])];
   const blogSlugs = [...new Set([...blogPosts.map((p) => p.slug), ...toolSlugs])];

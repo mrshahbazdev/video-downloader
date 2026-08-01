@@ -1,7 +1,7 @@
 <section class="bg-slate-50 dark:bg-slate-950 py-20">
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4 text-center">Contact Us</h1>
-    <p class="text-slate-600 dark:text-slate-400 text-center mb-10">Have questions, feedback, or a copyright concern? Reach out below.</p>
+    <p class="text-slate-600 dark:text-slate-400 text-center mb-10">Have questions, feedback, advertising inquiries, or a copyright concern? Reach out below.</p>
 
     <%- include('partials/ad-unit', { adSlot: 'contact-top' }) %>
 
@@ -12,6 +12,7 @@
       <p class="text-slate-600 dark:text-slate-400">Address: <%= contactAddress %></p>
       <% } %>
       <p class="text-slate-600 dark:text-slate-400 mt-2">We typically respond to inquiries within 2-3 business days.</p>
+      <p class="text-slate-600 dark:text-slate-400 mt-2">For DMCA or copyright issues, please include the exact URL and a description of the copyrighted work.</p>
     </div>
 
     <div class="card">
@@ -28,6 +29,7 @@
           <label for="subject" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Subject</label>
           <select id="subject" name="subject" class="input-url">
             <option>General question</option>
+            <option>Advertising inquiry</option>
             <option>Bug report</option>
             <option>Feature request</option>
             <option>Copyright / DMCA</option>
@@ -40,7 +42,7 @@
         </div>
         <button type="submit" class="btn-primary w-full">Send Message</button>
       </form>
-      <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 text-center">This is a demo form. Connect it to your email service or backend to receive messages.</p>
+      <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 text-center">This form is a demo. Connect it to your email service or backend to receive messages. For urgent issues, email us directly.</p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'contact-bottom' }) %>
@@ -50,7 +52,7 @@
 <script>
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Thanks for your message! This is a demo form and does not send emails yet.');
+    alert('Thanks for your message! This is a demo form and does not send emails yet. Please email us directly at ' + '<%= contactEmail %>' + ' for a response.');
     e.target.reset();
   });
 </script>

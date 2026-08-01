@@ -6,11 +6,14 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        <%= siteTitle %> is a free, privacy-focused online video downloader designed to help users save publicly accessible videos from thousands of supported websites. We believe downloading your own content, public domain media, or creator-approved videos should be simple, fast, and transparent.
+        <%= siteTitle %> is a free educational resource and online utility that helps users understand how to save publicly accessible videos from thousands of supported websites. We believe accessing your own content, public domain media, and creator-approved videos should be simple, fast, and transparent.
       </p>
 
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Story</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We started <%= siteTitle %> to simplify video downloads without forcing users to install heavy apps or create accounts. The project grew into a library of 1000+ downloader guides and tools powered by open-source software and community feedback.</p>
+
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Mission</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We built <%= siteTitle %> to give users a clean, ad-supported alternative to bloated downloader apps. Our goal is to put privacy and speed first while respecting content creators and copyright law.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">We provide clear, easy-to-follow guides and a clean, privacy-focused utility. Our goal is to help users download content they own or have permission to use, while educating them about copyright, fair use, and platform terms.</p>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How It Works</h2>
       <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The service is built on open-source technologies, including Node.js, Express, and <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener noreferrer" class="text-sky-600 dark:text-sky-400 hover:underline">yt-dlp</a>, which powers the extraction layer for 1000+ platforms. When you paste a URL, our server fetches the video metadata, lists every available format, and lets you choose the one you want.</p>
@@ -19,16 +22,20 @@
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
         <li><strong>Privacy:</strong> No user accounts, no tracking pixels, and no long-term storage of downloaded files.</li>
         <li><strong>Transparency:</strong> Clear legal pages, disclaimers, and open-source tooling.</li>
-        <li><strong>Speed:</strong> Lightweight server-side processing that returns results quickly.</li>
+        <li><strong>Education:</strong> Detailed guides and FAQs for every supported platform.</li>
         <li><strong>Responsibility:</strong> We actively discourage piracy and require users to follow local copyright laws.</li>
+        <li><strong>Accessibility:</strong> The site works on phones, tablets, and desktops without installing anything.</li>
       </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Who We Are</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><%= siteTitle %> is operated by a small team of developers and content creators committed to open-source software and digital literacy. We are independent and not affiliated with any video platform.</p>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Contact Information</h2>
       <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Email: <a href="mailto:<%= contactEmail %>" class="text-sky-600 dark:text-sky-400 hover:underline"><%= contactEmail %></a></p>
       <% if (contactAddress) { %>
       <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">Address: <%= contactAddress %></p>
       <% } %>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">For questions or copyright concerns, visit our <a href="/contact" class="text-sky-600 dark:text-sky-400 hover:underline">Contact</a> page.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-2">For questions, feedback, advertising, or copyright concerns, visit our <a href="/contact" class="text-sky-600 dark:text-sky-400 hover:underline">Contact</a> page.</p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'about-bottom' }) %>
