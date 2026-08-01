@@ -425,6 +425,16 @@ app.get('/', (req, res) => {
   });
 });
 
+app.get('/tools', (req, res) => {
+  renderPage(req, res, 'tools', {
+    meta: {
+      title: `Free Video Downloader Tools — ${SITE_TITLE}`,
+      description: 'Explore free tools to download videos from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, and 1000+ sites. Convert to MP3, grab thumbnails, subtitles, and more.',
+      keywords: 'video downloader tools, YouTube downloader, TikTok downloader, Instagram downloader, Facebook downloader, Twitter video downloader, MP3 converter, thumbnail downloader, subtitle downloader',
+    },
+  });
+});
+
 app.get('/supported-sites', (req, res) => {
   renderPage(req, res, 'supported-sites', {
     meta: {
@@ -549,7 +559,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);

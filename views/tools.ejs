@@ -1,0 +1,51 @@
+<section class="gradient-hero relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 25%);"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+        Free Video <span class="text-sky-300">Downloader Tools</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-200">
+        A collection of fast, free, and privacy-friendly tools for downloading videos, audio, and more from 1000+ sites.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% const tools = [
+        { icon: '🎬', title: 'All-in-One Video Downloader', desc: 'Paste any URL from 1000+ supported sites and download videos in seconds.', link: '/' },
+        { icon: '📹', title: 'YouTube Downloader', desc: 'Download YouTube videos in MP4, WebM, and extract high-quality audio.', link: '/' },
+        { icon: '🎵', title: 'YouTube to MP3', desc: 'Convert YouTube videos to MP3 audio files quickly.', link: '/' },
+        { icon: '🎶', title: 'TikTok Downloader', desc: 'Save TikTok videos without watermark in HD quality.', link: '/' },
+        { icon: '📷', title: 'Instagram Reels Downloader', desc: 'Download Instagram Reels, videos, and IGTV posts.', link: '/' },
+        { icon: '👍', title: 'Facebook Video Downloader', desc: 'Download Facebook videos, reels, and public posts.', link: '/' },
+        { icon: '🐦', title: 'Twitter / X Video Downloader', desc: 'Save videos and GIFs from Twitter / X posts.', link: '/' },
+        { icon: '🎙️', title: 'Audio / MP3 Downloader', desc: 'Extract audio from any supported video link.', link: '/' },
+        { icon: '🎭', title: 'Reddit Video Downloader', desc: 'Download Reddit videos with audio.', link: '/' },
+        { icon: '🎨', title: 'Vimeo Downloader', desc: 'Download Vimeo videos in multiple resolutions.', link: '/' },
+        { icon: '🌏', title: 'Dailymotion Downloader', desc: 'Save Dailymotion videos easily.', link: '/' },
+        { icon: '📺', title: 'Bilibili Downloader', desc: 'Download Bilibili videos and clips.', link: '/' },
+        { icon: '🎤', title: 'TED Talk Downloader', desc: 'Download TED talks and presentations.', link: '/' },
+        { icon: '🎮', title: 'Twitch Clip Downloader', desc: 'Save Twitch clips and highlights.', link: '/' },
+        { icon: '🎧', title: 'SoundCloud Downloader', desc: 'Download SoundCloud tracks and playlists.', link: '/' },
+        { icon: '🖼️', title: 'Thumbnail Downloader', desc: 'Grab high-quality thumbnails from YouTube, TikTok, and more.', link: '/' },
+        { icon: '📝', title: 'Subtitle Downloader', desc: 'Download subtitles and captions from supported videos.', link: '/' },
+        { icon: '📂', title: 'Playlist Downloader', desc: 'Download entire YouTube playlists and channels.', link: '/' },
+      ]; %>
+      <% tools.forEach(function(tool) { %>
+        <a href="<%= tool.link %>" class="card card-hover group">
+          <div class="flex items-start gap-4">
+            <span class="text-3xl"><%= tool.icon %></span>
+            <div>
+              <h3 class="font-bold text-lg mb-2 text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition"><%= tool.title %></h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400"><%= tool.desc %></p>
+            </div>
+          </div>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
