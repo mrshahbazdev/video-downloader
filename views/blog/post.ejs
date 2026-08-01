@@ -53,10 +53,35 @@
       </div>
     </div>
 
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">On-Page SEO for <%= post.site %> Downloader Pages</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+        <li>Unique, keyword-rich title tag and meta description for every tool page.</li>
+        <li>Clean URL structure, canonical link, and mobile-friendly responsive design.</li>
+        <li>Structured data with Article, FAQPage, and BreadcrumbList schema.</li>
+        <li>Fast page load, semantic HTML headings, and internal linking from the tools grid.</li>
+        <li>Helpful content that matches searcher intent: how-to steps, supported formats, and FAQs.</li>
+      </ul>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Off-Page SEO & Sharing Tips</h2>
+      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+        <li>Share this guide on Twitter/X, Facebook, LinkedIn, Reddit, and relevant forums.</li>
+        <li>Build backlinks from tech blogs, downloader directories, and social bookmarking sites.</li>
+        <li>Submit the sitemap.xml to Google Search Console and Bing Webmaster Tools.</li>
+        <li>Use the exact URL in YouTube descriptions, video comments, and community posts.</li>
+        <li>Encourage users to bookmark the tool page for easy access.</li>
+      </ul>
+    </div>
+
     <%- include('../partials/ad-unit', { adSlot: 'blog-bottom' }) %>
 
     <div class="mt-12 text-center">
       <a href="/" class="btn-primary">Try the <%= siteTitle %> Downloader</a>
+      <% if (post.slug) { %>
+        <a href="/<%= post.slug %>" class="btn-primary ml-2">Go to <%= post.site %> Tool</a>
+      <% } %>
     </div>
   </div>
 </section>

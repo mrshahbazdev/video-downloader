@@ -492,6 +492,7 @@ toolsData.forEach((t) => {
       toolTitle: t.title,
       toolDesc: t.desc,
       toolPlaceholder: t.placeholder || 'Paste video URL here...',
+      toolSlug: slug,
       meta: {
         title: `${t.title} — Free Online — ${SITE_TITLE}`,
         description: `Free ${t.title} online. ${t.desc} Paste the URL, solve the captcha, and save videos or audio in MP4/MP3. No signup needed.`,
@@ -588,6 +589,7 @@ app.locals.blogPosts = blogPosts;
 
 app.get('/blog', (req, res) => {
   renderPage(req, res, 'blog/index', {
+    toolGuides: toolsData.filter((t) => t.slug),
     meta: {
       title: `Video Downloading Guides — ${SITE_TITLE}`,
       description: 'Step-by-step guides for downloading YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, and 1000+ supported sites.',
@@ -597,13 +599,27 @@ app.get('/blog', (req, res) => {
 });
 
 app.get('/blog/:slug', (req, res, next) => {
-  const post = blogPosts.find((p) => p.slug === req.params.slug);
-  if (!post) return next();
+  let post = blogPosts.find((p) => p.slug === req.params.slug);
+  if (!post) {
+    const tool = toolsData.find((t) => t.slug === req.params.slug);
+    if (!tool || !tool.slug) return next();
+    const site = tool.title.replace(/\s+Downloader$/i, '');
+    post = {
+      slug: tool.slug,
+      site,
+      title: `${site} Downloader — Free Online Guide`,
+      summary: `Free ${tool.title} online. ${tool.desc} Use ${SITE_TITLE} to paste the URL, solve the captcha, and download videos or audio in MP4/MP3.`,
+      description: `Free ${tool.title} online. ${tool.desc} Download videos or audio with ${SITE_TITLE}.`,
+      formats: 'MP4, MP3, HD, and 4K when available',
+      keywords: `${tool.keywords || ''}, ${site.toLowerCase()} downloader, download ${site.toLowerCase()} videos, ${site.toLowerCase()} to mp4, ${site.toLowerCase()} to mp3`,
+    };
+  }
   const viewPath = path.join(__dirname, 'views', 'blog', `${post.slug}.ejs`);
+  const baseKeyword = post.site.toLowerCase();
   const meta = {
-    title: `${post.title}`,
+    title: `${post.title} — ${SITE_TITLE}`,
     description: post.description || `Read our guide on ${post.title.toLowerCase()} at ${SITE_TITLE}.`,
-    keywords: `${post.site} downloader, download ${post.site} videos, ${post.site} to mp4, ${post.site} to mp3, free ${post.site} downloader`,
+    keywords: `${post.keywords || ''}, ${baseKeyword} downloader, download ${baseKeyword} videos, ${baseKeyword} to mp4, ${baseKeyword} to mp3, free ${baseKeyword} downloader, ${baseKeyword} downloader guide`,
   };
   if (fs.existsSync(viewPath)) {
     return renderPage(req, res, `blog/${post.slug}`, { meta, post });
@@ -628,7 +644,8 @@ app.get('/sitemap.xml', (req, res) => {
   const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const toolSlugs = toolsData.map((t) => t.slug || (t.link && t.link.startsWith('/') ? t.link.slice(1) : '')).filter((s) => s && !RESERVED_TOOL_SLUGS.has(s));
   const allPages = [...new Set([...pages, ...toolSlugs])];
-  const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
+  const blogSlugs = [...new Set([...blogPosts.map((p) => p.slug), ...toolSlugs])];
+  const blogUrls = blogSlugs.map((p) => `<url><loc>${host}/blog/${p}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = allPages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
 });
