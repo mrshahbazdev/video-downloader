@@ -28,6 +28,7 @@ const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY || '';
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
 const CAPTCHA_MODE = process.env.CAPTCHA_MODE || (RECAPTCHA_SITE_KEY ? 'recaptcha' : 'math');
 const CAPTCHA_SECRET = process.env.CAPTCHA_SECRET || require('crypto').randomBytes(32).toString('hex');
+const DOWNLOAD_TOKEN_SECRET = process.env.DOWNLOAD_TOKEN_SECRET || CAPTCHA_SECRET;
 
 if (!fs.existsSync(DOWNLOADS_DIR)) {
   fs.mkdirSync(DOWNLOADS_DIR, { recursive: true });
@@ -252,6 +253,41 @@ function sanitizeFilename(title) {
     .replace(/_+/g, '_')
     .replace(/^_+|_+$/g, '')
     .substring(0, 50) || 'video';
+}
+
+function base64Url(input) {
+  return input.toString('base64url').replace(/=+$/, '');
+}
+
+function signPayload(payload) {
+  return crypto
+    .createHmac('sha256', DOWNLOAD_TOKEN_SECRET)
+    .update(payload)
+    .digest('base64url')
+    .replace(/=+$/, '');
+}
+
+function createDownloadToken(url, filename) {
+  const payload = JSON.stringify({ url, filename, exp: Date.now() + 5 * 60 * 1000 });
+  const payloadB64 = base64Url(Buffer.from(payload, 'utf8'));
+  const signature = signPayload(payloadB64);
+  return `${payloadB64}.${signature}`;
+}
+
+function verifyDownloadToken(token) {
+  try {
+    if (!token || typeof token !== 'string') return null;
+    const [payloadB64, signature] = token.split('.');
+    if (!payloadB64 || !signature) return null;
+    const expected = signPayload(payloadB64);
+    if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) return null;
+    const payload = JSON.parse(Buffer.from(payloadB64, 'base64url').toString('utf8'));
+    if (Date.now() > payload.exp) return null;
+    if (!payload.url || (!payload.url.startsWith('http://') && !payload.url.startsWith('https://'))) return null;
+    return payload;
+  } catch {
+    return null;
+  }
 }
 
 function isMuxedFormat(f) {
@@ -607,22 +643,26 @@ app.post('/api/download', async (req, res) => {
       const directUrl = isAudio ? tw.music : (tw.hdplay || tw.play);
       if (directUrl) {
         const ext = isAudio ? 'mp3' : 'mp4';
+        const filename = `${safeTitle}_${id}.${ext}`;
         cleanupCookiePath(cookiePath);
         return res.json({
           success: true,
-          filename: `${safeTitle}_${id}.${ext}`,
+          filename,
           directUrl,
+          downloadToken: createDownloadToken(directUrl, filename),
         });
       }
     }
 
     const directInfo = await getDirectDownloadInfo(url, formatId, cookiePath, poToken, visitorData);
     if (directInfo) {
+      const filename = `${safeTitle}_${id}.${directInfo.ext}`;
       cleanupCookiePath(cookiePath);
       return res.json({
         success: true,
-        filename: `${safeTitle}_${id}.${directInfo.ext}`,
+        filename,
         directUrl: directInfo.url,
+        downloadToken: createDownloadToken(directInfo.url, filename),
       });
     }
 
@@ -673,6 +713,40 @@ app.post('/api/download', async (req, res) => {
     res.status(500).json({ error: cleanError(err) || 'Download failed' });
   } finally {
     cleanupCookiePath(cookiePath);
+  }
+});
+
+app.get('/api/download-proxy', async (req, res) => {
+  const token = req.query.token;
+  const payload = verifyDownloadToken(token);
+  if (!payload) {
+    return res.status(403).send('Invalid or expired download token');
+  }
+
+  try {
+    const response = await fetch(payload.url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        Accept: '*/*',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+    });
+
+    if (!response.ok) {
+      return res.status(502).send(`Failed to fetch media: ${response.status}`);
+    }
+
+    res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(payload.filename)}`);
+    res.setHeader('Content-Type', response.headers.get('content-type') || 'application/octet-stream');
+    const length = response.headers.get('content-length');
+    if (length) res.setHeader('Content-Length', length);
+
+    await pipeline(Readable.fromWeb(response.body), res);
+  } catch (err) {
+    console.error('Download proxy error:', err);
+    if (!res.headersSent) {
+      res.status(500).send('Download proxy failed');
+    }
   }
 });
 

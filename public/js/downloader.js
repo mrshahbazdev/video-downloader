@@ -109,10 +109,25 @@
     return { captchaToken: '', captchaAnswer: '' };
   }
 
+  function deduplicateFormats(formats) {
+    const map = new Map();
+    for (const f of formats) {
+      const key = `${f.resolution || 'audio'}-${f.ext}-${f.vcodec || f.acodec || 'unknown'}`;
+      const existing = map.get(key);
+      const size = f.filesize || f.filesize_approx || 0;
+      const existingSize = existing ? (existing.filesize || existing.filesize_approx || 0) : 0;
+      if (!existing || size > existingSize) {
+        map.set(key, f);
+      }
+    }
+    return Array.from(map.values());
+  }
+
   function formatBadge(hasVideo, hasAudio) {
-    if (hasVideo && hasAudio) return `<span class="badge badge-muxed">Video + Audio</span>`;
-    if (hasVideo) return `<span class="badge badge-video">Video</span>`;
-    return `<span class="badge badge-audio">Audio</span>`;
+    if (hasVideo && hasAudio) return `<span class="badge badge-muxed shrink-0">Video + Audio</span>`;
+    if (hasVideo) return `<span class="badge badge-video shrink-0">Video only</span>`;
+    if (hasAudio) return `<span class="badge badge-audio shrink-0">Audio only</span>`;
+    return `<span class="badge badge-video shrink-0">Video</span>`;
   }
 
   function formatLabel(f) {
@@ -120,33 +135,52 @@
     const hasAudio = f.acodec && f.acodec !== 'none';
     const parts = [];
 
-    if (hasVideo) {
-      parts.push(f.resolution && f.resolution !== 'audio only' ? f.resolution : 'video only');
-    } else if (hasAudio) {
+    if (f.resolution && f.resolution !== 'audio only') {
+      parts.push(f.resolution);
+    } else if (hasAudio && !hasVideo) {
       parts.push('Audio');
+    } else if (hasVideo) {
+      parts.push('Video');
     }
 
     if (f.ext) parts.push(f.ext.toUpperCase());
-    if (hasVideo && f.vcodec) parts.push(f.vcodec);
+
+    const codec = hasVideo ? f.vcodec : hasAudio ? f.acodec : '';
+    if (codec && codec !== 'none') {
+      const short = String(codec).split('.')[0].split(' ')[0].toLowerCase();
+      parts.push(short);
+    }
+
     if (hasAudio && !hasVideo && f.abr) parts.push(`${Math.round(f.abr)} kbps`);
 
     return parts.join(' · ') || f.format_id;
   }
 
+  function formatQualityHint(f) {
+    const size = f.filesize ? formatBytes(f.filesize) : f.filesize_approx ? `~${formatBytes(f.filesize_approx)}` : '';
+    return size ? `<span class="text-xs text-slate-500 dark:text-slate-400">${size}</span>` : '';
+  }
+
   function renderFormats(formats) {
     formatList.innerHTML = '';
-    const usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb') && f.format_id !== 'download');
+    let usable = formats.filter((f) => f.ext !== 'mhtml' && !f.format_id.startsWith('sb') && f.format_id !== 'download');
+    usable = deduplicateFormats(usable);
     if (!usable.length) {
-      formatList.innerHTML = '<p class="text-sm text-slate-500">No individual formats found. Use the “Best available” option.</p>';
+      formatList.innerHTML = '<p class="text-sm text-slate-500 dark:text-slate-400">No individual formats found. Use the “Best available” option.</p>';
       return;
     }
 
     const best = document.createElement('button');
-    best.className = 'format-card border-sky-500/50 dark:border-sky-400/50 ring-1 ring-sky-500/20';
+    best.className = 'format-card format-row format-best';
     best.innerHTML = `
-      <span class="font-bold text-sky-600 dark:text-sky-400">Best available</span>
-      <span class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</span>
-      <span class="badge badge-muxed mt-1">Recommended</span>
+      <div class="flex items-center gap-3 min-w-0">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md">★</span>
+        <div class="min-w-0">
+          <div class="font-bold text-slate-900 dark:text-white text-base leading-tight">Best available</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400">Auto-pick highest quality</div>
+        </div>
+      </div>
+      <span class="badge badge-muxed shrink-0">Recommended</span>
     `;
     best.addEventListener('click', (e) => downloadVideo('best', e.currentTarget));
     formatList.appendChild(best);
@@ -154,20 +188,22 @@
     usable.forEach((f) => {
       const hasVideo = f.vcodec && f.vcodec !== 'none';
       const hasAudio = f.acodec && f.acodec !== 'none';
-      const size = f.filesize
-        ? formatBytes(f.filesize)
-        : f.filesize_approx
-        ? `~${formatBytes(f.filesize_approx)}`
-        : 'Unknown size';
+      const iconBg = hasVideo
+        ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-300'
+        : 'bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-300';
+      const iconText = hasVideo ? '▶' : '♪';
 
       const btn = document.createElement('button');
-      btn.className = 'format-card';
+      btn.className = 'format-card format-row';
       btn.innerHTML = `
-        <div class="flex items-start justify-between gap-2">
-          <span class="font-bold text-slate-800 dark:text-slate-200 text-sm leading-tight">${formatLabel(f)}</span>
-          ${formatBadge(hasVideo, hasAudio)}
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center text-sm font-bold shrink-0">${iconText}</span>
+          <div class="min-w-0">
+            <div class="font-bold text-slate-800 dark:text-slate-200 text-sm leading-tight truncate text-left">${formatLabel(f)}</div>
+            ${formatQualityHint(f)}
+          </div>
         </div>
-        <span class="text-xs text-slate-500 dark:text-slate-400">${size}</span>
+        ${formatBadge(hasVideo, hasAudio)}
       `;
       btn.addEventListener('click', (e) => downloadVideo(f.format_id, e.currentTarget));
       formatList.appendChild(btn);
@@ -213,34 +249,14 @@
       showMessage(err.message, 'error');
     } finally {
       clearLoading(infoBtn, infoBtnText, 'Get Video');
+      loadMathCaptcha();
     }
   }
 
-  async function triggerDirectDownload(url, filename) {
-    try {
-      const headRes = await fetch(url, { method: 'HEAD', mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' });
-      const length = headRes.ok ? parseInt(headRes.headers.get('content-length') || '0', 10) : 0;
-      if (headRes.ok && length && length < 50 * 1024 * 1024) {
-        const res = await fetch(url, { mode: 'cors', credentials: 'omit', referrerPolicy: 'no-referrer' });
-        if (!res.ok) throw new Error('Direct fetch failed');
-        const blob = await res.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
-        return;
-      }
-    } catch (err) {
-      // Non-CORS or too large; fall through to link-based fallback.
-    }
+  function startProxyDownload(token, filename) {
     const a = document.createElement('a');
-    a.href = url;
+    a.href = `/api/download-proxy?token=${encodeURIComponent(token)}`;
     a.download = filename;
-    a.target = '_blank';
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -271,9 +287,9 @@
       downloadFilename.textContent = data.filename;
       downloadResult.classList.remove('hidden');
 
-      if (data.directUrl) {
-        showMessage('Opening direct download', 'success');
-        await triggerDirectDownload(data.directUrl, data.filename);
+      if (data.downloadToken) {
+        showMessage('Download starting', 'success');
+        startProxyDownload(data.downloadToken, data.filename);
       } else {
         downloadLink.href = data.downloadUrl;
         downloadLink.download = data.filename;
@@ -285,6 +301,7 @@
     } finally {
       btn.disabled = false;
       btn.innerHTML = originalHTML;
+      loadMathCaptcha();
     }
   }
 
