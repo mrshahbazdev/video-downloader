@@ -486,15 +486,16 @@ const RESERVED_TOOL_SLUGS = new Set([
 toolsData.forEach((t) => {
   const slug = t.slug || (t.link && t.link.startsWith('/') ? t.link.slice(1) : '');
   if (!slug || RESERVED_TOOL_SLUGS.has(slug)) return;
+  const baseKeyword = t.title.replace(/\s+Downloader$/i, '').toLowerCase();
   app.get(`/${slug}`, (req, res) => {
     renderPage(req, res, 'tool', {
       toolTitle: t.title,
       toolDesc: t.desc,
       toolPlaceholder: t.placeholder || 'Paste video URL here...',
       meta: {
-        title: `${t.title} — Free Online Downloader — ${SITE_TITLE}`,
-        description: t.desc,
-        keywords: t.keywords || '',
+        title: `${t.title} — Free Online — ${SITE_TITLE}`,
+        description: `Free ${t.title} online. ${t.desc} Paste the URL, solve the captcha, and save videos or audio in MP4/MP3. No signup needed.`,
+        keywords: `${t.keywords || ''}, ${baseKeyword} downloader, free ${baseKeyword} downloader, online ${baseKeyword} downloader, download ${baseKeyword} mp4, download ${baseKeyword} mp3`,
       },
     });
   });

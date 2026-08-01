@@ -26,6 +26,73 @@
   </div>
 </section>
 
+<section class="py-12 bg-slate-50 dark:bg-slate-800">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">What is <%= toolTitle %>?</h2>
+    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+      <%= toolTitle %> is a free, fast, and privacy-friendly online downloader. Paste a public video URL and save your favorite clips in MP4, MP3, or other available formats. It works on desktop, mobile, and tablet without requiring any registration or software installation.
+    </p>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Why use <%= toolTitle %>?</h3>
+    <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 mb-6 space-y-2">
+      <li>100% free with no hidden charges</li>
+      <li>Works with 1000+ supported video sites</li>
+      <li>Download videos in HD, 4K, or extract audio as MP3</li>
+      <li>Simple math captcha keeps bots away</li>
+      <li>No signup, no app install needed</li>
+      <li>Safe downloads via signed proxy tokens</li>
+    </ul>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">How to download in 3 steps</h3>
+    <ol class="list-decimal list-inside text-slate-600 dark:text-slate-400 mb-6 space-y-2">
+      <li>Copy the URL of the video you want to download.</li>
+      <li>Paste it into the input box and complete the captcha.</li>
+      <li>Choose your preferred format and click the download button.</li>
+    </ol>
+    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+      <%= toolTitle %> supports YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Twitch, SoundCloud, and hundreds more platforms. Always respect copyright and only download content you have permission to save.
+    </p>
+  </div>
+</section>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": meta.title,
+  "url": meta.url,
+  "description": meta.description,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": siteTitle,
+    "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1')
+  }
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + "/tools" },
+    { "@type": "ListItem", "position": 3, "name": toolTitle }
+  ]
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": toolTitle,
+  "url": meta.url,
+  "description": toolDesc,
+  "applicationCategory": "MultimediaApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "operatingSystem": "Any"
+}) %>
+</script>
+
 <% if (captchaMode === 'recaptcha') { %>
   <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>" async defer></script>
 <% } %>
