@@ -445,6 +445,26 @@ app.get('/thumbnail', (req, res) => {
   });
 });
 
+app.get('/subtitle', (req, res) => {
+  renderPage(req, res, 'subtitle', {
+    meta: {
+      title: `Free Video Subtitle Downloader — ${SITE_TITLE}`,
+      description: 'Download subtitles and captions from YouTube and other supported videos. Paste a URL and save subtitles in any language.',
+      keywords: 'subtitle downloader, download subtitles, youtube subtitle downloader, caption downloader, video subtitles',
+    },
+  });
+});
+
+app.get('/playlist', (req, res) => {
+  renderPage(req, res, 'playlist', {
+    meta: {
+      title: `Free Playlist Downloader — ${SITE_TITLE}`,
+      description: 'Download entire YouTube playlists and channels. Paste a playlist URL, view all videos, and download them one by one.',
+      keywords: 'playlist downloader, youtube playlist downloader, download playlist, channel downloader',
+    },
+  });
+});
+
 app.get('/mp3', (req, res) => {
   renderPage(req, res, 'mp3', {
     meta: {
@@ -603,7 +623,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'mp3', 'youtube', 'tiktok', 'instagram', 'facebook', 'twitter', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'youtube', 'tiktok', 'instagram', 'facebook', 'twitter', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
@@ -706,6 +726,114 @@ app.post('/api/thumbnail', async (req, res) => {
   } catch (err) {
     console.error('Thumbnail fetch failed:', err);
     res.status(500).json({ error: cleanError(err) || 'Failed to fetch thumbnail' });
+  }
+});
+
+app.post('/api/subtitles', async (req, res) => {
+  const { url, captchaToken, captchaAnswer } = req.body;
+  if (!url) return res.status(400).json({ error: 'URL is required' });
+
+  const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
+  if (!captcha.success) {
+    return res.status(403).json({ error: `Captcha verification failed: ${captcha.error}` });
+  }
+
+  try {
+    const base = {
+      ...getBaseOptions(url, null),
+      dumpJson: true,
+      skipDownload: true,
+    };
+
+    const info = await callWithFallbacks(url, buildOptionSets(base, url, '', ''));
+    const safeTitle = sanitizeFilename(info.title || 'subtitle');
+
+    const subs = info.subtitles || {};
+    const auto = info.automatic_captions || {};
+
+    const map = (obj, autoFlag) => Object.entries(obj).map(([lang, list]) => {
+      const entries = (list || []).map((s) => ({
+        ext: s.ext || 'txt',
+        name: s.name || lang,
+        url: s.url,
+        downloadToken: createDownloadToken(s.url, `${safeTitle}_${lang}_${autoFlag ? 'auto' : 'sub'}.${s.ext || 'txt'}`),
+      }));
+      return { lang, auto: autoFlag, entries };
+    });
+
+    res.json({
+      success: true,
+      title: info.title || 'Unknown',
+      thumbnail: info.thumbnail || '',
+      subtitles: [...map(subs, false), ...map(auto, true)],
+    });
+  } catch (err) {
+    console.error('Subtitle fetch failed:', err);
+    res.status(500).json({ error: cleanError(err) || 'Failed to fetch subtitles' });
+  }
+});
+
+app.post('/api/playlist', async (req, res) => {
+  const { url, captchaToken, captchaAnswer } = req.body;
+  if (!url) return res.status(400).json({ error: 'URL is required' });
+
+  const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
+  if (!captcha.success) {
+    return res.status(403).json({ error: `Captcha verification failed: ${captcha.error}` });
+  }
+
+  try {
+    const base = {
+      ...getBaseOptions(url, null),
+      dumpSingleJson: true,
+      flatPlaylist: true,
+      skipDownload: true,
+    };
+
+    const info = await callWithFallbacks(url, buildOptionSets(base, url, '', ''));
+    const entries = (info.entries || []).map((e) => ({
+      id: e.id,
+      title: e.title,
+      duration: e.duration,
+      thumbnail: e.thumbnail,
+      url: e.webpage_url || e.url || e.original_url || url,
+    }));
+
+    res.json({
+      success: true,
+      title: info.title || 'Playlist',
+      uploader: info.uploader,
+      entries,
+    });
+  } catch (err) {
+    console.error('Playlist fetch failed:', err);
+    res.status(500).json({ error: cleanError(err) || 'Failed to fetch playlist' });
+  }
+});
+
+app.get('/api/subtitle-file', async (req, res) => {
+  const token = req.query.token;
+  const payload = verifyDownloadToken(token);
+  if (!payload) {
+    return res.status(403).send('Invalid or expired download token');
+  }
+
+  try {
+    const response = await fetch(payload.url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
+    });
+    if (!response.ok) {
+      return res.status(502).send(`Failed to fetch subtitle: ${response.status}`);
+    }
+
+    res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(payload.filename)}`);
+    res.setHeader('Content-Type', response.headers.get('content-type') || 'text/plain');
+    await pipeline(Readable.fromWeb(response.body), res);
+  } catch (err) {
+    console.error('Subtitle file error:', err);
+    if (!res.headersSent) res.status(500).send('Subtitle download failed');
   }
 });
 

@@ -1,0 +1,47 @@
+<section class="gradient-hero relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 25%);"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+    <div class="text-center max-w-3xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+        Video <span class="text-sky-300">Subtitle Downloader</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-200 mb-10">
+        Paste a video URL and download subtitles / captions in any available language.
+      </p>
+
+      <div class="glass rounded-2xl p-4 sm:p-6 max-w-2xl mx-auto shadow-2xl text-left">
+        <label class="block text-xs font-medium text-slate-200 mb-1">Video URL</label>
+        <input type="text" id="url" class="input-url w-full mb-3" placeholder="Paste YouTube / video URL here..." />
+
+        <% if (captchaMode === 'math') { %>
+          <div class="mb-3">
+            <label class="block text-xs font-medium text-slate-200 mb-1">Captcha: <span id="captchaQuestion">Loading...</span></label>
+            <div class="flex items-center gap-2">
+              <input type="text" id="captchaAnswer" class="input-url flex-1 text-sm" placeholder="Type the answer" inputmode="numeric" />
+              <button type="button" id="captchaRefresh" class="btn-primary px-3 py-2" title="New question">↻</button>
+            </div>
+            <input type="hidden" id="captchaToken" />
+          </div>
+        <% } %>
+
+        <button id="fetchBtn" class="btn-primary w-full">Get Subtitles</button>
+      </div>
+
+      <div id="message" class="mt-4 text-left hidden max-w-2xl mx-auto"></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-slate-900">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div id="result" class="hidden">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6" id="title"></h2>
+      <div id="subtitleList" class="space-y-4"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.CAPTCHA_MODE = '<%= captchaMode %>';
+</script>
+<script src="/js/subtitle.js?v=<%= Date.now() %>"></script>

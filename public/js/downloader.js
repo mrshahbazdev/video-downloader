@@ -328,4 +328,13 @@
   }
 
   loadMathCaptcha();
+
+  const params = new URLSearchParams(window.location.search);
+  const prefillUrl = params.get('url');
+  if (prefillUrl && urlInput) {
+    urlInput.value = prefillUrl;
+    if (window.CAPTCHA_MODE !== 'math') {
+      fetchInfo();
+    }
+  }
 })();
