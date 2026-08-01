@@ -6258,5 +6258,2653 @@
     "slug": "128kbps-mp3",
     "placeholder": "Paste 128kbps MP3 URL here...",
     "keywords": "128kbps mp3 downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Starz Downloader",
+    "desc": "Download Starz videos.",
+    "slug": "starz",
+    "placeholder": "Paste Starz URL here...",
+    "keywords": "starz downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Showtime Downloader",
+    "desc": "Download Showtime videos.",
+    "slug": "showtime",
+    "placeholder": "Paste Showtime URL here...",
+    "keywords": "showtime downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Cinemax Downloader",
+    "desc": "Download Cinemax videos.",
+    "slug": "cinemax",
+    "placeholder": "Paste Cinemax URL here...",
+    "keywords": "cinemax downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Epix Downloader",
+    "desc": "Download Epix videos.",
+    "slug": "epix",
+    "placeholder": "Paste Epix URL here...",
+    "keywords": "epix downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Hallmark Movies Now Downloader",
+    "desc": "Download Hallmark videos.",
+    "slug": "hallmark-movies-now",
+    "placeholder": "Paste Hallmark Movies Now URL here...",
+    "keywords": "hallmark movies now downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Lifetime Movie Club Downloader",
+    "desc": "Download Lifetime Movie Club videos.",
+    "slug": "lifetime-movie-club",
+    "placeholder": "Paste Lifetime Movie Club URL here...",
+    "keywords": "lifetime movie club downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "BET+ Downloader",
+    "desc": "Download BET+ videos.",
+    "slug": "bet-plus",
+    "placeholder": "Paste BET+ URL here...",
+    "keywords": "bet plus downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "ALLBLK Downloader",
+    "desc": "Download ALLBLK videos.",
+    "slug": "allblk",
+    "placeholder": "Paste ALLBLK URL here...",
+    "keywords": "allblk downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "We TV Downloader",
+    "desc": "Download We TV videos.",
+    "slug": "we-tv",
+    "placeholder": "Paste We TV URL here...",
+    "keywords": "we tv downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Sundance Now Downloader",
+    "desc": "Download Sundance Now videos.",
+    "slug": "sundance-now",
+    "placeholder": "Paste Sundance Now URL here...",
+    "keywords": "sundance now downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "IFC Films Unlimited Downloader",
+    "desc": "Download IFC Films videos.",
+    "slug": "ifc-films",
+    "placeholder": "Paste IFC Films Unlimited URL here...",
+    "keywords": "ifc films unlimited downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "DocuBay Downloader",
+    "desc": "Download DocuBay documentaries.",
+    "slug": "docubay",
+    "placeholder": "Paste DocuBay URL here...",
+    "keywords": "docubay downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Docsville Downloader",
+    "desc": "Download Docsville documentaries.",
+    "slug": "docsville",
+    "placeholder": "Paste Docsville URL here...",
+    "keywords": "docsville downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Film Movement Plus Downloader",
+    "desc": "Download Film Movement Plus videos.",
+    "slug": "film-movement-plus",
+    "placeholder": "Paste Film Movement Plus URL here...",
+    "keywords": "film movement plus downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Fandor Downloader",
+    "desc": "Download Fandor films.",
+    "slug": "fandor",
+    "placeholder": "Paste Fandor URL here...",
+    "keywords": "fandor downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Kanopy Kids Downloader",
+    "desc": "Download Kanopy Kids videos.",
+    "slug": "kanopy-kids",
+    "placeholder": "Paste Kanopy Kids URL here...",
+    "keywords": "kanopy kids downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "PBS Passport Downloader",
+    "desc": "Download PBS Passport videos.",
+    "slug": "pbs-passport",
+    "placeholder": "Paste PBS Passport URL here...",
+    "keywords": "pbs passport downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "PBS Masterpiece Downloader",
+    "desc": "Download PBS Masterpiece videos.",
+    "slug": "pbs-masterpiece",
+    "placeholder": "Paste PBS Masterpiece URL here...",
+    "keywords": "pbs masterpiece downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "PBS Documentaries Downloader",
+    "desc": "Download PBS documentaries.",
+    "slug": "pbs-documentaries",
+    "placeholder": "Paste PBS Documentaries URL here...",
+    "keywords": "pbs documentaries downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "PBS Kids Video Downloader",
+    "desc": "Download PBS Kids video app content.",
+    "slug": "pbs-kids-video",
+    "placeholder": "Paste PBS Kids Video URL here...",
+    "keywords": "pbs kids video downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "PBS LearningMedia Downloader",
+    "desc": "Download PBS LearningMedia videos.",
+    "slug": "pbs-learningmedia",
+    "placeholder": "Paste PBS LearningMedia URL here...",
+    "keywords": "pbs learningmedia downloader"
+  },
+  {
+    "icon": "⭐",
+    "title": "Curiosity Stream Downloader",
+    "desc": "Download Curiosity Stream videos.",
+    "slug": "curiosity-stream",
+    "placeholder": "Paste Curiosity Stream URL here...",
+    "keywords": "curiosity stream downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "RetroCrush Downloader",
+    "desc": "Download RetroCrush anime.",
+    "slug": "retrocrush",
+    "placeholder": "Paste RetroCrush URL here...",
+    "keywords": "retrocrush downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeLab Downloader",
+    "desc": "Download AnimeLab episodes.",
+    "slug": "animelab",
+    "placeholder": "Paste AnimeLab URL here...",
+    "keywords": "animelab downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AniMixPlay Downloader",
+    "desc": "Download AniMixPlay videos.",
+    "slug": "animixplay",
+    "placeholder": "Paste AniMixPlay URL here...",
+    "keywords": "animixplay downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "9anime Downloader",
+    "desc": "Download 9anime videos.",
+    "slug": "9anime",
+    "placeholder": "Paste 9anime URL here...",
+    "keywords": "9anime downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "Gogoanime Downloader",
+    "desc": "Download Gogoanime videos.",
+    "slug": "gogoanime",
+    "placeholder": "Paste Gogoanime URL here...",
+    "keywords": "gogoanime downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "Zoro.to Downloader",
+    "desc": "Download Zoro.to anime.",
+    "slug": "zoroto",
+    "placeholder": "Paste Zoro.to URL here...",
+    "keywords": "zoro to downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeHeaven Downloader",
+    "desc": "Download AnimeHeaven videos.",
+    "slug": "animeheaven",
+    "placeholder": "Paste AnimeHeaven URL here...",
+    "keywords": "animeheaven downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "Chia-Anime Downloader",
+    "desc": "Download Chia-Anime videos.",
+    "slug": "chia-anime",
+    "placeholder": "Paste Chia-Anime URL here...",
+    "keywords": "chia anime downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeFreak Downloader",
+    "desc": "Download AnimeFreak videos.",
+    "slug": "animefreak",
+    "placeholder": "Paste AnimeFreak URL here...",
+    "keywords": "animefreak downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "Soul-Anime Downloader",
+    "desc": "Download Soul-Anime videos.",
+    "slug": "soul-anime",
+    "placeholder": "Paste Soul-Anime URL here...",
+    "keywords": "soul anime downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeKisa Downloader",
+    "desc": "Download AnimeKisa videos.",
+    "slug": "animekisa",
+    "placeholder": "Paste AnimeKisa URL here...",
+    "keywords": "animekisa downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeDao Downloader",
+    "desc": "Download AnimeDao videos.",
+    "slug": "animedao",
+    "placeholder": "Paste AnimeDao URL here...",
+    "keywords": "animedao downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "4anime Downloader",
+    "desc": "Download 4anime videos.",
+    "slug": "4anime",
+    "placeholder": "Paste 4anime URL here...",
+    "keywords": "4anime downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "Masterani Downloader",
+    "desc": "Download Masterani videos.",
+    "slug": "masterani",
+    "placeholder": "Paste Masterani URL here...",
+    "keywords": "masterani downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeTake Downloader",
+    "desc": "Download AnimeTake videos.",
+    "slug": "animetake",
+    "placeholder": "Paste AnimeTake URL here...",
+    "keywords": "animetake downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "AnimeUltima Downloader",
+    "desc": "Download AnimeUltima videos.",
+    "slug": "animeultima",
+    "placeholder": "Paste AnimeUltima URL here...",
+    "keywords": "animeultima downloader"
+  },
+  {
+    "icon": "🇯🇵",
+    "title": "KissAnime Downloader",
+    "desc": "Download KissAnime archive videos.",
+    "slug": "kissanime",
+    "placeholder": "Paste KissAnime URL here...",
+    "keywords": "kissanime downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Aha Telugu Downloader",
+    "desc": "Download Aha Telugu videos.",
+    "slug": "aha-telugu",
+    "placeholder": "Paste Aha Telugu URL here...",
+    "keywords": "aha telugu downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Aha Tamil Downloader",
+    "desc": "Download Aha Tamil videos.",
+    "slug": "aha-tamil",
+    "placeholder": "Paste Aha Tamil URL here...",
+    "keywords": "aha tamil downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Sun NXT Downloader",
+    "desc": "Download Sun NXT videos.",
+    "slug": "sun-nxt",
+    "placeholder": "Paste Sun NXT URL here...",
+    "keywords": "sun nxt downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "ManoramaMAX Downloader",
+    "desc": "Download ManoramaMAX videos.",
+    "slug": "manoramamax",
+    "placeholder": "Paste ManoramaMAX URL here...",
+    "keywords": "manoramamax downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Koode Downloader",
+    "desc": "Download Koode Malayalam videos.",
+    "slug": "koode",
+    "placeholder": "Paste Koode URL here...",
+    "keywords": "koode downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "NeeStream Downloader",
+    "desc": "Download NeeStream videos.",
+    "slug": "neestream",
+    "placeholder": "Paste NeeStream URL here...",
+    "keywords": "neestream downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Saina Play Downloader",
+    "desc": "Download Saina Play videos.",
+    "slug": "saina-play",
+    "placeholder": "Paste Saina Play URL here...",
+    "keywords": "saina play downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Roots Video Downloader",
+    "desc": "Download Roots Video content.",
+    "slug": "roots-video",
+    "placeholder": "Paste Roots Video URL here...",
+    "keywords": "roots video downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "ETV Win Downloader",
+    "desc": "Download ETV Win videos.",
+    "slug": "etv-win",
+    "placeholder": "Paste ETV Win URL here...",
+    "keywords": "etv win downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Hungama Play Downloader",
+    "desc": "Download Hungama Play videos.",
+    "slug": "hungama-play",
+    "placeholder": "Paste Hungama Play URL here...",
+    "keywords": "hungama play downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "ShemarooMe Downloader",
+    "desc": "Download ShemarooMe videos.",
+    "slug": "shemaroome",
+    "placeholder": "Paste ShemarooMe URL here...",
+    "keywords": "shemaroome downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Ultra Downloader",
+    "desc": "Download Ultra streaming videos.",
+    "slug": "ultra",
+    "placeholder": "Paste Ultra URL here...",
+    "keywords": "ultra downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Epic On Downloader",
+    "desc": "Download Epic On videos.",
+    "slug": "epic-on",
+    "placeholder": "Paste Epic On URL here...",
+    "keywords": "epic on downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Altt Balaji Downloader",
+    "desc": "Download ALTBalaji videos.",
+    "slug": "altt",
+    "placeholder": "Paste Altt Balaji URL here...",
+    "keywords": "alt balaji downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Lionsgate Play Downloader",
+    "desc": "Download Lionsgate Play videos.",
+    "slug": "lionsgate-play",
+    "placeholder": "Paste Lionsgate Play URL here...",
+    "keywords": "lionsgate play downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Amazon miniTV Downloader",
+    "desc": "Download Amazon miniTV videos.",
+    "slug": "amazon-minitv",
+    "placeholder": "Paste Amazon miniTV URL here...",
+    "keywords": "amazon minitv downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "Flipkart Video Downloader",
+    "desc": "Download Flipkart Video content.",
+    "slug": "flipkart-video",
+    "placeholder": "Paste Flipkart Video URL here...",
+    "keywords": "flipkart video downloader"
+  },
+  {
+    "icon": "🇮🇳",
+    "title": "YouTube India Downloader",
+    "desc": "Download YouTube India videos.",
+    "slug": "youtube-india",
+    "placeholder": "Paste YouTube India URL here...",
+    "keywords": "youtube india downloader"
+  },
+  {
+    "icon": "🇿🇦",
+    "title": "Showmax Downloader",
+    "desc": "Download Showmax videos.",
+    "slug": "showmax",
+    "placeholder": "Paste Showmax URL here...",
+    "keywords": "showmax downloader"
+  },
+  {
+    "icon": "🇿🇦",
+    "title": "DStv Downloader",
+    "desc": "Download DStv videos.",
+    "slug": "dstv",
+    "placeholder": "Paste DStv URL here...",
+    "keywords": "dstv downloader"
+  },
+  {
+    "icon": "🇿🇦",
+    "title": "GOtv Downloader",
+    "desc": "Download GOtv videos.",
+    "slug": "gotv",
+    "placeholder": "Paste GOtv URL here...",
+    "keywords": "gotv downloader"
+  },
+  {
+    "icon": "🇳🇬",
+    "title": "StarTimes Downloader",
+    "desc": "Download StarTimes videos.",
+    "slug": "startimes",
+    "placeholder": "Paste StarTimes URL here...",
+    "keywords": "startimes downloader"
+  },
+  {
+    "icon": "🇳🇬",
+    "title": "Kwesé Downloader",
+    "desc": "Download Kwesé videos.",
+    "slug": "kwese",
+    "placeholder": "Paste Kwesé URL here...",
+    "keywords": "kwese downloader"
+  },
+  {
+    "icon": "🇳🇬",
+    "title": "Nollywood TV Downloader",
+    "desc": "Download Nollywood TV videos.",
+    "slug": "nollywood-tv",
+    "placeholder": "Paste Nollywood TV URL here...",
+    "keywords": "nollywood tv downloader"
+  },
+  {
+    "icon": "🇳🇬",
+    "title": "Iroko TV Downloader",
+    "desc": "Download Iroko TV videos.",
+    "slug": "iroko-tv",
+    "placeholder": "Paste Iroko TV URL here...",
+    "keywords": "iroko tv downloader"
+  },
+  {
+    "icon": "🇳🇬",
+    "title": "Africa Magic Downloader",
+    "desc": "Download Africa Magic videos.",
+    "slug": "africa-magic",
+    "placeholder": "Paste Africa Magic URL here...",
+    "keywords": "africa magic downloader"
+  },
+  {
+    "icon": "🇪🇬",
+    "title": "WatchIt Downloader",
+    "desc": "Download WatchIt videos.",
+    "slug": "watchit",
+    "placeholder": "Paste WatchIt URL here...",
+    "keywords": "watchit downloader"
+  },
+  {
+    "icon": "🇦🇪",
+    "title": "Wavo Downloader",
+    "desc": "Download Wavo videos.",
+    "slug": "wavo",
+    "placeholder": "Paste Wavo URL here...",
+    "keywords": "wavo downloader"
+  },
+  {
+    "icon": "🇦🇪",
+    "title": "OSN+ Downloader",
+    "desc": "Download OSN+ videos.",
+    "slug": "osn-plus",
+    "placeholder": "Paste OSN+ URL here...",
+    "keywords": "osn plus downloader"
+  },
+  {
+    "icon": "🇸🇦",
+    "title": "Jawwy TV Downloader",
+    "desc": "Download Jawwy TV videos.",
+    "slug": "jawwy-tv",
+    "placeholder": "Paste Jawwy TV URL here...",
+    "keywords": "jawwy tv downloader"
+  },
+  {
+    "icon": "🇸🇦",
+    "title": "STC TV Downloader",
+    "desc": "Download STC TV videos.",
+    "slug": "stc-tv",
+    "placeholder": "Paste STC TV URL here...",
+    "keywords": "stc tv downloader"
+  },
+  {
+    "icon": "🇰🇼",
+    "title": "Viu Originals Downloader",
+    "desc": "Download Viu Originals.",
+    "slug": "viu-originals",
+    "placeholder": "Paste Viu Originals URL here...",
+    "keywords": "viu originals downloader"
+  },
+  {
+    "icon": "🇵🇭",
+    "title": "iFlix Downloader",
+    "desc": "Download iFlix videos.",
+    "slug": "iflix",
+    "placeholder": "Paste iFlix URL here...",
+    "keywords": "iflix downloader"
+  },
+  {
+    "icon": "🇵🇭",
+    "title": "WeTV Philippines Downloader",
+    "desc": "Download WeTV Philippines videos.",
+    "slug": "wetv-philippines",
+    "placeholder": "Paste WeTV Philippines URL here...",
+    "keywords": "wetv philippines downloader"
+  },
+  {
+    "icon": "🇮🇩",
+    "title": "Vidio Downloader",
+    "desc": "Download Vidio Indonesian videos.",
+    "slug": "vidio",
+    "placeholder": "Paste Vidio URL here...",
+    "keywords": "vidio downloader"
+  },
+  {
+    "icon": "🇮🇩",
+    "title": "RCTI+ Downloader",
+    "desc": "Download RCTI+ videos.",
+    "slug": "rcti-plus",
+    "placeholder": "Paste RCTI+ URL here...",
+    "keywords": "rcti plus downloader"
+  },
+  {
+    "icon": "🇲🇾",
+    "title": "Astro GO Downloader",
+    "desc": "Download Astro GO videos.",
+    "slug": "astro-go",
+    "placeholder": "Paste Astro GO URL here...",
+    "keywords": "astro go downloader"
+  },
+  {
+    "icon": "🇸🇬",
+    "title": "meWATCH Downloader",
+    "desc": "Download meWATCH videos.",
+    "slug": "mewatch",
+    "placeholder": "Paste meWATCH URL here...",
+    "keywords": "mewatch downloader"
+  },
+  {
+    "icon": "🇹🇭",
+    "title": "3Plus Downloader",
+    "desc": "Download 3Plus Thai videos.",
+    "slug": "3plus",
+    "placeholder": "Paste 3Plus URL here...",
+    "keywords": "3plus downloader"
+  },
+  {
+    "icon": "🇹🇭",
+    "title": "CH3Thailand Downloader",
+    "desc": "Download CH3 Thailand videos.",
+    "slug": "ch3-thailand",
+    "placeholder": "Paste CH3Thailand URL here...",
+    "keywords": "ch3 thailand downloader"
+  },
+  {
+    "icon": "🇻🇳",
+    "title": "VTV Go Downloader",
+    "desc": "Download VTV Go videos.",
+    "slug": "vtv-go",
+    "placeholder": "Paste VTV Go URL here...",
+    "keywords": "vtv go downloader"
+  },
+  {
+    "icon": "🇻🇳",
+    "title": "FPT Play Downloader",
+    "desc": "Download FPT Play videos.",
+    "slug": "fpt-play",
+    "placeholder": "Paste FPT Play URL here...",
+    "keywords": "fpt play downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "ABC Local Downloader",
+    "desc": "Download ABC local station videos.",
+    "slug": "abc-local",
+    "placeholder": "Paste ABC Local URL here...",
+    "keywords": "abc local downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "NBC Local Downloader",
+    "desc": "Download NBC local station videos.",
+    "slug": "nbc-local",
+    "placeholder": "Paste NBC Local URL here...",
+    "keywords": "nbc local downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "CBS Local Downloader",
+    "desc": "Download CBS local station videos.",
+    "slug": "cbs-local",
+    "placeholder": "Paste CBS Local URL here...",
+    "keywords": "cbs local downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "FOX Local Downloader",
+    "desc": "Download FOX local station videos.",
+    "slug": "fox-local",
+    "placeholder": "Paste FOX Local URL here...",
+    "keywords": "fox local downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Telemundo Downloader",
+    "desc": "Download Telemundo videos.",
+    "slug": "telemundo",
+    "placeholder": "Paste Telemundo URL here...",
+    "keywords": "telemundo downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Univision Downloader",
+    "desc": "Download Univision videos.",
+    "slug": "univision",
+    "placeholder": "Paste Univision URL here...",
+    "keywords": "univision downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Estrella TV Downloader",
+    "desc": "Download Estrella TV videos.",
+    "slug": "estrella-tv",
+    "placeholder": "Paste Estrella TV URL here...",
+    "keywords": "estrella tv downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Azteca America Downloader",
+    "desc": "Download Azteca America videos.",
+    "slug": "azteca-america",
+    "placeholder": "Paste Azteca America URL here...",
+    "keywords": "azteca america downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Televisa Downloader",
+    "desc": "Download Televisa videos.",
+    "slug": "televisa",
+    "placeholder": "Paste Televisa URL here...",
+    "keywords": "televisa downloader"
+  },
+  {
+    "icon": "🇲🇽",
+    "title": "Univision Deportes Downloader",
+    "desc": "Download Univision Deportes videos.",
+    "slug": "univision-deportes",
+    "placeholder": "Paste Univision Deportes URL here...",
+    "keywords": "univision deportes downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "TUDN Downloader",
+    "desc": "Download TUDN sports videos.",
+    "slug": "tudn",
+    "placeholder": "Paste TUDN URL here...",
+    "keywords": "tudn downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Fox Deportes Downloader",
+    "desc": "Download Fox Deportes videos.",
+    "slug": "fox-deportes",
+    "placeholder": "Paste Fox Deportes URL here...",
+    "keywords": "fox deportes downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "ESPN+ Downloader",
+    "desc": "Download ESPN+ videos.",
+    "slug": "espn-plus",
+    "placeholder": "Paste ESPN+ URL here...",
+    "keywords": "espn plus downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "ESPN Deportes Downloader",
+    "desc": "Download ESPN Deportes videos.",
+    "slug": "espn-deportes",
+    "placeholder": "Paste ESPN Deportes URL here...",
+    "keywords": "espn deportes downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "FloSports Downloader",
+    "desc": "Download FloSports events.",
+    "slug": "flosports",
+    "placeholder": "Paste FloSports URL here...",
+    "keywords": "flosports downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "beIN SPORTS CONNECT Downloader",
+    "desc": "Download beIN SPORTS CONNECT videos.",
+    "slug": "bein-connect",
+    "placeholder": "Paste beIN SPORTS CONNECT URL here...",
+    "keywords": "bein sports connect downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "NBC Sports Downloader",
+    "desc": "Download NBC Sports videos.",
+    "slug": "nbc-sports",
+    "placeholder": "Paste NBC Sports URL here...",
+    "keywords": "nbc sports downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "CBS Sports Downloader",
+    "desc": "Download CBS Sports videos.",
+    "slug": "cbs-sports",
+    "placeholder": "Paste CBS Sports URL here...",
+    "keywords": "cbs sports downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Yahoo Sports Downloader",
+    "desc": "Download Yahoo Sports videos.",
+    "slug": "yahoo-sports",
+    "placeholder": "Paste Yahoo Sports URL here...",
+    "keywords": "yahoo sports downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Bleacher Report Downloader",
+    "desc": "Download Bleacher Report videos.",
+    "slug": "bleacher-report",
+    "placeholder": "Paste Bleacher Report URL here...",
+    "keywords": "bleacher report downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "Barstool Sports Downloader",
+    "desc": "Download Barstool Sports videos.",
+    "slug": "barstool-sports",
+    "placeholder": "Paste Barstool Sports URL here...",
+    "keywords": "barstool sports downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "The Athletic Downloader",
+    "desc": "Download The Athletic videos.",
+    "slug": "the-athletic",
+    "placeholder": "Paste The Athletic URL here...",
+    "keywords": "the athletic downloader"
+  },
+  {
+    "icon": "🇺🇸",
+    "title": "SB Nation Downloader",
+    "desc": "Download SB Nation videos.",
+    "slug": "sb-nation",
+    "placeholder": "Paste SB Nation URL here...",
+    "keywords": "sb nation downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "The Verge Downloader",
+    "desc": "Download The Verge videos.",
+    "slug": "the-verge",
+    "placeholder": "Paste The Verge URL here...",
+    "keywords": "the verge downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "TechCrunch Downloader",
+    "desc": "Download TechCrunch videos.",
+    "slug": "techcrunch",
+    "placeholder": "Paste TechCrunch URL here...",
+    "keywords": "techcrunch downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Engadget Downloader",
+    "desc": "Download Engadget videos.",
+    "slug": "engadget",
+    "placeholder": "Paste Engadget URL here...",
+    "keywords": "engadget downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Wired Downloader",
+    "desc": "Download Wired videos.",
+    "slug": "wired",
+    "placeholder": "Paste Wired URL here...",
+    "keywords": "wired downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Gizmodo Downloader",
+    "desc": "Download Gizmodo videos.",
+    "slug": "gizmodo",
+    "placeholder": "Paste Gizmodo URL here...",
+    "keywords": "gizmodo downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Mashable Downloader",
+    "desc": "Download Mashable videos.",
+    "slug": "mashable",
+    "placeholder": "Paste Mashable URL here...",
+    "keywords": "mashable downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Tom's Hardware Downloader",
+    "desc": "Download Tom's Hardware videos.",
+    "slug": "toms-hardware",
+    "placeholder": "Paste Tom's Hardware URL here...",
+    "keywords": "toms hardware downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Ars Technica Downloader",
+    "desc": "Download Ars Technica videos.",
+    "slug": "ars-technica",
+    "placeholder": "Paste Ars Technica URL here...",
+    "keywords": "ars technica downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Android Police Downloader",
+    "desc": "Download Android Police videos.",
+    "slug": "android-police",
+    "placeholder": "Paste Android Police URL here...",
+    "keywords": "android police downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "XDA Downloader",
+    "desc": "Download XDA videos.",
+    "slug": "xda",
+    "placeholder": "Paste XDA URL here...",
+    "keywords": "xda downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "9to5Mac Downloader",
+    "desc": "Download 9to5Mac videos.",
+    "slug": "9to5mac",
+    "placeholder": "Paste 9to5Mac URL here...",
+    "keywords": "9to5mac downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "9to5Google Downloader",
+    "desc": "Download 9to5Google videos.",
+    "slug": "9to5google",
+    "placeholder": "Paste 9to5Google URL here...",
+    "keywords": "9to5google downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "MacRumors Downloader",
+    "desc": "Download MacRumors videos.",
+    "slug": "macrumors",
+    "placeholder": "Paste MacRumors URL here...",
+    "keywords": "macrumors downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "TechRadar Downloader",
+    "desc": "Download TechRadar videos.",
+    "slug": "techradar",
+    "placeholder": "Paste TechRadar URL here...",
+    "keywords": "techradar downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Digital Trends Downloader",
+    "desc": "Download Digital Trends videos.",
+    "slug": "digital-trends",
+    "placeholder": "Paste Digital Trends URL here...",
+    "keywords": "digital trends downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "ZDNet Downloader",
+    "desc": "Download ZDNet videos.",
+    "slug": "zdnet",
+    "placeholder": "Paste ZDNet URL here...",
+    "keywords": "zdnet downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "PCMag Downloader",
+    "desc": "Download PCMag videos.",
+    "slug": "pcmag",
+    "placeholder": "Paste PCMag URL here...",
+    "keywords": "pcmag downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "AnandTech Downloader",
+    "desc": "Download AnandTech videos.",
+    "slug": "anandtech",
+    "placeholder": "Paste AnandTech URL here...",
+    "keywords": "anandtech downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Android Central Downloader",
+    "desc": "Download Android Central videos.",
+    "slug": "android-central",
+    "placeholder": "Paste Android Central URL here...",
+    "keywords": "android central downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "iMore Downloader",
+    "desc": "Download iMore videos.",
+    "slug": "imore",
+    "placeholder": "Paste iMore URL here...",
+    "keywords": "imore downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "Pocketnow Downloader",
+    "desc": "Download Pocketnow videos.",
+    "slug": "pocketnow",
+    "placeholder": "Paste Pocketnow URL here...",
+    "keywords": "pocketnow downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "GSMArena Downloader",
+    "desc": "Download GSMArena videos.",
+    "slug": "gsmarena",
+    "placeholder": "Paste GSMArena URL here...",
+    "keywords": "gsmarena downloader"
+  },
+  {
+    "icon": "💻",
+    "title": "PhoneArena Downloader",
+    "desc": "Download PhoneArena videos.",
+    "slug": "phonearena",
+    "placeholder": "Paste PhoneArena URL here...",
+    "keywords": "phonearena downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "MarketWatch Downloader",
+    "desc": "Download MarketWatch videos.",
+    "slug": "marketwatch",
+    "placeholder": "Paste MarketWatch URL here...",
+    "keywords": "marketwatch downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Seeking Alpha Downloader",
+    "desc": "Download Seeking Alpha videos.",
+    "slug": "seeking-alpha",
+    "placeholder": "Paste Seeking Alpha URL here...",
+    "keywords": "seeking alpha downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Motley Fool Downloader",
+    "desc": "Download Motley Fool videos.",
+    "slug": "motley-fool",
+    "placeholder": "Paste Motley Fool URL here...",
+    "keywords": "motley fool downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Fast Company Downloader",
+    "desc": "Download Fast Company videos.",
+    "slug": "fast-company",
+    "placeholder": "Paste Fast Company URL here...",
+    "keywords": "fast company downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Inc. Downloader",
+    "desc": "Download Inc. videos.",
+    "slug": "inc",
+    "placeholder": "Paste Inc. URL here...",
+    "keywords": "inc downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Entrepreneur Downloader",
+    "desc": "Download Entrepreneur videos.",
+    "slug": "entrepreneur",
+    "placeholder": "Paste Entrepreneur URL here...",
+    "keywords": "entrepreneur downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Forbes Downloader",
+    "desc": "Download Forbes videos.",
+    "slug": "forbes",
+    "placeholder": "Paste Forbes URL here...",
+    "keywords": "forbes downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Fortune Downloader",
+    "desc": "Download Fortune videos.",
+    "slug": "fortune",
+    "placeholder": "Paste Fortune URL here...",
+    "keywords": "fortune downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Business Insider Downloader",
+    "desc": "Download Business Insider videos.",
+    "slug": "business-insider",
+    "placeholder": "Paste Business Insider URL here...",
+    "keywords": "business insider downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Harvard Business Review Downloader",
+    "desc": "Download HBR videos.",
+    "slug": "harvard-business-review",
+    "placeholder": "Paste Harvard Business Review URL here...",
+    "keywords": "harvard business review downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "McKinsey Downloader",
+    "desc": "Download McKinsey videos.",
+    "slug": "mckinsey",
+    "placeholder": "Paste McKinsey URL here...",
+    "keywords": "mckinsey downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Bain & Company Downloader",
+    "desc": "Download Bain videos.",
+    "slug": "bain",
+    "placeholder": "Paste Bain & Company URL here...",
+    "keywords": "bain downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "BCG Downloader",
+    "desc": "Download BCG videos.",
+    "slug": "bcg",
+    "placeholder": "Paste BCG URL here...",
+    "keywords": "bcg downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Deloitte Insights Downloader",
+    "desc": "Download Deloitte videos.",
+    "slug": "deloitte",
+    "placeholder": "Paste Deloitte Insights URL here...",
+    "keywords": "deloitte downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "PwC Downloader",
+    "desc": "Download PwC videos.",
+    "slug": "pwc",
+    "placeholder": "Paste PwC URL here...",
+    "keywords": "pwc downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "EY Downloader",
+    "desc": "Download EY videos.",
+    "slug": "ey",
+    "placeholder": "Paste EY URL here...",
+    "keywords": "ey downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "KPMG Downloader",
+    "desc": "Download KPMG videos.",
+    "slug": "kpmg",
+    "placeholder": "Paste KPMG URL here...",
+    "keywords": "kpmg downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "World Economic Forum Downloader",
+    "desc": "Download WEF videos.",
+    "slug": "wef",
+    "placeholder": "Paste World Economic Forum URL here...",
+    "keywords": "world economic forum downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "TED Talks Business Downloader",
+    "desc": "Download TED business talks.",
+    "slug": "ted-business",
+    "placeholder": "Paste TED Talks Business URL here...",
+    "keywords": "ted business downloader"
+  },
+  {
+    "icon": "💼",
+    "title": "Stanford Business Downloader",
+    "desc": "Download Stanford GSB videos.",
+    "slug": "stanford-business",
+    "placeholder": "Paste Stanford Business URL here...",
+    "keywords": "stanford business downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Great Courses Downloader",
+    "desc": "Download Great Courses lectures.",
+    "slug": "great-courses",
+    "placeholder": "Paste Great Courses URL here...",
+    "keywords": "great courses downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "The Teaching Company Downloader",
+    "desc": "Download Teaching Company lectures.",
+    "slug": "teaching-company",
+    "placeholder": "Paste The Teaching Company URL here...",
+    "keywords": "teaching company downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "CreativeLive Downloader",
+    "desc": "Download CreativeLive classes.",
+    "slug": "creativelive",
+    "placeholder": "Paste CreativeLive URL here...",
+    "keywords": "creativelive downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Domestika Downloader",
+    "desc": "Download Domestika courses.",
+    "slug": "domestika",
+    "placeholder": "Paste Domestika URL here...",
+    "keywords": "domestika downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Craftsy Downloader",
+    "desc": "Download Craftsy classes.",
+    "slug": "craftsy",
+    "placeholder": "Paste Craftsy URL here...",
+    "keywords": "craftsy downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Bluprint Downloader",
+    "desc": "Download Bluprint classes.",
+    "slug": "bluprint",
+    "placeholder": "Paste Bluprint URL here...",
+    "keywords": "bluprint downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Creativebug Downloader",
+    "desc": "Download Creativebug classes.",
+    "slug": "creativebug",
+    "placeholder": "Paste Creativebug URL here...",
+    "keywords": "creativebug downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "MasterClass Trailers Downloader",
+    "desc": "Download MasterClass trailers.",
+    "slug": "masterclass-trailers",
+    "placeholder": "Paste MasterClass Trailers URL here...",
+    "keywords": "masterclass trailers downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Udemy Free Courses Downloader",
+    "desc": "Download Udemy free course videos.",
+    "slug": "udemy-free",
+    "placeholder": "Paste Udemy Free Courses URL here...",
+    "keywords": "udemy free courses downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Coursera Free Courses Downloader",
+    "desc": "Download Coursera free course videos.",
+    "slug": "coursera-free",
+    "placeholder": "Paste Coursera Free Courses URL here...",
+    "keywords": "coursera free courses downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "edX Free Courses Downloader",
+    "desc": "Download edX free course videos.",
+    "slug": "edx-free",
+    "placeholder": "Paste edX Free Courses URL here...",
+    "keywords": "edx free courses downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Khan Academy Math Downloader",
+    "desc": "Download Khan Academy math videos.",
+    "slug": "khan-math",
+    "placeholder": "Paste Khan Academy Math URL here...",
+    "keywords": "khan academy math downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Khan Academy Science Downloader",
+    "desc": "Download Khan Academy science videos.",
+    "slug": "khan-science",
+    "placeholder": "Paste Khan Academy Science URL here...",
+    "keywords": "khan academy science downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Khan Academy Computing Downloader",
+    "desc": "Download Khan Academy computing videos.",
+    "slug": "khan-computing",
+    "placeholder": "Paste Khan Academy Computing URL here...",
+    "keywords": "khan academy computing downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Khan Academy Arts Downloader",
+    "desc": "Download Khan Academy arts videos.",
+    "slug": "khan-arts",
+    "placeholder": "Paste Khan Academy Arts URL here...",
+    "keywords": "khan academy arts downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Khan Academy Economics Downloader",
+    "desc": "Download Khan Academy economics videos.",
+    "slug": "khan-economics",
+    "placeholder": "Paste Khan Academy Economics URL here...",
+    "keywords": "khan academy economics downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Duolingo Stories Downloader",
+    "desc": "Download Duolingo story videos.",
+    "slug": "duolingo",
+    "placeholder": "Paste Duolingo Stories URL here...",
+    "keywords": "duolingo downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Memrise Downloader",
+    "desc": "Download Memrise videos.",
+    "slug": "memrise",
+    "placeholder": "Paste Memrise URL here...",
+    "keywords": "memrise downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Busuu Downloader",
+    "desc": "Download Busuu language videos.",
+    "slug": "busuu",
+    "placeholder": "Paste Busuu URL here...",
+    "keywords": "busuu downloader"
+  },
+  {
+    "icon": "🎓",
+    "title": "Babbel Downloader",
+    "desc": "Download Babbel language videos.",
+    "slug": "babbel",
+    "placeholder": "Paste Babbel URL here...",
+    "keywords": "babbel downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Little Baby Bum Downloader",
+    "desc": "Download Little Baby Bum videos.",
+    "slug": "little-baby-bum",
+    "placeholder": "Paste Little Baby Bum URL here...",
+    "keywords": "little baby bum downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Super Simple Songs Downloader",
+    "desc": "Download Super Simple Songs videos.",
+    "slug": "super-simple-songs",
+    "placeholder": "Paste Super Simple Songs URL here...",
+    "keywords": "super simple songs downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Mother Goose Club Downloader",
+    "desc": "Download Mother Goose Club videos.",
+    "slug": "mother-goose-club",
+    "placeholder": "Paste Mother Goose Club URL here...",
+    "keywords": "mother goose club downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "ChuChu TV Downloader",
+    "desc": "Download ChuChu TV videos.",
+    "slug": "chuchu-tv",
+    "placeholder": "Paste ChuChu TV URL here...",
+    "keywords": "chuchu tv downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Dave and Ava Downloader",
+    "desc": "Download Dave and Ava videos.",
+    "slug": "dave-and-ava",
+    "placeholder": "Paste Dave and Ava URL here...",
+    "keywords": "dave and ava downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Baby Einstein Downloader",
+    "desc": "Download Baby Einstein videos.",
+    "slug": "baby-einstein",
+    "placeholder": "Paste Baby Einstein URL here...",
+    "keywords": "baby einstein downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Little Angel Downloader",
+    "desc": "Download Little Angel videos.",
+    "slug": "little-angel",
+    "placeholder": "Paste Little Angel URL here...",
+    "keywords": "little angel downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "HooplaKidz Downloader",
+    "desc": "Download HooplaKidz videos.",
+    "slug": "hooplakidz",
+    "placeholder": "Paste HooplaKidz URL here...",
+    "keywords": "hooplakidz downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Wow English Downloader",
+    "desc": "Download Wow English videos.",
+    "slug": "wow-english",
+    "placeholder": "Paste Wow English URL here...",
+    "keywords": "wow english downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "ELF Learning Downloader",
+    "desc": "Download ELF Learning videos.",
+    "slug": "elf-learning",
+    "placeholder": "Paste ELF Learning URL here...",
+    "keywords": "elf learning downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Maple Leaf Learning Downloader",
+    "desc": "Download Maple Leaf Learning videos.",
+    "slug": "maple-leaf-learning",
+    "placeholder": "Paste Maple Leaf Learning URL here...",
+    "keywords": "maple leaf learning downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Kids TV Downloader",
+    "desc": "Download Kids TV videos.",
+    "slug": "kids-tv",
+    "placeholder": "Paste Kids TV URL here...",
+    "keywords": "kids tv downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Videogyan Downloader",
+    "desc": "Download Videogyan videos.",
+    "slug": "videogyan",
+    "placeholder": "Paste Videogyan URL here...",
+    "keywords": "videogyan downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Peekaboo Kidz Downloader",
+    "desc": "Download Peekaboo Kidz videos.",
+    "slug": "peekaboo-kidz",
+    "placeholder": "Paste Peekaboo Kidz URL here...",
+    "keywords": "peekaboo kidz downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "SciShow Kids Downloader",
+    "desc": "Download SciShow Kids videos.",
+    "slug": "scishow-kids",
+    "placeholder": "Paste SciShow Kids URL here...",
+    "keywords": "scishow kids downloader"
+  },
+  {
+    "icon": "👶",
+    "title": "Crash Course Kids Downloader",
+    "desc": "Download Crash Course Kids videos.",
+    "slug": "crash-course-kids",
+    "placeholder": "Paste Crash Course Kids URL here...",
+    "keywords": "crash course kids downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Ali Abdaal Downloader",
+    "desc": "Download Ali Abdaal videos.",
+    "slug": "ali-abdaal",
+    "placeholder": "Paste Ali Abdaal URL here...",
+    "keywords": "ali abdaal downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Thomas Frank Downloader",
+    "desc": "Download Thomas Frank videos.",
+    "slug": "thomas-frank",
+    "placeholder": "Paste Thomas Frank URL here...",
+    "keywords": "thomas frank downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Nathaniel Drew Downloader",
+    "desc": "Download Nathaniel Drew videos.",
+    "slug": "nathaniel-drew",
+    "placeholder": "Paste Nathaniel Drew URL here...",
+    "keywords": "nathaniel drew downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Nathan Zed Downloader",
+    "desc": "Download Nathan Zed videos.",
+    "slug": "nathan-zed",
+    "placeholder": "Paste Nathan Zed URL here...",
+    "keywords": "nathan zed downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Hannah Witton Downloader",
+    "desc": "Download Hannah Witton videos.",
+    "slug": "hannah-witton",
+    "placeholder": "Paste Hannah Witton URL here...",
+    "keywords": "hannah witton downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Evan Edinger Downloader",
+    "desc": "Download Evan Edinger videos.",
+    "slug": "evan-edinger",
+    "placeholder": "Paste Evan Edinger URL here...",
+    "keywords": "evan edinger downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Joey Graceffa Downloader",
+    "desc": "Download Joey Graceffa videos.",
+    "slug": "joey-graceffa",
+    "placeholder": "Paste Joey Graceffa URL here...",
+    "keywords": "joey graceffa downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Shane Dawson Downloader",
+    "desc": "Download Shane Dawson videos.",
+    "slug": "shane-dawson",
+    "placeholder": "Paste Shane Dawson URL here...",
+    "keywords": "shane dawson downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Ryland Adams Downloader",
+    "desc": "Download Ryland Adams videos.",
+    "slug": "ryland-adams",
+    "placeholder": "Paste Ryland Adams URL here...",
+    "keywords": "ryland adams downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Morgan Adams Downloader",
+    "desc": "Download Morgan Adams videos.",
+    "slug": "morgan-adams",
+    "placeholder": "Paste Morgan Adams URL here...",
+    "keywords": "morgan adams downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "James Charles Downloader",
+    "desc": "Download James Charles videos.",
+    "slug": "james-charles",
+    "placeholder": "Paste James Charles URL here...",
+    "keywords": "james charles downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Jeffree Star Downloader",
+    "desc": "Download Jeffree Star videos.",
+    "slug": "jeffree-star",
+    "placeholder": "Paste Jeffree Star URL here...",
+    "keywords": "jeffree star downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Tati Westbrook Downloader",
+    "desc": "Download Tati Westbrook videos.",
+    "slug": "tati-westbrook",
+    "placeholder": "Paste Tati Westbrook URL here...",
+    "keywords": "tati westbrook downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "NikkieTutorials Downloader",
+    "desc": "Download NikkieTutorials videos.",
+    "slug": "nikkietutorials",
+    "placeholder": "Paste NikkieTutorials URL here...",
+    "keywords": "nikkietutorials downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Zoella Downloader",
+    "desc": "Download Zoella videos.",
+    "slug": "zoella",
+    "placeholder": "Paste Zoella URL here...",
+    "keywords": "zoella downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Alfie Deyes Downloader",
+    "desc": "Download Alfie Deyes videos.",
+    "slug": "alfie-deyes",
+    "placeholder": "Paste Alfie Deyes URL here...",
+    "keywords": "alfie deyes downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Marcus Butler Downloader",
+    "desc": "Download Marcus Butler videos.",
+    "slug": "marcus-butler",
+    "placeholder": "Paste Marcus Butler URL here...",
+    "keywords": "marcus butler downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Caspar Lee Downloader",
+    "desc": "Download Caspar Lee videos.",
+    "slug": "caspar-lee",
+    "placeholder": "Paste Caspar Lee URL here...",
+    "keywords": "caspar lee downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Joe Sugg Downloader",
+    "desc": "Download Joe Sugg videos.",
+    "slug": "joe-sugg",
+    "placeholder": "Paste Joe Sugg URL here...",
+    "keywords": "joe sugg downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Oli White Downloader",
+    "desc": "Download Oli White videos.",
+    "slug": "oli-white",
+    "placeholder": "Paste Oli White URL here...",
+    "keywords": "oli white downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Tyler Oakley Downloader",
+    "desc": "Download Tyler Oakley videos.",
+    "slug": "tyler-oakley",
+    "placeholder": "Paste Tyler Oakley URL here...",
+    "keywords": "tyler oakley downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Troye Sivan Downloader",
+    "desc": "Download Troye Sivan videos.",
+    "slug": "troye-sivan",
+    "placeholder": "Paste Troye Sivan URL here...",
+    "keywords": "troye sivan downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Connor Franta Downloader",
+    "desc": "Download Connor Franta videos.",
+    "slug": "connor-franta",
+    "placeholder": "Paste Connor Franta URL here...",
+    "keywords": "connor franta downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Ricky Dillon Downloader",
+    "desc": "Download Ricky Dillon videos.",
+    "slug": "ricky-dillon",
+    "placeholder": "Paste Ricky Dillon URL here...",
+    "keywords": "ricky dillon downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Kian Lawley Downloader",
+    "desc": "Download Kian Lawley videos.",
+    "slug": "kian-lawley",
+    "placeholder": "Paste Kian Lawley URL here...",
+    "keywords": "kian lawley downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "JC Caylen Downloader",
+    "desc": "Download JC Caylen videos.",
+    "slug": "jc-caylen",
+    "placeholder": "Paste JC Caylen URL here...",
+    "keywords": "jc caylen downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Trevor Moran Downloader",
+    "desc": "Download Trevor Moran videos.",
+    "slug": "trevor-moran",
+    "placeholder": "Paste Trevor Moran URL here...",
+    "keywords": "trevor moran downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Sam Pottorff Downloader",
+    "desc": "Download Sam Pottorff videos.",
+    "slug": "sam-pottorff",
+    "placeholder": "Paste Sam Pottorff URL here...",
+    "keywords": "sam pottorff downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Andrea Russett Downloader",
+    "desc": "Download Andrea Russett videos.",
+    "slug": "andrea-russett",
+    "placeholder": "Paste Andrea Russett URL here...",
+    "keywords": "andrea russett downloader"
+  },
+  {
+    "icon": "🎥",
+    "title": "Lohanthony Downloader",
+    "desc": "Download Lohanthony videos.",
+    "slug": "lohanthony",
+    "placeholder": "Paste Lohanthony URL here...",
+    "keywords": "lohanthony downloader"
+  },
+  {
+    "icon": "🇷🇸",
+    "title": "Serbian TV Downloader",
+    "desc": "Download Serbian TV shows and clips.",
+    "slug": "serbian-tv",
+    "placeholder": "Paste Serbian TV URL here...",
+    "keywords": "serbian tv downloader serbian video downloader"
+  },
+  {
+    "icon": "🇭🇷",
+    "title": "Croatian TV Downloader",
+    "desc": "Download Croatian TV shows and clips.",
+    "slug": "croatian-tv",
+    "placeholder": "Paste Croatian TV URL here...",
+    "keywords": "croatian tv downloader croatian video downloader"
+  },
+  {
+    "icon": "🇧🇦",
+    "title": "Bosnian TV Downloader",
+    "desc": "Download Bosnian TV shows and clips.",
+    "slug": "bosnian-tv",
+    "placeholder": "Paste Bosnian TV URL here...",
+    "keywords": "bosnian tv downloader bosnian video downloader"
+  },
+  {
+    "icon": "🇸🇮",
+    "title": "Slovenian TV Downloader",
+    "desc": "Download Slovenian TV shows and clips.",
+    "slug": "slovenian-tv",
+    "placeholder": "Paste Slovenian TV URL here...",
+    "keywords": "slovenian tv downloader slovenian video downloader"
+  },
+  {
+    "icon": "🇸🇰",
+    "title": "Slovak TV Downloader",
+    "desc": "Download Slovak TV shows and clips.",
+    "slug": "slovak-tv",
+    "placeholder": "Paste Slovak TV URL here...",
+    "keywords": "slovak tv downloader slovak video downloader"
+  },
+  {
+    "icon": "🇱🇹",
+    "title": "Lithuanian TV Downloader",
+    "desc": "Download Lithuanian TV shows and clips.",
+    "slug": "lithuanian-tv",
+    "placeholder": "Paste Lithuanian TV URL here...",
+    "keywords": "lithuanian tv downloader lithuanian video downloader"
+  },
+  {
+    "icon": "🇱🇻",
+    "title": "Latvian TV Downloader",
+    "desc": "Download Latvian TV shows and clips.",
+    "slug": "latvian-tv",
+    "placeholder": "Paste Latvian TV URL here...",
+    "keywords": "latvian tv downloader latvian video downloader"
+  },
+  {
+    "icon": "🇪🇪",
+    "title": "Estonian TV Downloader",
+    "desc": "Download Estonian TV shows and clips.",
+    "slug": "estonian-tv",
+    "placeholder": "Paste Estonian TV URL here...",
+    "keywords": "estonian tv downloader estonian video downloader"
+  },
+  {
+    "icon": "🇧🇾",
+    "title": "Belarusian TV Downloader",
+    "desc": "Download Belarusian TV shows and clips.",
+    "slug": "belarusian-tv",
+    "placeholder": "Paste Belarusian TV URL here...",
+    "keywords": "belarusian tv downloader belarusian video downloader"
+  },
+  {
+    "icon": "🇲🇩",
+    "title": "Moldovan TV Downloader",
+    "desc": "Download Moldovan TV shows and clips.",
+    "slug": "moldovan-tv",
+    "placeholder": "Paste Moldovan TV URL here...",
+    "keywords": "moldovan tv downloader moldovan video downloader"
+  },
+  {
+    "icon": "🇦🇲",
+    "title": "Armenian TV Downloader",
+    "desc": "Download Armenian TV shows and clips.",
+    "slug": "armenian-tv",
+    "placeholder": "Paste Armenian TV URL here...",
+    "keywords": "armenian tv downloader armenian video downloader"
+  },
+  {
+    "icon": "🇦🇿",
+    "title": "Azerbaijani TV Downloader",
+    "desc": "Download Azerbaijani TV shows and clips.",
+    "slug": "azerbaijani-tv",
+    "placeholder": "Paste Azerbaijani TV URL here...",
+    "keywords": "azerbaijani tv downloader azerbaijani video downloader"
+  },
+  {
+    "icon": "🇬🇪",
+    "title": "Georgian TV Downloader",
+    "desc": "Download Georgian TV shows and clips.",
+    "slug": "georgian-tv",
+    "placeholder": "Paste Georgian TV URL here...",
+    "keywords": "georgian tv downloader georgian video downloader"
+  },
+  {
+    "icon": "🇰🇿",
+    "title": "Kazakh TV Downloader",
+    "desc": "Download Kazakh TV shows and clips.",
+    "slug": "kazakh-tv",
+    "placeholder": "Paste Kazakh TV URL here...",
+    "keywords": "kazakh tv downloader kazakh video downloader"
+  },
+  {
+    "icon": "🇺🇿",
+    "title": "Uzbek TV Downloader",
+    "desc": "Download Uzbek TV shows and clips.",
+    "slug": "uzbek-tv",
+    "placeholder": "Paste Uzbek TV URL here...",
+    "keywords": "uzbek tv downloader uzbek video downloader"
+  },
+  {
+    "icon": "🇹🇲",
+    "title": "Turkmen TV Downloader",
+    "desc": "Download Turkmen TV shows and clips.",
+    "slug": "turkmen-tv",
+    "placeholder": "Paste Turkmen TV URL here...",
+    "keywords": "turkmen tv downloader turkmen video downloader"
+  },
+  {
+    "icon": "🇰🇬",
+    "title": "Kyrgyz TV Downloader",
+    "desc": "Download Kyrgyz TV shows and clips.",
+    "slug": "kyrgyz-tv",
+    "placeholder": "Paste Kyrgyz TV URL here...",
+    "keywords": "kyrgyz tv downloader kyrgyz video downloader"
+  },
+  {
+    "icon": "🇹🇯",
+    "title": "Tajik TV Downloader",
+    "desc": "Download Tajik TV shows and clips.",
+    "slug": "tajik-tv",
+    "placeholder": "Paste Tajik TV URL here...",
+    "keywords": "tajik tv downloader tajik video downloader"
+  },
+  {
+    "icon": "🇦🇫",
+    "title": "Afghan TV Downloader",
+    "desc": "Download Afghan TV shows and clips.",
+    "slug": "afghan-tv",
+    "placeholder": "Paste Afghan TV URL here...",
+    "keywords": "afghan tv downloader afghan video downloader"
+  },
+  {
+    "icon": "🇳🇵",
+    "title": "Nepali TV Downloader",
+    "desc": "Download Nepali TV shows and clips.",
+    "slug": "nepali-tv",
+    "placeholder": "Paste Nepali TV URL here...",
+    "keywords": "nepali tv downloader nepali video downloader"
+  },
+  {
+    "icon": "🇱🇰",
+    "title": "Sri Lankan TV Downloader",
+    "desc": "Download Sri Lankan TV shows and clips.",
+    "slug": "sri-lankan-tv",
+    "placeholder": "Paste Sri Lankan TV URL here...",
+    "keywords": "sri-lankan tv downloader sri lankan video downloader"
+  },
+  {
+    "icon": "🇲🇻",
+    "title": "Maldivian TV Downloader",
+    "desc": "Download Maldivian TV shows and clips.",
+    "slug": "maldivian-tv",
+    "placeholder": "Paste Maldivian TV URL here...",
+    "keywords": "maldivian tv downloader maldivian video downloader"
+  },
+  {
+    "icon": "🇲🇲",
+    "title": "Myanmar TV Downloader",
+    "desc": "Download Myanmar TV shows and clips.",
+    "slug": "myanmar-tv",
+    "placeholder": "Paste Myanmar TV URL here...",
+    "keywords": "myanmar tv downloader myanmar video downloader"
+  },
+  {
+    "icon": "🇰🇭",
+    "title": "Cambodian TV Downloader",
+    "desc": "Download Cambodian TV shows and clips.",
+    "slug": "cambodian-tv",
+    "placeholder": "Paste Cambodian TV URL here...",
+    "keywords": "cambodian tv downloader cambodian video downloader"
+  },
+  {
+    "icon": "🇱🇦",
+    "title": "Laotian TV Downloader",
+    "desc": "Download Laotian TV shows and clips.",
+    "slug": "laotian-tv",
+    "placeholder": "Paste Laotian TV URL here...",
+    "keywords": "laotian tv downloader laotian video downloader"
+  },
+  {
+    "icon": "🇲🇳",
+    "title": "Mongolian TV Downloader",
+    "desc": "Download Mongolian TV shows and clips.",
+    "slug": "mongolian-tv",
+    "placeholder": "Paste Mongolian TV URL here...",
+    "keywords": "mongolian tv downloader mongolian video downloader"
+  },
+  {
+    "icon": "🇰🇵",
+    "title": "North Korean TV Downloader",
+    "desc": "Download North Korean TV shows and clips.",
+    "slug": "north-korean-tv",
+    "placeholder": "Paste North Korean TV URL here...",
+    "keywords": "north-korean tv downloader north korean video downloader"
+  },
+  {
+    "icon": "🇧🇳",
+    "title": "Bruneian TV Downloader",
+    "desc": "Download Bruneian TV shows and clips.",
+    "slug": "bruneian-tv",
+    "placeholder": "Paste Bruneian TV URL here...",
+    "keywords": "bruneian tv downloader bruneian video downloader"
+  },
+  {
+    "icon": "🇸🇬",
+    "title": "Singapore TV Downloader",
+    "desc": "Download Singapore TV shows and clips.",
+    "slug": "singapore-tv",
+    "placeholder": "Paste Singapore TV URL here...",
+    "keywords": "singapore tv downloader singapore video downloader"
+  },
+  {
+    "icon": "🇹🇱",
+    "title": "Timorese TV Downloader",
+    "desc": "Download Timorese TV shows and clips.",
+    "slug": "timorese-tv",
+    "placeholder": "Paste Timorese TV URL here...",
+    "keywords": "timorese tv downloader timorese video downloader"
+  },
+  {
+    "icon": "🇵🇬",
+    "title": "Papua New Guinean TV Downloader",
+    "desc": "Download Papua New Guinean TV shows and clips.",
+    "slug": "png-tv",
+    "placeholder": "Paste Papua New Guinean TV URL here...",
+    "keywords": "png tv downloader papua new guinean video downloader"
+  },
+  {
+    "icon": "🇫🇯",
+    "title": "Fijian TV Downloader",
+    "desc": "Download Fijian TV shows and clips.",
+    "slug": "fijian-tv",
+    "placeholder": "Paste Fijian TV URL here...",
+    "keywords": "fijian tv downloader fijian video downloader"
+  },
+  {
+    "icon": "🇼🇸",
+    "title": "Samoan TV Downloader",
+    "desc": "Download Samoan TV shows and clips.",
+    "slug": "samoan-tv",
+    "placeholder": "Paste Samoan TV URL here...",
+    "keywords": "samoan tv downloader samoan video downloader"
+  },
+  {
+    "icon": "🇹🇴",
+    "title": "Tongan TV Downloader",
+    "desc": "Download Tongan TV shows and clips.",
+    "slug": "tongan-tv",
+    "placeholder": "Paste Tongan TV URL here...",
+    "keywords": "tongan tv downloader tongan video downloader"
+  },
+  {
+    "icon": "🇻🇺",
+    "title": "Vanuatuan TV Downloader",
+    "desc": "Download Vanuatuan TV shows and clips.",
+    "slug": "vanuatuan-tv",
+    "placeholder": "Paste Vanuatuan TV URL here...",
+    "keywords": "vanuatuan tv downloader vanuatuan video downloader"
+  },
+  {
+    "icon": "🇸🇧",
+    "title": "Solomon Islands TV Downloader",
+    "desc": "Download Solomon Islands TV shows and clips.",
+    "slug": "solomon-islands-tv",
+    "placeholder": "Paste Solomon Islands TV URL here...",
+    "keywords": "solomon-islands tv downloader solomon islands video downloader"
+  },
+  {
+    "icon": "🇵🇼",
+    "title": "Palauan TV Downloader",
+    "desc": "Download Palauan TV shows and clips.",
+    "slug": "palauan-tv",
+    "placeholder": "Paste Palauan TV URL here...",
+    "keywords": "palauan tv downloader palauan video downloader"
+  },
+  {
+    "icon": "🇲🇭",
+    "title": "Marshallese TV Downloader",
+    "desc": "Download Marshallese TV shows and clips.",
+    "slug": "marshallese-tv",
+    "placeholder": "Paste Marshallese TV URL here...",
+    "keywords": "marshallese tv downloader marshallese video downloader"
+  },
+  {
+    "icon": "🇫🇲",
+    "title": "Micronesian TV Downloader",
+    "desc": "Download Micronesian TV shows and clips.",
+    "slug": "micronesian-tv",
+    "placeholder": "Paste Micronesian TV URL here...",
+    "keywords": "micronesian tv downloader micronesian video downloader"
+  },
+  {
+    "icon": "🇰🇮",
+    "title": "Kiribati TV Downloader",
+    "desc": "Download Kiribati TV shows and clips.",
+    "slug": "kiribati-tv",
+    "placeholder": "Paste Kiribati TV URL here...",
+    "keywords": "kiribati tv downloader kiribati video downloader"
+  },
+  {
+    "icon": "🇹🇻",
+    "title": "Tuvaluan TV Downloader",
+    "desc": "Download Tuvaluan TV shows and clips.",
+    "slug": "tuvaluan-tv",
+    "placeholder": "Paste Tuvaluan TV URL here...",
+    "keywords": "tuvaluan tv downloader tuvaluan video downloader"
+  },
+  {
+    "icon": "🇳🇷",
+    "title": "Nauruan TV Downloader",
+    "desc": "Download Nauruan TV shows and clips.",
+    "slug": "nauruan-tv",
+    "placeholder": "Paste Nauruan TV URL here...",
+    "keywords": "nauruan tv downloader nauruan video downloader"
+  },
+  {
+    "icon": "🇮🇸",
+    "title": "Icelandic TV Downloader",
+    "desc": "Download Icelandic TV shows and clips.",
+    "slug": "icelandic-tv",
+    "placeholder": "Paste Icelandic TV URL here...",
+    "keywords": "icelandic tv downloader icelandic video downloader"
+  },
+  {
+    "icon": "🇮🇪",
+    "title": "Irish TV Downloader",
+    "desc": "Download Irish TV shows and clips.",
+    "slug": "irish-tv",
+    "placeholder": "Paste Irish TV URL here...",
+    "keywords": "irish tv downloader irish video downloader"
+  },
+  {
+    "icon": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "title": "Scottish TV Downloader",
+    "desc": "Download Scottish TV shows and clips.",
+    "slug": "scottish-tv",
+    "placeholder": "Paste Scottish TV URL here...",
+    "keywords": "scottish tv downloader scottish video downloader"
+  },
+  {
+    "icon": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+    "title": "Welsh TV Downloader",
+    "desc": "Download Welsh TV shows and clips.",
+    "slug": "welsh-tv",
+    "placeholder": "Paste Welsh TV URL here...",
+    "keywords": "welsh tv downloader welsh video downloader"
+  },
+  {
+    "icon": "🇦🇩",
+    "title": "Andorran TV Downloader",
+    "desc": "Download Andorran TV shows and clips.",
+    "slug": "andorran-tv",
+    "placeholder": "Paste Andorran TV URL here...",
+    "keywords": "andorran tv downloader andorran video downloader"
+  },
+  {
+    "icon": "🇲🇨",
+    "title": "Monacan TV Downloader",
+    "desc": "Download Monacan TV shows and clips.",
+    "slug": "monacan-tv",
+    "placeholder": "Paste Monacan TV URL here...",
+    "keywords": "monacan tv downloader monacan video downloader"
+  },
+  {
+    "icon": "🇱🇮",
+    "title": "Liechtenstein TV Downloader",
+    "desc": "Download Liechtenstein TV shows and clips.",
+    "slug": "liechtenstein-tv",
+    "placeholder": "Paste Liechtenstein TV URL here...",
+    "keywords": "liechtenstein tv downloader liechtenstein video downloader"
+  },
+  {
+    "icon": "🇸🇲",
+    "title": "Sammarinese TV Downloader",
+    "desc": "Download Sammarinese TV shows and clips.",
+    "slug": "sammarinese-tv",
+    "placeholder": "Paste Sammarinese TV URL here...",
+    "keywords": "sammarinese tv downloader sammarinese video downloader"
+  },
+  {
+    "icon": "🇻🇦",
+    "title": "Vatican TV Downloader",
+    "desc": "Download Vatican TV shows and clips.",
+    "slug": "vatican-tv",
+    "placeholder": "Paste Vatican TV URL here...",
+    "keywords": "vatican tv downloader vatican video downloader"
+  },
+  {
+    "icon": "🇦🇱",
+    "title": "Albanian TV Downloader",
+    "desc": "Download Albanian TV shows and clips.",
+    "slug": "albanian-tv",
+    "placeholder": "Paste Albanian TV URL here...",
+    "keywords": "albanian tv downloader albanian video downloader"
+  },
+  {
+    "icon": "🇲🇰",
+    "title": "Macedonian TV Downloader",
+    "desc": "Download Macedonian TV shows and clips.",
+    "slug": "macedonian-tv",
+    "placeholder": "Paste Macedonian TV URL here...",
+    "keywords": "macedonian tv downloader macedonian video downloader"
+  },
+  {
+    "icon": "🇲🇪",
+    "title": "Montenegrin TV Downloader",
+    "desc": "Download Montenegrin TV shows and clips.",
+    "slug": "montenegrin-tv",
+    "placeholder": "Paste Montenegrin TV URL here...",
+    "keywords": "montenegrin tv downloader montenegrin video downloader"
+  },
+  {
+    "icon": "🇽🇰",
+    "title": "Kosovar TV Downloader",
+    "desc": "Download Kosovar TV shows and clips.",
+    "slug": "kosovar-tv",
+    "placeholder": "Paste Kosovar TV URL here...",
+    "keywords": "kosovar tv downloader kosovar video downloader"
+  },
+  {
+    "icon": "🇧🇹",
+    "title": "Bhutanese TV Downloader",
+    "desc": "Download Bhutanese TV shows and clips.",
+    "slug": "bhutanese-tv",
+    "placeholder": "Paste Bhutanese TV URL here...",
+    "keywords": "bhutanese tv downloader bhutanese video downloader"
+  },
+  {
+    "icon": "🇲🇴",
+    "title": "Macanese TV Downloader",
+    "desc": "Download Macanese TV shows and clips.",
+    "slug": "macanese-tv",
+    "placeholder": "Paste Macanese TV URL here...",
+    "keywords": "macanese tv downloader macanese video downloader"
+  },
+  {
+    "icon": "🇭🇰",
+    "title": "Hong Kong TV Downloader",
+    "desc": "Download Hong Kong TV shows and clips.",
+    "slug": "hong-kong-tv",
+    "placeholder": "Paste Hong Kong TV URL here...",
+    "keywords": "hong-kong tv downloader hong kong video downloader"
+  },
+  {
+    "icon": "🇹🇼",
+    "title": "Taiwanese TV Downloader",
+    "desc": "Download Taiwanese TV shows and clips.",
+    "slug": "taiwanese-tv",
+    "placeholder": "Paste Taiwanese TV URL here...",
+    "keywords": "taiwanese tv downloader taiwanese video downloader"
+  },
+  {
+    "icon": "📰",
+    "title": "Serbian News Downloader",
+    "desc": "Download Serbian news videos.",
+    "slug": "serbian-news",
+    "placeholder": "Paste Serbian News URL here...",
+    "keywords": "serbian news downloader serbian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Croatian News Downloader",
+    "desc": "Download Croatian news videos.",
+    "slug": "croatian-news",
+    "placeholder": "Paste Croatian News URL here...",
+    "keywords": "croatian news downloader croatian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Bosnian News Downloader",
+    "desc": "Download Bosnian news videos.",
+    "slug": "bosnian-news",
+    "placeholder": "Paste Bosnian News URL here...",
+    "keywords": "bosnian news downloader bosnian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Slovenian News Downloader",
+    "desc": "Download Slovenian news videos.",
+    "slug": "slovenian-news",
+    "placeholder": "Paste Slovenian News URL here...",
+    "keywords": "slovenian news downloader slovenian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Slovak News Downloader",
+    "desc": "Download Slovak news videos.",
+    "slug": "slovak-news",
+    "placeholder": "Paste Slovak News URL here...",
+    "keywords": "slovak news downloader slovak news"
+  },
+  {
+    "icon": "📰",
+    "title": "Lithuanian News Downloader",
+    "desc": "Download Lithuanian news videos.",
+    "slug": "lithuanian-news",
+    "placeholder": "Paste Lithuanian News URL here...",
+    "keywords": "lithuanian news downloader lithuanian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Latvian News Downloader",
+    "desc": "Download Latvian news videos.",
+    "slug": "latvian-news",
+    "placeholder": "Paste Latvian News URL here...",
+    "keywords": "latvian news downloader latvian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Estonian News Downloader",
+    "desc": "Download Estonian news videos.",
+    "slug": "estonian-news",
+    "placeholder": "Paste Estonian News URL here...",
+    "keywords": "estonian news downloader estonian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Belarusian News Downloader",
+    "desc": "Download Belarusian news videos.",
+    "slug": "belarusian-news",
+    "placeholder": "Paste Belarusian News URL here...",
+    "keywords": "belarusian news downloader belarusian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Moldovan News Downloader",
+    "desc": "Download Moldovan news videos.",
+    "slug": "moldovan-news",
+    "placeholder": "Paste Moldovan News URL here...",
+    "keywords": "moldovan news downloader moldovan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Armenian News Downloader",
+    "desc": "Download Armenian news videos.",
+    "slug": "armenian-news",
+    "placeholder": "Paste Armenian News URL here...",
+    "keywords": "armenian news downloader armenian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Azerbaijani News Downloader",
+    "desc": "Download Azerbaijani news videos.",
+    "slug": "azerbaijani-news",
+    "placeholder": "Paste Azerbaijani News URL here...",
+    "keywords": "azerbaijani news downloader azerbaijani news"
+  },
+  {
+    "icon": "📰",
+    "title": "Georgian News Downloader",
+    "desc": "Download Georgian news videos.",
+    "slug": "georgian-news",
+    "placeholder": "Paste Georgian News URL here...",
+    "keywords": "georgian news downloader georgian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Kazakh News Downloader",
+    "desc": "Download Kazakh news videos.",
+    "slug": "kazakh-news",
+    "placeholder": "Paste Kazakh News URL here...",
+    "keywords": "kazakh news downloader kazakh news"
+  },
+  {
+    "icon": "📰",
+    "title": "Uzbek News Downloader",
+    "desc": "Download Uzbek news videos.",
+    "slug": "uzbek-news",
+    "placeholder": "Paste Uzbek News URL here...",
+    "keywords": "uzbek news downloader uzbek news"
+  },
+  {
+    "icon": "📰",
+    "title": "Turkmen News Downloader",
+    "desc": "Download Turkmen news videos.",
+    "slug": "turkmen-news",
+    "placeholder": "Paste Turkmen News URL here...",
+    "keywords": "turkmen news downloader turkmen news"
+  },
+  {
+    "icon": "📰",
+    "title": "Kyrgyz News Downloader",
+    "desc": "Download Kyrgyz news videos.",
+    "slug": "kyrgyz-news",
+    "placeholder": "Paste Kyrgyz News URL here...",
+    "keywords": "kyrgyz news downloader kyrgyz news"
+  },
+  {
+    "icon": "📰",
+    "title": "Tajik News Downloader",
+    "desc": "Download Tajik news videos.",
+    "slug": "tajik-news",
+    "placeholder": "Paste Tajik News URL here...",
+    "keywords": "tajik news downloader tajik news"
+  },
+  {
+    "icon": "📰",
+    "title": "Afghan News Downloader",
+    "desc": "Download Afghan news videos.",
+    "slug": "afghan-news",
+    "placeholder": "Paste Afghan News URL here...",
+    "keywords": "afghan news downloader afghan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Nepali News Downloader",
+    "desc": "Download Nepali news videos.",
+    "slug": "nepali-news",
+    "placeholder": "Paste Nepali News URL here...",
+    "keywords": "nepali news downloader nepali news"
+  },
+  {
+    "icon": "📰",
+    "title": "Sri Lankan News Downloader",
+    "desc": "Download Sri Lankan news videos.",
+    "slug": "sri-lankan-news",
+    "placeholder": "Paste Sri Lankan News URL here...",
+    "keywords": "sri-lankan news downloader sri lankan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Maldivian News Downloader",
+    "desc": "Download Maldivian news videos.",
+    "slug": "maldivian-news",
+    "placeholder": "Paste Maldivian News URL here...",
+    "keywords": "maldivian news downloader maldivian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Myanmar News Downloader",
+    "desc": "Download Myanmar news videos.",
+    "slug": "myanmar-news",
+    "placeholder": "Paste Myanmar News URL here...",
+    "keywords": "myanmar news downloader myanmar news"
+  },
+  {
+    "icon": "📰",
+    "title": "Cambodian News Downloader",
+    "desc": "Download Cambodian news videos.",
+    "slug": "cambodian-news",
+    "placeholder": "Paste Cambodian News URL here...",
+    "keywords": "cambodian news downloader cambodian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Laotian News Downloader",
+    "desc": "Download Laotian news videos.",
+    "slug": "laotian-news",
+    "placeholder": "Paste Laotian News URL here...",
+    "keywords": "laotian news downloader laotian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Mongolian News Downloader",
+    "desc": "Download Mongolian news videos.",
+    "slug": "mongolian-news",
+    "placeholder": "Paste Mongolian News URL here...",
+    "keywords": "mongolian news downloader mongolian news"
+  },
+  {
+    "icon": "📰",
+    "title": "North Korean News Downloader",
+    "desc": "Download North Korean news videos.",
+    "slug": "north-korean-news",
+    "placeholder": "Paste North Korean News URL here...",
+    "keywords": "north-korean news downloader north korean news"
+  },
+  {
+    "icon": "📰",
+    "title": "Bruneian News Downloader",
+    "desc": "Download Bruneian news videos.",
+    "slug": "bruneian-news",
+    "placeholder": "Paste Bruneian News URL here...",
+    "keywords": "bruneian news downloader bruneian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Singapore News Downloader",
+    "desc": "Download Singapore news videos.",
+    "slug": "singapore-news",
+    "placeholder": "Paste Singapore News URL here...",
+    "keywords": "singapore news downloader singapore news"
+  },
+  {
+    "icon": "📰",
+    "title": "Timorese News Downloader",
+    "desc": "Download Timorese news videos.",
+    "slug": "timorese-news",
+    "placeholder": "Paste Timorese News URL here...",
+    "keywords": "timorese news downloader timorese news"
+  },
+  {
+    "icon": "📰",
+    "title": "Papua New Guinean News Downloader",
+    "desc": "Download Papua New Guinean news videos.",
+    "slug": "papua-new-guinean-news",
+    "placeholder": "Paste Papua New Guinean News URL here...",
+    "keywords": "papua-new-guinean news downloader papua new guinean news"
+  },
+  {
+    "icon": "📰",
+    "title": "Fijian News Downloader",
+    "desc": "Download Fijian news videos.",
+    "slug": "fijian-news",
+    "placeholder": "Paste Fijian News URL here...",
+    "keywords": "fijian news downloader fijian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Samoan News Downloader",
+    "desc": "Download Samoan news videos.",
+    "slug": "samoan-news",
+    "placeholder": "Paste Samoan News URL here...",
+    "keywords": "samoan news downloader samoan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Tongan News Downloader",
+    "desc": "Download Tongan news videos.",
+    "slug": "tongan-news",
+    "placeholder": "Paste Tongan News URL here...",
+    "keywords": "tongan news downloader tongan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Vanuatuan News Downloader",
+    "desc": "Download Vanuatuan news videos.",
+    "slug": "vanuatuan-news",
+    "placeholder": "Paste Vanuatuan News URL here...",
+    "keywords": "vanuatuan news downloader vanuatuan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Solomon Islands News Downloader",
+    "desc": "Download Solomon Islands news videos.",
+    "slug": "solomon-islands-news",
+    "placeholder": "Paste Solomon Islands News URL here...",
+    "keywords": "solomon-islands news downloader solomon islands news"
+  },
+  {
+    "icon": "📰",
+    "title": "Palauan News Downloader",
+    "desc": "Download Palauan news videos.",
+    "slug": "palauan-news",
+    "placeholder": "Paste Palauan News URL here...",
+    "keywords": "palauan news downloader palauan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Marshallese News Downloader",
+    "desc": "Download Marshallese news videos.",
+    "slug": "marshallese-news",
+    "placeholder": "Paste Marshallese News URL here...",
+    "keywords": "marshallese news downloader marshallese news"
+  },
+  {
+    "icon": "📰",
+    "title": "Micronesian News Downloader",
+    "desc": "Download Micronesian news videos.",
+    "slug": "micronesian-news",
+    "placeholder": "Paste Micronesian News URL here...",
+    "keywords": "micronesian news downloader micronesian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Kiribati News Downloader",
+    "desc": "Download Kiribati news videos.",
+    "slug": "kiribati-news",
+    "placeholder": "Paste Kiribati News URL here...",
+    "keywords": "kiribati news downloader kiribati news"
+  },
+  {
+    "icon": "📰",
+    "title": "Tuvaluan News Downloader",
+    "desc": "Download Tuvaluan news videos.",
+    "slug": "tuvaluan-news",
+    "placeholder": "Paste Tuvaluan News URL here...",
+    "keywords": "tuvaluan news downloader tuvaluan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Nauruan News Downloader",
+    "desc": "Download Nauruan news videos.",
+    "slug": "nauruan-news",
+    "placeholder": "Paste Nauruan News URL here...",
+    "keywords": "nauruan news downloader nauruan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Icelandic News Downloader",
+    "desc": "Download Icelandic news videos.",
+    "slug": "icelandic-news",
+    "placeholder": "Paste Icelandic News URL here...",
+    "keywords": "icelandic news downloader icelandic news"
+  },
+  {
+    "icon": "📰",
+    "title": "Irish News Downloader",
+    "desc": "Download Irish news videos.",
+    "slug": "irish-news",
+    "placeholder": "Paste Irish News URL here...",
+    "keywords": "irish news downloader irish news"
+  },
+  {
+    "icon": "📰",
+    "title": "Scottish News Downloader",
+    "desc": "Download Scottish news videos.",
+    "slug": "scottish-news",
+    "placeholder": "Paste Scottish News URL here...",
+    "keywords": "scottish news downloader scottish news"
+  },
+  {
+    "icon": "📰",
+    "title": "Welsh News Downloader",
+    "desc": "Download Welsh news videos.",
+    "slug": "welsh-news",
+    "placeholder": "Paste Welsh News URL here...",
+    "keywords": "welsh news downloader welsh news"
+  },
+  {
+    "icon": "📰",
+    "title": "Andorran News Downloader",
+    "desc": "Download Andorran news videos.",
+    "slug": "andorran-news",
+    "placeholder": "Paste Andorran News URL here...",
+    "keywords": "andorran news downloader andorran news"
+  },
+  {
+    "icon": "📰",
+    "title": "Monacan News Downloader",
+    "desc": "Download Monacan news videos.",
+    "slug": "monacan-news",
+    "placeholder": "Paste Monacan News URL here...",
+    "keywords": "monacan news downloader monacan news"
+  },
+  {
+    "icon": "📰",
+    "title": "Liechtenstein News Downloader",
+    "desc": "Download Liechtenstein news videos.",
+    "slug": "liechtenstein-news",
+    "placeholder": "Paste Liechtenstein News URL here...",
+    "keywords": "liechtenstein news downloader liechtenstein news"
+  },
+  {
+    "icon": "📰",
+    "title": "Sammarinese News Downloader",
+    "desc": "Download Sammarinese news videos.",
+    "slug": "sammarinese-news",
+    "placeholder": "Paste Sammarinese News URL here...",
+    "keywords": "sammarinese news downloader sammarinese news"
+  },
+  {
+    "icon": "📰",
+    "title": "Vatican News Downloader",
+    "desc": "Download Vatican news videos.",
+    "slug": "vatican-news",
+    "placeholder": "Paste Vatican News URL here...",
+    "keywords": "vatican news downloader vatican news"
+  },
+  {
+    "icon": "📰",
+    "title": "Albanian News Downloader",
+    "desc": "Download Albanian news videos.",
+    "slug": "albanian-news",
+    "placeholder": "Paste Albanian News URL here...",
+    "keywords": "albanian news downloader albanian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Macedonian News Downloader",
+    "desc": "Download Macedonian news videos.",
+    "slug": "macedonian-news",
+    "placeholder": "Paste Macedonian News URL here...",
+    "keywords": "macedonian news downloader macedonian news"
+  },
+  {
+    "icon": "📰",
+    "title": "Montenegrin News Downloader",
+    "desc": "Download Montenegrin news videos.",
+    "slug": "montenegrin-news",
+    "placeholder": "Paste Montenegrin News URL here...",
+    "keywords": "montenegrin news downloader montenegrin news"
+  },
+  {
+    "icon": "📰",
+    "title": "Kosovar News Downloader",
+    "desc": "Download Kosovar news videos.",
+    "slug": "kosovar-news",
+    "placeholder": "Paste Kosovar News URL here...",
+    "keywords": "kosovar news downloader kosovar news"
+  },
+  {
+    "icon": "📰",
+    "title": "Bhutanese News Downloader",
+    "desc": "Download Bhutanese news videos.",
+    "slug": "bhutanese-news",
+    "placeholder": "Paste Bhutanese News URL here...",
+    "keywords": "bhutanese news downloader bhutanese news"
+  },
+  {
+    "icon": "📰",
+    "title": "Macanese News Downloader",
+    "desc": "Download Macanese news videos.",
+    "slug": "macanese-news",
+    "placeholder": "Paste Macanese News URL here...",
+    "keywords": "macanese news downloader macanese news"
+  },
+  {
+    "icon": "📰",
+    "title": "Hong Kong News Downloader",
+    "desc": "Download Hong Kong news videos.",
+    "slug": "hong-kong-news",
+    "placeholder": "Paste Hong Kong News URL here...",
+    "keywords": "hong-kong news downloader hong kong news"
+  },
+  {
+    "icon": "📰",
+    "title": "Taiwanese News Downloader",
+    "desc": "Download Taiwanese news videos.",
+    "slug": "taiwanese-news",
+    "placeholder": "Paste Taiwanese News URL here...",
+    "keywords": "taiwanese news downloader taiwanese news"
   }
 ]
