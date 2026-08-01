@@ -15,65 +15,8 @@
 <section class="py-16 bg-white dark:bg-slate-900">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <% const tools = [
-        { icon: '🎬', title: 'All-in-One Video Downloader', desc: 'Paste any URL from 1000+ supported sites and download videos in seconds.', link: '/' },
-        { icon: '📹', title: 'YouTube Downloader', desc: 'Download YouTube videos in MP4, WebM, and extract high-quality audio.', link: '/youtube' },
-        { icon: '⚡', title: 'YouTube Shorts Downloader', desc: 'Download YouTube Shorts clips in HD.', link: '/youtube-shorts' },
-        { icon: '🎵', title: 'YouTube to MP3', desc: 'Convert YouTube videos to MP3 audio files quickly.', link: '/mp3' },
-        { icon: '🎧', title: 'YouTube Music Downloader', desc: 'Download songs and videos from YouTube Music.', link: '/mp3' },
-        { icon: '🎶', title: 'TikTok Downloader', desc: 'Save TikTok videos without watermark in HD quality.', link: '/tiktok' },
-        { icon: '💧', title: 'TikTok No Watermark', desc: 'Download TikTok videos without the watermark.', link: '/tiktok-nowm' },
-        { icon: '📷', title: 'Instagram Reels Downloader', desc: 'Download Instagram Reels, videos, and IGTV posts.', link: '/instagram' },
-        { icon: '📸', title: 'Instagram Story Downloader', desc: 'Download Instagram stories before they disappear.', link: '/instagram-stories' },
-        { icon: '👍', title: 'Facebook Video Downloader', desc: 'Download Facebook videos, reels, and public posts.', link: '/facebook' },
-        { icon: '📱', title: 'Facebook Reels Downloader', desc: 'Save Facebook Reels and short videos.', link: '/facebook-reels' },
-        { icon: '🐦', title: 'Twitter / X Video Downloader', desc: 'Save videos and GIFs from Twitter / X posts.', link: '/twitter' },
-        { icon: '🎙️', title: 'Audio / MP3 Downloader', desc: 'Extract audio from any supported video link.', link: '/mp3' },
-        { icon: '🔗', title: 'URL to MP3 Converter', desc: 'Convert any video URL to MP3 audio.', link: '/url-to-mp3' },
-        { icon: '📥', title: 'URL to Video Downloader', desc: 'Paste any public video URL and convert it to a file.', link: '/url-to-video' },
-        { icon: '🌐', title: 'MP4 Video Downloader', desc: 'Paste a direct MP4, M3U8, or DASH URL and download.', link: '/mp4' },
-        { icon: '🌐', title: 'M3U8 / HLS Downloader', desc: 'Download streaming videos from M3U8 playlists.', link: '/m3u8' },
-        { icon: '💎', title: 'No Watermark Video Downloader', desc: 'Download TikTok, Instagram Reels, and other videos without watermarks.', link: '/no-watermark' },
-        { icon: '🎭', title: 'Reddit Video Downloader', desc: 'Download Reddit videos with audio.', link: '/reddit' },
-        { icon: '🎨', title: 'Vimeo Downloader', desc: 'Download Vimeo videos in multiple resolutions.', link: '/vimeo' },
-        { icon: '🌏', title: 'Dailymotion Downloader', desc: 'Save Dailymotion videos easily.', link: '/dailymotion' },
-        { icon: '📺', title: 'Bilibili Downloader', desc: 'Download Bilibili videos and clips.', link: '/bilibili' },
-        { icon: '🎤', title: 'TED Talk Downloader', desc: 'Download TED talks and presentations.', link: '/ted' },
-        { icon: '🎓', title: 'TED-Ed Downloader', desc: 'Save TED-Ed educational animations.', link: '/ted' },
-        { icon: '🎮', title: 'Twitch Clip Downloader', desc: 'Save Twitch clips and highlights.', link: '/twitch' },
-        { icon: '📺', title: 'Twitch VOD Downloader', desc: 'Save Twitch full past broadcasts and VODs.', link: '/twitch' },
-        { icon: '🎥', title: 'Kick Stream Downloader', desc: 'Download Kick live stream clips and VODs.', link: '/url-to-video' },
-        { icon: '🎧', title: 'SoundCloud Downloader', desc: 'Download SoundCloud tracks and playlists.', link: '/soundcloud' },
-        { icon: '🎵', title: 'SoundCloud to MP3', desc: 'Convert SoundCloud tracks to MP3 audio.', link: '/soundcloud' },
-        { icon: '🎙️', title: 'Bandcamp Downloader', desc: 'Download Bandcamp tracks and albums.', link: '/bandcamp' },
-        { icon: '💚', title: 'Spotify Podcast Downloader', desc: 'Download Spotify podcasts and episodes.', link: '/spotify' },
-        { icon: '🖼️', title: 'Thumbnail Downloader', desc: 'Grab high-quality thumbnails from YouTube, TikTok, and more.', link: '/thumbnail' },
-        { icon: '📝', title: 'Subtitle Downloader', desc: 'Download subtitles and captions from supported videos.', link: '/subtitle' },
-        { icon: '📂', title: 'Playlist Downloader', desc: 'Download entire YouTube playlists and channels.', link: '/playlist' },
-        { icon: '💼', title: 'LinkedIn Video Downloader', desc: 'Download LinkedIn videos shared in posts.', link: '/linkedin' },
-        { icon: '📌', title: 'Pinterest Video Downloader', desc: 'Save Pinterest video pins and idea pins.', link: '/pinterest' },
-        { icon: '🌸', title: 'Tumblr Video Downloader', desc: 'Download Tumblr videos and media posts.', link: '/tumblr' },
-        { icon: '🇷🇺', title: 'VK Video Downloader', desc: 'Download VK (VKontakte) videos and clips.', link: '/vk' },
-        { icon: '🤣', title: '9GAG Downloader', desc: 'Save 9GAG videos and GIFs to your device.', link: '/9gag' },
-        { icon: '🔴', title: 'Rumble Video Downloader', desc: 'Download Rumble videos and live streams.', link: '/rumble' },
-        { icon: '🚀', title: 'Odysee / LBRY Downloader', desc: 'Save Odysee and LBRY videos.', link: '/odysee' },
-        { icon: '🇯🇵', title: 'Niconico Downloader', desc: 'Download Niconico (Nico Nico Douga) videos.', link: '/url-to-video' },
-        { icon: '▶️', title: 'PeerTube Downloader', desc: 'Save videos from PeerTube instances.', link: '/url-to-video' },
-        { icon: '☁️', title: 'Mixcloud Downloader', desc: 'Download DJ mixes and radio shows from Mixcloud.', link: '/mixcloud' },
-        { icon: '🎤', title: 'Audiomack Downloader', desc: 'Download songs and mixtapes from Audiomack.', link: '/audiomack' },
-        { icon: '📚', title: 'Internet Archive Downloader', desc: 'Download videos from archive.org collections.', link: '/internet-archive' },
-        { icon: '🌍', title: 'BBC Video Downloader', desc: 'Download BBC news and program videos.', link: '/url-to-video' },
-        { icon: '📰', title: 'CNN Video Downloader', desc: 'Save CNN news video clips.', link: '/url-to-video' },
-        { icon: '🏈', title: 'ESPN Video Downloader', desc: 'Download ESPN sports highlights and clips.', link: '/url-to-video' },
-        { icon: '⚽', title: 'Fox Sports Downloader', desc: 'Save Fox Sports videos and highlights.', link: '/url-to-video' },
-        { icon: '🌙', title: 'Al Jazeera Downloader', desc: 'Download Al Jazeera news videos.', link: '/url-to-video' },
-        { icon: '📡', title: 'Reuters Video Downloader', desc: 'Save Reuters news video clips.', link: '/url-to-video' },
-        { icon: '📖', title: 'National Geographic Downloader', desc: 'Download Nat Geo videos and documentaries.', link: '/url-to-video' },
-        { icon: '🚀', title: 'NASA Video Downloader', desc: 'Download NASA videos and mission footage.', link: '/url-to-video' },
-        { icon: '🎤', title: 'CNET Video Downloader', desc: 'Download CNET tech video reviews.', link: '/url-to-video' },
-      ]; %>
-      <% tools.forEach(function(tool) { %>
-        <a href="<%= tool.link %>" class="card card-hover group">
+      <% (tools || []).forEach(function(tool) { %>
+        <a href="<%= tool.link || (tool.slug ? '/' + tool.slug : '/') %>" class="card card-hover group">
           <div class="flex items-start gap-4">
             <span class="text-3xl"><%= tool.icon %></span>
             <div>
