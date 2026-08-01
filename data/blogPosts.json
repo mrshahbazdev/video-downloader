@@ -198,5 +198,29 @@
     "formats": "MP4 or MP3",
     "summary": "What you can and cannot download, plus how to handle copyright and DMCA notices responsibly.",
     "description": "Copyright and fair use for video downloaders. Learn what you can legally download and how to handle DMCA notices."
+  },
+  {
+    "slug": "how-to-download-youtube-videos-on-mobile",
+    "title": "How to Download YouTube Videos on Mobile",
+    "site": "YouTube",
+    "formats": "MP4 and MP3",
+    "summary": "A step-by-step tutorial for saving YouTube videos on iPhone, iPad, and Android without installing apps.",
+    "description": "Learn how to download YouTube videos on mobile using any browser. iPhone, iPad, and Android guide for MP4 and MP3."
+  },
+  {
+    "slug": "public-domain-video-sources",
+    "title": "Best Public Domain & Creative Commons Video Sources",
+    "site": "online video",
+    "formats": "MP4 or MP3",
+    "summary": "Find legally reusable videos from public domain and Creative Commons sources such as Internet Archive, NASA, and Pexels.",
+    "description": "Discover public domain and Creative Commons video sources you can download legally for personal and commercial projects."
+  },
+  {
+    "slug": "youtube-to-mp3-complete-guide",
+    "title": "YouTube to MP3: A Complete Guide",
+    "site": "YouTube",
+    "formats": "MP3, M4A, WAV",
+    "summary": "Everything you need to know about converting YouTube videos to MP3 legally and choosing the right audio quality.",
+    "description": "Complete guide to converting YouTube videos to MP3. Learn legal limits, quality settings, and how to use ClipVault."
   }
 ]

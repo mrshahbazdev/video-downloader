@@ -1,21 +1,33 @@
 <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 shadow-2xl z-50 hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-sm text-slate-600 dark:text-slate-300 text-center sm:text-left">
-      We use cookies to store your theme preference and, if enabled, to serve relevant ads through Google. By continuing, you agree to our <a href="/cookie-policy" class="text-sky-600 dark:text-sky-400 hover:underline font-medium">Cookie Policy</a>.
+      We use cookies for essential site features and, if you consent, to serve personalized ads through Google. See our <a href="/cookie-policy" class="text-sky-600 dark:text-sky-400 hover:underline font-medium">Cookie Policy</a>.
     </p>
-    <button id="acceptCookies" class="btn-primary px-5 py-2 text-sm whitespace-nowrap">Accept</button>
+    <div class="flex gap-3">
+      <button id="declineCookies" class="px-5 py-2 text-sm whitespace-nowrap rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Decline</button>
+      <button id="acceptCookies" class="btn-primary px-5 py-2 text-sm whitespace-nowrap">Accept</button>
+    </div>
   </div>
 </div>
 <script>
   (function () {
     const banner = document.getElementById('cookieBanner');
     const accept = document.getElementById('acceptCookies');
-    if (banner && accept && !localStorage.getItem('cookiesAccepted')) {
-      banner.classList.remove('hidden');
-      accept.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        banner.classList.add('hidden');
-      });
+    const decline = document.getElementById('declineCookies');
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) return; // already decided
+    if (banner) banner.classList.remove('hidden');
+    function setConsent(value) {
+      localStorage.setItem('cookieConsent', value);
+      if (banner) banner.classList.add('hidden');
+      if (value === 'granted' && typeof window.adsbygoogle !== 'undefined') {
+        // re-trigger any pending ad units
+        document.querySelectorAll('.adsbygoogle').forEach(function (el) {
+          try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+        });
+      }
     }
+    if (accept) accept.addEventListener('click', () => setConsent('granted'));
+    if (decline) decline.addEventListener('click', () => setConsent('denied'));
   })();
 </script>

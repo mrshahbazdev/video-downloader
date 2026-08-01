@@ -10,7 +10,29 @@
   <% } %>
 </div>
 <script>
-  if (window.ADSENSE_CLIENT_ID && window.ADSENSE_CLIENT_ID !== 'ca-pub-0000000000000000' && typeof window.adsbygoogle !== 'undefined') {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
+  (function () {
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent === 'denied') return;
+    function pushAd() {
+      if (typeof window.adsbygoogle !== 'undefined') {
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    }
+    if (window.adSenseLoaded) {
+      pushAd();
+    } else if (window.loadAdSense) {
+      window.loadAdSense();
+      // adsbygoogle may not be ready immediately; poll briefly
+      let tries = 0;
+      const interval = setInterval(function () {
+        tries++;
+        if (typeof window.adsbygoogle !== 'undefined') {
+          clearInterval(interval);
+          pushAd();
+        } else if (tries > 20) {
+          clearInterval(interval);
+        }
+      }, 250);
+    }
+  })();
 </script>

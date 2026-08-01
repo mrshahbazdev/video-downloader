@@ -18,10 +18,13 @@
   <meta name="twitter:image" content="<%= meta.image %>" />
   <link rel="canonical" href="<%= meta.url %>" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <%- include('partials/styles') %>
   <link rel="stylesheet" href="/css/style.css?v=<%= Date.now() %>" />
   <%- include('partials/ads') %>
@@ -29,6 +32,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased flex flex-col min-h-screen">
   <%- include('partials/nav') %>
+  <%- include('partials/breadcrumb') %>
   <main class="flex-grow">
     <%- body %>
   </main>

@@ -1,0 +1,30 @@
+<% if (path && path !== '/') { %>
+<nav aria-label="Breadcrumb" class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <ol class="flex flex-wrap items-center text-sm text-slate-600 dark:text-slate-400" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center">
+        <a href="/" itemprop="item" class="hover:text-sky-600 dark:hover:text-sky-400"><span itemprop="name">Home</span></a>
+        <meta itemprop="position" content="1" />
+        <span class="mx-2">/</span>
+      </li>
+      <% const segments = path.split('/').filter(Boolean); %>
+      <% let builtPath = ''; %>
+      <% segments.forEach(function(seg, idx) { %>
+        <% builtPath += '/' + seg; %>
+        <% const isLast = idx === segments.length - 1; %>
+        <% const label = isLast && meta.title ? meta.title.split('—')[0].trim() : seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()); %>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="flex items-center">
+          <% if (!isLast) { %>
+            <a href="<%= builtPath %>" itemprop="item" class="hover:text-sky-600 dark:hover:text-sky-400"><span itemprop="name"><%= label %></span></a>
+            <meta itemprop="position" content="<%= idx + 2 %>" />
+            <span class="mx-2">/</span>
+          <% } else { %>
+            <span itemprop="name" class="text-slate-900 dark:text-white font-medium truncate max-w-xs"><%= label %></span>
+            <meta itemprop="position" content="<%= idx + 2 %>" />
+          <% } %>
+        </li>
+      <% }); %>
+    </ol>
+  </div>
+</nav>
+<% } %>

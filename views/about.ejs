@@ -30,6 +30,24 @@
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Who We Are</h2>
       <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><%= siteTitle %> is operated by a small team of developers and content creators committed to open-source software and digital literacy. We are independent and not affiliated with any video platform.</p>
 
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Our Team</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Founder & Editor:</strong> Oversees site direction, content quality, and publisher policies.</li>
+        <li><strong>Lead Developer:</strong> Maintains the downloader, security, and performance.</li>
+        <li><strong>Content Reviewer:</strong> Ensures guides are accurate, up-to-date, and legally responsible.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why Creators Trust Us</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Transparent legal pages and clear copyright guidance.</li>
+        <li>No forced signups, no long-term storage, and no bundled malware.</li>
+        <li>Open-source tooling audited by the community.</li>
+        <li>Responsive support through the contact page.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Publication Details</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This site is published independently and updated regularly. Last reviewed: <%= currentYear %>.</p>
+
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Contact Information</h2>
       <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Email: <a href="mailto:<%= contactEmail %>" class="text-sky-600 dark:text-sky-400 hover:underline"><%= contactEmail %></a></p>
       <% if (contactAddress) { %>

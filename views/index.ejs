@@ -12,9 +12,14 @@
       <p class="text-lg sm:text-xl text-slate-200 mb-4">
         Learn how to save videos from 1000+ supported platforms. Paste a public link, pick a format, and download content you own or have permission to use.
       </p>
-      <p class="text-sm text-slate-200/80 mb-10 max-w-2xl mx-auto">
+      <p class="text-sm text-slate-200/80 mb-6 max-w-2xl mx-auto">
         Please use <%= siteTitle %> responsibly. Only download videos you created, own, or are authorized to save. Respect copyright and platform terms.
       </p>
+      <div class="flex flex-wrap justify-center gap-3 text-xs text-slate-200/80 mb-10">
+        <span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> No signup required</span>
+        <span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Privacy-friendly</span>
+        <span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Works on mobile & desktop</span>
+      </div>
 
       <%- include('partials/downloader-form', { placeholder: 'Paste video URL here...', buttonText: 'Get Video' }) %>
     </div>
@@ -69,6 +74,29 @@
     </div>
     <div class="text-center mt-10">
       <a href="/supported-sites" class="btn-primary">View All Supported Sites</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-14 bg-slate-50 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+      <div>
+        <p class="text-3xl font-bold text-sky-600 dark:text-sky-400">1000+</p>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Supported sites</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-sky-600 dark:text-sky-400">0</p>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Signups needed</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-sky-600 dark:text-sky-400">Free</p>
+        <p class="text-sm text-slate-600 dark:text-slate-400">Core tools</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-sky-600 dark:text-sky-400">Private</p>
+        <p class="text-sm text-slate-600 dark:text-slate-400">No tracking</p>
+      </div>
     </div>
   </div>
 </section>
