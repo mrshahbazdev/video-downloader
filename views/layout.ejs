@@ -22,7 +22,7 @@
     tailwind.config = { darkMode: 'class' };
   </script>
   <%- include('partials/styles') %>
-  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/style.css?v=<%= Date.now() %>" />
   <%- include('partials/ads') %>
   <%- include('partials/structured-data') %>
 </head>

@@ -254,12 +254,18 @@
   }
 
   function startProxyDownload(token, filename) {
+    const url = `/api/download-proxy?token=${encodeURIComponent(token)}`;
     const a = document.createElement('a');
-    a.href = `/api/download-proxy?token=${encodeURIComponent(token)}`;
+    a.href = url;
     a.download = filename;
+    a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    a.remove();
+    setTimeout(() => a.remove(), 1000);
+
+    // Also update the visible result link so the user can re-download from the UI.
+    downloadLink.href = url;
+    downloadLink.download = filename;
   }
 
   async function downloadVideo(formatId, btn) {
