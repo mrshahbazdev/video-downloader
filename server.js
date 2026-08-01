@@ -435,6 +435,16 @@ app.get('/tools', (req, res) => {
   });
 });
 
+app.get('/thumbnail', (req, res) => {
+  renderPage(req, res, 'thumbnail', {
+    meta: {
+      title: `Free YouTube Thumbnail Downloader — ${SITE_TITLE}`,
+      description: 'Download YouTube video thumbnails in HD, SD, and full resolution instantly. Paste a video URL and save the thumbnail image.',
+      keywords: 'YouTube thumbnail downloader, download YouTube thumbnail, YouTube thumbnail HD, video thumbnail downloader',
+    },
+  });
+});
+
 app.get('/supported-sites', (req, res) => {
   renderPage(req, res, 'supported-sites', {
     meta: {
@@ -559,7 +569,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'tools', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
@@ -629,6 +639,39 @@ app.post('/api/info', async (req, res) => {
     res.status(500).json({ error: cleanError(err) || 'Failed to fetch video info' });
   } finally {
     cleanupCookiePath(cookiePath);
+  }
+});
+
+app.post('/api/thumbnail', async (req, res) => {
+  const { url, captchaToken, captchaAnswer } = req.body;
+  if (!url) return res.status(400).json({ error: 'URL is required' });
+
+  const captcha = await verifyCaptcha(captchaToken, captchaAnswer);
+  if (!captcha.success) {
+    return res.status(403).json({ error: `Captcha verification failed: ${captcha.error}` });
+  }
+
+  try {
+    const base = {
+      ...getBaseOptions(url, null),
+      dumpJson: true,
+      skipDownload: true,
+    };
+
+    const info = await callWithFallbacks(url, buildOptionSets(base, url, '', ''));
+    const thumbnails = (info.thumbnails || [])
+      .filter((t) => t.url)
+      .sort((a, b) => (b.width || 0) - (a.width || 0));
+
+    res.json({
+      success: true,
+      title: info.title || 'Unknown',
+      thumbnail: info.thumbnail || (thumbnails[0] && thumbnails[0].url),
+      thumbnails,
+    });
+  } catch (err) {
+    console.error('Thumbnail fetch failed:', err);
+    res.status(500).json({ error: cleanError(err) || 'Failed to fetch thumbnail' });
   }
 });
 
