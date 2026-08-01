@@ -499,6 +499,52 @@ platformPages.forEach((p) => {
   });
 });
 
+const extraTools = [
+  { slug: 'youtube-shorts', title: 'YouTube Shorts Downloader', desc: 'Download YouTube Shorts in HD. Paste a Shorts link and save the clip to your device.', placeholder: 'Paste YouTube Shorts URL here...', keywords: 'youtube shorts downloader, download youtube shorts, youtube shorts to mp4' },
+  { slug: 'facebook-reels', title: 'Facebook Reels Downloader', desc: 'Download Facebook Reels and short videos from public profiles.', placeholder: 'Paste Facebook Reels URL here...', keywords: 'facebook reels downloader, download facebook reels, reels saver' },
+  { slug: 'instagram-stories', title: 'Instagram Story Downloader', desc: 'Save Instagram stories, highlights, and IGTV videos before they disappear.', placeholder: 'Paste Instagram story URL here...', keywords: 'instagram story downloader, download instagram stories, instagram highlights' },
+  { slug: 'tiktok-nowm', title: 'TikTok No Watermark Downloader', desc: 'Download TikTok videos without the watermark in high quality.', placeholder: 'Paste TikTok URL here...', keywords: 'tiktok no watermark, tiktok downloader no watermark, tiktok video saver' },
+  { slug: 'reddit', title: 'Reddit Video Downloader', desc: 'Download Reddit videos with audio embedded. Paste any Reddit post link.', placeholder: 'Paste Reddit post URL here...', keywords: 'reddit video downloader, download reddit videos, reddit to mp4' },
+  { slug: 'vimeo', title: 'Vimeo Downloader', desc: 'Download Vimeo videos in HD, 4K, and other available resolutions.', placeholder: 'Paste Vimeo URL here...', keywords: 'vimeo downloader, download vimeo videos, vimeo to mp4' },
+  { slug: 'dailymotion', title: 'Dailymotion Downloader', desc: 'Save Dailymotion videos and music videos in your preferred format.', placeholder: 'Paste Dailymotion URL here...', keywords: 'dailymotion downloader, download dailymotion videos' },
+  { slug: 'twitch', title: 'Twitch Video Downloader', desc: 'Download Twitch clips, highlights, and VODs. Paste a Twitch video link.', placeholder: 'Paste Twitch URL here...', keywords: 'twitch downloader, download twitch clips, twitch vod downloader' },
+  { slug: 'soundcloud', title: 'SoundCloud to MP3 Downloader', desc: 'Download SoundCloud tracks and playlists to MP3. Paste a SoundCloud link.', placeholder: 'Paste SoundCloud URL here...', keywords: 'soundcloud downloader, soundcloud to mp3, download soundcloud music' },
+  { slug: 'bandcamp', title: 'Bandcamp Downloader', desc: 'Download Bandcamp tracks and albums. Paste a Bandcamp track or album link.', placeholder: 'Paste Bandcamp URL here...', keywords: 'bandcamp downloader, download bandcamp music' },
+  { slug: 'spotify', title: 'Spotify Podcast Downloader', desc: 'Download Spotify podcast episodes and audio clips. Paste a Spotify episode link.', placeholder: 'Paste Spotify episode URL here...', keywords: 'spotify downloader, spotify podcast downloader' },
+  { slug: 'ted', title: 'TED Talk Downloader', desc: 'Download TED talks and TEDx presentations to watch offline.', placeholder: 'Paste TED talk URL here...', keywords: 'ted downloader, download ted talks, ted video downloader' },
+  { slug: 'bilibili', title: 'Bilibili Downloader', desc: 'Download Bilibili videos and clips in high quality.', placeholder: 'Paste Bilibili URL here...', keywords: 'bilibili downloader, download bilibili videos' },
+  { slug: 'pinterest', title: 'Pinterest Video Downloader', desc: 'Save video pins and idea pins from Pinterest.', placeholder: 'Paste Pinterest pin URL here...', keywords: 'pinterest video downloader, download pinterest videos' },
+  { slug: 'linkedin', title: 'LinkedIn Video Downloader', desc: 'Download LinkedIn videos shared in posts and articles.', placeholder: 'Paste LinkedIn post URL here...', keywords: 'linkedin video downloader, download linkedin videos' },
+  { slug: 'tumblr', title: 'Tumblr Video Downloader', desc: 'Download Tumblr videos, audio posts, and media clips.', placeholder: 'Paste Tumblr post URL here...', keywords: 'tumblr video downloader, download tumblr videos' },
+  { slug: 'vk', title: 'VK Video Downloader', desc: 'Download VK (VKontakte) videos and clips easily.', placeholder: 'Paste VK video URL here...', keywords: 'vk video downloader, download vk videos' },
+  { slug: '9gag', title: '9GAG Video Downloader', desc: 'Save 9GAG videos, GIFs, and memes to your device.', placeholder: 'Paste 9GAG post URL here...', keywords: '9gag downloader, download 9gag videos' },
+  { slug: 'rumble', title: 'Rumble Video Downloader', desc: 'Download Rumble videos and livestream replays.', placeholder: 'Paste Rumble URL here...', keywords: 'rumble downloader, download rumble videos' },
+  { slug: 'odysee', title: 'Odysee / LBRY Video Downloader', desc: 'Download Odysee and LBRY videos in MP4.', placeholder: 'Paste Odysee URL here...', keywords: 'odysee downloader, lbry video downloader' },
+  { slug: 'mixcloud', title: 'Mixcloud Downloader', desc: 'Download Mixcloud DJ mixes and radio shows.', placeholder: 'Paste Mixcloud URL here...', keywords: 'mixcloud downloader, download mixcloud' },
+  { slug: 'audiomack', title: 'Audiomack Downloader', desc: 'Download Audiomack songs and albums. Paste an Audiomack link.', placeholder: 'Paste Audiomack URL here...', keywords: 'audiomack downloader, download audiomack music' },
+  { slug: 'internet-archive', title: 'Internet Archive Video Downloader', desc: 'Download videos and films from the Internet Archive.', placeholder: 'Paste Internet Archive URL here...', keywords: 'internet archive downloader, archive.org video downloader' },
+  { slug: 'm3u8', title: 'M3U8 / HLS Stream Downloader', desc: 'Download M3U8 and HLS streams by pasting the master or media playlist URL.', placeholder: 'Paste M3U8 / HLS URL here...', keywords: 'm3u8 downloader, hls downloader, m3u8 to mp4' },
+  { slug: 'mp4', title: 'MP4 Video Downloader', desc: 'Download any public MP4 video by pasting the direct link.', placeholder: 'Paste MP4 video URL here...', keywords: 'mp4 downloader, download mp4 video, direct video downloader' },
+  { slug: 'url-to-video', title: 'URL to Video Downloader', desc: 'Paste any public video URL and convert it to a downloadable file.', placeholder: 'Paste video URL here...', keywords: 'url to video, video url downloader, online video downloader' },
+  { slug: 'url-to-mp3', title: 'URL to MP3 Converter', desc: 'Convert any video URL to MP3 audio quickly and easily.', placeholder: 'Paste video URL here...', keywords: 'url to mp3, convert url to mp3, online mp3 converter' },
+  { slug: 'no-watermark', title: 'No Watermark Video Downloader', desc: 'Download TikTok, Instagram Reels, and other videos without watermarks.', placeholder: 'Paste video URL here...', keywords: 'no watermark video downloader, download videos without watermark' },
+];
+
+extraTools.forEach((t) => {
+  app.get(`/${t.slug}`, (req, res) => {
+    renderPage(req, res, 'tool', {
+      toolTitle: t.title,
+      toolDesc: t.desc,
+      toolPlaceholder: t.placeholder,
+      meta: {
+        title: `${t.title} — Free Online Downloader — ${SITE_TITLE}`,
+        description: t.desc,
+        keywords: t.keywords,
+      },
+    });
+  });
+});
+
 app.get('/supported-sites', (req, res) => {
   renderPage(req, res, 'supported-sites', {
     meta: {
@@ -623,7 +669,7 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'youtube', 'tiktok', 'instagram', 'facebook', 'twitter', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
+  const pages = ['', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'youtube', 'youtube-shorts', 'tiktok', 'tiktok-nowm', 'instagram', 'instagram-stories', 'facebook', 'facebook-reels', 'twitter', 'reddit', 'vimeo', 'dailymotion', 'twitch', 'soundcloud', 'bandcamp', 'spotify', 'ted', 'bilibili', 'pinterest', 'linkedin', 'tumblr', 'vk', '9gag', 'rumble', 'odysee', 'mixcloud', 'audiomack', 'internet-archive', 'm3u8', 'mp4', 'url-to-video', 'url-to-mp3', 'no-watermark', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
   res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);

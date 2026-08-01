@@ -1,0 +1,36 @@
+<section class="gradient-hero relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.2) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,255,255,0.15) 0%, transparent 25%);"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-sky-100 text-xs font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Free & fast
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6">
+        <%= toolTitle %>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-200 mb-10">
+        <%= toolDesc %>
+      </p>
+
+      <%- include('partials/downloader-form', { placeholder: toolPlaceholder, buttonText: 'Get Video' }) %>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 bg-white dark:bg-slate-900">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">How to use this tool</h2>
+    <p class="text-slate-600 dark:text-slate-400 mb-8">Copy the link, paste it above, pick your format, and download instantly.</p>
+    <a href="/" class="btn-primary">Try the all-in-one downloader</a>
+  </div>
+</section>
+
+<% if (captchaMode === 'recaptcha') { %>
+  <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>" async defer></script>
+<% } %>
+<script>
+  window.CAPTCHA_MODE = '<%= captchaMode %>';
+  window.RECAPTCHA_SITE_KEY = '<%= recaptchaSiteKey %>';
+</script>
+<script src="/js/downloader.js?v=<%= Date.now() %>"></script>
