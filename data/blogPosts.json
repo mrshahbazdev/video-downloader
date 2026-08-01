@@ -222,5 +222,85 @@
     "formats": "MP3, M4A, WAV",
     "summary": "Everything you need to know about converting YouTube videos to MP3 legally and choosing the right audio quality.",
     "description": "Complete guide to converting YouTube videos to MP3. Learn legal limits, quality settings, and how to use ClipVault."
+  },
+  {
+    "slug": "how-to-download-facebook-videos-private-and-public",
+    "title": "How to Download Facebook Videos (Public & Private)",
+    "site": "Facebook",
+    "formats": "MP4",
+    "summary": "A step-by-step guide to downloading public and private Facebook videos legally and safely.",
+    "description": "Learn how to download Facebook videos, reels, and live streams in MP4 while respecting copyright."
+  },
+  {
+    "slug": "how-to-save-tiktok-videos-without-watermark",
+    "title": "How to Save TikTok Videos Without Watermark",
+    "site": "TikTok",
+    "formats": "MP4",
+    "summary": "Download TikTok videos in MP4 and understand when it is legal to remove watermarks.",
+    "description": "TikTok video downloader guide. Learn how to save TikTok videos and use watermark-free versions responsibly."
+  },
+  {
+    "slug": "how-to-download-instagram-reels-on-iphone",
+    "title": "How to Download Instagram Reels on iPhone",
+    "site": "Instagram",
+    "formats": "MP4",
+    "summary": "Save Instagram Reels to your iPhone using Safari without installing any app.",
+    "description": "Step-by-step guide to download Instagram Reels on iPhone. Works in Safari with MP4 output."
+  },
+  {
+    "slug": "how-to-download-twitter-x-videos",
+    "title": "How to Download Twitter / X Videos",
+    "site": "Twitter / X",
+    "formats": "MP4 or GIF",
+    "summary": "Download Twitter and X videos in MP4 from any tweet link quickly.",
+    "description": "Twitter / X video downloader guide. Save X videos and GIFs in MP4 with ClipVault."
+  },
+  {
+    "slug": "how-to-download-vimeo-videos-hd",
+    "title": "How to Download Vimeo Videos in HD",
+    "site": "Vimeo",
+    "formats": "MP4 in HD or 4K",
+    "summary": "Download Vimeo videos in HD and 4K quality when the creator allows downloads.",
+    "description": "Vimeo video downloader guide. Learn how to save Vimeo videos in HD and 4K MP4 legally."
+  },
+  {
+    "slug": "best-free-mp3-converters-online",
+    "title": "Best Free MP3 Converters Online",
+    "site": "online audio",
+    "formats": "MP3, M4A, WAV",
+    "summary": "Compare the best free online MP3 converters and learn how to extract audio safely.",
+    "description": "Best free MP3 converters online. Learn how to convert videos to MP3, M4A, and WAV legally."
+  },
+  {
+    "slug": "how-to-download-youtube-playlists",
+    "title": "How to Download YouTube Playlists",
+    "site": "YouTube",
+    "formats": "MP4 or MP3",
+    "summary": "Save YouTube playlists one video at a time with this responsible guide.",
+    "description": "YouTube playlist downloader guide. Learn how to download YouTube playlists in MP4 or MP3."
+  },
+  {
+    "slug": "how-to-extract-youtube-subtitles",
+    "title": "How to Extract YouTube Subtitles",
+    "site": "YouTube",
+    "formats": "SRT or VTT",
+    "summary": "Download YouTube subtitles and auto-captions in SRT or VTT for personal use.",
+    "description": "YouTube subtitle downloader guide. Extract captions in SRT or VTT for accessibility and study."
+  },
+  {
+    "slug": "how-to-download-twitch-clips",
+    "title": "How to Download Twitch Clips",
+    "site": "Twitch",
+    "formats": "MP4",
+    "summary": "Save Twitch clips and highlights as MP4 for offline viewing.",
+    "description": "Twitch clip downloader guide. Learn how to download Twitch clips and highlights as MP4."
+  },
+  {
+    "slug": "youtube-video-thumbnail-download-guide",
+    "title": "YouTube Video Thumbnail Download Guide",
+    "site": "YouTube",
+    "formats": "JPG, PNG image",
+    "summary": "Download YouTube video thumbnails in all sizes from 120x90 to 1280x720.",
+    "description": "YouTube thumbnail downloader guide. Download video thumbnails in HD and all standard sizes."
   }
 ]

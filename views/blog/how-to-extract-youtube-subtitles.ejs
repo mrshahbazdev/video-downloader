@@ -1,0 +1,50 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">How to Extract YouTube Subtitles</h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Last updated: <%= currentYear %></p>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-slate-600 dark:text-slate-400">
+        YouTube subtitles and auto-captions are useful for learning, research, translation, and accessibility. If you want to save the transcript of a video you have permission to access, this guide will show you how.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Types of subtitles on YouTube</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Creator-uploaded captions:</strong> Written by the video owner, usually accurate.</li>
+        <li><strong>Auto-generated captions:</strong> Created by YouTube's speech recognition.</li>
+        <li><strong>Translated captions:</strong> Auto-translated versions of the original captions.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">How to download subtitles</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Copy the YouTube video URL.</li>
+        <li>Go to <a href="/subtitle" class="text-sky-600 dark:text-sky-400 hover:underline"><%= siteTitle %> Subtitle Downloader</a>.</li>
+        <li>Paste the URL and click <strong>Get Subtitles</strong>.</li>
+        <li>Select the language you want from the list.</li>
+        <li>Download the subtitle file in SRT or VTT format.</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">How to use subtitle files</h2>
+      <p class="text-slate-600 dark:text-slate-400">SRT files work with most video players including VLC, PotPlayer, and Plex. VTT files are commonly used on websites. You can also open subtitle files in any text editor to read the transcript.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal use of subtitles</h2>
+      <p class="text-slate-600 dark:text-slate-400">Subtitles are part of the video's content. You may extract them for personal study, accessibility, or for videos you own. Republishing subtitles without permission may violate copyright.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I download subtitles in any language?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">You can usually download any language that YouTube lists for the video, including auto-translations.</p>
+        </details>
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">What if no subtitles are available?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">If the video has no captions, you may not be able to extract subtitles. Some tools can auto-transcribe, but accuracy varies.</p>
+        </details>
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I edit subtitle files?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes. SRT and VTT files are plain text and can be edited in any text editor.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
