@@ -1,7 +1,7 @@
 [
   {
     "slug": "youtube-video-downloader",
-    "title": "YouTube Video Downloader — Save Videos in HD",
+    "title": "YouTube Video Downloader \u2014 Save Videos in HD",
     "site": "YouTube",
     "formats": "MP4 video and MP3 audio",
     "summary": "How to download YouTube videos in MP4, choose the best quality, and stay within copyright rules.",
@@ -9,7 +9,7 @@
   },
   {
     "slug": "tiktok-video-downloader",
-    "title": "TikTok Video Downloader — No Watermark",
+    "title": "TikTok Video Downloader \u2014 No Watermark",
     "site": "TikTok",
     "formats": "MP4 without watermark",
     "summary": "Download TikTok videos without watermark quickly. Works for TikTok app and web links.",
@@ -17,7 +17,7 @@
   },
   {
     "slug": "instagram-video-downloader",
-    "title": "Instagram Video Downloader — Reels, Posts, Stories",
+    "title": "Instagram Video Downloader \u2014 Reels, Posts, Stories",
     "site": "Instagram",
     "formats": "MP4",
     "summary": "Save Instagram reels, posts, and stories as MP4 files on any device without installing apps.",
@@ -25,7 +25,7 @@
   },
   {
     "slug": "facebook-video-downloader",
-    "title": "Facebook Video Downloader — Public & Private",
+    "title": "Facebook Video Downloader \u2014 Public & Private",
     "site": "Facebook",
     "formats": "MP4",
     "summary": "How to download Facebook videos, reels, and live streams in MP4 format.",
@@ -41,7 +41,7 @@
   },
   {
     "slug": "vimeo-video-downloader",
-    "title": "Vimeo Video Downloader — HD & 4K",
+    "title": "Vimeo Video Downloader \u2014 HD & 4K",
     "site": "Vimeo",
     "formats": "MP4 in HD or 4K when available",
     "summary": "Download Vimeo videos in HD and 4K quality when permitted by the uploader.",
@@ -57,7 +57,7 @@
   },
   {
     "slug": "reddit-video-downloader",
-    "title": "Reddit Video Downloader — With Audio",
+    "title": "Reddit Video Downloader \u2014 With Audio",
     "site": "Reddit",
     "formats": "MP4 with audio",
     "summary": "Save Reddit videos and posts with audio as MP4 from public subreddit links.",
@@ -73,7 +73,7 @@
   },
   {
     "slug": "bandcamp-to-mp3",
-    "title": "Bandcamp to MP3 — Download Music Free",
+    "title": "Bandcamp to MP3 \u2014 Download Music Free",
     "site": "Bandcamp",
     "formats": "MP3 or FLAC",
     "summary": "Download Bandcamp tracks and albums as MP3 or FLAC when available.",
@@ -81,7 +81,7 @@
   },
   {
     "slug": "bilibili-video-downloader",
-    "title": "Bilibili Video Downloader — HD Anime & Clips",
+    "title": "Bilibili Video Downloader \u2014 HD Anime & Clips",
     "site": "Bilibili",
     "formats": "MP4",
     "summary": "Download Bilibili videos, anime clips, and shows in HD MP4.",
@@ -89,7 +89,7 @@
   },
   {
     "slug": "twitch-clip-downloader",
-    "title": "Twitch Clip Downloader — Save Moments",
+    "title": "Twitch Clip Downloader \u2014 Save Moments",
     "site": "Twitch",
     "formats": "MP4",
     "summary": "Download Twitch clips and highlights as MP4 for offline viewing.",
@@ -97,7 +97,7 @@
   },
   {
     "slug": "ted-talk-downloader",
-    "title": "TED Talk Downloader — Save Talks Offline",
+    "title": "TED Talk Downloader \u2014 Save Talks Offline",
     "site": "TED",
     "formats": "MP4",
     "summary": "Download TED Talks and presentations as MP4 to watch offline.",
@@ -105,7 +105,7 @@
   },
   {
     "slug": "9gag-video-downloader",
-    "title": "9GAG Video Downloader — Funny Videos",
+    "title": "9GAG Video Downloader \u2014 Funny Videos",
     "site": "9GAG",
     "formats": "MP4 or WEBM",
     "summary": "Download 9GAG videos, memes, and GIFs as MP4 or WEBM.",
@@ -129,7 +129,7 @@
   },
   {
     "slug": "mixcloud-to-mp3",
-    "title": "Mixcloud to MP3 — DJ Mixes & Podcasts",
+    "title": "Mixcloud to MP3 \u2014 DJ Mixes & Podcasts",
     "site": "Mixcloud",
     "formats": "MP3",
     "summary": "Download Mixcloud DJ mixes, radio shows, and podcasts as MP3.",
@@ -145,7 +145,7 @@
   },
   {
     "slug": "peertube-video-downloader",
-    "title": "PeerTube Video Downloader — Decentralized Video",
+    "title": "PeerTube Video Downloader \u2014 Decentralized Video",
     "site": "PeerTube",
     "formats": "MP4",
     "summary": "Download PeerTube videos from any instance as MP4.",
@@ -169,7 +169,7 @@
   },
   {
     "slug": "spotify-podcast-downloader",
-    "title": "Spotify Podcast Downloader — Save Episodes",
+    "title": "Spotify Podcast Downloader \u2014 Save Episodes",
     "site": "Spotify Podcasts",
     "formats": "MP3 audio",
     "summary": "Download Spotify podcast episodes and shows as MP3.",
@@ -302,5 +302,165 @@
     "formats": "JPG, PNG image",
     "summary": "Download YouTube video thumbnails in all sizes from 120x90 to 1280x720.",
     "description": "YouTube thumbnail downloader guide. Download video thumbnails in HD and all standard sizes."
+  },
+  {
+    "slug": "how-to-download-reddit-videos-with-audio",
+    "title": "How to Download Reddit Videos with Audio",
+    "site": "Reddit",
+    "formats": "MP4 with audio",
+    "summary": "Save Reddit posts and videos with audio as MP4 from public subreddit links.",
+    "description": "Reddit video downloader with audio. Learn how to download Reddit videos and posts as MP4."
+  },
+  {
+    "slug": "how-to-download-soundcloud-music-to-mp3",
+    "title": "How to Download SoundCloud Music to MP3",
+    "site": "SoundCloud",
+    "formats": "MP3, M4A, WAV",
+    "summary": "Convert SoundCloud tracks, playlists, and sets to MP3 or WAV quickly.",
+    "description": "SoundCloud to MP3 downloader guide. Learn how to download SoundCloud music as MP3, M4A, or WAV."
+  },
+  {
+    "slug": "how-to-download-bilibili-videos",
+    "title": "How to Download Bilibili Videos",
+    "site": "Bilibili",
+    "formats": "MP4",
+    "summary": "Download anime, clips, and shows from Bilibili in MP4 format.",
+    "description": "Bilibili video downloader guide. Learn how to save Bilibili videos and anime clips as MP4."
+  },
+  {
+    "slug": "how-to-download-dailymotion-videos",
+    "title": "How to Download Dailymotion Videos",
+    "site": "Dailymotion",
+    "formats": "MP4",
+    "summary": "Download Dailymotion videos and clips as MP4 in the quality you choose.",
+    "description": "Dailymotion video downloader guide. Save Dailymotion videos as MP4 with ClipVault."
+  },
+  {
+    "slug": "how-to-download-9gag-memes-and-videos",
+    "title": "How to Download 9GAG Memes and Videos",
+    "site": "9GAG",
+    "formats": "MP4 or WEBM",
+    "summary": "Save 9GAG memes, funny videos, and GIFs as MP4 or WEBM.",
+    "description": "9GAG video downloader guide. Download 9GAG memes and funny videos as MP4 or WEBM."
+  },
+  {
+    "slug": "how-to-download-odysee-videos",
+    "title": "How to Download Odysee Videos",
+    "site": "Odysee / LBRY",
+    "formats": "MP4",
+    "summary": "Save decentralized Odysee and LBRY videos as MP4.",
+    "description": "Odysee and LBRY video downloader guide. Download decentralized videos as MP4."
+  },
+  {
+    "slug": "how-to-download-internet-archive-videos",
+    "title": "How to Download Internet Archive Videos",
+    "site": "Internet Archive",
+    "formats": "MP4, AVI, OGG",
+    "summary": "Download public domain and archived videos from archive.org in various formats.",
+    "description": "Internet Archive video downloader guide. Save public domain and archived videos as MP4, AVI, or OGG."
+  },
+  {
+    "slug": "how-to-download-peertube-videos",
+    "title": "How to Download PeerTube Videos",
+    "site": "PeerTube",
+    "formats": "MP4",
+    "summary": "Download PeerTube videos from any instance as MP4 for offline viewing.",
+    "description": "PeerTube video downloader guide. Save videos from decentralized PeerTube instances as MP4."
+  },
+  {
+    "slug": "how-to-download-mixcloud-audio",
+    "title": "How to Download Mixcloud Audio",
+    "site": "Mixcloud",
+    "formats": "MP3",
+    "summary": "Download Mixcloud DJ mixes, radio shows, and podcasts as MP3.",
+    "description": "Mixcloud to MP3 downloader guide. Save DJ mixes, radio shows, and podcasts from Mixcloud."
+  },
+  {
+    "slug": "how-to-download-bandcamp-music",
+    "title": "How to Download Bandcamp Music",
+    "site": "Bandcamp",
+    "formats": "MP3 or FLAC",
+    "summary": "Download Bandcamp tracks and albums as MP3 or FLAC when available.",
+    "description": "Bandcamp to MP3 downloader guide. Save Bandcamp music in MP3 or FLAC with ClipVault."
+  },
+  {
+    "slug": "how-to-download-podcast-episodes-online",
+    "title": "How to Download Podcast Episodes Online",
+    "site": "podcasts",
+    "formats": "MP3",
+    "summary": "Download podcast episodes and shows as MP3 for offline listening.",
+    "description": "Podcast downloader guide. Save podcast episodes as MP3 for offline listening on any device."
+  },
+  {
+    "slug": "best-video-formats-for-downloading",
+    "title": "Best Video Formats for Downloading",
+    "site": "online video",
+    "formats": "MP4, WEBM, MKV, MOV",
+    "summary": "Learn which video formats to choose when downloading videos for different devices and uses.",
+    "description": "Best video formats for downloading. Compare MP4, WEBM, MKV, and MOV for compatibility, quality, and file size."
+  },
+  {
+    "slug": "how-to-choose-right-video-resolution",
+    "title": "How to Choose the Right Video Resolution",
+    "site": "online video",
+    "formats": "144p to 4K",
+    "summary": "Understand video resolutions from 144p to 4K and pick the best one for your device.",
+    "description": "Video resolution guide. Learn how to choose between 144p, 360p, 720p, 1080p, and 4K when downloading videos."
+  },
+  {
+    "slug": "youtube-shorts-download-guide",
+    "title": "YouTube Shorts Download Guide",
+    "site": "YouTube Shorts",
+    "formats": "MP4",
+    "summary": "Save YouTube Shorts as MP4 for offline viewing on any device.",
+    "description": "YouTube Shorts downloader guide. Learn how to download YouTube Shorts videos as MP4."
+  },
+  {
+    "slug": "how-to-download-videos-on-android",
+    "title": "How to Download Videos on Android",
+    "site": "Android",
+    "formats": "MP4 or MP3",
+    "summary": "A complete guide to downloading videos and audio on Android phones and tablets.",
+    "description": "Android video downloader guide. Save videos and audio on Android using any browser."
+  },
+  {
+    "slug": "how-to-download-videos-on-pc-without-software",
+    "title": "How to Download Videos on PC Without Software",
+    "site": "Windows / Mac / Linux",
+    "formats": "MP4 or MP3",
+    "summary": "Download videos on your computer without installing any software using a web browser.",
+    "description": "PC video downloader guide. Save videos on Windows, Mac, and Linux without installing software."
+  },
+  {
+    "slug": "how-to-download-live-stream-replays",
+    "title": "How to Download Live Stream Replays",
+    "site": "live streams",
+    "formats": "MP4",
+    "summary": "Save live stream replays from Twitch, YouTube Live, and other platforms as MP4.",
+    "description": "Live stream replay downloader guide. Save past live streams from Twitch, YouTube Live, and more as MP4."
+  },
+  {
+    "slug": "downloading-videos-safely-no-malware",
+    "title": "Downloading Videos Safely Without Malware",
+    "site": "online video",
+    "formats": "MP4 or MP3",
+    "summary": "Learn how to avoid malware, popups, and scams while downloading videos online.",
+    "description": "Safe video downloading guide. Avoid malware and scams while downloading videos and audio online."
+  },
+  {
+    "slug": "how-to-download-educational-videos-legally",
+    "title": "How to Download Educational Videos Legally",
+    "site": "education",
+    "formats": "MP4 or MP3",
+    "summary": "Save educational videos, lectures, and tutorials for personal study while respecting copyright.",
+    "description": "Educational video downloader guide. Learn how to download lectures and tutorials legally for offline study."
+  },
+  {
+    "slug": "top-10-sites-free-stock-video-downloads",
+    "title": "Top 10 Sites for Free Stock Video Downloads",
+    "site": "stock video",
+    "formats": "MP4, MOV",
+    "summary": "Discover the best free stock video sites with legally downloadable footage.",
+    "description": "Top 10 free stock video sites. Download free stock footage for personal and commercial projects."
   }
 ]

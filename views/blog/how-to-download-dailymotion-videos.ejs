@@ -1,0 +1,38 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">How to Download Dailymotion Videos</h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Last updated: 2026</p>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-slate-600 dark:text-slate-400">
+        Dailymotion is a major video-sharing platform hosting news, music, sports, and entertainment content. If you want to save a Dailymotion video to watch later, you can do it in a few simple steps.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">What makes Dailymotion a good source</h2>
+      <p class="text-slate-600 dark:text-slate-400">Dailymotion often has content that is hard to find elsewhere, including European TV clips, music interviews, and independent films. The platform supports multiple resolutions, so you can pick the quality that matches your device and data plan.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
+      <p class="text-slate-600 dark:text-slate-400">Only download content you created, own, or have explicit permission to use. Respect copyright, platform terms, and local laws. For more details, read our <a href="/content-policy" class="text-sky-600 dark:text-sky-400 hover:underline">Content Policy</a>.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {% for q, a in faqs %}
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
