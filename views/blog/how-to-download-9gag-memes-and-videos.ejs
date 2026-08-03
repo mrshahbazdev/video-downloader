@@ -13,12 +13,12 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
       <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+        <li>Open the 9GAG post in your browser or app.</li><li>Copy the post URL from the address bar.</li><li>Paste the link into ClipVault and click Get Video.</li><li>Select MP4 or WEBM from the format list.</li><li>Click to download the meme or video.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+        <li>Short clips download quickly even on mobile data.</li><li>MP4 works best for sharing on WhatsApp, Telegram, and other apps.</li><li>Always credit the original creator when resharing.</li><li>Avoid downloading content that violates 9GAG's rules.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
@@ -26,12 +26,22 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {% for q, a in faqs %}
+        
         <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I download 9GAG GIFs?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes, GIFs are often available as MP4 or WEBM.</p>
         </details>
-        {% endfor %}
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Do 9GAG videos have watermarks?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">No, downloaded videos usually do not include 9GAG branding.</p>
+        </details>
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is it legal to share downloaded 9GAG videos?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Only if you have permission or the content is public domain.</p>
+        </details>
+        
       </div>
     </div>
   </div>

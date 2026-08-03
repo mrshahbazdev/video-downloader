@@ -13,12 +13,12 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
       <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+        <li>Choose a stock video site from our recommended list.</li><li>Search for the footage you need.</li><li>Read the license terms for each clip.</li><li>Download the clip in the highest available resolution.</li><li>Credit the creator if the license requires it.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+        <li>Always check the license before using footage commercially.</li><li>Look for 4K clips if your final project is high resolution.</li><li>Use consistent color grading across multiple clips.</li><li>Keep a folder of favorite clips organized by theme.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
@@ -26,12 +26,22 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {% for q, a in faqs %}
+        
         <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I use free stock videos commercially?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes, if the license allows commercial use.</p>
         </details>
-        {% endfor %}
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Do I need to credit the creator?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Some licenses require attribution; read the terms.</p>
+        </details>
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Are these sites safe?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">The well-known sites listed above are reputable and safe.</p>
+        </details>
+        
       </div>
     </div>
   </div>

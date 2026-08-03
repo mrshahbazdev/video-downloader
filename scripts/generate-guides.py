@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 
 GUIDES = [
     {
@@ -625,29 +626,41 @@ TEMPLATE = r"""<section class="bg-white dark:bg-slate-900 py-16">
 """
 
 def render(tpl, **kwargs):
-    # simple jinja-like replacement
     out = tpl
     for key, val in kwargs.items():
         placeholder = '{{ ' + key + ' }}'
         out = out.replace(placeholder, str(val))
-    # loops
-    import re
-    def loop_replace(m):
-        var = m.group(1).strip()
-        body = m.group(2)
-        items = kwargs.get(var, [])
+    # single variable loops: {% for step in steps %}
+    def single_loop_replace(m):
+        item_var = m.group(1).strip()
+        list_var = m.group(2).strip()
+        body = m.group(3)
+        items = kwargs.get(list_var, [])
         result = ''
+        placeholder = '{{ ' + item_var + ' }}'
         for item in items:
-            if isinstance(item, tuple):
-                q, a = item
-                result += body.replace('{{ q }}', q).replace('{{ a }}', a)
-            else:
-                result += body.replace('{{ item }}', str(item))
+            result += body.replace(placeholder, str(item))
         return result
-    out = re.sub(r'{% for \w+ in (\w+) %}(.*?){% endfor %}', loop_replace, out, flags=re.DOTALL)
+    out = re.sub(r'{% for (\w+) in (\w+) %}(.*?){% endfor %}', single_loop_replace, out, flags=re.DOTALL)
+    # tuple loops: {% for q, a in faqs %}
+    def tuple_loop_replace(m):
+        key1 = m.group(1).strip()
+        key2 = m.group(2).strip()
+        list_var = m.group(3).strip()
+        body = m.group(4)
+        items = kwargs.get(list_var, [])
+        result = ''
+        p1 = '{{ ' + key1 + ' }}'
+        p2 = '{{ ' + key2 + ' }}'
+        for item in items:
+            if isinstance(item, (tuple, list)) and len(item) >= 2:
+                result += body.replace(p1, str(item[0])).replace(p2, str(item[1]))
+        return result
+    out = re.sub(r'{% for (\w+),\s*(\w+) in (\w+) %}(.*?){% endfor %}', tuple_loop_replace, out, flags=re.DOTALL)
     return out
 
 def main():
+    force = '--overwrite' in sys.argv
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     blog_dir = os.path.join(base, 'views', 'blog')
     json_path = os.path.join(base, 'data', 'blogPosts.json')
@@ -656,7 +669,7 @@ def main():
     existing_slugs = {p['slug'] for p in posts}
     current_year = str(__import__('datetime').datetime.now().year)
     for guide in GUIDES:
-        if guide['slug'] in existing_slugs:
+        if guide['slug'] in existing_slugs and not force:
             print(f"Skipping existing {guide['slug']}")
             continue
         rendered = render(TEMPLATE,
@@ -671,14 +684,16 @@ def main():
         path = os.path.join(blog_dir, guide['slug'] + '.ejs')
         with open(path, 'w') as f:
             f.write(rendered)
-        posts.append({
-            "slug": guide['slug'],
-            "title": guide['title'],
-            "site": guide['site'],
-            "formats": guide['formats'],
-            "summary": guide['summary'],
-            "description": guide['description']
-        })
+        if guide['slug'] not in existing_slugs:
+            posts.append({
+                "slug": guide['slug'],
+                "title": guide['title'],
+                "site": guide['site'],
+                "formats": guide['formats'],
+                "summary": guide['summary'],
+                "description": guide['description']
+            })
+            existing_slugs.add(guide['slug'])
         print(f"Created {path}")
     with open(json_path, 'w') as f:
         json.dump(posts, f, indent=2)

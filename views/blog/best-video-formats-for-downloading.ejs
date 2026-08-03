@@ -13,12 +13,12 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
       <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+        <li>Consider your playback device. Phones and TVs usually prefer MP4.</li><li>Think about file size. Lower resolution MP4 files take less storage.</li><li>For web uploads, MP4 or WEBM work best.</li><li>For editing, MOV or ProRes may be better if available.</li><li>For archiving, MKV can hold multiple audio and subtitle tracks.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+        <li>MP4 with H.264 codec plays almost everywhere.</li><li>WEBM is great for web pages but may not play on older TVs.</li><li>MKV is flexible but may not be supported by all devices.</li><li>MOV files from Apple devices are high quality but large.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
@@ -26,12 +26,22 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {% for q, a in faqs %}
+        
         <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">What is the most compatible video format?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">MP4 with H.264 is supported by almost every device.</p>
         </details>
-        {% endfor %}
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Which format has the smallest file size?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">MP4 and WEBM are usually the most compressed.</p>
+        </details>
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Should I download in 4K?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Only if your screen supports 4K and you have enough storage.</p>
+        </details>
+        
       </div>
     </div>
   </div>

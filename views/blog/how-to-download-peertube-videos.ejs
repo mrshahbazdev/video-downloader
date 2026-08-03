@@ -13,12 +13,12 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
       <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+        <li>Open the PeerTube video on its instance.</li><li>Copy the URL from the address bar.</li><li>Paste the URL into ClipVault and click Get Video.</li><li>Wait for the format list.</li><li>Select MP4 and download.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+        <li>Public videos are easiest to download. Private or local videos may need login.</li><li>Some instances limit downloads; respect the instance's rules.</li><li>MP4 is the standard format and works everywhere.</li><li>Support PeerTube creators through donations or subscriptions when available.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
@@ -26,12 +26,22 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {% for q, a in faqs %}
+        
         <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Do I need an account on the PeerTube instance?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">No, public videos can be downloaded without an account.</p>
         </details>
-        {% endfor %}
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I download live replays?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes, if the replay is published as a public video.</p>
+        </details>
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is PeerTube content free to use?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">It depends on the license chosen by the uploader.</p>
+        </details>
+        
       </div>
     </div>
   </div>

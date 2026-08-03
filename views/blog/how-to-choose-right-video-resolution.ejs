@@ -13,12 +13,12 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Step-by-step guide</h2>
       <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li><li>{{ step }}</li>
+        <li>Check your device's screen resolution.</li><li>Estimate how much storage you can spare.</li><li>Consider your internet speed and data plan.</li><li>For phones, 720p is usually enough.</li><li>For TVs and monitors, choose 1080p or 4K when available.</li>
       </ol>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Helpful tips</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li><li>{{ tip }}</li>
+        <li>Downloading a higher resolution than your screen can show wastes storage.</li><li>720p uses about 1 GB per hour; 1080p about 2 GB; 4K can use 7 GB or more.</li><li>For speech and tutorials, 720p is often sufficient.</li><li>For nature and cinematic videos, higher resolutions matter more.</li>
       </ul>
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Legal and safety reminder</h2>
@@ -26,12 +26,22 @@
 
       <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-8 mb-4">Frequently Asked Questions</h2>
       <div class="space-y-4">
-        {% for q, a in faqs %}
+        
         <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">{{ q }}</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">{{ a }}</p>
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is 720p good enough?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes, for most phones and small tablets.</p>
         </details>
-        {% endfor %}
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Does higher resolution always look better?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Not if your screen cannot display it.</p>
+        </details>
+        
+        <details class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I change resolution after downloading?</summary>
+          <p class="mt-3 text-slate-600 dark:text-slate-400 text-sm">Yes, with a video converter, but quality may be lost.</p>
+        </details>
+        
       </div>
     </div>
   </div>
