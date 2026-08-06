@@ -1,9 +1,10 @@
 # CloudLinux / cPanel Phusion Passenger config for Node.js
-# Replace 'clipvaultz.online' with your actual domain and 'jobspics' with your cPanel username if different.
+# Replace 'clipvaultz.online' with your actual domain, 'jobspics' with your cPanel username,
+# and '/test' with your actual application subfolder if different.
 PassengerEnabled On
 PassengerAppType node
 PassengerBaseURI /
-PassengerAppRoot /home/jobspics/domains/clipvaultz.online/public_html
+PassengerAppRoot /home/jobspics/domains/clipvaultz.online/public_html/test
 PassengerStartupFile server.js
-PassengerNodejs /home/jobspics/nodevenv/domains/clipvaultz.online/public_html/20/bin/node
+PassengerNodejs /home/jobspics/nodevenv/domains/clipvaultz.online/public_html/test/20/bin/node
 PassengerFriendlyErrorPages Off
