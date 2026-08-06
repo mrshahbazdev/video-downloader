@@ -19,14 +19,9 @@ function requireLogin(req, res, next) {
 router.use(express.urlencoded({ extended: true }));
 
 async function ensureAdminUser() {
-  const existing = await adminDb.findAdmin(ADMIN_USERNAME);
   const hash = await bcrypt.hash(ADMIN_PASSWORD, 10);
-  if (!existing) {
-    await adminDb.saveAdmin(ADMIN_USERNAME, hash);
-    console.log(`Admin user '${ADMIN_USERNAME}' created/updated.`);
-  } else if (ADMIN_PASSWORD !== 'changeme') {
-    await adminDb.saveAdmin(ADMIN_USERNAME, hash);
-  }
+  await adminDb.saveAdmin(ADMIN_USERNAME, hash);
+  console.log(`Admin user '${ADMIN_USERNAME}' synced from environment.`);
 }
 
 router.get('/login', (req, res) => {
@@ -43,10 +38,14 @@ router.get('/login', (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  const user = await adminDb.findAdmin(username);
   let valid = false;
-  if (user && user.password_hash) {
-    valid = await bcrypt.compare(password, user.password_hash);
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+    valid = true;
+  } else {
+    const user = await adminDb.findAdmin(username);
+    if (user && user.password_hash) {
+      valid = await bcrypt.compare(password, user.password_hash);
+    }
   }
   if (valid) {
     req.session.admin = { username };

@@ -44,16 +44,28 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(layouts);
 app.set('layout', 'layout');
 
+app.set('trust proxy', 1);
+
+// cPanel Passenger reports HTTPS via !~Passenger-Proto; ensure Express sees it.
+app.use((req, res, next) => {
+  const passengerProto = req.get('!~passenger-proto') || req.get('x-forwarded-proto');
+  if (passengerProto === 'https') {
+    req.headers['x-forwarded-proto'] = 'https';
+  }
+  next();
+});
+
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(express.static('public'));
 app.use('/downloads', express.static(DOWNLOADS_DIR));
 app.use(session({
+  name: 'clipvault.sid',
   secret: process.env.ADMIN_SESSION_SECRET || 'change-me-in-production',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000 },
+  cookie: { secure: process.env.NODE_ENV === 'production', sameSite: 'lax', maxAge: 24 * 60 * 60 * 1000 },
 }));
 
 app.use((req, res, next) => {
