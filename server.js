@@ -181,6 +181,15 @@ function isTikTok(url) {
   }
 }
 
+function isInstagram(url) {
+  try {
+    const host = new URL(url).hostname.toLowerCase();
+    return host === 'instagram.com' || host.endsWith('.instagram.com');
+  } catch {
+    return false;
+  }
+}
+
 async function fetchTikWM(url) {
   const apiUrl = `https://www.tikwm.com/api/?url=${encodeURIComponent(url)}&hd=1`;
   const response = await fetch(apiUrl, {
@@ -387,10 +396,8 @@ function getBaseOptions(url, cookiePath) {
     noCheckCertificates: true,
     noWarnings: true,
     preferFreeFormats: true,
-    addHeader: [
-      `referer:${getReferer(url)}`,
-      'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-    ],
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+    addHeader: [`referer:${getReferer(url)}`],
   };
   if (process.env.YTDLP_IMPERSONATE === '1') options.impersonate = 'chrome';
   if (process.env.PROXY_URL) options.proxy = process.env.PROXY_URL;
@@ -412,13 +419,21 @@ function getYouTubeExtractorArgs(poToken, visitorData) {
   return [...new Set(args)];
 }
 
+function getInstagramExtractorArgs() {
+  return ['instagram:app_id=ios', 'instagram:app_id=web'];
+}
+
 function buildOptionSets(base, url, poToken, visitorData) {
   const sets = [base];
-  if (!isYouTube(url)) return sets;
-
-  getYouTubeExtractorArgs(poToken, visitorData).forEach((arg) => {
-    sets.push({ ...base, extractorArgs: arg });
-  });
+  if (isYouTube(url)) {
+    getYouTubeExtractorArgs(poToken, visitorData).forEach((arg) => {
+      sets.push({ ...base, extractorArgs: arg });
+    });
+  } else if (isInstagram(url)) {
+    getInstagramExtractorArgs().forEach((arg) => {
+      sets.push({ ...base, extractorArgs: arg });
+    });
+  }
 
   return sets;
 }
