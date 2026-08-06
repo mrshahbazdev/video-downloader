@@ -17,13 +17,13 @@ A polished, AdSense-ready Node.js video downloader built on top of [yt-dlp](http
 - AdSense placeholders and dynamic `ads.txt` generation.
 - Downloads saved in the `downloads/` folder and auto-cleaned.
 - CLI for command-line use.
-- **Admin panel (in progress)** — manage site settings, AdSense, GSC/Bing verification, tools, and blog posts via MySQL.
+- **Admin panel** — manage site settings, AdSense, GSC/Bing verification, tools, and blog posts via MySQL or JSON fallback.
 
 ## Requirements
 
 - Node.js 18+
 - Python 3.10+ (yt-dlp will auto-download on first run)
-- MySQL 5.7+ (optional for admin panel; SQLite fallback coming soon)
+- MySQL 5.7+ (optional for admin panel; JSON fallback is used when no MySQL credentials are set)
 
 ## Install
 
@@ -51,7 +51,12 @@ CAPTCHA_MODE=math
 CAPTCHA_SECRET=change_me_to_a_random_string
 DOWNLOAD_TOKEN_SECRET=change_me_to_another_random_string
 
-# MySQL (only needed for the admin panel)
+# Admin panel
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=your_strong_password
+ADMIN_SESSION_SECRET=change_me_to_a_random_session_secret
+
+# MySQL (optional — admin panel uses JSON fallback if not set)
 DB_HOST=localhost
 DB_USER=clipvault_user
 DB_PASSWORD=your_db_password
@@ -135,15 +140,23 @@ node cli.js "https://www.youtube.com/watch?v=..." best
 
 ## Admin Panel
 
-A MySQL-backed admin panel is being added to manage:
+The admin panel is available at `/admin` and supports MySQL or a JSON file fallback.
 
-- Site settings (title, description, contact info, logo, favicon).
-- AdSense publisher ID and ad unit slots.
-- Google Search Console and Bing Webmaster Tools verification codes.
-- Tools catalog and static blog posts.
-- User downloads and system health.
+**Default login:**
+- URL: `/admin/login`
+- Username: `admin` (or `ADMIN_USERNAME` from `.env`)
+- Password: `ADMIN_PASSWORD` from `.env` (set a strong password before going live)
 
-Required MySQL credentials are read from `.env`. Set `DB_HOST`, `DB_USER`, `DB_PASSWORD`, and `DB_NAME`, then restart the app. The admin tables are created automatically on startup.
+**What you can manage:**
+
+- **Dashboard** — total tools, blog posts, and storage backend.
+- **Settings** — site title, description, keywords, contact email/address, AdSense client ID, Google Analytics ID, Google Search Console verification, and Bing Webmaster Tools verification.
+- **Tools** — search and edit the 1116+ tool titles, descriptions, and placeholders.
+- **Blog** — view and delete static blog posts.
+
+All setting changes are applied immediately without a server restart. Verification meta tags are injected into the site `<head>` automatically.
+
+If MySQL credentials are set in `.env`, admin tables are created on startup. If not, the panel stores data in `data/admin-db.json` (ignored by Git).
 
 ## Deploy on cPanel / Live Domain
 
