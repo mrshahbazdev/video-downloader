@@ -1,0 +1,52 @@
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-8">Site Settings</h1>
+
+<% if (success) { %>
+  <div class="mb-6 p-3 rounded-lg bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 text-sm"><%= success %></div>
+<% } %>
+
+<form action="/admin/settings" method="POST" class="card space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Site Title</label>
+      <input type="text" name="site_title" value="<%= settings.site_title || '' %>" class="input-url" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Contact Email</label>
+      <input type="email" name="contact_email" value="<%= settings.contact_email || '' %>" class="input-url" />
+    </div>
+    <div class="md:col-span-2">
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Site Description</label>
+      <textarea name="site_description" rows="3" class="input-url"><%= settings.site_description || '' %></textarea>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Default Keywords</label>
+      <input type="text" name="site_keywords" value="<%= settings.site_keywords || '' %>" class="input-url" />
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Comma-separated keywords used when a page does not set its own.</p>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">AdSense Client ID</label>
+      <input type="text" name="adsense_client_id" value="<%= settings.adsense_client_id || '' %>" class="input-url" placeholder="ca-pub-XXXXXXXXXXXXXXXX" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Analytics / Measurement ID</label>
+      <input type="text" name="analytics_id" value="<%= settings.analytics_id || '' %>" class="input-url" placeholder="G-XXXXXXXXXX" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Google Search Console verification</label>
+      <input type="text" name="gsc_verification" value="<%= settings.gsc_verification || '' %>" class="input-url" />
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">HTML tag content only, e.g. abc123...</p>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Bing Webmaster verification</label>
+      <input type="text" name="bing_verification" value="<%= settings.bing_verification || '' %>" class="input-url" />
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">HTML tag content only, e.g. 1234567890A...</p>
+    </div>
+    <div class="md:col-span-2">
+      <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Contact Address</label>
+      <textarea name="contact_address" rows="2" class="input-url"><%= settings.contact_address || '' %></textarea>
+    </div>
+  </div>
+  <div class="flex items-center justify-end">
+    <button type="submit" class="btn-primary">Save Settings</button>
+  </div>
+</form>

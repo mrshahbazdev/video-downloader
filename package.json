@@ -20,12 +20,15 @@
   "license": "ISC",
   "description": "All-in-one video downloader web app supporting 1000+ sites via yt-dlp.",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dargs": "^7.0.0",
     "dotenv": "^17.4.2",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
-    "express-ejs-layouts": "^2.5.1"
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.23.2"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.19"

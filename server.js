@@ -8,6 +8,10 @@ const { createYtdl, findPython } = require('./lib/ytdlp');
 const { downloadYtdlp } = require('./scripts/install-ytdlp');
 const { pipeline } = require('node:stream/promises');
 const { Readable } = require('node:stream');
+const session = require('express-session');
+const { siteConfig, applySettings } = require('./lib/siteConfig');
+const adminDb = require('./lib/adminDb');
+const { router: adminRouter, ensureAdminUser } = require('./routes/admin');
 const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
 const DEFAULT_YTDLP = path.join(__dirname, 'bin', 'yt-dlp');
 let YTDLP_BINARY = process.env.YOUTUBE_DL_BINARY || (fs.existsSync(SYSTEM_YTDLP) ? SYSTEM_YTDLP : (fs.existsSync(DEFAULT_YTDLP) ? DEFAULT_YTDLP : DEFAULT_YTDLP));
@@ -21,10 +25,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const DOWNLOADS_DIR = path.join(__dirname, 'downloads');
 const COOKIES_DIR = path.join(__dirname, 'cookies');
-const SITE_TITLE = process.env.SITE_TITLE || 'ClipVault';
-const ADSENSE_CLIENT_ID = process.env.ADSENSE_CLIENT_ID || 'ca-pub-0000000000000000';
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'contact@example.com';
-const CONTACT_ADDRESS = process.env.CONTACT_ADDRESS || '';
 const YOUTUBE_COOKIES_PATH = process.env.YOUTUBE_COOKIES_PATH || '';
 const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY || '';
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
@@ -49,12 +49,34 @@ app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(express.static('public'));
 app.use('/downloads', express.static(DOWNLOADS_DIR));
+app.use(session({
+  secret: process.env.ADMIN_SESSION_SECRET || 'change-me-in-production',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000 },
+}));
+
+app.use((req, res, next) => {
+  res.locals.siteTitle = siteConfig.siteTitle;
+  res.locals.adsenseClientId = siteConfig.adsenseClientId;
+  res.locals.contactEmail = siteConfig.contactEmail;
+  res.locals.contactAddress = siteConfig.contactAddress;
+  res.locals.gscVerification = siteConfig.gscVerification;
+  res.locals.bingVerification = siteConfig.bingVerification;
+  res.locals.analyticsId = siteConfig.analyticsId;
+  next();
+});
+
+app.use('/admin', adminRouter);
 
 app.locals = {
-  siteTitle: SITE_TITLE,
-  adsenseClientId: ADSENSE_CLIENT_ID,
-  contactEmail: CONTACT_EMAIL,
-  contactAddress: CONTACT_ADDRESS,
+  siteTitle: siteConfig.siteTitle,
+  adsenseClientId: siteConfig.adsenseClientId,
+  contactEmail: siteConfig.contactEmail,
+  contactAddress: siteConfig.contactAddress,
+  gscVerification: siteConfig.gscVerification,
+  bingVerification: siteConfig.bingVerification,
+  analyticsId: siteConfig.analyticsId,
   currentYear: new Date().getFullYear(),
   recaptchaSiteKey: RECAPTCHA_SITE_KEY,
   captchaMode: CAPTCHA_MODE,
@@ -405,7 +427,7 @@ async function callWithFallbacks(url, baseOptions) {
 function getMeta(req, options = {}) {
   const host = `${req.protocol}://${req.get('host')}`;
   return {
-    title: options.meta?.title || SITE_TITLE,
+    title: options.meta?.title || siteConfig.siteTitle,
     description: options.meta?.description || 'Download videos from YouTube, TikTok, Instagram, Twitter, Facebook, and 1000+ sites quickly and securely.',
     keywords: options.meta?.keywords || '',
     image: `${host}/images/og-default.png`,
@@ -421,7 +443,7 @@ function renderPage(req, res, view, options = {}) {
 app.get('/', (req, res) => {
   renderPage(req, res, 'index', {
     meta: {
-      title: `${SITE_TITLE} — Free All-in-One Video Downloader for 1000+ Sites`,
+      title: `${siteConfig.siteTitle} — Free All-in-One Video Downloader for 1000+ Sites`,
       description: 'Download videos and audio from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, Twitch, SoundCloud, and 1000+ sites for free.',
       keywords: 'free video downloader, online video downloader, YouTube downloader, TikTok downloader, Instagram downloader, download videos online, MP4 downloader',
     },
@@ -432,7 +454,7 @@ app.get('/tools', (req, res) => {
   renderPage(req, res, 'tools', {
     tools: toolsData,
     meta: {
-      title: `Free Video Downloader Tools — ${SITE_TITLE}`,
+      title: `Free Video Downloader Tools — ${siteConfig.siteTitle}`,
       description: 'Explore free tools to download videos from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, and 1000+ sites. Convert to MP3, grab thumbnails, subtitles, and more.',
       keywords: 'video downloader tools, YouTube downloader, TikTok downloader, Instagram downloader, Facebook downloader, Twitter video downloader, MP3 converter, thumbnail downloader, subtitle downloader',
       robots: 'noindex, follow',
@@ -443,7 +465,7 @@ app.get('/tools', (req, res) => {
 app.get('/thumbnail', (req, res) => {
   renderPage(req, res, 'thumbnail', {
     meta: {
-      title: `Free YouTube Thumbnail Downloader — ${SITE_TITLE}`,
+      title: `Free YouTube Thumbnail Downloader — ${siteConfig.siteTitle}`,
       description: 'Download YouTube video thumbnails in HD, SD, and full resolution instantly. Paste a video URL and save the thumbnail image.',
       keywords: 'YouTube thumbnail downloader, download YouTube thumbnail, YouTube thumbnail HD, video thumbnail downloader',
     },
@@ -453,7 +475,7 @@ app.get('/thumbnail', (req, res) => {
 app.get('/subtitle', (req, res) => {
   renderPage(req, res, 'subtitle', {
     meta: {
-      title: `Free Video Subtitle Downloader — ${SITE_TITLE}`,
+      title: `Free Video Subtitle Downloader — ${siteConfig.siteTitle}`,
       description: 'Download subtitles and captions from YouTube and other supported videos. Paste a URL and save subtitles in any language.',
       keywords: 'subtitle downloader, download subtitles, youtube subtitle downloader, caption downloader, video subtitles',
     },
@@ -463,7 +485,7 @@ app.get('/subtitle', (req, res) => {
 app.get('/playlist', (req, res) => {
   renderPage(req, res, 'playlist', {
     meta: {
-      title: `Free Playlist Downloader — ${SITE_TITLE}`,
+      title: `Free Playlist Downloader — ${siteConfig.siteTitle}`,
       description: 'Download entire YouTube playlists and channels. Paste a playlist URL, view all videos, and download them one by one.',
       keywords: 'playlist downloader, youtube playlist downloader, download playlist, channel downloader',
     },
@@ -473,7 +495,7 @@ app.get('/playlist', (req, res) => {
 app.get('/mp3', (req, res) => {
   renderPage(req, res, 'mp3', {
     meta: {
-      title: `Video to MP3 Converter — ${SITE_TITLE}`,
+      title: `Video to MP3 Converter — ${siteConfig.siteTitle}`,
       description: 'Convert videos from YouTube, TikTok, Instagram, and 1000+ sites to MP3 audio. Free online video to MP3 converter.',
       keywords: 'video to mp3, youtube to mp3, convert video to mp3, audio downloader, mp3 converter online',
     },
@@ -496,7 +518,7 @@ toolsData.forEach((t) => {
       toolPlaceholder: t.placeholder || 'Paste video URL here...',
       toolSlug: slug,
       meta: {
-        title: `${t.title} — Free Online — ${SITE_TITLE}`,
+        title: `${t.title} — Free Online — ${siteConfig.siteTitle}`,
         description: `Free ${t.title} online. ${t.desc} Paste the URL, solve the captcha, and save videos or audio in MP4/MP3. No signup needed.`,
         keywords: `${t.keywords || ''}, ${baseKeyword} downloader, free ${baseKeyword} downloader, online ${baseKeyword} downloader, download ${baseKeyword} mp4, download ${baseKeyword} mp3`,
         robots: 'noindex, follow',
@@ -518,7 +540,7 @@ app.get('/supported-sites', (req, res) => {
 app.get('/how-to-use', (req, res) => {
   renderPage(req, res, 'how-to-use', {
     meta: {
-      title: `How to Use — ${SITE_TITLE}`,
+      title: `How to Use — ${siteConfig.siteTitle}`,
       description: 'Learn how to download videos from your favorite platforms in seconds.',
     },
   });
@@ -527,8 +549,8 @@ app.get('/how-to-use', (req, res) => {
 app.get('/about', (req, res) => {
   renderPage(req, res, 'about', {
     meta: {
-      title: `About — ${SITE_TITLE}`,
-      description: `Learn more about ${SITE_TITLE}, a privacy-friendly online video downloader.`,
+      title: `About — ${siteConfig.siteTitle}`,
+      description: `Learn more about ${siteConfig.siteTitle}, a privacy-friendly online video downloader.`,
     },
   });
 });
@@ -536,7 +558,7 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
   renderPage(req, res, 'contact', {
     meta: {
-      title: `Contact — ${SITE_TITLE}`,
+      title: `Contact — ${siteConfig.siteTitle}`,
       description: 'Get in touch with the ClipVault team.',
     },
   });
@@ -545,7 +567,7 @@ app.get('/contact', (req, res) => {
 app.get('/privacy', (req, res) => {
   renderPage(req, res, 'privacy', {
     meta: {
-      title: `Privacy Policy — ${SITE_TITLE}`,
+      title: `Privacy Policy — ${siteConfig.siteTitle}`,
       description: 'Read how we handle your data and protect your privacy.',
     },
   });
@@ -554,7 +576,7 @@ app.get('/privacy', (req, res) => {
 app.get('/terms', (req, res) => {
   renderPage(req, res, 'terms', {
     meta: {
-      title: `Terms of Service — ${SITE_TITLE}`,
+      title: `Terms of Service — ${siteConfig.siteTitle}`,
       description: 'Read the terms and conditions for using our video downloader.',
     },
   });
@@ -563,7 +585,7 @@ app.get('/terms', (req, res) => {
 app.get('/dmca', (req, res) => {
   renderPage(req, res, 'dmca', {
     meta: {
-      title: `DMCA — ${SITE_TITLE}`,
+      title: `DMCA — ${siteConfig.siteTitle}`,
       description: 'Report copyright violations and submit takedown requests.',
     },
   });
@@ -572,7 +594,7 @@ app.get('/dmca', (req, res) => {
 app.get('/disclaimer', (req, res) => {
   renderPage(req, res, 'disclaimer', {
     meta: {
-      title: `Disclaimer — ${SITE_TITLE}`,
+      title: `Disclaimer — ${siteConfig.siteTitle}`,
       description: 'Important usage and copyright disclaimers.',
     },
   });
@@ -581,7 +603,7 @@ app.get('/disclaimer', (req, res) => {
 app.get('/cookie-policy', (req, res) => {
   renderPage(req, res, 'cookie-policy', {
     meta: {
-      title: `Cookie Policy — ${SITE_TITLE}`,
+      title: `Cookie Policy — ${siteConfig.siteTitle}`,
       description: 'Read how we use cookies and similar technologies.',
     },
   });
@@ -590,7 +612,7 @@ app.get('/cookie-policy', (req, res) => {
 app.get('/content-policy', (req, res) => {
   renderPage(req, res, 'content-policy', {
     meta: {
-      title: `Content Policy — ${SITE_TITLE}`,
+      title: `Content Policy — ${siteConfig.siteTitle}`,
       description: 'Our acceptable use, copyright, and content removal policy.',
     },
   });
@@ -602,7 +624,7 @@ app.locals.blogPosts = blogPosts;
 app.get('/blog', (req, res) => {
   renderPage(req, res, 'blog/index', {
     meta: {
-      title: `Video Downloading Guides — ${SITE_TITLE}`,
+      title: `Video Downloading Guides — ${siteConfig.siteTitle}`,
       description: 'Step-by-step guides for downloading YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, and 1000+ supported sites.',
       keywords: 'video downloader guides, how to download YouTube videos, TikTok downloader guide, Instagram downloader tutorial, free video downloader tutorials',
     },
@@ -621,8 +643,8 @@ app.get('/blog/:slug', (req, res, next) => {
       slug: tool.slug,
       site,
       title: `${site} Downloader — Free Online Guide`,
-      summary: `Free ${tool.title} online. ${tool.desc} Use ${SITE_TITLE} to paste the URL, solve the captcha, and download videos or audio in MP4/MP3.`,
-      description: `Free ${tool.title} online. ${tool.desc} Download videos or audio with ${SITE_TITLE}.`,
+      summary: `Free ${tool.title} online. ${tool.desc} Use ${siteConfig.siteTitle} to paste the URL, solve the captcha, and download videos or audio in MP4/MP3.`,
+      description: `Free ${tool.title} online. ${tool.desc} Download videos or audio with ${siteConfig.siteTitle}.`,
       formats: 'MP4, MP3, HD, and 4K when available',
       keywords: `${tool.keywords || ''}, ${site.toLowerCase()} downloader, download ${site.toLowerCase()} videos, ${site.toLowerCase()} to mp4, ${site.toLowerCase()} to mp3`,
     };
@@ -630,8 +652,8 @@ app.get('/blog/:slug', (req, res, next) => {
   const viewPath = path.join(__dirname, 'views', 'blog', `${post.slug}.ejs`);
   const baseKeyword = post.site.toLowerCase();
   const meta = {
-    title: `${post.title} — ${SITE_TITLE}`,
-    description: post.description || `Read our guide on ${post.title.toLowerCase()} at ${SITE_TITLE}.`,
+    title: `${post.title} — ${siteConfig.siteTitle}`,
+    description: post.description || `Read our guide on ${post.title.toLowerCase()} at ${siteConfig.siteTitle}.`,
     keywords: `${post.keywords || ''}, ${baseKeyword} downloader, download ${baseKeyword} videos, ${baseKeyword} to mp4, ${baseKeyword} to mp3, free ${baseKeyword} downloader, ${baseKeyword} downloader guide`,
     robots: isAutoGenerated ? 'noindex, follow' : undefined,
   };
@@ -642,10 +664,10 @@ app.get('/blog/:slug', (req, res, next) => {
 });
 
 app.get('/ads.txt', (req, res) => {
-  if (!ADSENSE_CLIENT_ID || ADSENSE_CLIENT_ID === 'ca-pub-0000000000000000') {
-    return res.type('text/plain').send('# Add ADSENSE_CLIENT_ID to your .env file to enable ads.txt');
+  if (!siteConfig.adsenseClientId || siteConfig.adsenseClientId === 'ca-pub-0000000000000000') {
+    return res.type('text/plain').send('# Set ADSENSE_CLIENT_ID in your .env file to enable ads.txt');
   }
-  const pubId = ADSENSE_CLIENT_ID.replace('ca-pub-', '');
+  const pubId = siteConfig.adsenseClientId.replace('ca-pub-', '');
   res.type('text/plain').send(`google.com, ${pubId}, DIRECT, f08c47fec0942fa0`);
 });
 
@@ -1002,11 +1024,11 @@ app.get('/health', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).render('404', {
-    path: req.path,
+  renderPage(req, res, '404', {
     meta: {
-      title: `404 — ${SITE_TITLE}`,
+      title: `404 — ${siteConfig.siteTitle}`,
       description: 'The page you are looking for was not found.',
+      robots: 'noindex, follow',
     },
   });
 });
@@ -1033,8 +1055,11 @@ async function startApp() {
     console.log('Using yt-dlp binary:', YTDLP_BINARY);
   }
 
+  await adminDb.initDb();
+  await ensureAdminUser();
+  await applySettings();
   app.listen(PORT, () => {
-    console.log(`${SITE_TITLE} server running at http://localhost:${PORT}`);
+    console.log(`${siteConfig.siteTitle} server running at http://localhost:${PORT}`);
   });
 }
 

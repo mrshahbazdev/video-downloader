@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || 'Admin' %> — <%= siteTitle %></title>
+  <link rel="stylesheet" href="/css/tailwind.min.css?v=<%= Date.now() %>" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen">
+  <% if (admin) { %>
+  <nav class="bg-slate-900 text-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/admin" class="font-bold text-lg"><%= siteTitle %> Admin</a>
+        <div class="hidden md:flex space-x-6 text-sm">
+          <a href="/admin" class="hover:text-sky-300">Dashboard</a>
+          <a href="/admin/settings" class="hover:text-sky-300">Settings</a>
+          <a href="/admin/tools" class="hover:text-sky-300">Tools</a>
+          <a href="/admin/blog" class="hover:text-sky-300">Blog</a>
+          <a href="/" target="_blank" class="hover:text-sky-300">View Site</a>
+          <a href="/admin/logout" class="hover:text-rose-300">Logout</a>
+        </div>
+      </div>
+    </div>
+    <div class="md:hidden border-t border-slate-700">
+      <div class="flex flex-col px-4 py-2 space-y-2 text-sm">
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/settings">Settings</a>
+        <a href="/admin/tools">Tools</a>
+        <a href="/admin/blog">Blog</a>
+        <a href="/" target="_blank">View Site</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <% } %>
+  <main class="<%= admin ? 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10' : 'flex items-center justify-center min-h-screen' %>">
+    <%- body %>
+  </main>
+</body>
+</html>

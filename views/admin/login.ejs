@@ -1,0 +1,20 @@
+<div class="w-full max-w-md">
+  <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 shadow-lg">
+    <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2"><%= siteTitle %> Admin</h1>
+    <p class="text-slate-600 dark:text-slate-400 mb-6">Sign in to manage settings, tools, and content.</p>
+    <% if (error) { %>
+      <div class="mb-4 p-3 rounded-lg bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300 text-sm"><%= error %></div>
+    <% } %>
+    <form action="/admin/login" method="POST" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+        <input type="text" name="username" required class="input-url" value="<%= username || '' %>" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
+        <input type="password" name="password" required class="input-url" />
+      </div>
+      <button type="submit" class="btn-primary w-full">Sign In</button>
+    </form>
+  </div>
+</div>

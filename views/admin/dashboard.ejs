@@ -1,0 +1,38 @@
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-8">Dashboard</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+  <div class="card card-hover">
+    <p class="text-sm text-slate-500 dark:text-slate-400">Total Tools</p>
+    <p class="text-3xl font-bold text-slate-900 dark:text-white"><%= stats.tools %></p>
+  </div>
+  <div class="card card-hover">
+    <p class="text-sm text-slate-500 dark:text-slate-400">Blog Posts</p>
+    <p class="text-3xl font-bold text-slate-900 dark:text-white"><%= stats.blog %></p>
+  </div>
+  <div class="card card-hover">
+    <p class="text-sm text-slate-500 dark:text-slate-400">Storage Backend</p>
+    <p class="text-lg font-semibold text-slate-900 dark:text-white"><%= stats.dbType %></p>
+  </div>
+  <div class="card card-hover">
+    <p class="text-sm text-slate-500 dark:text-slate-400">Site Title</p>
+    <p class="text-lg font-semibold text-slate-900 dark:text-white"><%= siteTitle %></p>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+  <div class="card">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Quick Links</h2>
+    <div class="space-y-2 text-sm">
+      <a href="/admin/settings" class="block text-sky-600 dark:text-sky-400 hover:underline">Edit site settings</a>
+      <a href="/admin/tools" class="block text-sky-600 dark:text-sky-400 hover:underline">Manage tools catalog</a>
+      <a href="/admin/blog" class="block text-sky-600 dark:text-sky-400 hover:underline">Manage blog posts</a>
+      <a href="/sitemap.xml" target="_blank" class="block text-sky-600 dark:text-sky-400 hover:underline">View sitemap.xml</a>
+      <a href="/ads.txt" target="_blank" class="block text-sky-600 dark:text-sky-400 hover:underline">View ads.txt</a>
+    </div>
+  </div>
+  <div class="card">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Verification Codes</h2>
+    <p class="text-sm text-slate-600 dark:text-slate-400 mb-2">Google Search Console: <code class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded"><%= settings.gsc_verification || 'not set' %></code></p>
+    <p class="text-sm text-slate-600 dark:text-slate-400">Bing Webmaster: <code class="bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded"><%= settings.bing_verification || 'not set' %></code></p>
+  </div>
+</div>
