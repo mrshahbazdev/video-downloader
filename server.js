@@ -747,14 +747,20 @@ app.get('/llms.txt', (req, res) => {
     'DMCA',
   ];
   const corePaths = ['', 'supported-sites', 'tools', 'how-to-use', 'blog', 'about', 'contact', 'privacy', 'terms', 'content-policy', 'disclaimer', 'cookie-policy', 'dmca'];
-  let content = `# ${siteConfig.siteTitle}\n\n${siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.'}\n\n## Core Pages\n`;
-  corePaths.forEach((p, i) => {
-    content += `- ${coreLinks[i]}: ${host}/${p}\n`;
+  const description = siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.';
+  let content = `# ${siteConfig.siteTitle}\n\n> ${description}\n\n${siteConfig.siteTitle} provides fast, privacy-friendly video download guides for 1000+ platforms. No signup or software installation is required. Use the service responsibly and only download content you created, own, or have explicit permission to save.\n\n- Tools accept a public video or playlist URL and return available formats.\n- A simple math captcha protects the tools from automated abuse.\n- Optional advanced settings include site cookies, YouTube PO tokens, and visitor data tokens.\n\n## Core Pages\n`;
+  coreLinks.forEach((label, i) => {
+    const path = corePaths[i];
+    content += `- [${label}](${host}/${path})\n`;
   });
   content += '\n## Blog Guides\n';
   blogPosts.forEach((post) => {
-    content += `- ${post.title}: ${host}/blog/${post.slug}\n`;
+    const notes = post.summary || post.description || 'Free download guide';
+    content += `- [${post.title}](${host}/blog/${post.slug}): ${notes}\n`;
   });
+  content += '\n## Optional\n';
+  content += `- [Sitemap](${host}/sitemap.xml): Full list of indexable pages for search engines and agents.\n`;
+  content += `- [Robots](${host}/robots.txt): Crawler access instructions.\n`;
   res.type('text/plain').send(content);
 });
 
