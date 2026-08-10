@@ -2,20 +2,20 @@
   window.ADSENSE_CLIENT_ID = '<%= adsenseClientId %>';
   window.loadAdSense = function () {
     if (window.adSenseLoaded) return;
+    if (window.ADSENSE_CLIENT_ID === 'ca-pub-0000000000000000') return;
     window.adSenseLoaded = true;
     const script = document.createElement('script');
     script.async = true;
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= adsenseClientId %>';
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(window.ADSENSE_CLIENT_ID);
     script.crossOrigin = 'anonymous';
     document.head.appendChild(script);
   };
   (function () {
+    const clientId = '<%= adsenseClientId %>';
+    if (clientId === 'ca-pub-0000000000000000') return;
     const consent = localStorage.getItem('cookieConsent');
-    if (consent === 'granted' || '<%= adsenseClientId %>' !== 'ca-pub-0000000000000000') {
-      // Only auto-load if user previously granted or if no consent decision has been made yet.
-      if (consent !== 'denied') {
-        window.loadAdSense();
-      }
+    if (consent !== 'denied') {
+      window.loadAdSense();
     }
   })();
 </script>

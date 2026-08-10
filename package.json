@@ -21,6 +21,7 @@
   "description": "All-in-one video downloader web app supporting 1000+ sites via yt-dlp.",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
     "cors": "^2.8.6",
     "dargs": "^7.0.0",
     "dotenv": "^17.4.2",

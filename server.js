@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const compression = require('compression');
 const cors = require('cors');
 const layouts = require('express-ejs-layouts');
 const fs = require('fs');
@@ -24,6 +25,26 @@ const toolsData = require('./data/tools.json');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DOWNLOADS_DIR = path.join(__dirname, 'downloads');
+
+function getAssetVersion() {
+  try {
+    const cssStat = fs.statSync(path.join(__dirname, 'public', 'css', 'tailwind.min.css'));
+    const jsStat = fs.statSync(path.join(__dirname, 'public', 'js', 'downloader.js'));
+    return Math.floor(Math.max(cssStat.mtimeMs, jsStat.mtimeMs) / 1000).toString(16);
+  } catch {
+    return '1';
+  }
+}
+const ASSET_VERSION = getAssetVersion();
+
+function loadInlineCss() {
+  try {
+    return fs.readFileSync(path.join(__dirname, 'public', 'css', 'tailwind.min.css'), 'utf8');
+  } catch {
+    return '';
+  }
+}
+const INLINE_CSS = loadInlineCss();
 const COOKIES_DIR = path.join(__dirname, 'cookies');
 const YOUTUBE_COOKIES_PATH = process.env.YOUTUBE_COOKIES_PATH || '';
 const RECAPTCHA_SITE_KEY = process.env.RECAPTCHA_SITE_KEY || '';
@@ -55,10 +76,11 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: 365 * 24 * 60 * 60 * 1000 }));
 app.use('/downloads', express.static(DOWNLOADS_DIR));
 app.use(session({
   name: 'clipvault.sid',
@@ -76,6 +98,8 @@ app.use((req, res, next) => {
   res.locals.gscVerification = siteConfig.gscVerification;
   res.locals.bingVerification = siteConfig.bingVerification;
   res.locals.analyticsId = siteConfig.analyticsId;
+  res.locals.assetVersion = ASSET_VERSION;
+  res.locals.inlineCss = INLINE_CSS;
   next();
 });
 
@@ -92,6 +116,8 @@ app.locals = {
   currentYear: new Date().getFullYear(),
   recaptchaSiteKey: RECAPTCHA_SITE_KEY,
   captchaMode: CAPTCHA_MODE,
+  assetVersion: ASSET_VERSION,
+  inlineCss: INLINE_CSS,
 };
 
 function getReferer(url) {
@@ -699,7 +725,37 @@ app.get('/ads.txt', (req, res) => {
 });
 
 app.get('/robots.txt', (req, res) => {
-  res.type('text/plain').send('User-agent: *\nAllow: /\nDisallow: /downloads/\nSitemap: /sitemap.xml');
+  const host = `${req.protocol}://${req.get('host')}`;
+  res.type('text/plain').send(`User-agent: *\nAllow: /\nDisallow: /downloads/\nSitemap: ${host}/sitemap.xml`);
+});
+
+app.get('/llms.txt', (req, res) => {
+  const host = `${req.protocol}://${req.get('host')}`;
+  const coreLinks = [
+    'Home',
+    'Supported Sites',
+    'Tools',
+    'How to Use',
+    'Blog',
+    'About',
+    'Contact',
+    'Privacy Policy',
+    'Terms of Service',
+    'Content Policy',
+    'Disclaimer',
+    'Cookie Policy',
+    'DMCA',
+  ];
+  const corePaths = ['', 'supported-sites', 'tools', 'how-to-use', 'blog', 'about', 'contact', 'privacy', 'terms', 'content-policy', 'disclaimer', 'cookie-policy', 'dmca'];
+  let content = `# ${siteConfig.siteTitle}\n\n${siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.'}\n\n## Core Pages\n`;
+  corePaths.forEach((p, i) => {
+    content += `- ${coreLinks[i]}: ${host}/${p}\n`;
+  });
+  content += '\n## Blog Guides\n';
+  blogPosts.forEach((post) => {
+    content += `- ${post.title}: ${host}/blog/${post.slug}\n`;
+  });
+  res.type('text/plain').send(content);
 });
 
 app.get('/sitemap.xml', (req, res) => {

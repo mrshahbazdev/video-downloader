@@ -6,13 +6,13 @@
         <%= siteTitle %>
       </a>
       <div class="hidden md:flex items-center gap-1">
-        <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Home</a>
-        <a href="/supported-sites" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/supported-sites' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Supported Sites</a>
-        <a href="/tools" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/tools' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Tools</a>
-        <a href="/how-to-use" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/how-to-use' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">How to Use</a>
-        <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/blog' || path.startsWith('/blog/') ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Blog</a>
-        <a href="/about" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/about' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">About</a>
-        <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/contact' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Contact</a>
+        <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Home</a>
+        <a href="/supported-sites" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/supported-sites' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Supported Sites</a>
+        <a href="/tools" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/tools' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Tools</a>
+        <a href="/how-to-use" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/how-to-use' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">How to Use</a>
+        <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/blog' || path.startsWith('/blog/') ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Blog</a>
+        <a href="/about" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/about' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">About</a>
+        <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-medium transition <%= path === '/contact' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Contact</a>
       </div>
       <div class="flex items-center gap-3">
         <button id="themeToggle" aria-label="Toggle theme" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">
@@ -26,13 +26,13 @@
   </div>
   <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
     <div class="px-4 py-3 space-y-1">
-      <a href="/" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Home</a>
-      <a href="/supported-sites" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/supported-sites' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Supported Sites</a>
-      <a href="/tools" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/tools' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Tools</a>
-      <a href="/how-to-use" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/how-to-use' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">How to Use</a>
-      <a href="/blog" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/blog' || path.startsWith('/blog/') ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Blog</a>
-      <a href="/about" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/about' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-slate-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">About</a>
-      <a href="/contact" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/contact' ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Contact</a>
+      <a href="/" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Home</a>
+      <a href="/supported-sites" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/supported-sites' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Supported Sites</a>
+      <a href="/tools" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/tools' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Tools</a>
+      <a href="/how-to-use" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/how-to-use' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">How to Use</a>
+      <a href="/blog" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/blog' || path.startsWith('/blog/') ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Blog</a>
+      <a href="/about" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/about' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">About</a>
+      <a href="/contact" class="block px-3 py-2 rounded-lg text-sm font-medium <%= path === '/contact' ? 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300' : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800' %>">Contact</a>
     </div>
   </div>
 </nav>
