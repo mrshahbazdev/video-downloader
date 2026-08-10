@@ -19,10 +19,19 @@
   "name": "<%= siteTitle %>",
   "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>",
   "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg",
+  "description": "<%= (siteDescription || meta.description).replace(/"/g, '\\"') %>",
+  "foundingDate": "2023",
+  "sameAs": [],
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer support",
-    "email": "<%= contactEmail %>"
+    "email": "<%= contactEmail %>",
+    "availableLanguage": ["English"]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "<%= siteTitle %>",
+    "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg"
   }
 }
 </script>

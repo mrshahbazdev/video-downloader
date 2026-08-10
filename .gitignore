@@ -6,3 +6,4 @@ bin/yt-dlp
 *.log
 .DS_Store
 data/admin-db.json
+data/contact-messages.json

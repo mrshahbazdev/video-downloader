@@ -1,7 +1,7 @@
 <article class="bg-white dark:bg-slate-900 py-20">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center">Safe Video Downloading Practices</h1>
-    <p class="text-slate-500 dark:text-slate-400 text-center mb-10">Published on <%= currentYear %>-07-31 · <%= siteTitle %> Guides</p>
+    <p class="text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-safe-top' }) %>
 
@@ -34,16 +34,3 @@
   </div>
 </article>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Safe Video Downloading Practices",
-  "description": "<%= meta.description.replace(/"/g, '\\"') %>",
-  "url": "<%= meta.url %>",
-  "image": "<%= meta.image %>",
-  "author": { "@type": "Organization", "name": "<%= siteTitle %>" },
-  "publisher": { "@type": "Organization", "name": "<%= siteTitle %>" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "<%= meta.url %>" }
-}
-</script>

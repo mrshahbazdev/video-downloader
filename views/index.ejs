@@ -165,6 +165,38 @@
   </div>
 </section>
 
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": `How to download videos with ${siteTitle}`,
+  "description": meta.description,
+  "totalTime": "PT2M",
+  "supply": [{ "@type": "HowToSupply", "name": "Public video URL" }],
+  "tool": [{ "@type": "HowToTool", "name": `${siteTitle} downloader`, "url": meta.url }],
+  "step": [
+    { "@type": "HowToStep", "name": "Copy the URL", "text": "Copy the public video link from your browser or app.", "url": meta.url + '#step-1' },
+    { "@type": "HowToStep", "name": "Paste and analyze", "text": `Paste the URL into the ${siteTitle} input box and click Get Video.`, "url": meta.url },
+    { "@type": "HowToStep", "name": "Pick a format", "text": "Choose MP4, MP3, or the best available quality from the list.", "url": meta.url + '#formats' },
+    { "@type": "HowToStep", "name": "Download", "text": "Click the format card and save the file to your device.", "url": meta.url + '#download' }
+  ]
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is this service free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The guides and downloader tools are free to use." } },
+    { "@type": "Question", "name": "Do I need to install any software?", "acceptedAnswer": { "@type": "Answer", "text": "No. Everything works in your browser on desktop, tablet, and mobile." } },
+    { "@type": "Question", "name": "Which sites are supported?", "acceptedAnswer": { "@type": "Answer", "text": "We support 1000+ sites via yt-dlp, including YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, Dailymotion, Reddit, and more." } },
+    { "@type": "Question", "name": "Is downloading videos legal?", "acceptedAnswer": { "@type": "Answer", "text": "You should only download content you own or have permission to use. See our Disclaimer and Content Policy for details." } },
+    { "@type": "Question", "name": "What makes this site different?", "acceptedAnswer": { "@type": "Answer", "text": "We combine fast tools with detailed guides, privacy-focused design, and clear legal pages." } }
+  ]
+}) %>
+</script>
+
 <% if (captchaMode === 'recaptcha') { %>
   <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>" async defer></script>
 <% } %>

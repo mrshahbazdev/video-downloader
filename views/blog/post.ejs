@@ -5,122 +5,77 @@
       <span class="mx-2">/</span>
       <a href="/blog" class="hover:underline text-sky-600 dark:text-sky-400">Guides</a>
       <span class="mx-2">/</span>
-      <span class="font-medium"><%= post.site %> Downloader</span>
+      <span class="font-medium"><%= post.site %> Guide</span>
     </nav>
 
-    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6"><%= post.title %></h1>
-    <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8"><%= post.summary %></p>
+    <article>
+      <header class="mb-8">
+        <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4"><%= post.title %></h1>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-4"><%= post.summary %></p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Published on <time datetime="<%= post.date %>"><%= post.date %></time>
+          <% if (post.dateModified && post.dateModified !== post.date) { %>
+            · Updated <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time>
+          <% } %>
+          · By <%= post.author %>
+        </p>
+      </header>
 
-    <%- include('../partials/ad-unit', { adSlot: 'blog-top' }) %>
+      <%- include('../partials/ad-unit', { adSlot: 'blog-top' }) %>
 
-    <div class="prose dark:prose-invert max-w-none">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How to Download <%= post.site %> Videos with <%= siteTitle %></h2>
-      <ol class="list-decimal pl-5 space-y-2 text-slate-600 dark:text-slate-300">
-        <li>Open the <%= post.site %> video in your browser or app and copy the link.</li>
-        <li>Go to the <a href="/" class="text-sky-600 dark:text-sky-400 hover:underline"><%= siteTitle %> home page</a>.</li>
-        <li>Paste the URL into the input box and click <strong>Get Video</strong>.</li>
-        <li>Wait for the format list, then choose <%= post.formats %>.</li>
-        <li>Click the format card and your <%= post.site %> download starts on the same page.</li>
-      </ol>
+      <div class="prose dark:prose-invert max-w-none">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How to Download <%= post.site %> Videos with <%= siteTitle %></h2>
+        <ol class="list-decimal pl-5 space-y-2 text-slate-600 dark:text-slate-300" id="step-1">
+          <li>Open the <%= post.site %> video in your browser or app and copy the link.</li>
+          <li>Go to the <a href="/" class="text-sky-600 dark:text-sky-400 hover:underline"><%= siteTitle %> home page</a>.</li>
+          <li>Paste the URL into the input box and click <strong>Get Video</strong>.</li>
+          <li id="formats">Wait for the format list, then choose <%= post.formats %>.</li>
+          <li id="download">Click the format card and your <%= post.site %> download starts on the same page.</li>
+        </ol>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why Use <%= siteTitle %> for <%= post.site %>?</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
-        <li>No software installation required — works in any browser.</li>
-        <li>Supports HD and high-quality formats when available.</li>
-        <li>Fast processing with yt-dlp and browser impersonation.</li>
-        <li>Privacy focused — we do not store your downloads.</li>
-        <li>Free to use for videos you own or have permission to download.</li>
-      </ul>
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why Use <%= siteTitle %> for <%= post.site %>?</h2>
+        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
+          <li>No software installation required — works in any browser.</li>
+          <li>Supports HD and high-quality formats when available.</li>
+          <li>Fast processing with yt-dlp and browser impersonation.</li>
+          <li>Privacy focused — we do not store your downloads.</li>
+          <li>Free to use for videos you own or have permission to download.</li>
+        </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h2>
-      <div class="space-y-4" id="faq">
-        <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is it free to download <%= post.site %> videos?</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes. <%= siteTitle %> is free to use. Just paste the <%= post.site %> URL and pick a format.</p>
-        </details>
-        <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">What formats are available for <%= post.site %>?</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">You can usually choose <%= post.formats %>, depending on the original upload.</p>
-        </details>
-        <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I use this on mobile?</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes, <%= siteTitle %> works on phones, tablets, and desktops without installing any app.</p>
-        </details>
-        <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-          <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is downloading <%= post.site %> videos legal?</summary>
-          <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Only download content you own or have permission to use. Respect copyright and each platform's terms.</p>
-        </details>
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4" id="faq">
+          <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+            <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is it free to download <%= post.site %> videos?</summary>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes. <%= siteTitle %> is free to use. Just paste the <%= post.site %> URL and pick a format.</p>
+          </details>
+          <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+            <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">What formats are available for <%= post.site %>?</summary>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">You can usually choose <%= post.formats %>, depending on the original upload.</p>
+          </details>
+          <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+            <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I use this on mobile?</summary>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes, <%= siteTitle %> works on phones, tablets, and desktops without installing any app.</p>
+          </details>
+          <details class="group bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+            <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is downloading <%= post.site %> videos legal?</summary>
+            <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Only download content you own or have permission to use. Respect copyright and each platform's terms.</p>
+          </details>
+        </div>
+
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Responsible Downloading</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+          <%= siteTitle %> is a neutral educational utility. Always follow local copyright laws and the terms of the platform hosting the video. If you are unsure whether you have permission to download a specific video, contact the rights holder or use the platform's official offline features.
+        </p>
       </div>
-    </div>
 
-    <div class="mt-10">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">On-Page SEO for <%= post.site %> Downloader Pages</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
-        <li>Unique, keyword-rich title tag and meta description for every tool page.</li>
-        <li>Clean URL structure, canonical link, and mobile-friendly responsive design.</li>
-        <li>Structured data with Article, FAQPage, and BreadcrumbList schema.</li>
-        <li>Fast page load, semantic HTML headings, and internal linking from the tools grid.</li>
-        <li>Helpful content that matches searcher intent: how-to steps, supported formats, and FAQs.</li>
-      </ul>
-    </div>
+      <%- include('../partials/ad-unit', { adSlot: 'blog-bottom' }) %>
 
-    <div class="mt-10">
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Off-Page SEO & Sharing Tips</h2>
-      <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-300">
-        <li>Share this guide on Twitter/X, Facebook, LinkedIn, Reddit, and relevant forums.</li>
-        <li>Build backlinks from tech blogs, downloader directories, and social bookmarking sites.</li>
-        <li>Submit the sitemap.xml to Google Search Console and Bing Webmaster Tools.</li>
-        <li>Use the exact URL in YouTube descriptions, video comments, and community posts.</li>
-        <li>Encourage users to bookmark the tool page for easy access.</li>
-      </ul>
-    </div>
-
-    <%- include('../partials/ad-unit', { adSlot: 'blog-bottom' }) %>
-
-    <div class="mt-12 text-center">
-      <a href="/" class="btn-primary">Try the <%= siteTitle %> Downloader</a>
-      <% if (post.slug) { %>
-        <a href="/<%= post.slug %>" class="btn-primary ml-2">Go to <%= post.site %> Tool</a>
-      <% } %>
-    </div>
+      <div class="mt-12 text-center">
+        <a href="/" class="btn-primary">Try the <%= siteTitle %> Downloader</a>
+        <% if (post.slug) { %>
+          <a href="/<%= post.slug %>" class="btn-primary ml-2">Go to <%= post.site %> Tool</a>
+        <% } %>
+      </div>
+    </article>
   </div>
 </section>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "<%= post.title.replace(/"/g, '\\"') %>",
-  "description": "<%= post.description.replace(/"/g, '\\"') %>",
-  "url": "<%= meta.url %>",
-  "image": "<%= meta.image %>",
-  "author": { "@type": "Organization", "name": "<%= siteTitle %>" },
-  "publisher": { "@type": "Organization", "name": "<%= siteTitle %>" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "<%= meta.url %>" }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Is it free to download <%= post.site %> videos?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. <%= siteTitle %> is free to use. Just paste the <%= post.site %> URL and pick a format." } },
-    { "@type": "Question", "name": "What formats are available for <%= post.site %>?", "acceptedAnswer": { "@type": "Answer", "text": "You can usually choose <%= post.formats %>, depending on the original upload." } },
-    { "@type": "Question", "name": "Can I use this on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, <%= siteTitle %> works on phones, tablets, and desktops without installing any app." } },
-    { "@type": "Question", "name": "Is downloading <%= post.site %> videos legal?", "acceptedAnswer": { "@type": "Answer", "text": "Only download content you own or have permission to use. Respect copyright and each platform's terms." } }
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>" },
-    { "@type": "ListItem", "position": 2, "name": "Guides", "item": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/blog" },
-    { "@type": "ListItem", "position": 3, "name": "<%= post.title.replace(/"/g, '\\"') %>", "item": "<%= meta.url %>" }
-  ]
-}
-</script>

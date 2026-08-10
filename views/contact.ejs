@@ -33,6 +33,7 @@
             <option>Bug report</option>
             <option>Feature request</option>
             <option>Copyright / DMCA</option>
+            <option>Editorial correction</option>
             <option>Other</option>
           </select>
         </div>
@@ -42,7 +43,7 @@
         </div>
         <button type="submit" class="btn-primary w-full">Send Message</button>
       </form>
-      <p class="mt-4 text-sm text-slate-500 dark:text-slate-400 text-center">This form is a demo. Connect it to your email service or backend to receive messages. For urgent issues, email us directly.</p>
+      <p id="contactStatus" class="mt-4 text-sm text-center hidden"></p>
     </div>
 
     <%- include('partials/ad-unit', { adSlot: 'contact-bottom' }) %>
@@ -50,9 +51,35 @@
 </section>
 
 <script>
-  document.getElementById('contactForm').addEventListener('submit', (e) => {
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Thanks for your message! This is a demo form and does not send emails yet. Please email us directly at ' + '<%= contactEmail %>' + ' for a response.');
-    e.target.reset();
+    const status = document.getElementById('contactStatus');
+    status.className = 'mt-4 text-sm text-center text-slate-600 dark:text-slate-400';
+    status.textContent = 'Sending...';
+    status.classList.remove('hidden');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('name').value,
+          email: document.getElementById('email').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.className = 'mt-4 text-sm text-center text-emerald-700 dark:text-emerald-300';
+        status.textContent = data.message;
+        e.target.reset();
+      } else {
+        status.className = 'mt-4 text-sm text-center text-red-700 dark:text-red-300';
+        status.textContent = data.error || 'Something went wrong. Please try again or email us directly.';
+      }
+    } catch (err) {
+      status.className = 'mt-4 text-sm text-center text-red-700 dark:text-red-300';
+      status.textContent = 'Could not send message. Please email us directly at <%= contactEmail %>.';
+    }
   });
 </script>

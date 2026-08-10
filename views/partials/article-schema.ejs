@@ -1,0 +1,62 @@
+<% if (typeof post === 'undefined' || !post) return; %>
+<% const host = (meta && meta.url || '').replace(/^(https?:\/\/[^\/]+).*$/, '$1') || ''; %>
+<% const siteName = (post.site || post.title.split(/[—\-]/)[0].trim() || siteTitle); %>
+<% const articleDescription = post.description || post.summary || meta.description || ''; %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": articleDescription,
+  "url": meta.url,
+  "image": meta.image,
+  "datePublished": post.date,
+  "dateModified": post.dateModified || post.date,
+  "author": { "@type": "Person", "name": post.author, "url": host + '/about' },
+  "publisher": { "@type": "Organization", "name": siteTitle, "url": host, "logo": host + '/favicon.svg' },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": meta.url }
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": host },
+    { "@type": "ListItem", "position": 2, "name": "Guides", "item": host + '/blog' },
+    { "@type": "ListItem", "position": 3, "name": post.title, "item": meta.url }
+  ]
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": `Is it free to download ${siteName} videos?`, "acceptedAnswer": { "@type": "Answer", "text": `Yes. ${siteTitle} is free to use. Just paste the ${siteName} URL and pick a format.` } },
+    { "@type": "Question", "name": `What formats are available for ${siteName}?`, "acceptedAnswer": { "@type": "Answer", "text": `You can usually choose ${post.formats || 'MP4, MP3, HD, and 4K when available'}, depending on the original upload.` } },
+    { "@type": "Question", "name": `Can I use this on mobile?`, "acceptedAnswer": { "@type": "Answer", "text": `Yes, ${siteTitle} works on phones, tablets, and desktops without installing any app.` } },
+    { "@type": "Question", "name": `Is downloading ${siteName} videos legal?`, "acceptedAnswer": { "@type": "Answer", "text": `Only download content you own or have permission to use. Respect copyright and each platform's terms.` } }
+  ]
+}) %>
+</script>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": `How to download ${siteName} videos with ${siteTitle}`,
+  "description": articleDescription,
+  "totalTime": "PT2M",
+  "supply": [{ "@type": "HowToSupply", "name": "Public video URL" }],
+  "tool": [{ "@type": "HowToTool", "name": `${siteTitle} downloader`, "url": host }],
+  "step": [
+    { "@type": "HowToStep", "name": "Copy the URL", "text": `Open the ${siteName} video in your browser or app and copy the link.`, "url": meta.url + '#step-1' },
+    { "@type": "HowToStep", "name": "Paste and analyze", "text": `Go to the ${siteTitle} home page, paste the URL into the input box, and click Get Video.`, "url": host + '/' },
+    { "@type": "HowToStep", "name": "Pick a format", "text": `Wait for the format list, then choose ${post.formats || 'MP4, MP3, or the best available quality'}.`, "url": meta.url + '#formats' },
+    { "@type": "HowToStep", "name": "Download", "text": `Click the format card and save the file to your device.`, "url": meta.url + '#download' }
+  ]
+}) %>
+</script>
