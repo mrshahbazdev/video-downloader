@@ -1,8 +1,8 @@
-      <div class="glass rounded-2xl p-4 sm:p-6 max-w-2xl mx-auto shadow-2xl">
+      <form toolname="download_video" tooldescription="Analyze a public video URL and list available download formats" id="downloadForm" class="glass rounded-2xl p-4 sm:p-6 max-w-2xl mx-auto shadow-2xl">
         <div class="relative flex flex-col sm:flex-row gap-3">
-          <input type="text" id="url" class="input-url flex-1 pl-12" placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : 'Paste video URL here...' %>" />
+          <input type="url" id="url" name="url" required aria-label="Video or playlist URL" class="input-url flex-1 pl-12" placeholder="<%= typeof placeholder !== 'undefined' ? placeholder : 'Paste video URL here...' %>" toolparamdescription="Public video or playlist URL to analyze" />
           <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-          <button id="infoBtn" class="btn-primary whitespace-nowrap">
+          <button type="submit" id="infoBtn" class="btn-primary whitespace-nowrap">
             <span id="infoBtnText"><%= typeof buttonText !== 'undefined' ? buttonText : 'Get Video' %></span>
           </button>
         </div>
@@ -11,10 +11,10 @@
           <div class="mt-3 text-left">
             <label class="block text-xs font-medium text-slate-200 mb-1">Captcha: <span id="captchaQuestion">Loading...</span></label>
             <div class="flex items-center gap-2">
-              <input type="text" id="captchaAnswer" class="input-url flex-1 text-sm" placeholder="Type the answer" inputmode="numeric" />
-              <button type="button" id="captchaRefresh" class="btn-primary px-3 py-2" title="New question">↻</button>
+              <input type="text" id="captchaAnswer" name="captchaAnswer" class="input-url flex-1 text-sm" placeholder="Type the answer" inputmode="numeric" aria-label="Captcha answer" toolparamdescription="Answer to the math captcha shown above" />
+              <button type="button" id="captchaRefresh" class="btn-primary px-3 py-2" title="New question" aria-label="Refresh captcha">↻</button>
             </div>
-            <input type="hidden" id="captchaToken" />
+            <input type="hidden" id="captchaToken" name="captchaToken" aria-label="Server captcha token" toolparamdescription="Server captcha token (auto-populated by the page)" />
           </div>
         <% } else if (captchaMode === 'recaptcha') { %>
           <p class="text-xs text-slate-300 mt-3 text-left">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-sky-300">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="underline hover:text-sky-300">Terms of Service</a> apply.</p>
@@ -26,17 +26,17 @@
         <div id="advancedOptions" class="hidden mt-4 text-left space-y-3 bg-slate-950/20 rounded-xl p-4 border border-white/10">
           <div>
             <label for="cookies" class="block text-xs font-medium text-slate-200 mb-1">Site cookies (Netscape format)</label>
-            <textarea id="cookies" rows="3" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File
-example.com	TRUE	/	FALSE	...	..."></textarea>
+            <textarea id="cookies" name="cookies" rows="3" class="input-url text-xs font-mono" placeholder="# Netscape HTTP Cookie File
+example.com	TRUE	/	FALSE	...	..." toolparamdescription="Optional Netscape-format cookies for sites that require authentication"></textarea>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label for="poToken" class="block text-xs font-medium text-slate-200 mb-1">YouTube PO token</label>
-              <input type="text" id="poToken" class="input-url text-xs font-mono" placeholder="web+M..." />
+              <input type="text" id="poToken" name="poToken" class="input-url text-xs font-mono" placeholder="web+M..." toolparamdescription="Optional YouTube PO token for bypassing bot checks" />
             </div>
             <div>
               <label for="visitorData" class="block text-xs font-medium text-slate-200 mb-1">YouTube visitor data</label>
-              <input type="text" id="visitorData" class="input-url text-xs font-mono" placeholder="Cgt..." />
+              <input type="text" id="visitorData" name="visitorData" class="input-url text-xs font-mono" placeholder="Cgt..." toolparamdescription="Optional YouTube visitor data token for bypassing bot checks" />
             </div>
           </div>
           <p class="text-xs text-slate-300">Cookies or PO token are optional, but YouTube may require them on some server IPs.</p>
@@ -45,7 +45,47 @@ example.com	TRUE	/	FALSE	...	..."></textarea>
         <p class="text-xs text-slate-300 mt-3 text-left">
           By using this service you agree to our <a href="/terms" class="underline hover:text-sky-300">Terms</a> and <a href="/disclaimer" class="underline hover:text-sky-300">Disclaimer</a>.
         </p>
-      </div>
+      </form>
+
+      <script>
+        (function () {
+          if (typeof navigator !== 'undefined' && navigator.modelContext && navigator.modelContext.registerTool) {
+            try {
+              navigator.modelContext.registerTool({
+                name: 'analyze_video_url',
+                description: 'Analyze a public video or playlist URL and return available download formats, metadata, and direct download links.',
+                inputSchema: {
+                  type: 'object',
+                  properties: {
+                    url: { type: 'string', description: 'Public video or playlist URL to analyze' },
+                    captchaAnswer: { type: 'string', description: 'Answer to the math captcha shown on the page' },
+                    cookies: { type: 'string', description: 'Optional Netscape-format cookies for sites that require authentication' },
+                    poToken: { type: 'string', description: 'Optional YouTube PO token for bypassing bot checks' },
+                    visitorData: { type: 'string', description: 'Optional YouTube visitor data token for bypassing bot checks' }
+                  },
+                  required: ['url']
+                },
+                execute: async (args) => {
+                  const form = document.getElementById('downloadForm');
+                  const urlInput = document.getElementById('url');
+                  if (!urlInput || !form) return { content: [{ type: 'text', text: 'Download form not found on page' }] };
+                  urlInput.value = args.url || '';
+                  const captchaAnswer = document.getElementById('captchaAnswer');
+                  if (captchaAnswer && args.captchaAnswer) captchaAnswer.value = args.captchaAnswer;
+                  const cookies = document.getElementById('cookies');
+                  if (cookies && args.cookies) cookies.value = args.cookies;
+                  const poToken = document.getElementById('poToken');
+                  if (poToken && args.poToken) poToken.value = args.poToken;
+                  const visitorData = document.getElementById('visitorData');
+                  if (visitorData && args.visitorData) visitorData.value = args.visitorData;
+                  form.requestSubmit();
+                  return { content: [{ type: 'text', text: 'Submitted. The page will update with available formats shortly.' }] };
+                }
+              });
+            } catch (e) {}
+          }
+        })();
+      </script>
 
       <div id="message" class="mt-4 text-left hidden max-w-2xl mx-auto"></div>
 

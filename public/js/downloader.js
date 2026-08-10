@@ -1,4 +1,5 @@
 (() => {
+  const form = document.getElementById('downloadForm');
   const urlInput = document.getElementById('url');
   const infoBtn = document.getElementById('infoBtn');
   const infoBtnText = document.getElementById('infoBtnText');
@@ -318,10 +319,12 @@
     }
   }
 
-  infoBtn.addEventListener('click', fetchInfo);
-  urlInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') fetchInfo();
-  });
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetchInfo();
+    });
+  }
 
   if (captchaRefreshBtn) {
     captchaRefreshBtn.addEventListener('click', loadMathCaptcha);
