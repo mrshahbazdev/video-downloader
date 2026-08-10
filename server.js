@@ -21,6 +21,7 @@ const crypto = require('crypto');
 const { randomUUID } = crypto;
 
 const toolsData = require('./data/tools.json');
+const blogPosts = require('./data/blogPosts.json');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -80,6 +81,41 @@ app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
+
+// Dynamic llms.txt (must be before static middleware so a stale public/llms.txt doesn't override it)
+app.get('/llms.txt', (req, res) => {
+  const host = `${req.protocol}://${req.get('host')}`;
+  const coreLinks = [
+    { label: 'Home', path: '', note: 'Main downloader and overview' },
+    { label: 'Supported Sites', path: 'supported-sites', note: 'List of 1000+ supported platforms' },
+    { label: 'Tools', path: 'tools', note: 'Specialized video, audio, and thumbnail downloaders' },
+    { label: 'How to Use', path: 'how-to-use', note: 'Step-by-step download guides' },
+    { label: 'Blog', path: 'blog', note: 'Platform-specific download guides and tutorials' },
+    { label: 'About', path: 'about', note: 'About ClipVault and the team' },
+    { label: 'Contact', path: 'contact', note: 'Contact form and details' },
+    { label: 'Privacy Policy', path: 'privacy', note: 'Privacy and data handling' },
+    { label: 'Terms of Service', path: 'terms', note: 'Terms of use' },
+    { label: 'Content Policy', path: 'content-policy', note: 'Copyright and acceptable content policy' },
+    { label: 'Disclaimer', path: 'disclaimer', note: 'Usage disclaimer' },
+    { label: 'Cookie Policy', path: 'cookie-policy', note: 'Cookie usage and consent' },
+    { label: 'DMCA', path: 'dmca', note: 'DMCA takedown information' },
+  ];
+  const description = siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.';
+  let content = `# ${siteConfig.siteTitle}\n\n> ${description}\n\n${siteConfig.siteTitle} provides fast, privacy-friendly video download guides for 1000+ platforms. No signup or software installation is required. Use the service responsibly and only download content you created, own, or have explicit permission to save.\n\n- Tools accept a public video or playlist URL and return available formats.\n- A simple math captcha protects the tools from automated abuse.\n- Optional advanced settings include site cookies, YouTube PO tokens, and visitor data tokens.\n\n## Core Pages\n`;
+  coreLinks.forEach((item) => {
+    content += `- [${item.label}](${host}/${item.path}): ${item.note}\n`;
+  });
+  content += '\n## Blog Guides\n';
+  blogPosts.forEach((post) => {
+    const notes = post.summary || post.description || 'Free download guide';
+    content += `- [${post.title}](${host}/blog/${post.slug}): ${notes}\n`;
+  });
+  content += '\n## Optional\n';
+  content += `- [Sitemap](${host}/sitemap.xml): Full list of indexable pages for search engines and agents.\n`;
+  content += `- [Robots](${host}/robots.txt): Crawler access instructions.\n`;
+  res.type('text/plain').send(content);
+});
+
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 365 * 24 * 60 * 60 * 1000 }));
 app.use('/downloads', express.static(DOWNLOADS_DIR));
 app.use(session({
@@ -671,7 +707,6 @@ app.get('/content-policy', (req, res) => {
   });
 });
 
-const blogPosts = require('./data/blogPosts.json');
 app.locals.blogPosts = blogPosts;
 
 app.get('/blog', (req, res) => {
@@ -727,39 +762,6 @@ app.get('/ads.txt', (req, res) => {
 app.get('/robots.txt', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
   res.type('text/plain').send(`User-agent: *\nAllow: /\nDisallow: /downloads/\nSitemap: ${host}/sitemap.xml`);
-});
-
-app.get('/llms.txt', (req, res) => {
-  const host = `${req.protocol}://${req.get('host')}`;
-  const coreLinks = [
-    { label: 'Home', path: '', note: 'Main downloader and overview' },
-    { label: 'Supported Sites', path: 'supported-sites', note: 'List of 1000+ supported platforms' },
-    { label: 'Tools', path: 'tools', note: 'Specialized video, audio, and thumbnail downloaders' },
-    { label: 'How to Use', path: 'how-to-use', note: 'Step-by-step download guides' },
-    { label: 'Blog', path: 'blog', note: 'Platform-specific download guides and tutorials' },
-    { label: 'About', path: 'about', note: 'About ClipVault and the team' },
-    { label: 'Contact', path: 'contact', note: 'Contact form and details' },
-    { label: 'Privacy Policy', path: 'privacy', note: 'Privacy and data handling' },
-    { label: 'Terms of Service', path: 'terms', note: 'Terms of use' },
-    { label: 'Content Policy', path: 'content-policy', note: 'Copyright and acceptable content policy' },
-    { label: 'Disclaimer', path: 'disclaimer', note: 'Usage disclaimer' },
-    { label: 'Cookie Policy', path: 'cookie-policy', note: 'Cookie usage and consent' },
-    { label: 'DMCA', path: 'dmca', note: 'DMCA takedown information' },
-  ];
-  const description = siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.';
-  let content = `# ${siteConfig.siteTitle}\n\n> ${description}\n\n${siteConfig.siteTitle} provides fast, privacy-friendly video download guides for 1000+ platforms. No signup or software installation is required. Use the service responsibly and only download content you created, own, or have explicit permission to save.\n\n- Tools accept a public video or playlist URL and return available formats.\n- A simple math captcha protects the tools from automated abuse.\n- Optional advanced settings include site cookies, YouTube PO tokens, and visitor data tokens.\n\n## Core Pages\n`;
-  coreLinks.forEach((item) => {
-    content += `- [${item.label}](${host}/${item.path}): ${item.note}\n`;
-  });
-  content += '\n## Blog Guides\n';
-  blogPosts.forEach((post) => {
-    const notes = post.summary || post.description || 'Free download guide';
-    content += `- [${post.title}](${host}/blog/${post.slug}): ${notes}\n`;
-  });
-  content += '\n## Optional\n';
-  content += `- [Sitemap](${host}/sitemap.xml): Full list of indexable pages for search engines and agents.\n`;
-  content += `- [Robots](${host}/robots.txt): Crawler access instructions.\n`;
-  res.type('text/plain').send(content);
 });
 
 app.get('/sitemap.xml', (req, res) => {
