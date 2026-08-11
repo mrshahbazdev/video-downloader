@@ -513,12 +513,12 @@
   },
   {
     "slug": "subtitle-formats-compared",
-    "title": "Subtitle Formats Compared: SRT vs VTT vs ASS — Which to Use When",
+    "title": "Subtitle Formats: SRT vs VTT vs ASS — Which One and When",
     "site": "online video",
     "formats": "SRT, VTT, ASS",
-    "summary": "Compare SRT, VTT, and ASS subtitle formats so you can pick the right one for your videos and players.",
-    "description": "SRT vs VTT vs ASS subtitle formats compared. Learn the differences, use cases, and which subtitle file format works best for you.",
-    "keywords": "SRT vs VTT, ASS subtitles, subtitle formats, SRT subtitle, WebVTT, subtitle comparison",
+    "summary": "The practical differences between SRT, WebVTT, and ASS subtitle files — file structure, styling support, platform compatibility, and how to convert without losing anything.",
+    "description": "The practical differences between SRT, WebVTT, and ASS subtitle files — file structure, styling support, platform compatibility, and how to convert without losing anything.",
+    "keywords": "SRT vs VTT, ASS subtitles, subtitle formats, SRT subtitle, WebVTT, subtitle comparison, convert SRT to VTT",
     "date": "2024-09-25",
     "dateModified": "2026-08-10",
     "author": "ClipVault Editorial Team"

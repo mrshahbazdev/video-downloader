@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-slate-900 py-16">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
     <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
@@ -7,38 +7,152 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Subtitles and captions make videos accessible to more viewers. There are many subtitle file formats, but three of the most common are SRT, VTT, and ASS. Each has its own strengths and best use case. This guide compares them so you can pick the right one.
+        <strong>Short answer:</strong> Use SRT unless you have a specific reason not to — it works almost everywhere. Use VTT when the video lives in an HTML5 player on a web page, because that is the format the <code class="bg-slate-100 dark:bg-slate-800 px-1 rounded text-sm">&lt;track&gt;</code> element expects. Use ASS only when styling, fonts, or precise positioning genuinely matter, and accept that many players will render it poorly or not at all.
       </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The three formats are less interchangeable than they look, and converting between them can silently lose things.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">SRT — Simple and Universal</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">SRT stands for SubRip Text. It is the most basic and widely supported subtitle format. An SRT file is just plain text with numbered entries, start and end times, and the subtitle text. Almost every video player, social media platform, and editing tool supports SRT. If you want a format that works everywhere, SRT is the safest choice.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">The three formats side by side</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700"></th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">SRT</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">VTT (WebVTT)</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">ASS</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Full name</strong></td><td class="px-4 py-3">SubRip Text</td><td class="px-4 py-3">Web Video Text Tracks</td><td class="px-4 py-3">Advanced SubStation Alpha</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Extension</strong></td><td class="px-4 py-3"><code>.srt</code></td><td class="px-4 py-3"><code>.vtt</code></td><td class="px-4 py-3"><code>.ass</code></td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Timestamp separator</strong></td><td class="px-4 py-3">comma <code>00:00:01,000</code></td><td class="px-4 py-3">period <code>00:00:01.000</code></td><td class="px-4 py-3"><code>0:00:01.00</code></td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Header required</strong></td><td class="px-4 py-3">No</td><td class="px-4 py-3">Yes (<code>WEBVTT</code>)</td><td class="px-4 py-3">Yes (script info block)</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Styling</strong></td><td class="px-4 py-3">None</td><td class="px-4 py-3">Light (CSS-based)</td><td class="px-4 py-3">Extensive</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Positioning</strong></td><td class="px-4 py-3">No</td><td class="px-4 py-3">Cue settings</td><td class="px-4 py-3">Pixel-precise</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Hand-editable</strong></td><td class="px-4 py-3">Easily</td><td class="px-4 py-3">Easily</td><td class="px-4 py-3">Awkwardly</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Browser <code>&lt;track&gt;</code> support</strong></td><td class="px-4 py-3">No</td><td class="px-4 py-3">Yes</td><td class="px-4 py-3">No</td></tr>
+            <tr><td class="px-4 py-3"><strong>Best for</strong></td><td class="px-4 py-3">Almost everything</td><td class="px-4 py-3">HTML5 web video</td><td class="px-4 py-3">Styled or effect-heavy work</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VTT — Web-Friendly and Flexible</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">VTT, also called WebVTT, was created for HTML5 web video. It looks similar to SRT but supports extra features like text styling, positioning, and metadata. WebVTT is the standard for captions on websites and online courses. If your video lives on the web, VTT is often the better option.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">SRT — the universal default</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">SRT has been around since the late 1990s and has outlasted dozens of more capable formats for one reason: it does one job and does it everywhere.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The structure is about as simple as a file format gets:</p>
+      <pre class="bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 overflow-x-auto">1
+00:00:05,000 --&gt; 00:00:08,500
+Hello, welcome to this video.
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">ASS — Advanced Styling</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">ASS stands for Advanced SubStation Alpha. It supports detailed styling, including font colors, sizes, borders, shadows, and animated effects. Fansubbers and anime groups often use ASS because it lets them match subtitles to the video style. The downside is that not all players support ASS, and the files are more complex.</p>
+2
+00:00:10,200 --&gt; 00:00:14,800
+Today we're covering subtitle formats.</pre>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">A sequence number, a timestamp range, the text, a blank line. That is the whole specification in practice.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Strengths:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">Plain text, easy to edit, and supported by virtually every platform and player — YouTube, TikTok, Vimeo, Facebook, VLC.</cite> Translators can open it in any text editor. Every editing tool imports it. Nothing to configure.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Weaknesses:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">It cannot reliably store custom fonts, colours, shadows, exact screen positions, or animations.</cite> Basic italics and bold sometimes work through inline HTML-style tags, but support is inconsistent across players — treat it as a bonus, not a feature you can rely on.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it for:</strong> uploading to any platform, sharing subtitle files, translation workflows, video editing, and anything where you do not control the playback environment.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick Comparison</h2>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">One thing that causes most SRT problems</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Encoding. SRT files should be <strong>UTF-8</strong>. <cite class="text-slate-500 dark:text-slate-400 not-italic">Some players struggle with other encodings, especially for non-English text.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If your subtitles show as <code>Ã©</code> or <code>????</code> or empty boxes, the file is almost certainly saved in the wrong encoding rather than being corrupt. Re-save as UTF-8 and it usually resolves. This matters most for Urdu, Arabic, Hindi, Chinese, and any language outside basic Latin characters.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Also worth knowing: most players auto-load subtitles when the file name matches the video exactly — <code>movie.mp4</code> pairs with <code>movie.srt</code>. If subtitles are not appearing, check the filename before assuming the file is broken.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VTT (WebVTT) — the web-native one</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">WebVTT is the W3C standard for timed text on the web. Structurally it is close to SRT, with a few deliberate additions.</p>
+      <pre class="bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-lg text-sm text-slate-700 dark:text-slate-300 overflow-x-auto">WEBVTT
+
+1
+00:00:01.000 --&gt; 00:00:04.500 position:50% align:center
+Welcome to the tutorial.
+
+2
+00:00:05.000 --&gt; 00:00:08.200
+&lt;v Roger&gt;We'll cover three methods.</pre>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">The differences from SRT: a <code>WEBVTT</code> header line, periods instead of commas in timestamps, and support for positioning, styling, and cue identifiers.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The reason VTT exists:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">VTT is the only format natively supported by the HTML5 <code>&lt;track&gt;</code> tag.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">Browsers understand it natively without any JavaScript parsing.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">That is the practical dividing line. If you are writing <code>&lt;video&gt;</code> markup on a web page, you need VTT. There is no debate to have.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Additional capabilities beyond SRT:</strong></p>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>SRT:</strong> simple, universal, no styling</li>
-        <li><strong>VTT:</strong> web-friendly, basic styling, metadata</li>
-        <li><strong>ASS:</strong> advanced styling, anime/fansub use, less universal</li>
+        <li>Cue positioning (place text anywhere on screen)</li>
+        <li>CSS-based styling via <code>::cue</code> selectors</li>
+        <li>Speaker identification with <code>&lt;v Speaker Name&gt;</code> tags</li>
+        <li>Chapter markers and metadata tracks</li>
+        <li>Region definitions for grouped cues</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it for:</strong> HTML5 video embeds, custom web players, and LMS platforms like Moodle and Canvas that expect it.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">ASS — the power-user format</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">ASS (Advanced SubStation Alpha) is what you use when subtitles are part of the visual design rather than just a transcript. It grew out of the anime fansubbing community and remains dominant there.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">It offers pixel-precise positioning, custom fonts, colours, borders, shadows, and animations including fade, move, and rotate.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">Multiple styles can coexist in one file — different characters can have different coloured subtitles, and on-screen signs can use different fonts from dialogue.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The costs are real:</strong></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">Player support is limited — many players render ASS with degraded or ignored styling, and some do not support it at all. The format is difficult to edit by hand and generally needs specialised software like Aegisub. Files are larger than SRT or VTT equivalents, sometimes substantially so for heavily styled content. Browser support is poor: web players typically cannot render ASS properly, and styling gets stripped or mangled.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it for:</strong> anime and fansubbing, karaoke, projects where subtitle styling is part of the creative work, and situations where you control the player (VLC, mpv, and MPC-HC all render ASS well).</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Do not use it for:</strong> web delivery, platform uploads, or anything where an unknown player will handle the file.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">ASS vs SSA</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">ASS is the newer, more capable version of SSA (SubStation Alpha) — effectively SSA version 4+, adding more styling options, better positioning, and finer control over fonts.</cite> If you encounter a <code>.ssa</code> file, it is the older generation. Modern tools handle both, and ASS is what you should produce.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Converting between formats</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is where things quietly go wrong.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">SRT ↔ VTT: safe</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">Converting between SRT and VTT is trivial because they share the same structure — often it is just swapping commas for periods and adding the header.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">Converters normalise the timestamp difference automatically.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Nothing meaningful is lost in either direction, assuming you are not using VTT's positioning or styling features. If you are, those are dropped going to SRT.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">ASS → SRT or VTT: lossy</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">Timing and text are kept; styling is dropped, because SRT does not support it.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">Flattening ASS to SRT throws the styling away.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">This is not a bug in the converter. The information has nowhere to go. If the styling mattered, you have lost the work.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Keep the ASS original.</strong> Convert a copy.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">SRT → ASS: technically works, practically limited</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The conversion succeeds, but <cite class="text-slate-500 dark:text-slate-400 not-italic">advanced styling effects must typically be added after the conversion.</cite> You get a valid ASS file with default styling — the format's capabilities, none of its content. Real styling is manual work in Aegisub or similar.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">A format that cannot be converted at all</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Worth knowing if you rip subtitles from Blu-ray: <cite class="text-slate-500 dark:text-slate-400 not-italic">SUP is a Blu-ray image subtitle track (PGS) — pictures of text rather than text, so it needs OCR before it can be edited, translated, or converted. A format converter cannot help, because there is no text inside to convert. You OCR the images into an SRT, reading the words out of each picture and writing them with the original timing.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Same applies to VobSub (<code>.sub</code>/<code>.idx</code>) from DVDs. If a "subtitle converter" claims to turn these into SRT instantly, it is running OCR, and OCR makes mistakes that need proofreading.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What about SBV?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">YouTube's own legacy format. It works, and YouTube accepts it, but there is little reason to choose it — SRT does the same job with far broader support. <cite class="text-slate-500 dark:text-slate-400 not-italic">SBV is only worth using if you are working exclusively within YouTube.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Even then, SRT is the simpler choice.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Decision guide</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Situation</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Format</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Uploading to YouTube, TikTok, Vimeo, Facebook</td><td class="px-4 py-3">SRT</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">HTML5 <code>&lt;video&gt;</code> on your own site</td><td class="px-4 py-3">VTT</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Sending to a translator</td><td class="px-4 py-3">SRT</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Video editing (Premiere, Resolve, Final Cut)</td><td class="px-4 py-3">SRT</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Anime, fansubs, karaoke</td><td class="px-4 py-3">ASS</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Styled captions where you control the player</td><td class="px-4 py-3">ASS</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">LMS platform (Moodle, Canvas)</td><td class="px-4 py-3">VTT</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Archiving your subtitle work</td><td class="px-4 py-3">Original format, plus an SRT copy</td></tr>
+            <tr><td class="px-4 py-3">Not sure</td><td class="px-4 py-3">SRT</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common questions</h2>
+      <ul class="list-disc pl-6 space-y-3 text-slate-600 dark:text-slate-400">
+        <li><strong>Which format does YouTube want?</strong><br>SRT is the safest. <cite class="text-slate-500 dark:text-slate-400 not-italic">VTT also uploads to YouTube, so for YouTube specifically either works.</cite> YouTube accepts several formats including its own SBV, but SRT is the one you should default to.</li>
+        <li><strong>Can I use SRT for a website?</strong><br>Not with the HTML5 <code>&lt;track&gt;</code> element — that expects VTT. Some JavaScript players will parse SRT, but you are adding a dependency to avoid a five-second conversion. Convert to VTT.</li>
+        <li><strong>Why do my subtitles show strange characters?</strong><br>Almost always encoding. Save as UTF-8. This is the single most common subtitle problem for non-English languages.</li>
+        <li><strong>Will italics survive SRT?</strong><br>Sometimes. SRT supports basic inline tags in many players, but it is not part of any formal specification and support varies. Do not build anything important on it.</li>
+        <li><strong>My subtitles are out of sync — is that a format problem?</strong><br>No. Sync issues come from frame rate mismatches (subtitles timed for 23.976fps played against 25fps, for instance) or from a different cut of the video. The format is not the cause, and converting will not fix it. You need to shift or rescale the timing.</li>
+        <li><strong>Can one file contain multiple languages?</strong><br>Not in SRT or VTT — use one file per language. ASS technically allows multiple styles that could represent different languages, but this is not how it is normally done. Players expect separate tracks per language.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Format Should You Use?</h2>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Related guides</h2>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>For social media or general players:</strong> SRT</li>
-        <li><strong>For websites and online courses:</strong> VTT</li>
-        <li><strong>For styled anime or special projects:</strong> ASS</li>
-        <li><strong>For editing:</strong> SRT or VTT, depending on your software</li>
+        <li><a href="/blog/how-to-get-youtube-transcripts" class="text-sky-600 dark:text-sky-400 hover:underline">How to Get YouTube Transcripts (Official Methods)</a></li>
+        <li><a href="/blog/video-resolution-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Video Resolution Explained: 480p vs 720p vs 1080p vs 1440p vs 4K</a></li>
+        <li><a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained: How Quality and File Size Are Connected</a></li>
       </ul>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Converting Between Subtitle Formats</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">You can convert SRT, VTT, and ASS files using online tools or subtitle editors. Most tools handle SRT to VTT easily. Converting ASS to SRT may lose styling, so check the result before using it. If you downloaded a subtitle file, make sure the format matches your video player.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Downloading Subtitles Legally</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download subtitles or captions, use them only for videos you own or have permission to access. Many creators and platforms provide official subtitle files for their content. Respect copyright and only use subtitle files from legal sources.</p>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-subtitles-bottom' }) %>
