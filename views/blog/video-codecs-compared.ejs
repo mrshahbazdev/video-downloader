@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-slate-900 py-16">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
     <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
@@ -7,35 +7,141 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        A video codec is the software or hardware method used to compress and decompress video files. The codec you choose affects file size, quality, and whether your device can play the video. Here is a simple comparison of the four most common codecs you will see online.
+        <strong>Short answer:</strong> H.264 still works everywhere and remains the safe default for uploads and sharing. AV1 gives the best compression and is royalty-free, but encoding is slow and Apple device support is narrower than headline figures suggest. H.265 compresses well and is native on Apple platforms, but licensing is a genuine mess. VP9 sits in the middle and is mostly relevant because YouTube uses it internally.
       </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you just need one answer: <strong>upload in H.264, let the platform handle the rest.</strong></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The longer version is more interesting, because the honest picture in <%= currentYear %> is messier than most comparison tables admit.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.264 — The Safe Default</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">H.264, also called AVC, is the most widely supported video codec. It works on nearly every phone, computer, TV, and browser. H.264 offers good quality at reasonable file sizes. If you want maximum compatibility, H.264 is usually the best choice.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What a codec actually does</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A codec (coder-decoder) is the compression algorithm that turns raw video into a manageable file, and back again for playback.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Raw uncompressed 1080p30 video runs roughly 1.5 Gbps. A two-hour film would be about 1.4 terabytes. Codecs get that down to a few gigabytes by exploiting redundancy — storing changes between frames rather than complete frames, discarding detail the eye is poor at noticing, and predicting pixel values from neighbours.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>A codec is not a file format.</strong> MP4, MKV, and WebM are <em>containers</em> — they hold video, audio, and subtitle streams together. An MP4 usually contains H.264, but can contain H.265 or AV1. This is why "MP4 vs AV1" is a category error, and why a file can have the right extension and still fail to play.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.265 / HEVC — Better Compression</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">H.265, or HEVC, can deliver the same quality as H.264 at roughly half the file size. This makes it great for 4K and mobile storage. The downside is device support: older phones, TVs, and some browsers may not play H.265 without extra software or hardware.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">The four codecs at a glance</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700"></th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">H.264 (AVC)</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">H.265 (HEVC)</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">VP9</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">AV1</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Released</strong></td><td class="px-4 py-3">2003</td><td class="px-4 py-3">2013</td><td class="px-4 py-3">2013</td><td class="px-4 py-3">2018</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Developed by</strong></td><td class="px-4 py-3">MPEG / ITU</td><td class="px-4 py-3">MPEG / ITU</td><td class="px-4 py-3">Google</td><td class="px-4 py-3">Alliance for Open Media</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Compression vs H.264</strong></td><td class="px-4 py-3">baseline</td><td class="px-4 py-3">~30–40% better</td><td class="px-4 py-3">~30–40% better</td><td class="px-4 py-3">~30–50% better</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Licensing</strong></td><td class="px-4 py-3">Royalties (mature pools)</td><td class="px-4 py-3">Royalties (fragmented)</td><td class="px-4 py-3">Royalty-free</td><td class="px-4 py-3">Royalty-free</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Encoding speed</strong></td><td class="px-4 py-3">Fast</td><td class="px-4 py-3">Moderate</td><td class="px-4 py-3">Slow</td><td class="px-4 py-3">Slowest</td></tr>
+            <tr><td class="px-4 py-3"><strong>Device support</strong></td><td class="px-4 py-3">Universal</td><td class="px-4 py-3">Strong on Apple, patchy elsewhere</td><td class="px-4 py-3">Broad</td><td class="px-4 py-3">Broad but with real gaps</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">AV1 produces the smallest files at equivalent quality — roughly 30–50% better compression than H.264 — while VP9 and H.265 land in the middle at about 30–40% better. Smaller files come with tradeoffs in encoding time and compatibility with older devices.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Treat those compression percentages as directional. Real gains depend heavily on content type, encoder settings, and how much time you let the encoder spend. Claims at the top of the ranges usually come from slow encoding presets that are impractical for routine work.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VP9 — Google's Efficient Codec</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">VP9 is an open codec developed by Google. YouTube uses VP9 for many videos because it offers better compression than H.264. VP9 works well in most modern browsers, especially Chrome, Firefox, and Edge. It is less widely supported on older TVs and editing software than H.264.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.264 (AVC)</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Two decades old and still the most-used video codec in the world.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Strengths:</strong> Plays on essentially everything — every browser, every phone, every smart TV, every editing program, every set-top box made since roughly 2006. Encoding is fast, with mature hardware acceleration on virtually all hardware. Toolchain support is exhaustive.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Weaknesses:</strong> Least efficient of the four. Files are meaningfully larger for the same quality.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it when:</strong> uploading to any platform, sharing files with people whose devices you do not control, editing, or when encoding speed matters. <cite class="text-slate-500 dark:text-slate-400 not-italic">For YouTube uploads, MP4 with H.264 is the recommendation — YouTube automatically transcodes to multiple formats including VP9 and AV1, so the priority is uploading the highest-quality source rather than pre-optimizing for delivery.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>A note on live streaming:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">As of <%= currentYear %>, Twitch's standard ingest accepts H.264 only — using H.265 or AV1 causes stream rejection</cite> outside of its Enhanced Broadcasting program.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">AV1 — The Future of Streaming</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">AV1 is a newer, royalty-free codec designed for the internet. It can compress video even better than H.265 and VP9, which means smaller files at the same quality. Major platforms like YouTube and Netflix are starting to use AV1. The trade-off is that encoding and decoding AV1 can be slower on older devices.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.265 (HEVC)</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Designed as H.264's successor. Technically capable, commercially complicated.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Strengths:</strong> Roughly 30–40% smaller files than H.264. Native on Apple platforms with excellent hardware support. Standard for 4K Blu-ray and much broadcast infrastructure. Strong HDR support.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Weaknesses:</strong> The licensing situation is the real problem. <cite class="text-slate-500 dark:text-slate-400 not-italic">There are three patent pools — MPEG LA, Access Advance, and Velos Media — plus Technicolor licensing independently. Any large publisher distributing HEVC is probably paying someone.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">That fragmentation had consequences for browser support. <cite class="text-slate-500 dark:text-slate-400 not-italic">HEVC is essentially the inverse of AV1: universal on Safari, nearly absent on Edge and Firefox. Edge on Windows shows notably less decode support (~56%) than Chrome on the same engine (~81%), apparently because Microsoft does not always include HEVC decoding in Edge.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The picture has improved somewhat — <cite class="text-slate-500 dark:text-slate-400 not-italic">Firefox shipped HEVC decode on Windows and macOS in version 134.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it when:</strong> you are in an Apple-centric workflow, working with 4K HDR footage, or delivering to devices you control. Avoid it for open web distribution.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick Comparison Table</h2>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VP9</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Google's royalty-free answer to H.265, and quietly one of the most-delivered codecs on the internet.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Strengths:</strong> Royalty-free. Compression comparable to H.265. <cite class="text-slate-500 dark:text-slate-400 not-italic">Hardware decode is available essentially everywhere except very old Intel integrated graphics.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">WebM with VP9 has roughly 95% browser support in <%= currentYear %> — Safari closed the last major gap in macOS 14 and iOS 17.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Weaknesses:</strong> Slower to encode than H.264. Less support in professional editing and broadcast tools. Increasingly overshadowed by AV1, which is better on essentially every axis except encoding speed.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use it when:</strong> you are serving web video directly and want royalty-free with broad compatibility, but AV1 encoding time is impractical. VP9 is a reasonable middle position — though for new projects, AV1 is usually the better bet.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Worth knowing:</strong> YouTube transcodes uploads to VP9 and AV1 for delivery. <cite class="text-slate-500 dark:text-slate-400 not-italic">To view new 4K uploads in 4K, YouTube requires a browser or device supporting VP9.</cite> Most 4K YouTube playback you have watched was VP9 or AV1, regardless of what you uploaded.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">AV1</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The current best-in-class option, developed by an alliance including Google, Netflix, Amazon, Apple, Microsoft, Meta, Mozilla, and Cisco.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Strengths:</strong> Best compression of the four. Royalty-free, which is arguably the bigger deal. <cite class="text-slate-500 dark:text-slate-400 not-italic">Licensing — not compression — is the main reason AV1 has displaced H.265 as the heir apparent; for a new product in <%= currentYear %>, the legal calculus favours AV1 by a wide margin.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">YouTube, Netflix, and Meta now deliver much of their traffic in AV1.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Weaknesses:</strong> Encoding is slow — substantially slower than H.264 at comparable quality settings. And the device support story is more complicated than it looks.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">The AV1 support gap worth understanding</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is where most comparison articles oversimplify, and where the sources genuinely disagree.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The optimistic figure:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">Can I Use reports around 94% global usage coverage for AV1 when full and partial support are combined, as of August <%= currentYear %>.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The complication:</strong> that number counts Safari as "partial." <cite class="text-slate-500 dark:text-slate-400 not-italic">Safari 17 and later is listed as partial because AV1 playback is limited to Apple devices with a hardware decoder — earlier Apple devices, older browsers, low-end phones, and legacy smart TVs may need software decoding or a fallback.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The real-world measurement:</strong> one analysis based on device telemetry rather than browser version tables found a much narrower picture. <cite class="text-slate-500 dark:text-slate-400 not-italic">Safari is the genuine holdout: macOS Safari supports AV1 decode on only about 24% of sessions, and iOS Safari on about 33%. Older Apple Silicon and all Intel Macs lack hardware AV1 decode, and Apple has not shipped a software decoder.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Those two figures are not contradictory — they measure different things. Browser-version tables ask "does this browser support AV1?" Session data asks "did this actual device play it?" For anyone shipping video, the second question is the one that matters.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Concretely, which Apple hardware:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">Safari 17 plays AV1 only on Macs with M3 silicon, the M4 iPad Pro, the iPhone 15 Pro family, and the iPhone 16 family. Older Apple devices can install Safari 17 but get no AV1, because Apple has not shipped a software decoder.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Non-Apple hardware:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">AV1 hardware decode requires a GPU shipped after roughly late 2021 — RTX 30-series and later, Intel Arc, Apple M3 and later, AMD RDNA 2 and later. Software decode works in modern browsers but is expensive at 4K.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>The honest overall estimate:</strong> <cite class="text-slate-500 dark:text-slate-400 not-italic">AV1 hardware decode covers roughly 80% of consumer devices that play streaming video. The remaining gap is mid-range and older Android, iPhone 14 and earlier, iPad mini before A17 Pro, and pre-2020 smart TVs and set-top boxes.</cite></p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Why software decoding is not a free fallback</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When a device lacks hardware AV1 decode, the browser can fall back to software decoding. This works, but it is not free. <cite class="text-slate-500 dark:text-slate-400 not-italic">Phones and laptops without an AV1 decoder run the software decoder on the CPU, which heats the device and shortens battery life.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">For a short clip this is harmless. For an hour of 4K, it is a bad experience that shows up in your analytics as people leaving.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What to actually ship</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">If you are delivering video on a website, the practical recommendation is a fallback chain. <cite class="text-slate-500 dark:text-slate-400 not-italic">Ship AV1 with an HEVC fallback, and fall back to H.264 only for clients that actually need it.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">One caveat worth planning for: <cite class="text-slate-500 dark:text-slate-400 not-italic">not every CDN serves every codec equally well, and HLS and DASH support varies. H.264 in MP4 or fMP4 over HLS works on every CDN and every player — it is the known-good path. H.265 in fMP4 works on Apple platforms and most modern players but needs explicit configuration on some CDNs.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you are just uploading to a platform, none of this applies. Send H.264 and let them transcode.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">What about VVC (H.266)?</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">It exists and compresses better than AV1 on paper. It also has no meaningful browser support. <cite class="text-slate-500 dark:text-slate-400 not-italic">The practical advice is not to add VVC until at least one major browser decodes it in hardware — which is not happening in <%= currentYear %>.</cite></p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Encoding speed: the tradeoff nobody budgets for</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Compression efficiency comes at the cost of encoder complexity. Roughly, at comparable quality:</p>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>Compatibility:</strong> H.264 &gt; VP9 &gt; H.265 &gt; AV1</li>
-        <li><strong>Compression:</strong> AV1 &gt; H.265 &gt; VP9 &gt; H.264</li>
-        <li><strong>File size at same quality:</strong> AV1 smallest, H.264 largest</li>
-        <li><strong>Best for old devices:</strong> H.264</li>
-        <li><strong>Best for 4K and storage:</strong> H.265 or AV1</li>
+        <li><strong>H.264</strong> — fastest, hardware encoding available almost everywhere</li>
+        <li><strong>H.265</strong> — slower, hardware encoding common on modern GPUs</li>
+        <li><strong>VP9</strong> — slower still, hardware encoding less common</li>
+        <li><strong>AV1</strong> — slowest, hardware encoding limited to recent GPUs</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Hardware encoding is far faster than software but produces somewhat lower quality at the same bitrate. For archiving where you encode once and keep forever, software encoding with a slow preset is worth the wait. For batch work or anything time-sensitive, hardware encoding is the practical choice.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">One asymmetry worth knowing: <cite class="text-slate-500 dark:text-slate-400 not-italic">decode and encode support are different capabilities. For AV1, decoder support sits around 91% for 10-bit, but encoder support falls to about 8% — the hardware can decode 10-bit AV1 but cannot encode it.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">A device that can play AV1 may not be able to publish it efficiently.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you produce AV1, use 8-bit Profile 0 unless you have a specific reason otherwise.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common questions</h2>
+      <ul class="list-disc pl-6 space-y-3 text-slate-600 dark:text-slate-400">
+        <li><strong>Which codec should I upload to YouTube in?</strong><br>H.264 in an MP4. YouTube re-encodes everything anyway, so uploading in AV1 gains you nothing and costs you hours of encoding time.</li>
+        <li><strong>Is AV1 always better than H.264?</strong><br>Better compression, yes. Better choice, not always. If your audience includes older phones or Apple devices before the M3 and iPhone 15 Pro generation, H.264 may deliver a better actual experience.</li>
+        <li><strong>Why does my H.265 file not play in Chrome or Firefox?</strong><br>Licensing, not capability. Support varies by browser, OS, and even by the same engine across browsers. This is why H.265 is a poor choice for open web distribution.</li>
+        <li><strong>Does changing codec reduce quality?</strong><br>Any re-encode loses some quality — that is generation loss, and it is irreversible. Converting H.264 to AV1 shrinks the file but cannot recover what H.264 already discarded. Always re-encode from the highest-quality source you have.</li>
+        <li><strong>H.264 vs AVC vs x264 — what is the difference?</strong><br>H.264 and AVC are two names for the same standard. x264 is a specific open-source <em>encoder</em> that produces H.264 video. Same relationship as HEVC/H.265 and x265.</li>
+        <li><strong>Is VP9 dead?</strong><br>No, but it is being squeezed. AV1 beats it on compression and has broader industry backing; H.264 beats it on compatibility and speed. It remains widely deployed, particularly by YouTube, but it is not usually the right choice for something new.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Codec Should You Pick?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">If you need a file that plays everywhere, choose H.264. If you want smaller files and your devices support it, choose H.265 or VP9. For cutting-edge streaming quality with low bandwidth, AV1 is the best option when supported.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick reference</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Situation</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Codec</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Uploading to any platform</td><td class="px-4 py-3">H.264</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Live streaming to Twitch (standard)</td><td class="px-4 py-3">H.264</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Web delivery, controlling the pipeline</td><td class="px-4 py-3">AV1 with H.264 fallback</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Apple-only workflow, 4K HDR</td><td class="px-4 py-3">H.265</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Archiving masters</td><td class="px-4 py-3">H.265 or AV1 at high quality</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Sharing with unknown recipients</td><td class="px-4 py-3">H.264</td></tr>
+            <tr><td class="px-4 py-3">Editing source files</td><td class="px-4 py-3">H.264, or an intermediate codec like ProRes/DNxHD</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Codecs and Downloading</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download a video, the platform usually picks the codec for you. YouTube, for example, may serve VP9 or AV1 for higher resolutions. You do not always need to convert codecs unless a file will not play on your device. In that case, converting to H.264 is the safest move.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Related guides</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained: How Quality and File Size Are Connected</a></li>
+        <li><a href="/blog/video-resolution-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Video Resolution Explained: 480p vs 720p vs 1080p vs 1440p vs 4K</a></li>
+        <li><a href="/blog/what-is-540p" class="text-sky-600 dark:text-sky-400 hover:underline">What Is 540p and When Is It Used?</a></li>
+      </ul>
+
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-10 italic">Codec support changes faster than most areas of video. Apple's AV1 rollout in particular is tied to hardware generations, so device support will keep improving over time. Check current figures against Can I Use and real-device telemetry before making delivery decisions — and note that those two sources often disagree.</p>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-codecs-bottom' }) %>
