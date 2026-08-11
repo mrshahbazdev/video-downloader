@@ -1,0 +1,58 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-transcripts-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        YouTube can automatically create captions and transcripts for many videos. These transcripts are useful for studying, quoting, or translating content. The best way to get them is through YouTube's official tools, which respect the creator's rights and platform rules.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Method 1: Use the Transcript Panel on Desktop</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Open the YouTube video in your browser.</li>
+        <li>Click the three dots menu below the video (next to the Save button).</li>
+        <li>Select <strong>Show transcript</strong>.</li>
+        <li>A panel will appear on the right side with the transcript and timestamps.</li>
+        <li>Click any line to jump to that part of the video.</li>
+        <li>To copy the text, select it and use Ctrl+C or right-click Copy.</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Method 2: Use YouTube on Mobile</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Open the YouTube app and play the video.</li>
+        <li>Tap the video to show the player controls.</li>
+        <li>Tap the <strong>CC</strong> (captions) icon if available.</li>
+        <li>Some videos also show a transcript option below the description if the creator has enabled it.</li>
+        <li>You can read the captions as the video plays, but copying may require the desktop site.</li>
+      </ol>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Method 3: Download Subtitles from YouTube Studio (Your Own Videos)</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Sign in to YouTube Studio at studio.youtube.com.</li>
+        <li>Click <strong>Subtitles</strong> in the left menu.</li>
+        <li>Select the video you want.</li>
+        <li>Click the subtitle track you want to download.</li>
+        <li>Choose the format, such as SRT, and save it to your computer.</li>
+      </ol>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">This method only works for videos you own or manage.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What If a Transcript Is Not Available?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Not all videos have auto-generated or creator-uploaded captions. If the transcript option is missing, the creator may have disabled captions, or the video may not have enough clear speech for automatic captions. You can still enable live captions in some browsers, but these cannot be saved easily.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Using Transcripts Responsibly</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Transcripts are a great study and reference tool, but they are still part of the creator's content. Use them for personal learning, accessibility, or quotation with credit. Do not republish transcripts as your own work or use them to copy a video without permission.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Summary</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The easiest official way to get a YouTube transcript is through the desktop transcript panel. For your own videos, YouTube Studio lets you download caption files. Always respect creator rights and YouTube's Terms of Service when using transcripts.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-transcripts-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</section>

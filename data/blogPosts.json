@@ -462,5 +462,77 @@
     "formats": "MP4, MOV",
     "summary": "Discover the best free stock video sites with legally downloadable footage.",
     "description": "Top 10 free stock video sites. Download free stock footage for personal and commercial projects."
+  },
+  {
+    "slug": "video-resolution-explained",
+    "title": "Video Resolution Explained: 480p vs 720p vs 1080p vs 1440p vs 4K",
+    "site": "online video",
+    "formats": "MP4, MKV, WebM",
+    "summary": "Understand video resolutions from 480p to 4K, including typical file sizes and bandwidth needs for each.",
+    "description": "Video resolution guide: compare 480p, 720p, 1080p, 1440p, and 4K. Learn about file sizes, bandwidth, and when to use each resolution.",
+    "keywords": "video resolution, 480p vs 720p, 1080p vs 4K, 1440p video, video quality, file size, bandwidth",
+    "date": "2024-09-05",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
+  },
+  {
+    "slug": "what-is-540p",
+    "title": "What Is 540p? When and Why It Is Used",
+    "site": "online video",
+    "formats": "MP4",
+    "summary": "Learn what 540p means, where you will see it, and why some platforms still use it today.",
+    "description": "What is 540p? Find out when 540p resolution is used, its file size benefits, and how it compares to 480p and 720p.",
+    "keywords": "540p resolution, what is 540p, video resolution 540p, 540p vs 480p, 540p vs 720p",
+    "date": "2024-09-10",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
+  },
+  {
+    "slug": "video-codecs-compared",
+    "title": "Video Codecs Compared: H.264 vs H.265 vs AV1 vs VP9",
+    "site": "online video",
+    "formats": "MP4, WebM",
+    "summary": "Compare H.264, H.265, AV1, and VP9 to choose the best codec for quality, file size, and device support.",
+    "description": "H.264 vs H.265 vs AV1 vs VP9 comparison. Learn which video codec offers the best balance of quality, compression, and compatibility.",
+    "keywords": "H.264 vs H.265, AV1 vs VP9, video codecs, codec comparison, HEVC, AV1, video compression",
+    "date": "2024-09-15",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
+  },
+  {
+    "slug": "video-bitrate-explained",
+    "title": "Bitrate Explained: The Relationship Between Quality and File Size",
+    "site": "online video",
+    "formats": "MP4, MKV",
+    "summary": "Understand what video bitrate is, how it affects quality and file size, and how to choose the right bitrate for your needs.",
+    "description": "Video bitrate explained. Learn how bitrate controls quality and file size, and how to pick the right setting for streaming or downloading.",
+    "keywords": "video bitrate, bitrate explained, video quality, file size, video encoding, streaming bitrate",
+    "date": "2024-09-20",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
+  },
+  {
+    "slug": "subtitle-formats-compared",
+    "title": "Subtitle Formats Compared: SRT vs VTT vs ASS — Which to Use When",
+    "site": "online video",
+    "formats": "SRT, VTT, ASS",
+    "summary": "Compare SRT, VTT, and ASS subtitle formats so you can pick the right one for your videos and players.",
+    "description": "SRT vs VTT vs ASS subtitle formats compared. Learn the differences, use cases, and which subtitle file format works best for you.",
+    "keywords": "SRT vs VTT, ASS subtitles, subtitle formats, SRT subtitle, WebVTT, subtitle comparison",
+    "date": "2024-09-25",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
+  },
+  {
+    "slug": "how-to-get-youtube-transcripts",
+    "title": "How to Get YouTube Transcripts (Official Methods)",
+    "site": "YouTube",
+    "formats": "TXT, SRT",
+    "summary": "Learn the official ways to view, copy, and download YouTube transcripts and captions without third-party tools.",
+    "description": "How to get YouTube transcripts officially. Step-by-step guide to view, copy, and download captions and transcripts on desktop and mobile.",
+    "keywords": "YouTube transcript, get YouTube transcript, download YouTube captions, YouTube transcript official",
+    "date": "2024-09-30",
+    "dateModified": "2026-08-10",
+    "author": "ClipVault Editorial Team"
   }
 ]

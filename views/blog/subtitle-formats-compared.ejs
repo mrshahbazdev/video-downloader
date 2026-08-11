@@ -1,0 +1,50 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-subtitles-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Subtitles and captions make videos accessible to more viewers. There are many subtitle file formats, but three of the most common are SRT, VTT, and ASS. Each has its own strengths and best use case. This guide compares them so you can pick the right one.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">SRT — Simple and Universal</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">SRT stands for SubRip Text. It is the most basic and widely supported subtitle format. An SRT file is just plain text with numbered entries, start and end times, and the subtitle text. Almost every video player, social media platform, and editing tool supports SRT. If you want a format that works everywhere, SRT is the safest choice.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VTT — Web-Friendly and Flexible</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">VTT, also called WebVTT, was created for HTML5 web video. It looks similar to SRT but supports extra features like text styling, positioning, and metadata. WebVTT is the standard for captions on websites and online courses. If your video lives on the web, VTT is often the better option.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">ASS — Advanced Styling</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">ASS stands for Advanced SubStation Alpha. It supports detailed styling, including font colors, sizes, borders, shadows, and animated effects. Fansubbers and anime groups often use ASS because it lets them match subtitles to the video style. The downside is that not all players support ASS, and the files are more complex.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick Comparison</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>SRT:</strong> simple, universal, no styling</li>
+        <li><strong>VTT:</strong> web-friendly, basic styling, metadata</li>
+        <li><strong>ASS:</strong> advanced styling, anime/fansub use, less universal</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Format Should You Use?</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>For social media or general players:</strong> SRT</li>
+        <li><strong>For websites and online courses:</strong> VTT</li>
+        <li><strong>For styled anime or special projects:</strong> ASS</li>
+        <li><strong>For editing:</strong> SRT or VTT, depending on your software</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Converting Between Subtitle Formats</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">You can convert SRT, VTT, and ASS files using online tools or subtitle editors. Most tools handle SRT to VTT easily. Converting ASS to SRT may lose styling, so check the result before using it. If you downloaded a subtitle file, make sure the format matches your video player.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Downloading Subtitles Legally</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download subtitles or captions, use them only for videos you own or have permission to access. Many creators and platforms provide official subtitle files for their content. Respect copyright and only use subtitle files from legal sources.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-subtitles-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</section>

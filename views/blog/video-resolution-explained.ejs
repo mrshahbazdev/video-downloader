@@ -1,0 +1,57 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-resolution-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Video resolution tells you how many pixels make up each frame. More pixels usually mean sharper detail, but they also mean larger files and higher bandwidth use. Choosing the right resolution is about balancing quality, storage, and your internet speed.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Does 480p Mean?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">480p, also called Standard Definition (SD), has a resolution of 854 × 480 pixels. It is the smallest common size for modern online video. Because the file size is small, 480p streams smoothly on slow connections and uses little storage. It looks acceptable on small phone screens but becomes blurry on larger displays.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">720p — The HD Starting Point</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">720p has a resolution of 1280 × 720 pixels. It is the lowest resolution officially called High Definition (HD). 720p looks good on phones, tablets, and smaller laptops. It uses more bandwidth than 480p, but it is still efficient for mobile data plans. Many online tutorials and casual videos look perfectly fine at 720p.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">1080p — Full HD for Most Screens</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">1080p, or Full HD, measures 1920 × 1080 pixels. This is the most popular resolution for YouTube, streaming services, and downloaded videos. On a 24-inch monitor or a TV up to 50 inches, 1080p looks sharp. The file size is roughly double that of 720p at the same bitrate, so make sure you have enough storage and a stable connection.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">1440p — The Middle Ground</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">1440p, also called Quad HD or 2K, is 2560 × 1440 pixels. It offers a clear step up from 1080p without the huge file sizes of 4K. Gamers and users of high-resolution monitors often prefer 1440p. It is becoming common on YouTube as "1440p" in the quality menu. The improvement is most visible on screens larger than 24 inches.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">4K — Ultra HD for Large Screens</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">4K, or Ultra HD, is 3840 × 2160 pixels. It delivers very sharp detail on large TVs and monitors. The downside is file size: a 4K video can be four times larger than 1080p. You also need a fast internet connection to stream it. For smaller screens, the extra detail is often hard to notice.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Typical File Sizes and Bandwidth</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">File size depends on length, codec, and bitrate, but here are rough one-minute estimates for an H.264 MP4 file:</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>480p:</strong> about 5–15 MB per minute</li>
+        <li><strong>720p:</strong> about 15–30 MB per minute</li>
+        <li><strong>1080p:</strong> about 30–60 MB per minute</li>
+        <li><strong>1440p:</strong> about 60–120 MB per minute</li>
+        <li><strong>4K:</strong> about 150–400 MB per minute</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">For smooth streaming, 1080p usually needs at least 5 Mbps, while 4K can need 20 Mbps or more.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Resolution Should You Choose?</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Mobile / limited data:</strong> 480p or 720p</li>
+        <li><strong>Laptop or small TV:</strong> 720p or 1080p</li>
+        <li><strong>Large monitor or TV:</strong> 1080p or 1440p</li>
+        <li><strong>Big 4K TV or editing:</strong> 4K</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Responsible Use Reminder</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download a video, pick the resolution that fits your device and storage. Always make sure you have permission to save the content, and respect the creator's rights and platform terms.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-resolution-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</section>

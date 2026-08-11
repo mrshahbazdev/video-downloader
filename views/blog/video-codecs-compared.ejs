@@ -1,0 +1,47 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-codecs-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        A video codec is the software or hardware method used to compress and decompress video files. The codec you choose affects file size, quality, and whether your device can play the video. Here is a simple comparison of the four most common codecs you will see online.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.264 — The Safe Default</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">H.264, also called AVC, is the most widely supported video codec. It works on nearly every phone, computer, TV, and browser. H.264 offers good quality at reasonable file sizes. If you want maximum compatibility, H.264 is usually the best choice.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">H.265 / HEVC — Better Compression</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">H.265, or HEVC, can deliver the same quality as H.264 at roughly half the file size. This makes it great for 4K and mobile storage. The downside is device support: older phones, TVs, and some browsers may not play H.265 without extra software or hardware.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">VP9 — Google's Efficient Codec</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">VP9 is an open codec developed by Google. YouTube uses VP9 for many videos because it offers better compression than H.264. VP9 works well in most modern browsers, especially Chrome, Firefox, and Edge. It is less widely supported on older TVs and editing software than H.264.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">AV1 — The Future of Streaming</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">AV1 is a newer, royalty-free codec designed for the internet. It can compress video even better than H.265 and VP9, which means smaller files at the same quality. Major platforms like YouTube and Netflix are starting to use AV1. The trade-off is that encoding and decoding AV1 can be slower on older devices.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick Comparison Table</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Compatibility:</strong> H.264 &gt; VP9 &gt; H.265 &gt; AV1</li>
+        <li><strong>Compression:</strong> AV1 &gt; H.265 &gt; VP9 &gt; H.264</li>
+        <li><strong>File size at same quality:</strong> AV1 smallest, H.264 largest</li>
+        <li><strong>Best for old devices:</strong> H.264</li>
+        <li><strong>Best for 4K and storage:</strong> H.265 or AV1</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Codec Should You Pick?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">If you need a file that plays everywhere, choose H.264. If you want smaller files and your devices support it, choose H.265 or VP9. For cutting-edge streaming quality with low bandwidth, AV1 is the best option when supported.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Codecs and Downloading</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download a video, the platform usually picks the codec for you. YouTube, for example, may serve VP9 or AV1 for higher resolutions. You do not always need to convert codecs unless a file will not play on your device. In that case, converting to H.264 is the safest move.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-codecs-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</section>

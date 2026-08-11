@@ -1,0 +1,54 @@
+<section class="bg-white dark:bg-slate-900 py-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-bitrate-top' }) %>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        Bitrate measures how much data is used to store or stream one second of video. A higher bitrate usually means better image and sound quality, but it also means a larger file and more bandwidth. Understanding bitrate helps you choose the best download or streaming setting for your needs.
+      </p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Is Bitrate?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Bitrate is measured in kilobits per second (kbps) or megabits per second (Mbps). It includes the amount of data used for both video and audio. A 5 Mbps video uses 5 megabits of data every second. Over a 10-minute video, that adds up quickly.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How Bitrate Affects Quality</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">At a low bitrate, the video compressor must throw away more detail to keep the file small. This can cause blocky areas, color bands, or blurry motion. A higher bitrate keeps more detail, so the picture looks cleaner and smoother, especially during fast action scenes.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How Bitrate Affects File Size</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">File size is directly tied to bitrate. If you double the bitrate, you roughly double the file size. For example, a one-minute video at 2 Mbps is about 15 MB, while the same video at 8 Mbps is about 60 MB. If storage or data is limited, choosing a lower bitrate can help.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Typical Bitrate Ranges</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Here are common bitrates for H.264 video:</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>480p:</strong> 0.5–1.5 Mbps</li>
+        <li><strong>720p:</strong> 2–5 Mbps</li>
+        <li><strong>1080p:</strong> 5–10 Mbps</li>
+        <li><strong>1440p:</strong> 10–20 Mbps</li>
+        <li><strong>4K:</strong> 20–50 Mbps</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Audio usually adds 128–320 kbps on top of these numbers.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Resolution vs Bitrate</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Resolution is the number of pixels. Bitrate is how much data describes those pixels. A 1080p video with a very low bitrate may look worse than a 720p video with a higher bitrate. That is why a "higher resolution" setting does not always look better if the bitrate is too low.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Choosing the Right Bitrate</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Slow connection or limited data:</strong> lower bitrate, smaller file</li>
+        <li><strong>Archiving or editing:</strong> higher bitrate for best quality</li>
+        <li><strong>Streaming to a TV:</strong> match the bitrate to your internet speed</li>
+        <li><strong>Phone viewing:</strong> medium bitrate is usually enough</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Final Tip</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When downloading a video, choose the format and resolution that balance quality and file size for your device. You can always keep a high-quality copy for archiving and a lower-bitrate copy for mobile viewing.</p>
+    </div>
+
+    <%- include('../partials/ad-unit', { adSlot: 'blog-bitrate-bottom' }) %>
+
+    <div class="mt-10 text-center">
+      <a href="/blog" class="btn-primary">Back to all guides</a>
+    </div>
+  </div>
+</section>
