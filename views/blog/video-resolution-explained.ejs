@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-slate-900 py-16">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
     <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
@@ -7,45 +7,186 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Video resolution tells you how many pixels make up each frame. More pixels usually mean sharper detail, but they also mean larger files and higher bandwidth use. Choosing the right resolution is about balancing quality, storage, and your internet speed.
+        Short answer: Video resolution is the number of pixels in each frame, written as height (480p, 1080p) or width (4K). More pixels means more detail, a bigger file, and more bandwidth. For most uploads in <%= currentYear %>, 1080p is the sensible default. Go to 1440p or 4K only if your source footage was actually shot at that resolution and your audience watches on large screens.
       </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Here is what each number means in practice, what it costs you in storage and data, and how to pick without guessing.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Does 480p Mean?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">480p, also called Standard Definition (SD), has a resolution of 854 × 480 pixels. It is the smallest common size for modern online video. Because the file size is small, 480p streams smoothly on slow connections and uses little storage. It looks acceptable on small phone screens but becomes blurry on larger displays.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">720p — The HD Starting Point</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">720p has a resolution of 1280 × 720 pixels. It is the lowest resolution officially called High Definition (HD). 720p looks good on phones, tablets, and smaller laptops. It uses more bandwidth than 480p, but it is still efficient for mobile data plans. Many online tutorials and casual videos look perfectly fine at 720p.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">1080p — Full HD for Most Screens</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">1080p, or Full HD, measures 1920 × 1080 pixels. This is the most popular resolution for YouTube, streaming services, and downloaded videos. On a 24-inch monitor or a TV up to 50 inches, 1080p looks sharp. The file size is roughly double that of 720p at the same bitrate, so make sure you have enough storage and a stable connection.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">1440p — The Middle Ground</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">1440p, also called Quad HD or 2K, is 2560 × 1440 pixels. It offers a clear step up from 1080p without the huge file sizes of 4K. Gamers and users of high-resolution monitors often prefer 1440p. It is becoming common on YouTube as "1440p" in the quality menu. The improvement is most visible on screens larger than 24 inches.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">4K — Ultra HD for Large Screens</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">4K, or Ultra HD, is 3840 × 2160 pixels. It delivers very sharp detail on large TVs and monitors. The downside is file size: a 4K video can be four times larger than 1080p. You also need a fast internet connection to stream it. For smaller screens, the extra detail is often hard to notice.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Typical File Sizes and Bandwidth</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">File size depends on length, codec, and bitrate, but here are rough one-minute estimates for an H.264 MP4 file:</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What "resolution" actually measures</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A video frame is a grid of pixels. Resolution tells you how big that grid is.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The confusing part is that the industry uses two naming systems at once:</p>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>480p:</strong> about 5–15 MB per minute</li>
-        <li><strong>720p:</strong> about 15–30 MB per minute</li>
-        <li><strong>1080p:</strong> about 30–60 MB per minute</li>
-        <li><strong>1440p:</strong> about 60–120 MB per minute</li>
-        <li><strong>4K:</strong> about 150–400 MB per minute</li>
+        <li>The <strong>"p"</strong> system counts the height in pixels. 1080p means 1,080 pixel rows. The "p" stands for progressive scan — every row is drawn in each frame, as opposed to the older interlaced ("i") method that drew alternating rows.</li>
+        <li>The <strong>"K"</strong> system counts the width in thousands of pixels. 4K means roughly 4,000 pixels wide.</li>
       </ul>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">For smooth streaming, 1080p usually needs at least 5 Mbps, while 4K can need 20 Mbps or more.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">So 1080p and 4K are measured on different axes. That is why comparing them feels awkward.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which Resolution Should You Choose?</h2>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Resolution reference table</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Name</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Common label</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Pixel dimensions (16:9)</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Total pixels</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Relative to 1080p</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">360p</td><td class="px-4 py-3">Low / mobile</td><td class="px-4 py-3">640 × 360</td><td class="px-4 py-3">230,400</td><td class="px-4 py-3">0.11×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">480p</td><td class="px-4 py-3">SD (Standard Definition)</td><td class="px-4 py-3">854 × 480</td><td class="px-4 py-3">409,920</td><td class="px-4 py-3">0.20×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">540p</td><td class="px-4 py-3">qHD ("quarter HD")</td><td class="px-4 py-3">960 × 540</td><td class="px-4 py-3">518,400</td><td class="px-4 py-3">0.25×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">720p</td><td class="px-4 py-3">HD</td><td class="px-4 py-3">1280 × 720</td><td class="px-4 py-3">921,600</td><td class="px-4 py-3">0.44×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1080p</td><td class="px-4 py-3">Full HD / FHD</td><td class="px-4 py-3">1920 × 1080</td><td class="px-4 py-3">2,073,600</td><td class="px-4 py-3">1.00×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1440p</td><td class="px-4 py-3">QHD / 2K</td><td class="px-4 py-3">2560 × 1440</td><td class="px-4 py-3">3,686,400</td><td class="px-4 py-3">1.78×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">2160p</td><td class="px-4 py-3">4K UHD</td><td class="px-4 py-3">3840 × 2160</td><td class="px-4 py-3">8,294,400</td><td class="px-4 py-3">4.00×</td></tr>
+            <tr><td class="px-4 py-3">4320p</td><td class="px-4 py-3">8K UHD</td><td class="px-4 py-3">7680 × 4320</td><td class="px-4 py-3">33,177,600</td><td class="px-4 py-3">16.00×</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Two things worth noticing:</p>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>Mobile / limited data:</strong> 480p or 720p</li>
-        <li><strong>Laptop or small TV:</strong> 720p or 1080p</li>
-        <li><strong>Large monitor or TV:</strong> 1080p or 1440p</li>
-        <li><strong>Big 4K TV or editing:</strong> 4K</li>
+        <li><strong>Pixel count grows fast.</strong> Going from 1080p to 4K doubles both width and height, which quadruples the pixel count. It is not "twice as sharp" — it is four times the data before compression.</li>
+        <li><strong>4K UHD is not cinema 4K.</strong> The 3840 × 2160 figure above is UHD, the consumer TV and streaming standard. Cinema 4K (DCI 4K) is 4096 × 2160, slightly wider. When a phone or streaming service says "4K," it almost always means UHD.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Responsible Use Reminder</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When you download a video, pick the resolution that fits your device and storage. Always make sure you have permission to save the content, and respect the creator's rights and platform terms.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Resolution is only one of three quality factors</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is where most explanations stop, and it is why people upload a 4K file that somehow looks worse than their friend's 1080p one.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Perceived quality depends on three things working together:</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Resolution</strong> — how many pixels</li>
+        <li><strong>Bitrate</strong> — how much data per second is spent describing those pixels</li>
+        <li><strong>Codec</strong> — how efficiently that data is compressed</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">A 4K video at 5 Mbps will look noticeably worse than a 1080p video at 12 Mbps. There are four times as many pixels but no extra data to describe them, so the encoder smears detail into blocky artifacts. You get the resolution label without the quality.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>If you only remember one rule:</strong> raising resolution without raising bitrate makes things worse, not better.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">(Bitrate has its own guide — see <a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained</a>. Codec efficiency is covered in <a href="/blog/video-codecs-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Video Codecs Compared</a>.)</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">File size: what each resolution actually costs</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">File size is genuinely predictable. The formula is:</p>
+      <p class="bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-lg font-mono text-sm text-slate-700 dark:text-slate-300 mt-3">File size (MB) = bitrate (Mbps) × duration (seconds) ÷ 8</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The ÷ 8 converts bits to bytes. Below are estimates for a 10-minute H.264 video using bitrates in the typical range for each resolution. These are calculated estimates, not measured results — your real numbers will shift depending on how much motion and detail your footage has.</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Resolution</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Typical bitrate (H.264, 30fps)</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">10-min file size</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">1-hour file size</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">360p</td><td class="px-4 py-3">~1 Mbps</td><td class="px-4 py-3">~75 MB</td><td class="px-4 py-3">~450 MB</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">480p</td><td class="px-4 py-3">~2.5 Mbps</td><td class="px-4 py-3">~188 MB</td><td class="px-4 py-3">~1.1 GB</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">540p</td><td class="px-4 py-3">~3.5 Mbps</td><td class="px-4 py-3">~263 MB</td><td class="px-4 py-3">~1.6 GB</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">720p</td><td class="px-4 py-3">~5 Mbps</td><td class="px-4 py-3">~375 MB</td><td class="px-4 py-3">~2.3 GB</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1080p</td><td class="px-4 py-3">~8 Mbps</td><td class="px-4 py-3">~600 MB</td><td class="px-4 py-3">~3.6 GB</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1440p</td><td class="px-4 py-3">~16 Mbps</td><td class="px-4 py-3">~1.2 GB</td><td class="px-4 py-3">~7.2 GB</td></tr>
+            <tr><td class="px-4 py-3">4K (2160p)</td><td class="px-4 py-3">~40 Mbps</td><td class="px-4 py-3">~3.0 GB</td><td class="px-4 py-3">~18 GB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The jump from 1080p to 4K is roughly 5× the storage. That matters if you are archiving a library, working off a laptop SSD, or uploading on a slow connection.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why your file might be much smaller or larger than this table</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Bitrate targets assume "average" content. A static talking-head shot compresses extremely well — the background barely changes between frames, so the encoder stores very little new information. Fast-motion footage (gameplay, sports, drone shots, water, confetti, fabric) changes almost every pixel every frame and needs far more data for the same perceived quality. The same 10 minutes at 1080p can land anywhere from 200 MB to 1.5 GB depending on content.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Bandwidth: what you need to stream each one</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Storage is one cost; live bandwidth is another. These are rough sustained-throughput figures for comfortable playback with a little headroom for buffering:</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Resolution</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Comfortable download speed</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">480p</td><td class="px-4 py-3">3 Mbps</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">720p</td><td class="px-4 py-3">5–8 Mbps</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1080p</td><td class="px-4 py-3">10–15 Mbps</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1440p</td><td class="px-4 py-3">20–25 Mbps</td></tr>
+            <tr><td class="px-4 py-3">4K</td><td class="px-4 py-3">35–50 Mbps</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">A few practical notes:</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Streaming services deliver lower bitrates than your local files.</strong> They use adaptive bitrate streaming — the player measures your connection and switches quality on the fly. This is why a 4K stream might need less bandwidth than the 40 Mbps in the file-size table above: the service has already compressed it harder for delivery.</li>
+        <li><strong>Multiple viewers multiply the requirement.</strong> Two people streaming 4K on the same connection need roughly double.</li>
+        <li><strong>Upload speed is a separate number.</strong> Home connections are usually asymmetric — 100 Mbps down might come with only 10 Mbps up. If you are uploading 4K, check your upload speed, not your download speed. A 3 GB file on a 10 Mbps upload takes about 40 minutes.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Which resolution should you actually use?</h2>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">For uploading to YouTube and similar platforms</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">YouTube's own recommended upload bitrates for standard SDR content are 8 Mbps for 1080p at 24–30 fps, 12 Mbps for 1080p at 48–60 fps, and 35–45 Mbps for 4K at 24–30 fps.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Note that these are upload recommendations, not playback bitrates. The platform re-encodes everything you send it. Your job is to give it a clean source with enough data to work from.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">One nuance that trips people up: uploading at a higher resolution improves the lower resolutions too. When you upload 4K, the platform generates 1440p, 1080p, 720p and below from that high-quality master. Those derived versions look better than if you had uploaded 1080p directly. If your source footage is genuinely 4K, uploading at 4K helps every viewer, not just the ones watching in 4K.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">But if your source is 1080p, upscaling it to 4K before uploading gains you nothing. You are spending 5× the storage and upload time to describe invented pixels.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">For archiving your own footage</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Keep the original. Whatever your camera recorded is your master copy. Any re-encode is generation loss — you cannot get detail back once it is gone.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If storage forces a compromise, re-encoding to a more efficient codec at the same resolution costs less quality than dropping resolution.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">For sharing over messaging or email</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">720p is usually the sweet spot. It looks fine on a phone screen, and the file is small enough to send without a compression service mangling it further.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">For screen recordings and tutorials</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Match your actual screen resolution rather than picking a "nice" number. Recording a 1440p monitor at 1080p forces a downscale that makes text blurry — and text is the one thing that must stay readable in a tutorial. Text and fine lines are also unusually hard to compress, so budget a higher bitrate than you would for camera footage at the same resolution.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">When higher resolution stops being visible</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">There is a real limit to what the eye resolves, and it depends on screen size and viewing distance.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Rough guidance:</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><strong>Phone (6 inch, held at arm's length):</strong> the difference between 1080p and 4K is essentially invisible. Even 720p holds up well.</li>
+        <li><strong>Laptop (13–15 inch):</strong> 1080p is comfortable. 1440p is a mild improvement if you sit close.</li>
+        <li><strong>TV (55 inch, viewed from 8–10 feet):</strong> 4K becomes visible, but 1080p at a good bitrate still looks fine. Many people cannot reliably tell them apart at this distance in a blind test.</li>
+        <li><strong>Monitor (27 inch, viewed from 2 feet):</strong> this is where resolution differences are most obvious. 1440p and 4K are clearly sharper than 1080p.</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The practical takeaway: viewing distance relative to screen size matters more than the resolution number. A 4K phone video and a 1080p phone video look identical to almost everyone. The same two files on a large monitor look different.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">This is also why bitrate often matters more than resolution for real-world quality. A well-encoded 1080p file beats a starved 4K file on any screen.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common questions</h2>
+      <ul class="list-disc pl-6 space-y-3 text-slate-600 dark:text-slate-400">
+        <li><strong>Is 2K the same as 1440p?</strong> Colloquially, yes — most people use "2K" to mean 2560 × 1440. Technically it is inconsistent, since DCI 2K is 2048 × 1080, which is closer to 1080p. If precision matters, say 1440p or QHD.</li>
+        <li><strong>Why does my 1080p video look worse than someone else's 1080p video?</strong> Almost always bitrate or codec, not resolution. Also check whether the platform re-encoded it, whether your source was upscaled from something smaller, and whether you exported at the right frame rate.</li>
+        <li><strong>Does higher resolution mean higher frame rate?</strong> No, they are independent. You can have 4K at 24fps or 720p at 120fps. But raising either one increases the data required, and raising both increases it substantially.</li>
+        <li><strong>Is 8K worth it in <%= currentYear %>?</strong> For almost everyone, no. Content is scarce, files are enormous, playback needs specific hardware decoding support, and the visible benefit over 4K requires a very large screen at close range. It remains mostly a production and future-proofing format rather than a delivery one.</li>
+        <li><strong>What is the difference between 480p at 854×480 and 640×480?</strong> Aspect ratio. 854 × 480 is 16:9 widescreen; 640 × 480 is 4:3, the old standard-definition TV shape. Both are "480p" because both have 480 rows.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick reference: picking a resolution</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Your situation</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Use</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Uploading camera footage shot in 4K</td><td class="px-4 py-3">4K</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Uploading 1080p source footage</td><td class="px-4 py-3">1080p (do not upscale)</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Screen recording a 1080p display</td><td class="px-4 py-3">1080p</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Screen recording a 1440p display</td><td class="px-4 py-3">1440p</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Sharing over WhatsApp / email</td><td class="px-4 py-3">720p</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Archiving originals</td><td class="px-4 py-3">Whatever the camera recorded</td></tr>
+            <tr><td class="px-4 py-3">Limited storage or slow upload</td><td class="px-4 py-3">1080p at a good bitrate beats 4K at a poor one</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Related guides</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><a href="/blog/what-is-540p" class="text-sky-600 dark:text-sky-400 hover:underline">What Is 540p and When Is It Used?</a></li>
+        <li><a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained: The Relationship Between Quality and File Size</a></li>
+        <li><a href="/blog/video-codecs-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Video Codecs Compared: H.264 vs H.265 vs AV1 vs VP9</a></li>
+        <li><a href="/blog/subtitle-formats-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Subtitle Formats: SRT vs VTT vs ASS</a></li>
+      </ul>
+
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-10">Bitrate recommendations in this guide were checked against YouTube's published upload encoding settings. File size figures are calculated estimates and will vary with content complexity.</p>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-resolution-bottom' }) %>
