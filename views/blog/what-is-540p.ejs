@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-slate-900 py-16">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
     <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
@@ -7,38 +7,129 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        You have probably seen 480p, 720p, and 1080p in video quality menus, but 540p is less common. It is a middle resolution that sits between standard definition and high definition. This article explains what 540p is, where it appears, and why platforms sometimes use it.
+        <strong>Short answer:</strong> 540p is 960 × 540 pixels — exactly one quarter of a 1080p frame. It is also called qHD, for "quarter HD." It sits between 480p and 720p, and although it is rarely something you choose deliberately in <%= currentYear %>, it is still generated automatically by streaming platforms, broadcast standards, and video conferencing tools every day.
       </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">It is an odd resolution with a specific reason for existing, and it gets confused with a completely different one.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Is 540p?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">540p usually has a resolution of 960 × 540 pixels. It is exactly half the width and half the height of 1080p, which makes it easy to scale. Because it is one-quarter of the pixels of 1080p, file sizes are much smaller while still looking noticeably sharper than 480p.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">qHD is not QHD</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is the single most common point of confusion, and it is worth clearing up before anything else.</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Abbreviation</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Full name</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Pixels</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Relationship</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>qHD</strong> (lowercase q)</td><td class="px-4 py-3">quarter HD</td><td class="px-4 py-3">960 × 540</td><td class="px-4 py-3">¼ of 1080p</td></tr>
+            <tr><td class="px-4 py-3"><strong>QHD</strong> (uppercase Q)</td><td class="px-4 py-3">Quad HD</td><td class="px-4 py-3">2560 × 1440</td><td class="px-4 py-3">4× of 720p</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">One is a quarter. The other is quadruple. They differ by a single letter's case and by a factor of roughly seven in pixel count.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">qHD stands for "quarter HD," as it is one quarter of 1080p resolution, at 960 × 540 pixels.</cite> QHD, by contrast, <cite class="text-slate-500 dark:text-slate-400 not-italic">has 2560 × 1440 pixels — four times the resolution of 720p — and is common in high-end smartphones and gaming monitors.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you are reading a spec sheet and the capitalisation is ambiguous, look at the pixel dimensions. They are unmistakable.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why Do Some Platforms Use 540p?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">540p is a compromise. It gives a clearer picture than 480p without the bandwidth cost of 720p. Some video players and older smartphones handle 540p better than higher resolutions. It is also useful when storage space is limited but the viewer still wants a sharper image than standard definition.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">540p vs 480p and 720p</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">540p offers a good middle ground:</p>
-      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>480p (854 × 480):</strong> smaller file, softer image</li>
-        <li><strong>540p (960 × 540):</strong> sharper than 480p, still small file</li>
-        <li><strong>720p (1280 × 720):</strong> much clearer, but uses more data and processing</li>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why exactly a quarter?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">540 is half of 1080. 960 is half of 1920. Halving both dimensions quarters the pixel count.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">That clean 2:1 relationship is the entire reason 540p exists rather than some other number near it.</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400 mt-4">
+        <li><strong>Scaling is cheap and clean.</strong> Downscaling by exactly half is computationally simple — a decoder can average groups of four pixels into one without complex interpolation. Upscaling back to 1080p is equally straightforward. Awkward ratios require heavier filtering and introduce more softness.</li>
+        <li><strong>It fits adaptive streaming ladders.</strong> Streaming services generate multiple quality versions of every video and switch between them based on your connection. A ladder built on halving — 1080p, 540p, 270p — or on standard steps that include 540p gives clean scaling at each rung.</li>
+        <li><strong>Aspect ratio stays 16:9.</strong> 960 ÷ 540 = 1.778, the same as 1920 ÷ 1080. No letterboxing, no distortion, no cropping when scaling between them.</li>
       </ul>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">For phone screens, 540p can look close to 720p, while saving data. On larger screens, 720p or 1080p is usually better.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common Uses for 540p</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">You might see 540p in these situations:</p>
-      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li>Mobile streaming on slow or limited data connections</li>
-        <li>Previews or trailers where file size must be small</li>
-        <li>Older devices that struggle with higher resolutions</li>
-        <li>Archiving content when storage is limited</li>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Where 540p actually comes from</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The format has an unusually tangled history for something so specific.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Interlaced television</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The oldest thread. In interlaced broadcast, a 1080i signal draws alternating rows in each field. <cite class="text-slate-500 dark:text-slate-400 not-italic">Under motion, the vertical resolution of 1080i effectively becomes 540p — the picture takes on the characteristics of a progressively scanned system with half the scanning lines.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">So 540p is, in a sense, what 1080i actually delivers when things are moving.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Early smartphones</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">960 × 540 was commonly used in older smartphones</cite>, sitting in the gap between the low-resolution screens of the late 2000s and the 720p displays that followed. For a few years around 2011–2013 it was a common mid-range panel spec.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Broadcast standards</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is the surprising one — 540p is not merely legacy. <cite class="text-slate-500 dark:text-slate-400 not-italic">540p50, also known as qHD, is a progressive format at 960 × 540 in 16:9, and it is a minimum requirement for German DVB-T2 HEVC receiver boxes.</cite> It was positioned as a modern replacement for traditional standard definition.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Apple's iFrame</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">Apple briefly promoted 960 × 540 under its "iFrame" format standard</cite>, intended as an editing-friendly capture format. It did not become widespread, but it left traces in some camera and editing software presets.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Where you encounter it in <%= currentYear %></h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">You rarely pick 540p. It gets picked for you.</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400 mt-4">
+        <li><strong>Adaptive streaming.</strong> When your connection degrades, the player steps down the quality ladder. Many ladders include a 540p rung between 480p and 720p. If you have watched video that looked soft but not terrible, you may have been watching 540p without being told.</li>
+        <li><strong>Video conferencing.</strong> Meeting platforms commonly fall back to around 540p under bandwidth pressure — it keeps faces legible while cutting data substantially compared to 720p.</li>
+        <li><strong>Social platform re-encodes.</strong> Some platforms re-encode uploads down to 540p or similar for certain feed contexts, particularly on mobile.</li>
+        <li><strong>Older and budget hardware.</strong> Some low-end devices, older set-top boxes, and legacy displays still cap out around this resolution.</li>
+        <li><strong>Bandwidth-constrained delivery.</strong> Anywhere data cost matters more than sharpness — regions with expensive mobile data, embedded systems, surveillance feeds.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">File Size and Bandwidth</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A one-minute H.264 MP4 video at 540p is roughly 10–25 MB, depending on bitrate. That is larger than 480p but smaller than 720p. Streaming 540p typically needs 1.5–3 Mbps for smooth playback.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Is 540p good enough?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">More often than people assume, and the reason is screen size and viewing distance.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>On a phone held at arm's length:</strong> 540p is acceptable for most content. On a 6-inch screen the pixel density is still reasonable, and the difference from 720p is visible but not distracting for casual viewing.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>On a laptop:</strong> noticeably soft. Text and fine detail suffer. Watchable, not pleasant.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>On a TV:</strong> clearly soft. The upscale to a 1080p or 4K panel makes the limitation obvious, particularly in text, faces, and fine textures.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>For screen recordings or anything with text:</strong> avoid it. Text is the first thing to degrade at reduced resolution, and unreadable text defeats the purpose.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">There is an argument, sometimes made by encoding enthusiasts, that a well-encoded 540p at a generous bitrate can look surprisingly close to a poorly-encoded 720p. That is directionally true — bitrate matters enormously — but it is easy to overstate. At equal bitrate and equal encoder quality, 720p wins. The 540p case only holds when the comparison is unfair to 720p.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Should You Use 540p?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">If your connection is slow, your screen is small, or you need to save storage, 540p is a smart choice. It gives a cleaner image than 480p without the heavy demands of 720p. For larger screens or editing, stick with 1080p or higher.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Should you ever export at 540p?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><strong>Yes, when:</strong></p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Bandwidth or data cost is the binding constraint</li>
+        <li>You are targeting older or low-end mobile devices specifically</li>
+        <li>You are building an adaptive streaming ladder and need a rung there</li>
+        <li>File size limits force it and the content is simple (talking head, slideshow)</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>No, when:</strong></p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li>Uploading to a platform — always upload higher and let it transcode down</li>
+        <li>The content contains text, UI, or fine detail</li>
+        <li>It will be viewed on anything larger than a phone</li>
+        <li>You are archiving</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>A note on uploads specifically:</strong> exporting at 540p to save upload time is almost always a mistake. Platforms generate their own lower-quality versions from your source. If you upload 540p, that is the ceiling for every viewer forever. If you upload 1080p, the platform still generates a 540p version for people who need it — and it will look better, because it was derived from a higher-quality master.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">540p in context</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Resolution</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Pixels</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Total</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">vs 1080p</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">360p</td><td class="px-4 py-3">640 × 360</td><td class="px-4 py-3">230,400</td><td class="px-4 py-3">0.11×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">480p</td><td class="px-4 py-3">854 × 480</td><td class="px-4 py-3">409,920</td><td class="px-4 py-3">0.20×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">540p</td><td class="px-4 py-3">960 × 540</td><td class="px-4 py-3">518,400</td><td class="px-4 py-3">0.25×</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">720p</td><td class="px-4 py-3">1280 × 720</td><td class="px-4 py-3">921,600</td><td class="px-4 py-3">0.44×</td></tr>
+            <tr><td class="px-4 py-3">1080p</td><td class="px-4 py-3">1920 × 1080</td><td class="px-4 py-3">2,073,600</td><td class="px-4 py-3">1.00×</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">540p has about 26% more pixels than 480p, and about 56% of the pixels of 720p. It genuinely sits in the middle rather than hugging either neighbour.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common questions</h2>
+      <ul class="list-disc pl-6 space-y-3 text-slate-600 dark:text-slate-400">
+        <li><strong>Is 540p HD?</strong><br>No, though the classification is fuzzy. HD conventionally starts at 720p. 540p is above standard definition but below the HD threshold — sometimes labelled "enhanced definition." Some software has historically listed 960 × 540 under HD headings, which adds to the confusion, but it does not meet the standard definition of HD.</li>
+        <li><strong>Why does my video show 540p when I selected 1080p?</strong><br>Adaptive streaming. The player detected insufficient bandwidth and stepped down. It should step back up when conditions improve. If it does not, check your connection or manually lock the quality setting.</li>
+        <li><strong>Is 540p the same as 480p?</strong><br>No. 540p is 960 × 540; 480p is typically 854 × 480 in widescreen. 540p has roughly 26% more pixels and always uses 16:9, while 480p exists in both 4:3 and 16:9 variants.</li>
+        <li><strong>Can I upscale 540p to 1080p?</strong><br>You can resize it, but you cannot recover detail that was never there. AI upscaling tools can produce plausible-looking results by inventing detail, which may or may not be acceptable depending on your purpose. Neither approach restores the original information.</li>
+        <li><strong>What bitrate should I use for 540p?</strong><br>Roughly 3–4 Mbps for H.264 at 30fps covers typical content. Simple footage can go lower; high-motion needs more. See <a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained</a> for how content complexity changes this.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Related guides</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><a href="/blog/video-resolution-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Video Resolution Explained: 480p vs 720p vs 1080p vs 1440p vs 4K</a></li>
+        <li><a href="/blog/video-bitrate-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Bitrate Explained: How Quality and File Size Are Connected</a></li>
+        <li><a href="/blog/video-codecs-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Video Codecs Compared: H.264 vs H.265 vs AV1 vs VP9</a></li>
+      </ul>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-540p-bottom' }) %>
