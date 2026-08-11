@@ -1,5 +1,5 @@
 <section class="bg-white dark:bg-slate-900 py-16">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 text-center"><%= post.title %></h1>
     <p class="text-sm text-slate-500 dark:text-slate-400 text-center mb-10">Published on <time datetime="<%= post.date %>"><%= post.date %></time> · Updated on <time datetime="<%= post.dateModified %>"><%= post.dateModified %></time> · By <%= post.author %></p>
 
@@ -7,42 +7,186 @@
 
     <div class="prose dark:prose-invert max-w-none">
       <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-        Bitrate measures how much data is used to store or stream one second of video. A higher bitrate usually means better image and sound quality, but it also means a larger file and more bandwidth. Understanding bitrate helps you choose the best download or streaming setting for your needs.
+        <strong>Short answer:</strong> Bitrate is how much data a video spends per second, measured in Mbps or kbps. It is the single biggest lever on both file size and visible quality. File size is simply bitrate multiplied by duration. Quality rises with bitrate up to a point, then stops improving while the file keeps growing.
       </p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you have ever exported a video that looked blocky despite being "1080p," or ended up with a 6 GB file for a 10-minute clip, bitrate is the reason.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What Is Bitrate?</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Bitrate is measured in kilobits per second (kbps) or megabits per second (Mbps). It includes the amount of data used for both video and audio. A 5 Mbps video uses 5 megabits of data every second. Over a 10-minute video, that adds up quickly.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How Bitrate Affects Quality</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">At a low bitrate, the video compressor must throw away more detail to keep the file small. This can cause blocky areas, color bands, or blurry motion. A higher bitrate keeps more detail, so the picture looks cleaner and smoother, especially during fast action scenes.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">How Bitrate Affects File Size</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">File size is directly tied to bitrate. If you double the bitrate, you roughly double the file size. For example, a one-minute video at 2 Mbps is about 15 MB, while the same video at 8 Mbps is about 60 MB. If storage or data is limited, choosing a lower bitrate can help.</p>
-
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Typical Bitrate Ranges</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Here are common bitrates for H.264 video:</p>
-      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>480p:</strong> 0.5–1.5 Mbps</li>
-        <li><strong>720p:</strong> 2–5 Mbps</li>
-        <li><strong>1080p:</strong> 5–10 Mbps</li>
-        <li><strong>1440p:</strong> 10–20 Mbps</li>
-        <li><strong>4K:</strong> 20–50 Mbps</li>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What bitrate actually measures</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A video file is a stream of data. Bitrate is the rate at which that data flows.</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400 mt-4">
+        <li><strong>kbps</strong> = kilobits per second (thousands of bits)</li>
+        <li><strong>Mbps</strong> = megabits per second (millions of bits)</li>
+        <li>1 Mbps = 1,000 kbps</li>
       </ul>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Audio usually adds 128–320 kbps on top of these numbers.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Note that these are <strong>bits</strong>, not bytes. Eight bits make one byte, which is why the file size formula divides by 8:</p>
+      <p class="bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-lg font-mono text-sm text-slate-700 dark:text-slate-300 mt-4">File size (MB) = bitrate (Mbps) × duration (seconds) ÷ 8</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">A 10-minute video at 8 Mbps:</p>
+      <p class="bg-slate-100 dark:bg-slate-800 px-4 py-3 rounded-lg font-mono text-sm text-slate-700 dark:text-slate-300 mt-2">8 × 600 ÷ 8 = 600 MB</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">That formula is exact for constant bitrate. It is close enough to be useful for everything else.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Resolution vs Bitrate</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Resolution is the number of pixels. Bitrate is how much data describes those pixels. A 1080p video with a very low bitrate may look worse than a 720p video with a higher bitrate. That is why a "higher resolution" setting does not always look better if the bitrate is too low.</p>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Why the bits-vs-bytes distinction matters</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Internet speeds are advertised in <strong>bits</strong> (100 Mbps connection). File sizes are shown in <strong>bytes</strong> (600 MB file). This is why a "100 Mbps" connection downloads at around 12.5 MB/s, not 100 MB/s. Same confusion, different context — but it trips people up constantly when estimating upload times.</p>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Choosing the Right Bitrate</h2>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Bitrate versus resolution: which one controls quality?</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Both do, but they do different jobs.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Resolution</strong> decides how many pixels exist. <strong>Bitrate</strong> decides how much data is available to describe them.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Think of it as a fixed amount of ink and a page to fill. Resolution is the page size. Bitrate is the ink. A large page with too little ink gives you a faint, patchy drawing. A small page with plenty of ink gives you a clean one.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">This is why:</p>
       <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
-        <li><strong>Slow connection or limited data:</strong> lower bitrate, smaller file</li>
-        <li><strong>Archiving or editing:</strong> higher bitrate for best quality</li>
-        <li><strong>Streaming to a TV:</strong> match the bitrate to your internet speed</li>
-        <li><strong>Phone viewing:</strong> medium bitrate is usually enough</li>
+        <li>4K at 5 Mbps looks <strong>worse</strong> than 1080p at 5 Mbps. Same data, four times as many pixels to cover, so each pixel gets a quarter of the information.</li>
+        <li>Raising resolution without raising bitrate is a downgrade, not an upgrade.</li>
+        <li>A well-encoded 1080p file can genuinely look better than a badly-encoded 4K file on any screen.</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you take one thing from this page: <strong>resolution is a claim, bitrate is what backs it up.</strong></p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">What "not enough bitrate" looks like</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Compression artifacts have recognisable signatures. Knowing them helps you diagnose whether bitrate is your problem:</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Artifact</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">What you see</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Where it shows up first</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Blocking / macroblocking</strong></td><td class="px-4 py-3">Square blocks in flat areas</td><td class="px-4 py-3">Skies, walls, gradients</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Banding</strong></td><td class="px-4 py-3">Visible stripes instead of smooth gradients</td><td class="px-4 py-3">Sunsets, studio backdrops, fades</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Mosquito noise</strong></td><td class="px-4 py-3">Shimmering fuzz around edges</td><td class="px-4 py-3">Text, subtitles, sharp outlines</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3"><strong>Smearing</strong></td><td class="px-4 py-3">Detail dissolving during motion</td><td class="px-4 py-3">Pans, fast cuts, water, confetti</td></tr>
+            <tr><td class="px-4 py-3"><strong>Ringing</strong></td><td class="px-4 py-3">Faint halos beside hard edges</td><td class="px-4 py-3">Overlays, logos, captions</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">If you see these, more bitrate usually fixes it. If you see them at <em>high</em> bitrate, the problem is elsewhere — wrong codec settings, a bad source, or an upscale.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Why identical settings produce different file sizes</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Two 10-minute 1080p videos exported at the same target bitrate can land at very different sizes. This surprises people, and the reason is worth understanding.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Modern codecs do not store every frame in full. They store one complete frame (a keyframe) and then only the <strong>changes</strong> between frames.</p>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400 mt-4">
+        <li>A <strong>talking-head shot</strong> barely changes between frames. Background is static, only the face moves. The encoder stores very little per frame.</li>
+        <li><strong>Fast-motion footage</strong> — gameplay, sports, drone shots, rain, confetti, fabric, water — changes nearly every pixel every frame. There are few savings to be had.</li>
+      </ul>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Content complexity can shift real file size by <strong>3× or more</strong> at the same target bitrate. Any bitrate table you find online, including the ones below, assumes average content.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">CBR vs VBR: which to use</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This setting sits next to bitrate in every encoder, and picking wrong wastes either quality or bandwidth.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">CBR (Constant Bitrate)</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Data rate stays fixed regardless of what is on screen. Simple scenes get more data than they need; complex scenes get less than they want.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use for:</strong> live streaming. Platforms need a predictable stream. <cite class="text-slate-500 dark:text-slate-400 not-italic">Use CBR for live streaming because platforms expect a stable data rate.</cite></p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">VBR (Variable Bitrate)</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">The encoder spends more data on complex scenes and less on simple ones, averaging out to your target. Better quality per megabyte.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>Use for:</strong> file exports, uploads, archiving. <cite class="text-slate-500 dark:text-slate-400 not-italic">VBR is for file uploads and recordings.</cite></p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">One-pass vs two-pass VBR</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Two-pass analyses the whole video first, then encodes with full knowledge of where the difficult parts are. It takes roughly twice as long and produces measurably better allocation. For uploads where you export once and reuse forever, two-pass is worth the wait. For quick shares, one-pass is fine.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">CRF (Constant Rate Factor)</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">A third option that most guides skip. Instead of targeting a bitrate, you target a <strong>quality level</strong> and let the file size land wherever it lands.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">In x264, CRF runs 0–51, where lower is better quality. Practical range is 18–28; 23 is the default and roughly "visually fine." Each +6 approximately halves the file size.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">CRF is usually the better choice for archiving, because it gives consistent quality across clips of different complexity instead of consistent size. Use bitrate targeting when you have a size or bandwidth constraint to hit; use CRF when you care about quality and can accept whatever size results.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Recommended bitrates</h2>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Uploading to YouTube</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed"><cite class="text-slate-500 dark:text-slate-400 not-italic">For standard SDR uploads, YouTube recommends 8 Mbps for 1080p at 24–30 fps, 12 Mbps for 1080p at 48–60 fps, 35–45 Mbps for 4K at 24–30 fps, and 53–68 Mbps for 4K at 48–60 fps.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">YouTube's guidance also specifies H.264 video, AAC-LC audio, and variable bitrate, and notes that no bitrate limit is required — the published values are recommendations.</cite></p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Resolution</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">24–30 fps</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">48–60 fps</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">720p</td><td class="px-4 py-3">~5 Mbps</td><td class="px-4 py-3">~7.5 Mbps</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1080p</td><td class="px-4 py-3">8 Mbps</td><td class="px-4 py-3">12 Mbps</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">1440p</td><td class="px-4 py-3">16 Mbps</td><td class="px-4 py-3">24 Mbps</td></tr>
+            <tr><td class="px-4 py-3">4K</td><td class="px-4 py-3">35–45 Mbps</td><td class="px-4 py-3">53–68 Mbps</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>A note on going above these numbers.</strong> Some guides recommend uploading well above YouTube's published figures — <cite class="text-slate-500 dark:text-slate-400 not-italic">one encoding service suggests 12–15 Mbps for 1080p, roughly 50% above YouTube's floor, on the reasoning that the re-encode chain has more headroom to work with.</cite> This is plausible in principle, since the platform transcodes everything you send. But treat it as a workflow opinion rather than an established fact — it is the kind of claim worth testing on your own footage before adopting.</p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Live streaming to Twitch</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">This is genuinely contested right now, and most guides state a single number with more confidence than the situation supports.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The traditional answer is 6,000 kbps. <cite class="text-slate-500 dark:text-slate-400 not-italic">Twitch has historically recommended a maximum ingest bitrate of 6,000 kbps for non-partnered streamers, and this remains the safest ceiling — Twitch's transcoding infrastructure was built around this limit.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">But that has shifted. <cite class="text-slate-500 dark:text-slate-400 not-italic">Some current guidance puts the recommended maximum at 8,000 kbps.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">Enhanced Broadcasting moved out of beta for most partners and many affiliates, and eligible streamers can push 1080p60 at higher rates, with some accounts getting AV1 and HEVC ingest.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The practical risk of pushing past the traditional cap is not rejection — it is transcoding. <cite class="text-slate-500 dark:text-slate-400 not-italic">If your stream is not transcoded into lower-quality options, viewers on slower connections have no way to watch without buffering.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>What this means for you:</strong> if you are not enrolled in Enhanced Broadcasting, treat 6,000 kbps as your working ceiling. If you are, you have more headroom, but verify that your viewers still get a quality ladder. And check Twitch's own current guidelines rather than trusting any article, including this one — this area has changed twice in two years.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Other settings that matter for Twitch: <cite class="text-slate-500 dark:text-slate-400 not-italic">keyframe interval of 2 seconds is required, and as of <%= currentYear %> Twitch's standard ingest accepts H.264 only — using H.265 or AV1 outside Enhanced Broadcasting causes stream rejection.</cite></p>
+
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-3">Audio bitrate</h3>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Often forgotten, and cheap to get right:</p>
+      <div class="overflow-x-auto mt-4">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Content</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Bitrate</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Voice / podcast</td><td class="px-4 py-3">128–192 kbps AAC</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">General video</td><td class="px-4 py-3">192–256 kbps AAC</td></tr>
+            <tr><td class="px-4 py-3">Music-heavy</td><td class="px-4 py-3">320 kbps AAC</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Audio is a small fraction of total file size. There is rarely a good reason to economise here.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">The point of diminishing returns</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Quality does not rise forever with bitrate. The curve flattens.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">For typical 1080p footage, the difference between 4 and 8 Mbps is usually obvious. Between 8 and 16 Mbps it is subtle. Between 16 and 32 Mbps most viewers see nothing at all — but the file doubles.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">Where exactly the curve flattens depends on your content. High-motion and fine-detail footage keeps benefiting longer. Static talking-head footage flattens early.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><strong>How to find your own ceiling:</strong> export the same clip at several bitrates, view them full-screen on the largest display you have, and find the point where you stop seeing a difference. That number is your target for that kind of content. It is a twenty-minute test that saves gigabytes on every future export.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Codec changes the whole calculation</h2>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">Everything above assumes H.264, still the most widely compatible codec. Newer codecs achieve similar quality at substantially lower bitrates.</p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4"><cite class="text-slate-500 dark:text-slate-400 not-italic">AV1 or HEVC lets you drop these numbers roughly 30–40% for the same quality.</cite> <cite class="text-slate-500 dark:text-slate-400 not-italic">One streamer's assessment: AV1 at 5,000 kbps looks comparable to H.264 at 8,000 kbps.</cite></p>
+      <p class="text-slate-600 dark:text-slate-400 leading-relaxed mt-4">The tradeoff is compatibility and encoding time. Full details in <a href="/blog/video-codecs-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Video Codecs Compared</a>.</p>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Common questions</h2>
+      <ul class="list-disc pl-6 space-y-3 text-slate-600 dark:text-slate-400">
+        <li><strong>Is higher bitrate always better?</strong><br>Up to your content's ceiling, yes. Past it you are paying storage and bandwidth for nothing visible. And on platforms with ingest caps, exceeding the limit can get your stream rejected or poorly transcoded.</li>
+        <li><strong>Can I increase bitrate to fix a bad video?</strong><br>No. Bitrate limits how much of the original survives compression — it cannot restore what was never captured or what a previous encode already destroyed. Re-encoding a low-bitrate file at high bitrate just makes a large file with the same artifacts.</li>
+        <li><strong>Why does my upload look worse than my export?</strong><br>Platforms re-encode everything at their own bitrates, usually well below what you uploaded. Your export is the source they compress from, which is why sending a clean, generous file matters even though it gets re-encoded.</li>
+        <li><strong>What is the difference between bitrate and bandwidth?</strong><br>Bitrate is a property of the file. Bandwidth is the capacity of the connection carrying it. To stream an 8 Mbps video smoothly you need more than 8 Mbps of bandwidth — some headroom for overhead and fluctuation.</li>
+        <li><strong>Does frame rate affect required bitrate?</strong><br>Yes. Sixty frames per second is twice the frames of 30fps, so it needs roughly 1.5× the bitrate for equivalent quality — not quite double, since consecutive frames at higher rates are more similar to each other.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Final Tip</h2>
-      <p class="text-slate-600 dark:text-slate-400 leading-relaxed">When downloading a video, choose the format and resolution that balance quality and file size for your device. You can always keep a high-quality copy for archiving and a lower-bitrate copy for mobile viewing.</p>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Quick reference</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm text-left border border-slate-200 dark:border-slate-700">
+          <thead class="bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold">
+            <tr>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Situation</th>
+              <th class="px-4 py-3 border-b border-slate-200 dark:border-slate-700">Setting</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 dark:text-slate-300">
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">YouTube upload, 1080p30</td><td class="px-4 py-3">8 Mbps, VBR two-pass, H.264</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">YouTube upload, 4K30</td><td class="px-4 py-3">35–45 Mbps, VBR two-pass, H.264</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Twitch stream, 1080p60 (standard)</td><td class="px-4 py-3">6,000 kbps CBR, 2s keyframe, H.264</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Twitch stream, 720p60 (limited upload)</td><td class="px-4 py-3">3,500 kbps CBR</td></tr>
+            <tr class="border-b border-slate-200 dark:border-slate-700"><td class="px-4 py-3">Archiving originals</td><td class="px-4 py-3">CRF 18–20, not bitrate targeting</td></tr>
+            <tr><td class="px-4 py-3">Sharing over messaging</td><td class="px-4 py-3">720p at 2–3 Mbps</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4">Related guides</h2>
+      <ul class="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+        <li><a href="/blog/video-resolution-explained" class="text-sky-600 dark:text-sky-400 hover:underline">Video Resolution Explained: 480p vs 720p vs 1080p vs 1440p vs 4K</a></li>
+        <li><a href="/blog/video-codecs-compared" class="text-sky-600 dark:text-sky-400 hover:underline">Video Codecs Compared: H.264 vs H.265 vs AV1 vs VP9</a></li>
+        <li><a href="/blog/what-is-540p" class="text-sky-600 dark:text-sky-400 hover:underline">What Is 540p and When Is It Used?</a></li>
+      </ul>
+
+      <p class="text-sm text-slate-500 dark:text-slate-400 mt-10 italic">Platform bitrate recommendations change. Twitch's ingest limits in particular have shifted more than once — verify against the platform's current published guidelines before relying on any specific number, including the ones here.</p>
     </div>
 
     <%- include('../partials/ad-unit', { adSlot: 'blog-bitrate-bottom' }) %>

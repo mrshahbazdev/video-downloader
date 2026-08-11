@@ -501,12 +501,12 @@
   },
   {
     "slug": "video-bitrate-explained",
-    "title": "Bitrate Explained: The Relationship Between Quality and File Size",
+    "title": "Bitrate Explained: How Quality and File Size Are Actually Connected",
     "site": "online video",
     "formats": "MP4, MKV",
-    "summary": "Understand what video bitrate is, how it affects quality and file size, and how to choose the right bitrate for your needs.",
-    "description": "Video bitrate explained. Learn how bitrate controls quality and file size, and how to pick the right setting for streaming or downloading.",
-    "keywords": "video bitrate, bitrate explained, video quality, file size, video encoding, streaming bitrate",
+    "summary": "What bitrate means, how it controls video quality and file size, the difference between CBR and VBR, and what numbers to use for uploading, streaming, and archiving.",
+    "description": "What bitrate means, how it controls video quality and file size, the difference between CBR and VBR, and what numbers to use for uploading, streaming, and archiving.",
+    "keywords": "video bitrate, bitrate explained, CBR vs VBR, file size, video quality, streaming bitrate, YouTube bitrate, Twitch bitrate",
     "date": "2024-09-20",
     "dateModified": "2026-08-10",
     "author": "ClipVault Editorial Team"
