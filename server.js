@@ -550,7 +550,6 @@ app.get('/tools', (req, res) => {
       title: `Free Video Downloader Tools — ${siteConfig.siteTitle}`,
       description: 'Explore free tools to download videos from YouTube, TikTok, Instagram, Facebook, Twitter/X, Vimeo, and 1000+ sites. Convert to MP3, grab thumbnails, subtitles, and more.',
       keywords: 'video downloader tools, YouTube downloader, TikTok downloader, Instagram downloader, Facebook downloader, Twitter video downloader, MP3 converter, thumbnail downloader, subtitle downloader',
-      robots: 'noindex, follow',
     },
   });
 });
