@@ -24,6 +24,13 @@
   <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin />
   <link rel="dns-prefetch" href="https://ep1.adtrafficquality.google" />
   <%- include('partials/styles') %>
+  <style>
+    a[href].text-sky-600, a[href] .text-sky-600, .prose a[href] { color: #0369a1; text-decoration: underline; }
+    a[href].text-sky-600:hover, a[href] .text-sky-600:hover, .prose a[href]:hover { color: #075985; }
+    .dark a[href].text-sky-600, .dark a[href] .text-sky-600, .dark .prose a[href] { color: #7dd3fc; }
+    .dark a[href].text-sky-600:hover, .dark a[href] .text-sky-600:hover, .dark .prose a[href]:hover { color: #bae6fd; }
+    a[href].btn-primary, a[href].btn-secondary, a[href].no-underline, a[href].card { text-decoration: none; }
+  </style>
   <%- include('partials/ads') %>
   <%- include('partials/structured-data') %>
 </head>
@@ -33,6 +40,8 @@
   <main class="flex-grow">
     <%- body %>
   </main>
+  <% if (typeof post === 'undefined') { %><%- include('partials/page-info') %><% } %>
+  <% if (typeof post === 'undefined' && (typeof hasFaq === 'undefined' || !hasFaq)) { %><%- include('partials/faq') %><% } %>
   <%- include('partials/article-schema') %>
   <%- include('partials/footer') %>
   <%- include('partials/cookie-banner') %>

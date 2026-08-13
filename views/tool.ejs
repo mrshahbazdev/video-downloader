@@ -29,7 +29,7 @@
 <section class="py-12 bg-slate-50 dark:bg-slate-800">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-6">
-      <a href="/blog/<%= toolSlug %>" class="text-sky-600 dark:text-sky-400 hover:underline font-medium" rel="nofollow">Read the full guide: <%= toolTitle %> →</a>
+      <a href="/blog/<%= toolSlug %>" class="text-sky-700 dark:text-sky-300 underline hover:no-underline font-medium">Read the full guide: <%= toolTitle %> →</a>
     </div>
     <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">What is <%= toolTitle %>?</h2>
     <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
@@ -118,19 +118,6 @@
     { "@type": "HowToStep", "name": "Paste and analyze", "text": `Paste the URL into the ${toolTitle} input box and click the button.`, "url": meta.url },
     { "@type": "HowToStep", "name": "Pick a format", "text": "Choose MP4, MP3, or the best available quality from the list.", "url": meta.url + '#formats' },
     { "@type": "HowToStep", "name": "Download", "text": "Click the format card and save the file to your device.", "url": meta.url + '#download' }
-  ]
-}) %>
-</script>
-
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": `Is ${toolTitle} free?`, "acceptedAnswer": { "@type": "Answer", "text": `Yes. ${siteTitle} is free to use. Just paste the URL and pick a format.` } },
-    { "@type": "Question", "name": `What formats does ${toolTitle} support?`, "acceptedAnswer": { "@type": "Answer", "text": "It supports MP4, MP3, HD, 4K, and other formats when available from the original source." } },
-    { "@type": "Question", "name": `Can I use ${toolTitle} on mobile?`, "acceptedAnswer": { "@type": "Answer", "text": "Yes. It works on phones, tablets, and desktops without installing any app." } },
-    { "@type": "Question", "name": `Is ${toolTitle} safe and legal?`, "acceptedAnswer": { "@type": "Answer", "text": "Only download content you own or have permission to use. Respect copyright and platform terms." } }
   ]
 }) %>
 </script>

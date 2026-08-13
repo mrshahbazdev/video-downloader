@@ -28,10 +28,26 @@
     "email": "<%= contactEmail %>",
     "availableLanguage": ["English"]
   },
+  "author": {
+    "@type": "Person",
+    "name": "<%= authorName %>",
+    "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/about",
+    "jobTitle": "Editor",
+    "worksFor": { "@type": "Organization", "name": "<%= siteTitle %>" }
+  },
   "publisher": {
     "@type": "Organization",
     "name": "<%= siteTitle %>",
     "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg"
+  },
+  "about": {
+    "@type": "WebPage",
+    "name": "About <%= siteTitle %>",
+    "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/about"
+  },
+  "reviewedBy": {
+    "@type": "Person",
+    "name": "<%= authorName %>"
   }
 }
 </script>

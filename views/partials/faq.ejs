@@ -1,0 +1,36 @@
+<section class="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-center text-slate-900 dark:text-white mb-10">Frequently Asked Questions</h2>
+    <div class="space-y-4" id="faq">
+      <details class="group bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is <%= siteTitle %> free to use?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes. <%= siteTitle %> is completely free for supported public videos. Just paste the URL, complete the quick captcha, and pick the format you want.</p>
+      </details>
+      <details class="group bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">What video formats can I download?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Most tools return MP4, MP3, WebM, and HD or 4K options whenever the source makes them available. The exact list depends on the original platform.</p>
+      </details>
+      <details class="group bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Is <%= siteTitle %> safe and legal?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">The service does not store your downloads. Only save content you created, own, or have explicit permission to download, and follow each platform's terms.</p>
+      </details>
+      <details class="group bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <summary class="font-semibold text-slate-900 dark:text-white cursor-pointer">Can I use it on mobile?</summary>
+        <p class="mt-3 text-slate-600 dark:text-slate-300 text-sm">Yes. <%= siteTitle %> works in any modern browser on phones, tablets, and desktops. No app installation is required.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": `Is ${siteTitle} free to use?`, "acceptedAnswer": { "@type": "Answer", "text": `Yes. ${siteTitle} is completely free for supported public videos. Just paste the URL, complete the quick captcha, and pick the format you want.` } },
+    { "@type": "Question", "name": "What video formats can I download?", "acceptedAnswer": { "@type": "Answer", "text": "Most tools return MP4, MP3, WebM, and HD or 4K options whenever the source makes them available. The exact list depends on the original platform." } },
+    { "@type": "Question", "name": `Is ${siteTitle} safe and legal?`, "acceptedAnswer": { "@type": "Answer", "text": `The service does not store your downloads. Only save content you created, own, or have explicit permission to download, and follow each platform's terms.` } },
+    { "@type": "Question", "name": "Can I use it on mobile?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The site works in any modern browser on phones, tablets, and desktops. No app installation is required." } }
+  ]
+}) %>
+</script>
