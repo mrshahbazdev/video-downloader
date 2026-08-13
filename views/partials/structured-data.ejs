@@ -1,13 +1,16 @@
+<% const host = meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') || ''; %>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "<%= siteTitle %>",
-  "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>",
+  "url": "<%= host %>",
   "description": "<%= meta.description.replace(/"/g, '\\"') %>",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/supported-sites?q={search_term_string}",
+    "target": "<%= host %>/supported-sites?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
@@ -17,8 +20,8 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "<%= siteTitle %>",
-  "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>",
-  "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg",
+  "url": "<%= host %>",
+  "logo": "<%= host %>/favicon.svg",
   "description": "<%= (siteDescription || meta.description).replace(/"/g, '\\"') %>",
   "foundingDate": "2023",
   "sameAs": [],
@@ -31,23 +34,68 @@
   "author": {
     "@type": "Person",
     "name": "<%= authorName %>",
-    "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/about",
+    "url": "<%= host %>/about",
     "jobTitle": "Editor",
     "worksFor": { "@type": "Organization", "name": "<%= siteTitle %>" }
   },
   "publisher": {
     "@type": "Organization",
     "name": "<%= siteTitle %>",
-    "logo": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/favicon.svg"
+    "logo": "<%= host %>/favicon.svg"
   },
   "about": {
     "@type": "WebPage",
     "name": "About <%= siteTitle %>",
-    "url": "<%= meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') %>/about"
+    "url": "<%= host %>/about"
   },
   "reviewedBy": {
     "@type": "Person",
     "name": "<%= authorName %>"
+  },
+  "copyrightHolder": {
+    "@type": "Organization",
+    "name": "<%= siteTitle %>"
   }
 }
 </script>
+<% if (typeof post === 'undefined') { %>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": meta.title,
+  "url": meta.url,
+  "description": meta.description,
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "author": { "@type": "Person", "name": authorName, "url": host + '/about' },
+  "publisher": { "@type": "Organization", "name": siteTitle, "logo": host + '/favicon.svg' },
+  "reviewedBy": { "@type": "Person", "name": authorName },
+  "copyrightHolder": { "@type": "Organization", "name": siteTitle },
+  "dateModified": meta.lastUpdated,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", "main"]
+  }
+}) %>
+</script>
+<%
+const pathParts = (meta.path || '').split('/').filter(Boolean);
+let breadcrumbItems = [{ name: 'Home', item: host, position: 1 }];
+let currentPath = '';
+pathParts.forEach((part, idx) => {
+  currentPath += '/' + part;
+  const isLast = idx === pathParts.length - 1;
+  const label = isLast ? (meta.title ? meta.title.replace(/\s*—.*/, '').trim() : part.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())) : part.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  breadcrumbItems.push({ name: label, item: host + currentPath, position: idx + 2 });
+});
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((b) => ({ "@type": "ListItem", "position": b.position, "name": b.name, "item": b.item }))
+};
+%>
+<script type="application/ld+json">
+<%- JSON.stringify(breadcrumb) %>
+</script>
+<% } %>

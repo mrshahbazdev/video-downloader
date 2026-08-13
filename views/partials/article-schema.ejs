@@ -10,11 +10,16 @@
   "description": articleDescription,
   "url": meta.url,
   "image": meta.image,
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
   "datePublished": post.date,
   "dateModified": post.dateModified || post.date,
   "author": { "@type": "Person", "name": post.author, "url": host + '/about' },
   "publisher": { "@type": "Organization", "name": siteTitle, "url": host, "logo": host + '/favicon.svg' },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": meta.url }
+  "copyrightHolder": { "@type": "Organization", "name": siteTitle },
+  "reviewedBy": { "@type": "Person", "name": post.author },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": meta.url },
+  "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", "#step-1", "#faq"] }
 }) %>
 </script>
 

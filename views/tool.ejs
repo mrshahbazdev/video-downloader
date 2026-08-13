@@ -65,33 +65,6 @@
 <script type="application/ld+json">
 <%- JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": meta.title,
-  "url": meta.url,
-  "description": meta.description,
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": siteTitle,
-    "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1')
-  }
-}) %>
-</script>
-
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') },
-    { "@type": "ListItem", "position": 2, "name": "Tools", "item": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + "/tools" },
-    { "@type": "ListItem", "position": 3, "name": toolTitle }
-  ]
-}) %>
-</script>
-
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": toolTitle,
   "url": meta.url,
@@ -99,8 +72,11 @@
   "applicationCategory": "MultimediaApplication",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "operatingSystem": "Any",
-  "author": { "@type": "Organization", "name": siteTitle, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') },
-  "publisher": { "@type": "Organization", "name": siteTitle, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') }
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "author": { "@type": "Person", "name": authorName, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + '/about' },
+  "publisher": { "@type": "Organization", "name": siteTitle, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') },
+  "copyrightHolder": { "@type": "Organization", "name": siteTitle }
 }) %>
 </script>
 
@@ -110,9 +86,14 @@
   "@type": "HowTo",
   "name": `How to use ${toolTitle}`,
   "description": toolDesc,
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
   "totalTime": "PT2M",
   "supply": [{ "@type": "HowToSupply", "name": "Public video URL" }],
   "tool": [{ "@type": "HowToTool", "name": toolTitle, "url": meta.url }],
+  "author": { "@type": "Person", "name": authorName, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + '/about' },
+  "publisher": { "@type": "Organization", "name": siteTitle, "url": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1'), "logo": meta.url.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + '/favicon.svg' },
+  "copyrightHolder": { "@type": "Organization", "name": siteTitle },
   "step": [
     { "@type": "HowToStep", "name": "Copy the URL", "text": `Copy the public video link from the site you want to download from.`, "url": meta.url + '#step-1' },
     { "@type": "HowToStep", "name": "Paste and analyze", "text": `Paste the URL into the ${toolTitle} input box and click the button.`, "url": meta.url },
