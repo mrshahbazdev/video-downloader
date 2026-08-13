@@ -808,10 +808,11 @@ app.get('/robots.txt', (req, res) => {
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'supported-sites', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'content-policy', 'editorial-standards', 'blog'];
+  const pages = ['', 'tools', 'supported-sites', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'content-policy', 'editorial-standards', 'blog'];
   const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
+  const toolUrls = toolsData.filter((t) => t.slug && !RESERVED_TOOL_SLUGS.has(t.slug)).map((t) => `<url><loc>${host}/${t.slug}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`).join('\n');
   const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
-  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${blogUrls}\n</urlset>`);
+  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${toolUrls}\n${blogUrls}\n</urlset>`);
 });
 
 app.get('/api/captcha', (req, res) => {
