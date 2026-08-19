@@ -82,6 +82,16 @@ app.use(cors());
 app.use(express.json({ limit: '2mb' }));
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
+// Canonical URL normalization: 301 redirect trailing slashes to the canonical non-slash URL.
+app.use((req, res, next) => {
+  if (req.path.length > 1 && req.path.endsWith('/')) {
+    const cleanPath = req.path.slice(0, -1);
+    const qs = new URLSearchParams(req.query).toString();
+    return res.redirect(301, cleanPath + (qs ? '?' + qs : ''));
+  }
+  next();
+});
+
 // Dynamic llms.txt (must be before static middleware so a stale public/llms.txt doesn't override it)
 app.get('/llms.txt', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
@@ -532,7 +542,7 @@ function getMeta(req, options = {}) {
     description: options.meta?.description || 'Download videos from YouTube, TikTok, Instagram, Twitter, Facebook, and 1000+ sites quickly and securely.',
     keywords: options.meta?.keywords || '',
     image: `${host}/images/og-default.png`,
-    url: `${host}${req.originalUrl}`,
+    url: `${host}${req.path}`,
     path: req.path,
     robots: options.meta?.robots || '',
     lastUpdated: new Date().toISOString().split('T')[0],
