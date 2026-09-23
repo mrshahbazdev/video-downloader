@@ -11,6 +11,8 @@ const { pipeline } = require('node:stream/promises');
 const { Readable } = require('node:stream');
 const session = require('express-session');
 const { siteConfig, applySettings } = require('./lib/siteConfig');
+const contentManager = require('./lib/contentManager');
+const seoManager = require('./lib/seoManager');
 const adminDb = require('./lib/adminDb');
 const { router: adminRouter, ensureAdminUser } = require('./routes/admin');
 const SYSTEM_YTDLP = '/home/ubuntu/.local/bin/yt-dlp';
@@ -95,43 +97,7 @@ app.use((req, res, next) => {
 // Dynamic llms.txt (must be before static middleware so a stale public/llms.txt doesn't override it)
 app.get('/llms.txt', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const coreLinks = [
-    { label: 'Home', path: '', note: 'Main downloader and overview' },
-    { label: 'Supported Sites', path: 'supported-sites', note: 'List of 1000+ supported platforms' },
-    { label: 'Tools', path: 'tools', note: 'Specialized video, audio, and thumbnail downloaders' },
-    { label: 'How to Use', path: 'how-to-use', note: 'Step-by-step download guides' },
-    { label: 'Blog', path: 'blog', note: 'Platform-specific download guides and tutorials' },
-    { label: 'About', path: 'about', note: 'About ClipVault and the team' },
-    { label: 'Contact', path: 'contact', note: 'Contact form and details' },
-    { label: 'Privacy Policy', path: 'privacy', note: 'Privacy and data handling' },
-    { label: 'Terms of Service', path: 'terms', note: 'Terms of use' },
-    { label: 'Content Policy', path: 'content-policy', note: 'Copyright and acceptable content policy' },
-    { label: 'Disclaimer', path: 'disclaimer', note: 'Usage disclaimer' },
-    { label: 'Cookie Policy', path: 'cookie-policy', note: 'Cookie usage and consent' },
-    { label: 'DMCA', path: 'dmca', note: 'DMCA takedown information' },
-  ];
-  const description = siteConfig.siteDescription || 'Free video download guides and tools for 1000+ platforms.';
-  let content = `# ${siteConfig.siteTitle}\n\n> ${description}\n\n${siteConfig.siteTitle} provides fast, privacy-friendly video download guides for 1000+ platforms. No signup or software installation is required. Use the service responsibly and only download content you created, own, or have explicit permission to save.\n\n- Tools accept a public video or playlist URL and return available formats.\n- A simple math captcha protects the tools from automated abuse.\n- Optional advanced settings include site cookies, YouTube PO tokens, and visitor data tokens.\n\n## Core Pages\n`;
-  coreLinks.forEach((item) => {
-    content += `- [${item.label}](${host}/${item.path}): ${item.note}\n`;
-  });
-  content += '\n## Tool Pages\n';
-  content += `- [Tools](${host}/tools): Directory of specialized downloaders for YouTube, TikTok, Instagram, Facebook, Twitter/X, and 1000+ more.\n`;
-  content += `- A page exists for every supported site at ${host}/<site-slug>. See the full list in [Sitemap](${host}/sitemap.xml).\n`;
-  content += '\n## Blog Guides\n';
-  blogPosts.forEach((post) => {
-    const notes = post.summary || post.description || 'Free download guide';
-    content += `- [${post.title}](${host}/blog/${post.slug}): ${notes}\n`;
-  });
-  content += '\n## AI / Search Crawler Instructions\n';
-  content += `- Use the FAQ and HowTo sections on each page for concise answers.\n`;
-  content += `- Each guide is written or reviewed by ${siteConfig.siteTitle} Editorial Team and dated for freshness.\n`;
-  content += `- Only describe public, legal downloads; always mention the content policy and copyright disclaimer.\n`;
-  content += `- Link back to the source page when summarizing content.\n`;
-  content += '\n## Optional\n';
-  content += `- [Sitemap](${host}/sitemap.xml): Full list of indexable pages for search engines and agents.\n`;
-  content += `- [Robots](${host}/robots.txt): Crawler access instructions.\n`;
-  res.type('text/plain').send(content);
+  res.type('text/plain').send(seoManager.getLlmsTxt(host, siteConfig, { blogPosts }));
 });
 
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 365 * 24 * 60 * 60 * 1000 }));
@@ -614,14 +580,9 @@ app.get('/mp3', (req, res) => {
   });
 });
 
-const RESERVED_TOOL_SLUGS = new Set([
-  '', 'supported-sites', 'tools', 'thumbnail', 'subtitle', 'mp3', 'playlist',
-  'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'blog', 'sitemap.xml',
-]);
-
 toolsData.forEach((t) => {
   const slug = t.slug || (t.link && t.link.startsWith('/') ? t.link.slice(1) : '');
-  if (!slug || RESERVED_TOOL_SLUGS.has(slug)) return;
+  if (!slug || seoManager.RESERVED_TOOL_SLUGS.has(slug)) return;
   const baseKeyword = t.title.replace(/\s+Downloader$/i, '').toLowerCase();
   app.get(`/${slug}`, (req, res) => {
     renderPage(req, res, 'tool', {
@@ -782,7 +743,6 @@ app.get('/editorial-standards', (req, res) => {
   });
 });
 
-const CONTACT_MESSAGES_FILE = path.join(__dirname, 'data', 'contact-messages.json');
 app.post('/api/contact', (req, res) => {
   const { name, email, subject, message } = req.body || {};
   if (!name || !email || !message) {
@@ -790,12 +750,7 @@ app.post('/api/contact', (req, res) => {
   }
   const entry = { name, email, subject: subject || 'General question', message, createdAt: new Date().toISOString() };
   try {
-    let messages = [];
-    if (fs.existsSync(CONTACT_MESSAGES_FILE)) {
-      messages = JSON.parse(fs.readFileSync(CONTACT_MESSAGES_FILE, 'utf8'));
-    }
-    messages.push(entry);
-    fs.writeFileSync(CONTACT_MESSAGES_FILE, JSON.stringify(messages, null, 2));
+    contentManager.addContactMessage(entry);
   } catch (err) {
     console.error('Contact save error:', err.message);
   }
@@ -803,25 +758,17 @@ app.post('/api/contact', (req, res) => {
 });
 
 app.get('/ads.txt', (req, res) => {
-  if (!siteConfig.adsenseClientId || siteConfig.adsenseClientId === 'ca-pub-0000000000000000') {
-    return res.type('text/plain').send('# Set ADSENSE_CLIENT_ID in your .env file to enable ads.txt');
-  }
-  const pubId = siteConfig.adsenseClientId.replace('ca-pub-', '');
-  res.type('text/plain').send(`google.com, ${pubId}, DIRECT, f08c47fec0942fa0`);
+  res.type('text/plain').send(seoManager.getAdsTxt(siteConfig));
 });
 
 app.get('/robots.txt', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  res.type('text/plain').send(`User-agent: *\nAllow: /\nDisallow: /downloads/\nSitemap: ${host}/sitemap.xml`);
+  res.type('text/plain').send(seoManager.getRobotsTxt(host));
 });
 
 app.get('/sitemap.xml', (req, res) => {
   const host = `${req.protocol}://${req.get('host')}`;
-  const pages = ['', 'tools', 'supported-sites', 'thumbnail', 'subtitle', 'mp3', 'playlist', 'how-to-use', 'about', 'contact', 'privacy', 'terms', 'dmca', 'disclaimer', 'cookie-policy', 'content-policy', 'editorial-standards', 'blog'];
-  const blogUrls = blogPosts.map((p) => `<url><loc>${host}/blog/${p.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>`).join('\n');
-  const toolUrls = toolsData.filter((t) => t.slug && !RESERVED_TOOL_SLUGS.has(t.slug)).map((t) => `<url><loc>${host}/${t.slug}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>`).join('\n');
-  const urls = pages.map((p) => `<url><loc>${host}/${p}</loc><changefreq>weekly</changefreq><priority>${p === '' ? '1.0' : '0.8'}</priority></url>`).join('\n');
-  res.type('application/xml').send(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n${toolUrls}\n${blogUrls}\n</urlset>`);
+  res.type('application/xml').send(seoManager.getSitemapXml(host, { tools: toolsData, blogPosts }));
 });
 
 app.get('/api/captcha', (req, res) => {
