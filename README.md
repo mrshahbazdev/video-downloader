@@ -158,6 +158,72 @@ All setting changes are applied immediately without a server restart. Verificati
 
 If MySQL credentials are set in `.env`, admin tables are created on startup. If not, the panel stores data in `data/admin-db.json` (ignored by Git).
 
+## Advanced MCP Control Server
+
+ClipVault includes an MCP server so AI assistants and MCP clients can manage the project without manually editing files or using the admin UI.
+
+### Local stdio mode
+
+Use this for Cursor, Claude Desktop, Windsurf, or any local MCP client:
+
+```bash
+npm install
+npm run mcp
+```
+
+Example MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "clipvault": {
+      "command": "node",
+      "args": ["/absolute/path/to/video-downloader/mcp/server.js"],
+      "env": {
+        "CLIPVAULT_SITE_URL": "https://clipvaultz.online"
+      }
+    }
+  }
+}
+```
+
+### Streamable HTTP mode
+
+Use this when you want to connect through an HTTP MCP endpoint:
+
+```bash
+CLIPVAULT_MCP_TOKEN="change-this-token" npm run mcp:http
+```
+
+The endpoint is:
+
+```text
+POST http://localhost:3030/mcp
+Authorization: Bearer change-this-token
+```
+
+Set `CLIPVAULT_MCP_PORT` to change the port. Keep `CLIPVAULT_MCP_TOKEN` set for any network-accessible deployment.
+
+### MCP tools
+
+The server exposes advanced tools for:
+
+- Site overview and health checks.
+- SEO audits, metadata previews, sitemap, robots.txt, ads.txt, and llms.txt generation.
+- Site settings updates for title, description, keywords, AdSense, analytics, contact, and webmaster verification.
+- Downloader tool page search/create/update/delete.
+- Blog guide search/create/update/delete.
+- Contact-form inbox search and deletion.
+- yt-dlp metadata inspection and one-file downloads for content you own or have permission to process.
+
+Content changes to tool/blog catalogs update JSON immediately, but new/changed dynamic routes may require restarting the web server because routes are registered at startup.
+
+### Verify MCP
+
+```bash
+npm run smoke:mcp
+```
+
 ## Deploy on cPanel / Live Domain
 
 1. In cPanel, create a Node.js app for the new domain (`clipvaultz.online`).

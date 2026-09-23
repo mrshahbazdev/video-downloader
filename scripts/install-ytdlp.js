@@ -4,6 +4,7 @@ const https = require('https');
 
 const binDir = path.join(__dirname, '..', 'bin');
 const binPath = path.join(binDir, 'yt-dlp');
+const latestBinaryUrl = 'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp';
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -79,8 +80,16 @@ async function downloadYtdlp(force = false) {
     await downloadFile(asset.browser_download_url, binPath);
     console.log('yt-dlp downloaded to', binPath);
   } catch (err) {
-    console.error('Warning: could not download yt-dlp:', err.message);
-    console.error('If you have a system yt-dlp, set YOUTUBE_DL_BINARY. Otherwise manually place yt-dlp at', binPath);
+    console.error('Warning: could not resolve yt-dlp release metadata:', err.message);
+    try {
+      fs.mkdirSync(binDir, { recursive: true });
+      console.log('Downloading yt-dlp from latest binary URL...');
+      await downloadFile(latestBinaryUrl, binPath);
+      console.log('yt-dlp downloaded to', binPath);
+    } catch (downloadErr) {
+      console.error('Warning: could not download yt-dlp:', downloadErr.message);
+      console.error('If you have a system yt-dlp, set YOUTUBE_DL_BINARY. Otherwise manually place yt-dlp at', binPath);
+    }
   }
 
   return binPath;

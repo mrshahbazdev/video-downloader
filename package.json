@@ -7,7 +7,10 @@
     "dev": "node --watch server.js",
     "build:css": "tailwindcss -i ./public/css/tailwind-input.css -o ./public/css/tailwind.min.css --minify",
     "watch:css": "tailwindcss -i ./public/css/tailwind-input.css -o ./public/css/tailwind.min.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mcp": "node mcp/server.js",
+    "mcp:http": "node mcp/server.js --http",
+    "smoke:mcp": "node scripts/smoke-mcp.js"
   },
   "keywords": [
     "video-downloader",
@@ -20,6 +23,7 @@
   "license": "ISC",
   "description": "All-in-one video downloader web app supporting 1000+ sites via yt-dlp.",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
     "bcryptjs": "^3.0.3",
     "compression": "^1.8.1",
     "cors": "^2.8.6",
@@ -29,9 +33,13 @@
     "express": "^5.2.1",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.19.0",
-    "mysql2": "^3.23.2"
+    "mysql2": "^3.23.2",
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.19"
+  },
+  "overrides": {
+    "qs": "6.16.0"
   }
 }

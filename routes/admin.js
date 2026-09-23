@@ -1,12 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const fs = require('fs');
-const path = require('path');
 const router = express.Router();
 const adminDb = require('../lib/adminDb');
 const { siteConfig, applySettings } = require('../lib/siteConfig');
-const toolsData = require('../data/tools.json');
-const blogPosts = require('../data/blogPosts.json');
+const contentManager = require('../lib/contentManager');
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'changeme';
@@ -67,8 +64,8 @@ router.get('/', requireLogin, async (req, res) => {
     siteTitle: siteConfig.siteTitle,
     settings,
     stats: {
-      tools: toolsData.length,
-      blog: blogPosts.length,
+      tools: contentManager.readTools().length,
+      blog: contentManager.readBlogPosts().length,
       dbType: adminDb.isJson() ? 'JSON' : 'MySQL',
     },
   });
@@ -109,68 +106,56 @@ function pageParams(req) {
 router.get('/tools', requireLogin, (req, res) => {
   const { page, q } = pageParams(req);
   const perPage = 50;
-  const filtered = q
-    ? toolsData.filter((t) => (t.title || '').toLowerCase().includes(q) || (t.desc || '').toLowerCase().includes(q))
-    : toolsData.slice();
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / perPage) || 1;
-  const start = (page - 1) * perPage;
-  const pageTools = filtered.slice(start, start + perPage);
+  const result = contentManager.listTools({ query: q, page, limit: perPage });
   res.render('admin/tools', {
     layout: 'admin/layout',
     admin: true,
     title: 'Tools',
     siteTitle: siteConfig.siteTitle,
-    tools: pageTools,
-    total,
-    page,
-    totalPages,
+    tools: result.items,
+    total: result.total,
+    page: result.page,
+    totalPages: result.totalPages,
     q: req.query.q || '',
   });
 });
 
 router.post('/tools/:slug', requireLogin, async (req, res) => {
   const slug = decodeURIComponent(req.params.slug);
-  const tool = toolsData.find((t) => (t.slug || t.link) === slug);
+  const tool = contentManager.getTool(slug);
   if (!tool) return res.status(404).send('Tool not found');
-  tool.title = req.body.title || tool.title;
-  tool.desc = req.body.desc || tool.desc;
-  tool.placeholder = req.body.placeholder || tool.placeholder;
-  fs.writeFileSync(path.join(__dirname, '..', 'data', 'tools.json'), JSON.stringify(toolsData, null, 2));
+  contentManager.upsertTool({
+    ...(tool.link ? { link: tool.link } : { slug: tool.slug || slug }),
+    title: req.body.title || tool.title,
+    desc: req.body.desc || tool.desc,
+    placeholder: req.body.placeholder || tool.placeholder,
+    icon: tool.icon,
+    keywords: tool.keywords,
+  });
   res.redirect('/admin/tools?success=Tool updated');
 });
 
 router.get('/blog', requireLogin, (req, res) => {
   const { page, q } = pageParams(req);
   const perPage = 25;
-  const filtered = q
-    ? blogPosts.filter((p) => (p.title || '').toLowerCase().includes(q) || (p.slug || '').toLowerCase().includes(q))
-    : blogPosts.slice();
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / perPage) || 1;
-  const start = (page - 1) * perPage;
-  const pagePosts = filtered.slice(start, start + perPage);
+  const result = contentManager.listBlogPosts({ query: q, page, limit: perPage });
   res.render('admin/blog', {
     layout: 'admin/layout',
     admin: true,
     title: 'Blog Posts',
     siteTitle: siteConfig.siteTitle,
-    posts: pagePosts,
-    total,
-    page,
-    totalPages,
+    posts: result.items,
+    total: result.total,
+    page: result.page,
+    totalPages: result.totalPages,
     q: req.query.q || '',
   });
 });
 
 router.post('/blog/:slug/delete', requireLogin, (req, res) => {
   const slug = decodeURIComponent(req.params.slug);
-  const idx = blogPosts.findIndex((p) => p.slug === slug);
-  if (idx === -1) return res.status(404).send('Post not found');
-  blogPosts.splice(idx, 1);
-  fs.writeFileSync(path.join(__dirname, '..', 'data', 'blogPosts.json'), JSON.stringify(blogPosts, null, 2));
-  const viewFile = path.join(__dirname, '..', 'views', 'blog', `${slug}.ejs`);
-  if (fs.existsSync(viewFile)) fs.unlinkSync(viewFile);
+  if (!contentManager.getBlogPost(slug)) return res.status(404).send('Post not found');
+  contentManager.deleteBlogPost(slug, { removeView: true });
   res.redirect('/admin/blog?success=Post deleted');
 });
 
