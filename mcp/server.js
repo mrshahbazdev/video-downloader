@@ -740,7 +740,7 @@ async function runHttp() {
     throw new Error('CLIPVAULT_MCP_TOKEN is required for Streamable HTTP mode.');
   }
   const app = express();
-  const port = parseInt(process.env.CLIPVAULT_MCP_PORT || '3030', 10);
+  const port = parseInt(process.env.PORT || process.env.CLIPVAULT_MCP_PORT || '3030', 10);
   app.use(express.json({ limit: '4mb' }));
   app.use(requireBearerToken);
 

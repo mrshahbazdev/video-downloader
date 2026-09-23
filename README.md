@@ -204,6 +204,21 @@ Authorization: Bearer change-this-token
 
 Set `CLIPVAULT_MCP_PORT` to change the port. Keep `CLIPVAULT_MCP_TOKEN` set for any network-accessible deployment.
 
+### cPanel Node.js App
+
+Create a second Node.js application for the MCP server:
+
+- Application root: the ClipVault project directory
+- Application URL: a protected subdomain such as `https://mcp.example.com`
+- Application startup file: `mcp/server.js`
+- Environment variables:
+  - `CLIPVAULT_MCP_TOKEN`: a strong random secret
+  - `CLIPVAULT_SITE_URL`: the public ClipVault URL
+
+cPanel supplies the application `PORT` automatically. Set the application mode to
+production, run `npm install`, restart the Node.js application, and configure the
+MCP client to use `https://mcp.example.com/mcp` with the Bearer token.
+
 ### MCP tools
 
 The server exposes advanced tools for:
